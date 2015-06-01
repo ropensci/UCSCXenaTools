@@ -1,0 +1,13 @@
+Package: XenaR
+Type: Package
+Title: Simple Client to UCSC Xena
+Version: 0.0.1
+Authors@R:
+    person("Martin", "Morgan", email="mtmorgan@fredhutch.org", role="cre")
+Description: This package provides an initial interface to the Xena
+    UCSC data and visualization hub. The focus is on discovery and
+    retrieval of data, rather than use of visualization facilites.
+URL: https://gihub.org/mtmorgan/XenaR
+License: Apache-2.0
+Imports: httr
+Suggests: knitr
