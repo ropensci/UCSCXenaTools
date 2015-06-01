@@ -1,7 +1,7 @@
 Package: XenaR
 Type: Package
 Title: Simple Client to UCSC Xena
-Version: 0.0.1
+Version: 0.0.2
 Authors@R:
     person("Martin", "Morgan", email="mtmorgan@fredhutch.org", role="cre")
 Description: This package provides an initial interface to the Xena

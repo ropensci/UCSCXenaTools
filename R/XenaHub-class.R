@@ -23,13 +23,14 @@ XenaHub <-
              "\n    ", paste0(hosts0, collapse="\n  "))
 
     if (length(cohorts) == 0L) {
-        cohorts <- unlist(.all_cohorts(hosts), use.names=FALSE)
+        cohorts <- unlist(.host_cohorts(hosts), use.names=FALSE)
     } else {
-        hosts <- hosts[.count_datasets(hosts, cohorts) != 0L]
+        hosts <- hosts[.cohort_datasets_count(hosts, cohorts) != 0L]
     }
 
     if (length(datasets) == 0L)
-        datasets <- unlist(.all_dataset_names(hosts, cohorts), use.names=FALSE)
+        datasets <- unlist(.cohort_datasets(hosts, cohorts),
+                           use.names=FALSE)
 
     .XenaHub(hosts=hosts, cohorts=cohorts, datasets=datasets)
 }
