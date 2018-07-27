@@ -7,7 +7,7 @@ xena_default_hosts <- function() {
       "https://tcga.xenahubs.net",
       "https://gdc.xenahubs.net",
       "https://icgc.xenahubs.net",
-      " https://toil.xenahubs.net")
+      "https://toil.xenahubs.net")
 }
 
 XenaHub <-
