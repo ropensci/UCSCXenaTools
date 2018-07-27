@@ -3,8 +3,11 @@
       datasets="character"))
 
 xena_default_hosts <- function() {
-    c("https://tcga.xenahubs.net/",
-      "http://localhost:7222")
+    c("https://ucscpublic.xenahubs.net",
+      "https://tcga.xenahubs.net",
+      "https://gdc.xenahubs.net",
+      "https://icgc.xenahubs.net",
+      " https://toil.xenahubs.net")
 }
 
 XenaHub <-
