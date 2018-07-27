@@ -3,7 +3,7 @@
       datasets="character"))
 
 xena_default_hosts <- function() {
-    c("https://genome-cancer.soe.ucsc.edu/proj/public/xena",
+    c("https://tcga.xenahubs.net/",
       "http://localhost:7222")
 }
 
