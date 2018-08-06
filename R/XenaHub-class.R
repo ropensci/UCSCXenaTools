@@ -12,10 +12,22 @@ xena_default_hosts <- function() {
 
 XenaHub <-
     function(hosts=xena_default_hosts(), cohorts=character(),
-             datasets=character())
+             datasets=character(), hostName=c("","UCSC_Public", "TCGA", "GDC", "ICGC", "Toil"))
 {
     stopifnot(is.character(hosts), is.character(cohorts),
               is.character(datasets))
+    
+    hostName = match.arg(hostName)
+    
+    if(hostName != ""){
+        hosts <- switch(hostName,
+                        UCSC_Public="https://ucscpublic.xenahubs.net",
+                        TCGA="https://tcga.xenahubs.net",
+                        GDC="https://gdc.xenahubs.net",
+                        ICGC="https://icgc.xenahubs.net",
+                        Toil="https://toil.xenahubs.net")
+    }
+        
     if (is.null(names(hosts)))
         names(hosts) <- hosts
     
@@ -37,6 +49,26 @@ XenaHub <-
 
     .XenaHub(hosts=hosts, cohorts=cohorts, datasets=datasets)
 }
+
+filterXena = function(x, filterCohorts=NULL, filterDatasets=NULL, ignore.case=TRUE){
+    if(is.null(filterCohorts) & is.null(filterDatasets)){
+        message("No operation for input, do nothing...")
+    }
+    
+    cohorts_select = character()
+    datasets_select = character()
+    
+    if (!is.null(filterCohorts)){
+        cohorts_select = grep(pattern = filterCohorts, x@cohorts, ignore.case = ignore.case, value = TRUE)
+    }
+    
+    if (!is.null(filterDatasets)){
+        datasets_select = grep(pattern = filterDatasets, x@datasets, ignore.case = ignore.case, value = TRUE)
+    }
+    
+    XenaHub(hosts = x@hosts, cohorts = cohorts_select, datasets = datasets_select)
+}
+
 
 hosts <- function(x) unname(slot(x, "hosts"))
 

@@ -1,13 +1,13 @@
-Package: XenaR
-Type: Package
-Title: Simple Client to UCSC Xena
-Version: 0.0.2
-Authors@R:
-    person("Martin", "Morgan", email="mtmorgan@fredhutch.org", role="cre")
-Description: This package provides an initial interface to the Xena
-    UCSC data and visualization hub. The focus is on discovery and
-    retrieval of data, rather than use of visualization facilites.
-URL: https://gihub.org/mtmorgan/XenaR
-License: Apache-2.0
+Package: UCSCXenaTools
+Title: A R Package Download and Explore Data From UCSC Xena Data Hubs
+Version: 0.0.0.9000
+Authors@R: person("Wang", "Shixiang", email = "w_shixiang@163.com", role = c("aut", "cre"))
+Description: A R package download and explore data from UCSC Xena data hubs, which are
+    A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others.
+    Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
+    This package is based on XenaR package.
+License: GPL-3
 Imports: httr
 Suggests: knitr
+Encoding: UTF-8
+LazyData: true

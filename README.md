@@ -12,3 +12,9 @@ I will develop how to easily download and analyze data from these data hubs. I a
 ## Acknowledgement
 
 This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
+
+## LICENSE
+
+GPL-3
+
+please note, code from XenaR package under Apache 2.0 license.
