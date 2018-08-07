@@ -11,21 +11,32 @@ xena_default_hosts <- function() {
 }
 
 XenaHub <- function(hosts=xena_default_hosts(), cohorts=character(),
-             datasets=character(), hostName=c("","UCSC_Public", "TCGA", "GDC", "ICGC", "Toil")){
+             datasets=character(), hostName=c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil")){
     
     stopifnot(is.character(hosts), is.character(cohorts),
               is.character(datasets))
     
-    hostName = match.arg(hostName)
+    hostName = unique(hostName)
     
-    if(hostName != ""){
-        hosts <- switch(hostName,
-                        UCSC_Public="https://ucscpublic.xenahubs.net",
-                        TCGA="https://tcga.xenahubs.net",
-                        GDC="https://gdc.xenahubs.net",
-                        ICGC="https://icgc.xenahubs.net",
-                        Toil="https://toil.xenahubs.net")
+    if(length(hostName) != 5 & all(hostName %in% c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil")) ){
+      hostNames = data.frame(UCSC_Public="https://ucscpublic.xenahubs.net",
+                             TCGA="https://tcga.xenahubs.net",
+                             GDC="https://gdc.xenahubs.net",
+                             ICGC="https://icgc.xenahubs.net",
+                             Toil="https://toil.xenahubs.net", stringsAsFactors = FALSE)  
+      hosts = as.character(hostNames[, hostName])
     }
+    
+    # hostName = match.arg(hostName)
+    # 
+    # if(hostName != ""){
+    #     hosts <- switch(hostName,
+    #                     UCSC_Public="https://ucscpublic.xenahubs.net",
+    #                     TCGA="https://tcga.xenahubs.net",
+    #                     GDC="https://gdc.xenahubs.net",
+    #                     ICGC="https://icgc.xenahubs.net",
+    #                     Toil="https://toil.xenahubs.net")
+    # }
         
     if (is.null(names(hosts)))
         names(hosts) <- hosts

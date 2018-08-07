@@ -1,7 +1,4 @@
-# download feature
-# under host_url/download/
-# under development
-
+# query, download and prepare functions
 
 XenaQuery = function(x){
     hostsName = hosts(x)
