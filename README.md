@@ -128,7 +128,7 @@ Pipe can be used here.
 
 ```
 suppressMessages(require(dplyr))
-## Warning: 程辑包'dplyr'是用R版本3.5.1 来建造的
+
 xe %>% 
     filterXena(filterDatasets = "clinical") %>% 
     filterXena(filterDatasets = "luad|lusc|lung")
