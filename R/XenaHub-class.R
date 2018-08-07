@@ -10,10 +10,9 @@ xena_default_hosts <- function() {
       "https://toil.xenahubs.net")
 }
 
-XenaHub <-
-    function(hosts=xena_default_hosts(), cohorts=character(),
-             datasets=character(), hostName=c("","UCSC_Public", "TCGA", "GDC", "ICGC", "Toil"))
-{
+XenaHub <- function(hosts=xena_default_hosts(), cohorts=character(),
+             datasets=character(), hostName=c("","UCSC_Public", "TCGA", "GDC", "ICGC", "Toil")){
+    
     stopifnot(is.character(hosts), is.character(cohorts),
               is.character(datasets))
     
@@ -37,15 +36,26 @@ XenaHub <-
         stop("\n  no hosts responding:",
              "\n    ", paste0(hosts0, collapse="\n  "))
 
+    all_cohorts = unlist(.host_cohorts(hosts), use.names=FALSE)
     if (length(cohorts) == 0L) {
-        cohorts <- unlist(.host_cohorts(hosts), use.names=FALSE)
+        cohorts <- all_cohorts
     } else {
         hosts <- hosts[.cohort_datasets_count(hosts, cohorts) != 0L]
     }
-
-    if (length(datasets) == 0L)
-        datasets <- unlist(.cohort_datasets(hosts, cohorts),
-                           use.names=FALSE)
+    
+    all_datasets <- unlist(.cohort_datasets(hosts, cohorts),
+                          use.names=FALSE)
+    if (length(datasets) == 0L){
+        datasets <- all_datasets
+    }else{
+        if(!all(datasets %in% all_datasets)){
+            bad_dataset = datasets[!datasets %in% all_datasets]
+            message("Following datasets are not in datasets of hosts, ignore them...")
+            message(bad_dataset)
+        }
+        datasets <- all_datasets[all_datasets %in% datasets]
+    }
+        
 
     .XenaHub(hosts=hosts, cohorts=cohorts, datasets=datasets)
 }
