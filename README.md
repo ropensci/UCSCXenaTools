@@ -1,5 +1,7 @@
 # UCSCXenaTools
 
+![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) 
+
 A R package download and explore data from **UCSC Xena data hubs**, which are
 
 > A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
