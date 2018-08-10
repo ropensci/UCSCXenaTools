@@ -1,7 +1,18 @@
+##'  a S4 class to represent UCSC Xena Data Hubs
+##'  @slot hosts hosts of data hubs
+##'  @slot cohorts cohorts of data hubs
+##'  @slot datasets datasets of data hubs
 .XenaHub <- setClass("XenaHub", 
     representation=representation(hosts="character", cohorts="character",
       datasets="character"))
 
+
+##' @title UCSC Xena Default Hosts
+##' @description Return Xena Default hosts 
+##' @return A character vector include current defalut hosts
+##' @author Shixiang Wang
+##' @seealso \code{\link[UCSCXenaTools]{XenaHub}}
+##' @export
 xena_default_hosts <- function() {
     c("https://ucscpublic.xenahubs.net",
       "https://tcga.xenahubs.net",
@@ -10,6 +21,36 @@ xena_default_hosts <- function() {
       "https://toil.xenahubs.net")
 }
 
+##' Generate a XenaHub Object
+##' 
+##' Major function of \code{UCSCXenatools}. It is used to generate original
+##' \code{XenaHub} object according to hosts, cohorts, datasets or hostName.
+##' If these arguments not specified, all hosts and corresponding datasets
+##' will be returned as a \code{XenaHub} object. All datasets can be found
+##' at <https://xenabrowser.net/datapages/>.
+##' 
+##' 
+##' @param hosts a character vector specify UCSC Xena hosts, all available hosts can be 
+##' found by \code{xena_default_hosts()} function. \code{hostName} is a recommend option 
+##' for substitute this.
+##' @param cohorts default is empty character vector, all cohorts will be returned.
+##' @param datasets default is empty character vector, all datasets will be returned.
+##' @param hostName one to five of \code{"UCSC_Public", "TCGA", "GDC", "ICGC", "Toil"}. This is 
+##' a easier option for user than \code{hosts} option. Note, this option will overlap \code{hosts}.
+##' @return a \code{XenaHub} object 
+##' @author Shixiang Wang
+##' @export
+##' @examples
+##' #1 query all hosts, cohorts and datasets
+##' xe = XenaHub()
+##' xe
+##' #2 query only TCGA hosts
+##' xe = XenaHub(hostName = "TCGA")
+##' xe
+##' hosts(xe)     # get hosts
+##' cohorts(xe)   # get cohorts
+##' datasets(xe)  # get datasets
+##' samples(xe)   # get samples 
 XenaHub <- function(hosts=xena_default_hosts(), cohorts=character(),
              datasets=character(), hostName=c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil")){
     
@@ -71,6 +112,31 @@ XenaHub <- function(hosts=xena_default_hosts(), cohorts=character(),
     .XenaHub(hosts=hosts, cohorts=cohorts, datasets=datasets)
 }
 
+
+##' Filter a XenaHub Object
+##' 
+##' Major function of \code{UCSCXenatools}. It is used to filter
+##' \code{XenaHub} object according to cohorts, datasets. All datasets can be found
+##' at <https://xenabrowser.net/datapages/>. Note, the change for filtering cohorts and 
+##' datasets are independent.
+##' 
+##' 
+##' @param x a \code{XenaHub} object
+##' @param filterCohorts default is \code{NULL}. A character used to filter cohorts, 
+##' regular expression is supported.
+##' @param filterDatasets default is \code{NULL}. A character used to filter datasets, 
+##' regular expression is supported.
+##' @param ignore.case if \code{FALSE}, the pattern matching is case sensitive and if \code{TRUE}, case is ignored during matching.
+##' @return a \code{XenaHub} object 
+##' @author Shixiang Wang
+##' @export
+##' @examples 
+##' # operate TCGA datasets
+##' xe = XenaHub(hostName = "TCGA")
+##' xe
+##' # get all names of clinical data
+##' xe2 = filterXena(xe, filterDatasets = "clinical") 
+##' datasets(xe2)
 filterXena = function(x, filterCohorts=NULL, filterDatasets=NULL, ignore.case=TRUE){
     if(is.null(filterCohorts) & is.null(filterDatasets)){
         message("No operation for input, do nothing...")
@@ -90,11 +156,23 @@ filterXena = function(x, filterCohorts=NULL, filterDatasets=NULL, ignore.case=TR
     XenaHub(hosts = x@hosts, cohorts = cohorts_select, datasets = datasets_select)
 }
 
-
+##' Get hosts of XenaHub object
+##' @param x a \code{XenaHub} object
+##' @return a character vector contains hosts
+##' @export
+##' @examples xe = XenaHub(hostName="TCGA"); hosts(xe)
 hosts <- function(x) unname(slot(x, "hosts"))
-
+##' Get cohorts of XenaHub object
+##' @param x a \code{XenaHub} object
+##' @return a character vector contains cohorts
+##' @export
+##' @examples xe = XenaHub(hostName="TCGA"); cohorts(xe)
 cohorts <- function(x) slot(x, "cohorts")
-
+##' Get datasets of XenaHub object
+##' @param x a \code{XenaHub} object
+##' @return a character vector contains datasets
+##' @export
+##' @examples xe = XenaHub(hostName="TCGA"); datasets(xe)
 datasets <- function(x) slot(x, "datasets")
 
 .samples_by_host <- function(x, hosts, how) {
@@ -146,6 +224,23 @@ datasets <- function(x) slot(x, "datasets")
     fun(hosts(x), datasets)
 }
 
+##' get samples of XenaHub object according to by and how action arguments
+##' 
+##' One is often interested in identifying samples or features present in each data set, 
+##' or shared by all data sets, or present in any of several data sets. 
+##' Identifying these samples, including samples in arbitrarily chosen data sets.
+##' @param x a \code{XenaHub} object
+##' @param i a empty character
+##' @param by a character specify \code{by} action
+##' @param how a character specify \code{how} action
+##' @return a list include samples
+##' @export
+##' @examples 
+##' ####  not run
+##' #xe = XenaHub(hostName="TCGA")
+##' ## samples in each dataset, first host
+##' #x = samples(xe, by="datasets", how="each")[[1]]
+##' #lengths(x)        # data sets in ccle cohort on first (only) host
 samples <- function(x, i=character(), by=c("hosts", "cohorts", "datasets"),
                     how=c("each", "any", "all"))
 {
