@@ -29,7 +29,7 @@ library(UCSCXenaTools)
 
 ## Usage
 
-The following use downloading clinical data of LUNG, LUAD, LUSC from TCGA (hg19 version) as an example.
+The following use clinical data download of LUNG, LUAD, LUSC from TCGA (hg19 version) as an example.
 
 ### Create a XenaHub object
 
