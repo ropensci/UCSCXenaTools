@@ -5,8 +5,8 @@
 \title{Generate a XenaHub Object}
 \usage{
 XenaHub(hosts = xena_default_hosts(), cohorts = character(),
-  datasets = character(), hostName = c("UCSC_Public", "TCGA", "GDC",
-  "ICGC", "Toil"))
+  datasets = character(), hostName = c("UCSC_Public", "TCGA", "GDC", "ICGC",
+  "Toil"))
 }
 \arguments{
 \item{hosts}{a character vector specify UCSC Xena hosts, all available hosts can be 

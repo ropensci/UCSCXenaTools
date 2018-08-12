@@ -1,6 +1,4 @@
-README.html
-README.R
-cache/
 .Rproj.user
 .Rhistory
 .RData
+inst/doc

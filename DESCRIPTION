@@ -6,9 +6,10 @@ Description: A R package download and explore data from UCSC Xena data hubs, whi
     a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others.
     Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
     This package is based on XenaR package.
-License: GPL-3
 Imports: httr, readr, methods, utils
-Suggests: knitr
+License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+Suggests: knitr
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
