@@ -98,6 +98,8 @@ XenaHub(hostName = "TCGA")
 ##   TCGA.MESO.sampleMap/Pathway_Paradigm_RNASeq_And_Copy_Number
 ```
 
+> Please do not use `cohorts` and `datasets` arguments for now, they are not tested and have something wrong, I need time to check. Please use `filterXena()` function to filter datasets you wanna download.
+
 ### filter
 
 There are too many datasets, we filter them by `filterXena` function.

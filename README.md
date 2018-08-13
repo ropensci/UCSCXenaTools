@@ -33,10 +33,6 @@ devtools::install_github("ShixiangWang/UCSCXenaTools")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
-## Usage
-
 The following use clinical data download of LUNG, LUAD, LUSC from TCGA
 (hg19 version) as an example.
 
@@ -97,6 +93,10 @@ We can specify the `hostName` argument to query only `TCGA` data.
     ##   ...
     ##   TCGA.MESO.sampleMap/MESO_clinicalMatrix
     ##   TCGA.MESO.sampleMap/Pathway_Paradigm_RNASeq_And_Copy_Number
+
+> Please do not use `cohorts` and `datasets` arguments for now, they are
+> not tested and have something wrong, I need time to check. Please use
+> `filterXena()` function to filter datasets you wanna download.
 
 ### filter
 
