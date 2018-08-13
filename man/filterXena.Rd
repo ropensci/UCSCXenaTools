@@ -10,10 +10,10 @@ filterXena(x, filterCohorts = NULL, filterDatasets = NULL,
 \arguments{
 \item{x}{a \code{XenaHub} object}
 
-\item{filterCohorts}{default is \code{NULL}. A character used to filter cohorts, 
+\item{filterCohorts}{default is \code{NULL}. A character used to filter cohorts,
 regular expression is supported.}
 
-\item{filterDatasets}{default is \code{NULL}. A character used to filter datasets, 
+\item{filterDatasets}{default is \code{NULL}. A character used to filter datasets,
 regular expression is supported.}
 
 \item{ignore.case}{if \code{FALSE}, the pattern matching is case sensitive and if \code{TRUE}, case is ignored during matching.}
@@ -24,7 +24,7 @@ a \code{XenaHub} object
 \description{
 Major function of \code{UCSCXenatools}. It is used to filter
 \code{XenaHub} object according to cohorts, datasets. All datasets can be found
-at <https://xenabrowser.net/datapages/>. Note, the change for filtering cohorts and 
+at <https://xenabrowser.net/datapages/>. Note, the change for filtering cohorts and
 datasets are independent.
 }
 \examples{
@@ -32,7 +32,7 @@ datasets are independent.
 xe = XenaHub(hostName = "TCGA")
 xe
 # get all names of clinical data
-xe2 = filterXena(xe, filterDatasets = "clinical") 
+xe2 = filterXena(xe, filterDatasets = "clinical")
 datasets(xe2)
 }
 \author{

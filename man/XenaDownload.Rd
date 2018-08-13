@@ -26,7 +26,7 @@ Avaliable datasets list: <https://xenabrowser.net/datapages/>
 }
 \examples{
 xe = XenaHub(hostName="TCGA")
-hosts(xe) 
-xe_query = XenaQuery(xe)    
+hosts(xe)
+xe_query = XenaQuery(xe)
 # xe_download = XenaDownload(xe_query) # not run
 }

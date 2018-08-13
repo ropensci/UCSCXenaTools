@@ -8,8 +8,8 @@ XenaPrepare(objects, objectsName = NULL, comment = "#", na = c("", "NA",
   "[Discrepancy]"), ...)
 }
 \arguments{
-\item{objects}{a object of character vector or data.frame. If \code{objects} is data.frame, 
-it should be returned object of \code{XenaDownload} function. More easier way is 
+\item{objects}{a object of character vector or data.frame. If \code{objects} is data.frame,
+it should be returned object of \code{XenaDownload} function. More easier way is
 that objects can be character vector specify local files/directory and download urls.}
 
 \item{objectsName}{specify objectsName of result}
@@ -28,9 +28,9 @@ Prepare (Load) datasets to R download from UCSC Xena
 }
 \examples{
 xe = XenaHub(hostName="TCGA")
-hosts(xe) 
-xe_query = XenaQuery(xe)  
-### not run  
+hosts(xe)
+xe_query = XenaQuery(xe)
+### not run
 # xe_download = XenaDownload(xe_query)
 # dat = XenaPrepare(xe_download)
 }

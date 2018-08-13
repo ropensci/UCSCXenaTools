@@ -9,15 +9,15 @@ XenaHub(hosts = xena_default_hosts(), cohorts = character(),
   "Toil"))
 }
 \arguments{
-\item{hosts}{a character vector specify UCSC Xena hosts, all available hosts can be 
-found by \code{xena_default_hosts()} function. \code{hostName} is a recommend option 
+\item{hosts}{a character vector specify UCSC Xena hosts, all available hosts can be
+found by \code{xena_default_hosts()} function. \code{hostName} is a recommend option
 for substitute this.}
 
 \item{cohorts}{default is empty character vector, all cohorts will be returned.}
 
 \item{datasets}{default is empty character vector, all datasets will be returned.}
 
-\item{hostName}{one to five of \code{"UCSC_Public", "TCGA", "GDC", "ICGC", "Toil"}. This is 
+\item{hostName}{one to five of \code{"UCSC_Public", "TCGA", "GDC", "ICGC", "Toil"}. This is
 a easier option for user than \code{hosts} option. Note, this option will overlap \code{hosts}.}
 }
 \value{
@@ -40,7 +40,7 @@ xe
 hosts(xe)     # get hosts
 cohorts(xe)   # get cohorts
 datasets(xe)  # get datasets
-samples(xe)   # get samples 
+samples(xe)   # get samples
 }
 \author{
 Shixiang Wang

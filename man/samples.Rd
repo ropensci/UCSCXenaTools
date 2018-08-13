@@ -20,8 +20,8 @@ samples(x, i = character(), by = c("hosts", "cohorts", "datasets"),
 a list include samples
 }
 \description{
-One is often interested in identifying samples or features present in each data set, 
-or shared by all data sets, or present in any of several data sets. 
+One is often interested in identifying samples or features present in each data set,
+or shared by all data sets, or present in any of several data sets.
 Identifying these samples, including samples in arbitrarily chosen data sets.
 }
 \examples{
