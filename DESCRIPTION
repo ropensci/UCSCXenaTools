@@ -7,7 +7,7 @@ Description: A R package download and explore data from UCSC Xena data hubs, whi
     Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
     This package is based on XenaR package.
 Imports: httr, readr, methods, utils
-License: GPL-3 + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: knitr
