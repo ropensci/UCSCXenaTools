@@ -1,7 +1,8 @@
 Package: UCSCXenaTools
 Title: Download and Explore Datasets from UCSC Xena Data Hubs
 Version: 0.1.2
-Authors@R: person("Wang", "Shixiang", email = "w_shixiang@163.com", role = c("aut", "cre"))
+Authors@R: c(person("Wang", "Shixiang", email = "w_shixiang@163.com", role = c("aut", "cre")),
+ person("Martin", "Morgan", role="aut"))
 Maintainer: Shixiang Wang <w_shixiang@163.com>
 URL: https://github.com/ShixiangWang/UCSCXenaTools
 BugReports: https://github.com/ShixiangWang/UCSCXenaTools/issues
