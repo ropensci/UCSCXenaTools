@@ -272,7 +272,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpgLbFV9XenaData.
+#> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpoRzWnUXenaData.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz

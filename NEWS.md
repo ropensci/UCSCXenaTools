@@ -1,8 +1,7 @@
-# UCSCXenaTools 0.1.2
+# UCSCXenaTools 0.2.0
 
-* Modify notes for submitting to CRAN
-* Add Vignettes
-* This version can download interested datasets in batch mode
+* Build a workflow for package
+* Add vignettes for new usage
 
 
 
