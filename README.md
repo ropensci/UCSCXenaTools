@@ -1,28 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
+=================================================================================
 
-# UCSCXenaTools
+![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/sync-deploy/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
 
-![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools)
-![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) [![Open
-Source Love
-svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/sync-deploy/graphs/commit-activity)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools)
-[![Coverage
-Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
+**UCSC Xena data hubs**, which are
 
-A R package download and explore data from **UCSC Xena data hubs**,
-which are
+> A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
+>
+> -- [UCSC Xena](https://xena.ucsc.edu/)
 
-> A collection of UCSC-hosted public databases such as TCGA, ICGC,
-> TARGET, GTEx, CCLE, and others. Databases are normalized so they can
-> be combined, linked, filtered, explored and downloaded.
-> 
-> – [UCSC Xena](https://xena.ucsc.edu/)
-
-## Installation
+Installation
+------------
 
 You can install UCSCXenaTools from github with:
 
@@ -31,16 +21,14 @@ You can install UCSCXenaTools from github with:
 devtools::install_github("ShixiangWang/UCSCXenaTools")
 ```
 
-## Example
+Example
+-------
 
-The following use clinical data download of LUNG, LUAD, LUSC from TCGA
-(hg19 version) as an example.
+The following use clinical data download of LUNG, LUAD, LUSC from TCGA (hg19 version) as an example.
 
 ### Create a XenaHub object
 
-Use `XenaHub()` to discover available resources, illustrated here
-exploring available cohorts. It’s also possible to explore `hosts()` and
-`datasets()`.
+Use `XenaHub()` to discover available resources, illustrated here exploring available cohorts. It's also possible to explore `hosts()` and `datasets()`.
 
     xe <- XenaHub()
     xe
@@ -94,9 +82,7 @@ We can specify the `hostName` argument to query only `TCGA` data.
     ##   TCGA.MESO.sampleMap/MESO_clinicalMatrix
     ##   TCGA.MESO.sampleMap/Pathway_Paradigm_RNASeq_And_Copy_Number
 
-> Please do not use `cohorts` and `datasets` arguments for now, they are
-> not tested and have something wrong, I need time to check. Please use
-> `filterXena()` function to filter datasets you wanna download.
+> Please do not use `cohorts` and `datasets` arguments for now, they are not tested and have something wrong, I need time to check. Please use `filterXena()` function to filter datasets you wanna download.
 
 ### filter
 
@@ -130,7 +116,7 @@ Then select `LUAD`, `LUSC` and `LUNG` 3 datasets.
 Pipe can be used here.
 
     suppressMessages(require(dplyr))
-    
+
     xe %>% 
         filterXena(filterDatasets = "clinical") %>% 
         filterXena(filterDatasets = "luad|lusc|lung")
@@ -154,7 +140,7 @@ Pipe can be used here.
 Create a query before download data
 
     xe2_query = XenaQuery(xe2)
-    
+
     xe2_query
     ##                       hosts                                datasets
     ## 1 https://tcga.xenahubs.net TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
@@ -167,12 +153,9 @@ Create a query before download data
 
 ### download
 
-Default, data will be downloaded to `XenaData` directory under work
-directory. You can specify the path.
+Default, data will be downloaded to `XenaData` directory under work directory. You can specify the path.
 
-If the data exists, command will not run to download them, but you can
-force it by `force`
-    option.
+If the data exists, command will not run to download them, but you can force it by `force` option.
 
     xe2_download = XenaDownload(xe2_query, destdir = "E:/Github/XenaData/test/")
     ## We will download files to directory E:/Github/XenaData/test/.
@@ -196,7 +179,7 @@ There are 4 ways to prepare data to R.
     cli2 = XenaPrepare("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz")
     class(cli2)
     ## [1] "tbl_df"     "tbl"        "data.frame"
-    
+
     cli2 = XenaPrepare(c("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz",
                          "E:/Github/XenaData/test/TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"))
     class(cli2)
@@ -217,19 +200,21 @@ There are 4 ways to prepare data to R.
     ## [2] "TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"
     ## [3] "TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz"
 
-## Acknowledgement
+Acknowledgement
+---------------
 
-This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
-thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
+This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 
-## LICENSE
+LICENSE
+-------
 
 GPL-3
 
 please note, code from XenaR package under Apache 2.0 license.
 
-## TODO
+TODO
+----
 
-  - Fix bug
-  - Make use of `hosts`, `cohorts`, `datasets` and samples
-  - Make the whole process more quicker and easier
+-   Fix bug
+-   Make use of `hosts`, `cohorts`, `datasets` and samples
+-   Make the whole process more quicker and easier
