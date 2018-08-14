@@ -1,16 +1,17 @@
 Package: UCSCXenaTools
-Title: A R Package Download and Explore Data from UCSC Xena Data Hubs
+Title: Download and Explore Datasets from UCSC Xena Data Hubs
 Version: 0.1.1
 Authors@R: person("Wang", "Shixiang", email = "w_shixiang@163.com", role = c("aut", "cre"))
-Description: A R package download and explore data from UCSC Xena data hubs, which are
+Description: Download and explore datasets from UCSC Xena data hubs, which are
     a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others.
     Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
-    This package is based on XenaR package.
+    This package is based on 'XenaR' package.
 Imports: httr, readr, methods, utils
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    prettydoc
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

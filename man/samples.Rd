@@ -25,9 +25,10 @@ or shared by all data sets, or present in any of several data sets.
 Identifying these samples, including samples in arbitrarily chosen data sets.
 }
 \examples{
-####  not run
-#xe = XenaHub(hostName="TCGA")
-## samples in each dataset, first host
-#x = samples(xe, by="datasets", how="each")[[1]]
-#lengths(x)        # data sets in ccle cohort on first (only) host
+\dontrun{
+xe = XenaHub(cohorts = "Cancer Cell Line Encyclopedia (CCLE)")
+# samples in each dataset, first host
+x = samples(xe, by="datasets", how="each")[[1]]
+lengths(x)        # data sets in ccle cohort on first (only) host
+}
 }

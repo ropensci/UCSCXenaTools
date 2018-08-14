@@ -4,8 +4,8 @@
 \alias{XenaPrepare}
 \title{Prepare (Load) datasets to R download from UCSC Xena}
 \usage{
-XenaPrepare(objects, objectsName = NULL, comment = "#", na = c("", "NA",
-  "[Discrepancy]"), ...)
+XenaPrepare(objects, objectsName = NULL, comment = "#", na = c("",
+  "NA", "[Discrepancy]"), ...)
 }
 \arguments{
 \item{objects}{a object of character vector or data.frame. If \code{objects} is data.frame,
@@ -30,7 +30,8 @@ Prepare (Load) datasets to R download from UCSC Xena
 xe = XenaHub(hostName="TCGA")
 hosts(xe)
 xe_query = XenaQuery(xe)
-### not run
-# xe_download = XenaDownload(xe_query)
-# dat = XenaPrepare(xe_download)
+\dontrun{
+xe_download = XenaDownload(xe_query)
+dat = XenaPrepare(xe_download)
+}
 }
