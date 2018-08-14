@@ -1,72 +1,64 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+
+
 # UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 
-![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools)
-![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) [![Open
-Source Love
-svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/sync-deploy/graphs/commit-activity)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools)
-[![Coverage
-Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
+![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)  [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/sync-deploy/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
 
 **UCSC Xena data hubs**, which are
 
-> A collection of UCSC-hosted public databases such as TCGA, ICGC,
-> TARGET, GTEx, CCLE, and others. Databases are normalized so they can
-> be combined, linked, filtered, explored and downloaded.
-> 
-> – [UCSC Xena](https://xena.ucsc.edu/)
+> A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
+>
+> -- [UCSC Xena](https://xena.ucsc.edu/)
+
 
 **Current Version: 0.2.0**
 
-`UCSCXenaTools` is a R package download and explore data from **UCSC
-Xena data hubs**, which are
+`UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
 
-> A collection of UCSC-hosted public databases such as TCGA, ICGC,
-> TARGET, GTEx, CCLE, and others. Databases are normalized so they can
-> be combined, linked, filtered, explored and downloaded.
-> 
-> – [UCSC Xena](https://xena.ucsc.edu/)
+> A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
+>
+> -- [UCSC Xena](https://xena.ucsc.edu/)
+
 
 ## Installation
 
 You can install UCSCXenaTools from github with:
 
-``` r
+
+```r
 # install.packages("devtools")
 devtools::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
 ```
 
 Read vignettes.
 
-``` r
+
+```r
 browseVignettes("UCSCXenaTools")
 ```
 
+
 ## Usage
 
-Download UCSC Xena Datasets and load them into R by `UCSCXenaTools` is a
-workflow in `generate`, `filter`, `query`, `download` and `prepare` 5
-steps, which are implemented as `XenaGenerate`, `XenaFilter`,
-`XenaQuery`, `XenaDownload` and `XenaPrepare`, respectively. They are
-very clear and easy to use and combine with other packages like `dplyr`.
+Download UCSC Xena Datasets and load them into R by `UCSCXenaTools` is a workflow in `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare`, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
 
-The following use clinical data download of LUNG, LUAD, LUSC from TCGA
-(hg19 version) as an example.
+The following use clinical data download of LUNG, LUAD, LUSC from TCGA (hg19 version) as an example.
+
 
 ### XenaData data.frame
 
-From version `0.2.0`, `UCSCXenaTools` use built-in R `data.frame` object
-`XenaData` to generate an instance of `XenaHub` class, which communicate
-with API of UCSC Xena Data Hubs.
+From version `0.2.0`, `UCSCXenaTools` use built-in R `data.frame` object `XenaData` to generate an instance of `XenaHub` class, which communicate with API of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
-``` r
+
+```r
 library(UCSCXenaTools)
 data(XenaData)
 
@@ -94,12 +86,14 @@ head(XenaData)
 #> 6         basso2005_public/basso2005_public_clinicalMatrix
 ```
 
+
+
 ### Generate a XenaHub object
 
-This can be implemented by `XenaGenerate` function, which generate
-`XenaHub` object from `XenaData` data frame.
+This can be implemented by `XenaGenerate` function, which generate `XenaHub` object from `XenaData` data frame.
 
-``` r
+
+```r
 XenaGenerate()
 #> class: XenaHub 
 #> hosts():
@@ -126,7 +120,8 @@ XenaGenerate()
 
 We can set `subset` argument to narrow datasets.
 
-``` r
+
+```r
 XenaGenerate(subset = XenaHostNames=="TCGA")
 #> class: XenaHub 
 #> hosts():
@@ -147,12 +142,12 @@ XenaGenerate(subset = XenaHostNames=="TCGA")
 #>   TCGA.UCS.sampleMap/mutation_curated_broad
 ```
 
-> You can use `XenaHub()` to generate a `XenaHub` object from API
-> communication, but it is not recommended.
+>You can use `XenaHub()` to generate a `XenaHub` object from API communication, but it is not recommended. 
 
-It’s possible to explore `hosts()`, `cohorts()` and `datasets()`.
+It's possible to explore `hosts()`, `cohorts()` and `datasets()`.
 
-``` r
+
+```r
 xe = XenaGenerate(subset = XenaHostNames=="TCGA")
 # get hosts
 hosts(xe)
@@ -177,26 +172,31 @@ head(datasets(xe))
 
 Pipe operator `%>%` can also be used here.
 
-    > library(tidyverse)
-    > XenaData %>% filter(XenaHostNames == "TCGA", grepl("BRCA", XenaCohorts), grepl("Path", XenaDatasets)) %>% XenaGenerate()
-    class: XenaHub 
-    hosts():
-      https://tcga.xenahubs.net
-    cohorts() (1 total):
-      TCGA Breast Cancer (BRCA)
-    datasets() (4 total):
-      TCGA.BRCA.sampleMap/Pathway_Paradigm_mRNA_And_Copy_Number
-      TCGA.BRCA.sampleMap/Pathway_Paradigm_RNASeq
-      TCGA.BRCA.sampleMap/Pathway_Paradigm_RNASeq_And_Copy_Number
-      TCGA.BRCA.sampleMap/Pathway_Paradigm_mRNA
 
-### Filter
+```
+> library(tidyverse)
+> XenaData %>% filter(XenaHostNames == "TCGA", grepl("BRCA", XenaCohorts), grepl("Path", XenaDatasets)) %>% XenaGenerate()
+class: XenaHub 
+hosts():
+  https://tcga.xenahubs.net
+cohorts() (1 total):
+  TCGA Breast Cancer (BRCA)
+datasets() (4 total):
+  TCGA.BRCA.sampleMap/Pathway_Paradigm_mRNA_And_Copy_Number
+  TCGA.BRCA.sampleMap/Pathway_Paradigm_RNASeq
+  TCGA.BRCA.sampleMap/Pathway_Paradigm_RNASeq_And_Copy_Number
+  TCGA.BRCA.sampleMap/Pathway_Paradigm_mRNA
+```
+
+### Filter 
 
 There are too many datasets, we filter them by `XenaFilter` function.
 
 Regular expression can be used to filter XenaHub object to what we want.
 
-``` r
+
+
+```r
 (XenaFilter(xe, filterDatasets = "clinical") -> xe2)
 #> class: XenaHub 
 #> hosts():
@@ -217,39 +217,44 @@ Regular expression can be used to filter XenaHub object to what we want.
 #>   TCGA.MESO.sampleMap/MESO_clinicalMatrix
 ```
 
+
 Then select `LUAD`, `LUSC` and `LUNG` 3 datasets.
 
-``` r
+
+```r
 XenaFilter(xe2, filterDatasets = "LUAD|LUSC|LUNG") -> xe2
 ```
 
 Pipe can be used here.
 
-    suppressMessages(require(dplyr))
-    
-    xe %>% 
-        filterXena(filterDatasets = "clinical") %>% 
-        filterXena(filterDatasets = "luad|lusc|lung")
-    ## class: XenaHub 
-    ## hosts():
-    ##   https://tcga.xenahubs.net
-    ## cohorts() (39 total):
-    ##   (unassigned)
-    ##   TCGA Acute Myeloid Leukemia (LAML)
-    ##   TCGA Adrenocortical Cancer (ACC)
-    ##   ...
-    ##   TCGA Thyroid Cancer (THCA)
-    ##   TCGA Uterine Carcinosarcoma (UCS)
-    ## datasets() (3 total):
-    ##   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
-    ##   TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
-    ##   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
+```
+suppressMessages(require(dplyr))
+
+xe %>% 
+    filterXena(filterDatasets = "clinical") %>% 
+    filterXena(filterDatasets = "luad|lusc|lung")
+## class: XenaHub 
+## hosts():
+##   https://tcga.xenahubs.net
+## cohorts() (39 total):
+##   (unassigned)
+##   TCGA Acute Myeloid Leukemia (LAML)
+##   TCGA Adrenocortical Cancer (ACC)
+##   ...
+##   TCGA Thyroid Cancer (THCA)
+##   TCGA Uterine Carcinosarcoma (UCS)
+## datasets() (3 total):
+##   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
+##   TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
+##   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
+```
 
 ### Query
 
 Create a query before download data
 
-``` r
+
+```r
 xe2_query = XenaQuery(xe2)
 xe2_query
 #>                       hosts                                datasets
@@ -264,13 +269,12 @@ xe2_query
 
 ### Download
 
-Default, data will be downloaded to `XenaData` directory under system
-temp directory. You can specify the path.
+Default, data will be downloaded to `XenaData` directory under system temp directory. You can specify the path.
 
-If the data exists, command will not run to download them, but you can
-force it by `force` option.
+If the data exists, command will not run to download them, but you can force it by `force` option.
 
-``` r
+
+```r
 xe2_download = XenaDownload(xe2_query)
 #> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpgLbFV9XenaData.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
@@ -281,39 +285,45 @@ xe2_download = XenaDownload(xe2_query)
 #xe2_download = XenaDownload(xe2_query, destdir = "E:/Github/XenaData/test/")
 ```
 
-> Note fileNames transfromed from datasets name and / chracter all
-> changed to \_\_ character.
+> Note fileNames transfromed from datasets name and / chracter all changed to __ character.
 
 ### Prepare
 
 There are 4 ways to prepare data to R.
 
-    # way1:  directory
-    cli1 = XenaPrepare("E:/Github/XenaData/test/")
-    names(cli1)
-    ## [1] "TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz"
-    ## [2] "TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"
-    ## [3] "TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz"
+```
+# way1:  directory
+cli1 = XenaPrepare("E:/Github/XenaData/test/")
+names(cli1)
+## [1] "TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz"
+## [2] "TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"
+## [3] "TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz"
+```
 
-    # way2: local files
-    cli2 = XenaPrepare("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz")
-    class(cli2)
-    ## [1] "tbl_df"     "tbl"        "data.frame"
-    
-    cli2 = XenaPrepare(c("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz",
-                         "E:/Github/XenaData/test/TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"))
-    class(cli2)
-    ## [1] "list"
-    names(cli2)
-    ## [1] "TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz"
-    ## [2] "TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"
+```
+# way2: local files
+cli2 = XenaPrepare("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz")
+class(cli2)
+## [1] "tbl_df"     "tbl"        "data.frame"
 
-    # way3: urls
-    cli3 = XenaPrepare(xe2_download$url[1:2])
-    names(cli3)
-    ## [1] "LUSC_clinicalMatrix.gz" "LUNG_clinicalMatrix.gz"
+cli2 = XenaPrepare(c("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz",
+                     "E:/Github/XenaData/test/TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"))
+class(cli2)
+## [1] "list"
+names(cli2)
+## [1] "TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz"
+## [2] "TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"
+```
 
-``` r
+```
+# way3: urls
+cli3 = XenaPrepare(xe2_download$url[1:2])
+names(cli3)
+## [1] "LUSC_clinicalMatrix.gz" "LUNG_clinicalMatrix.gz"
+```
+
+
+```r
 # way4: xenadownload object
 cli4 = XenaPrepare(xe2_download)
 names(cli4)
@@ -324,7 +334,8 @@ names(cli4)
 
 ### SessionInfo
 
-``` r
+
+```r
 sessionInfo()
 #> R version 3.5.0 (2018-04-23)
 #> Platform: x86_64-w64-mingw32/x64 (64-bit)
@@ -357,11 +368,11 @@ sessionInfo()
 
 ## Acknowledgement
 
-This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
-thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
+This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 
 ## LICENSE
 
 GPL-3
 
 please note, code from XenaR package under Apache 2.0 license.
+
