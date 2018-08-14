@@ -3,6 +3,7 @@
 export(XenaDataUpdate)
 export(XenaDownload)
 export(XenaFilter)
+export(XenaGenerate)
 export(XenaHub)
 export(XenaPrepare)
 export(XenaQuery)

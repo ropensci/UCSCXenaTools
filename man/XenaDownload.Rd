@@ -25,10 +25,13 @@ a \code{tibble}
 Avaliable datasets list: <https://xenabrowser.net/datapages/>
 }
 \examples{
-xe = XenaHub(hostName="TCGA")
+xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 hosts(xe)
 xe_query = XenaQuery(xe)
 \dontrun{
 xe_download = XenaDownload(xe_query)
 }
+}
+\author{
+Shixiang Wang <w_shixiang@163.com>
 }

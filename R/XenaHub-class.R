@@ -11,7 +11,7 @@
 ##' @title UCSC Xena Default Hosts
 ##' @description Return Xena Default hosts
 ##' @return A character vector include current defalut hosts
-##' @author Shixiang Wang
+##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @seealso \code{\link[UCSCXenaTools]{XenaHub}}
 ##' @export
 xena_default_hosts = function() {
@@ -39,7 +39,7 @@ xena_default_hosts = function() {
 ##' @param hostName one to five of \code{"UCSC_Public", "TCGA", "GDC", "ICGC", "Toil"}. This is
 ##' a easier option for user than \code{hosts} option. Note, this option will overlap \code{hosts}.
 ##' @return a \code{XenaHub} object
-##' @author Shixiang Wang
+##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
 ##' @importFrom httr stop_for_status POST content
 ##' @importFrom utils head tail
@@ -194,11 +194,11 @@ XenaDataUpdate = function(saveTolocal=TRUE){
 ##' regular expression is supported.
 ##' @param ignore.case if \code{FALSE}, the pattern matching is case sensitive and if \code{TRUE}, case is ignored during matching.
 ##' @return a \code{XenaHub} object
-##' @author Shixiang Wang
+##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
 ##' @examples
 ##' # operate TCGA datasets
-##' xe = XenaHub(hostName = "TCGA")
+##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 ##' xe
 ##' # get all names of clinical data
 ##' xe2 = XenaFilter(xe, filterDatasets = "clinical")
@@ -227,21 +227,21 @@ XenaFilter = function(x, filterCohorts=NULL, filterDatasets=NULL, ignore.case=TR
 ##' @import methods
 ##' @return a character vector contains hosts
 ##' @export
-##' @examples xe = XenaHub(hostName="TCGA"); hosts(xe)
+##' @examples xe = XenaGenerate(subset = XenaHostNames == "TCGA"); hosts(xe)
 hosts = function(x) unname(slot(x, "hosts"))
 ##' Get cohorts of XenaHub object
 ##' @param x a \code{XenaHub} object
 ##' @return a character vector contains cohorts
 ##' @import methods
 ##' @export
-##' @examples xe = XenaHub(hostName="TCGA"); cohorts(xe)
+##' @examples xe = XenaGenerate(subset = XenaHostNames == "TCGA"); cohorts(xe)
 cohorts = function(x) slot(x, "cohorts")
 ##' Get datasets of XenaHub object
 ##' @param x a \code{XenaHub} object
 ##' @return a character vector contains datasets
 ##' @import methods
 ##' @export
-##' @examples xe = XenaHub(hostName="TCGA"); datasets(xe)
+##' @examples xe = XenaGenerate(subset = XenaHostNames == "TCGA"); datasets(xe)
 datasets = function(x) slot(x, "datasets")
 
 .samples_by_host = function(x, hosts, how) {

@@ -16,5 +16,5 @@ Return Xena Default hosts
 \code{\link[UCSCXenaTools]{XenaHub}}
 }
 \author{
-Shixiang Wang
+Shixiang Wang <w_shixiang@163.com>
 }

@@ -16,5 +16,10 @@ a \code{tibble} contains hosts, datasets and url
 Query url of datasets before download
 }
 \examples{
-xe = XenaHub(hostName="TCGA"); hosts(xe); xe_query = XenaQuery(xe)
+xe = XenaGenerate(subset = XenaHostNames == "TCGA")
+hosts(xe)
+xe_query = XenaQuery(xe)
+}
+\author{
+Shixiang Wang <w_shixiang@163.com>
 }

@@ -27,11 +27,14 @@ a list contains file data, which in way of tibbles
 Prepare (Load) datasets to R download from UCSC Xena
 }
 \examples{
-xe = XenaHub(hostName="TCGA")
+xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 hosts(xe)
 xe_query = XenaQuery(xe)
 \dontrun{
 xe_download = XenaDownload(xe_query)
 dat = XenaPrepare(xe_download)
 }
+}
+\author{
+Shixiang Wang <w_shixiang@163.com>
 }

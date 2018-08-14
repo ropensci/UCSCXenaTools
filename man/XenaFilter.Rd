@@ -29,12 +29,12 @@ datasets are independent.
 }
 \examples{
 # operate TCGA datasets
-xe = XenaHub(hostName = "TCGA")
+xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 xe
 # get all names of clinical data
 xe2 = XenaFilter(xe, filterDatasets = "clinical")
 datasets(xe2)
 }
 \author{
-Shixiang Wang
+Shixiang Wang <w_shixiang@163.com>
 }

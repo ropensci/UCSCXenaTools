@@ -16,5 +16,5 @@ a character vector contains cohorts
 Get cohorts of XenaHub object
 }
 \examples{
-xe = XenaHub(hostName="TCGA"); cohorts(xe)
+xe = XenaGenerate(subset = XenaHostNames == "TCGA"); cohorts(xe)
 }

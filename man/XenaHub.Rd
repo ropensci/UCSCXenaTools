@@ -43,5 +43,5 @@ datasets(xe)  # get datasets
 samples(xe)   # get samples
 }
 \author{
-Shixiang Wang
+Shixiang Wang <w_shixiang@163.com>
 }
