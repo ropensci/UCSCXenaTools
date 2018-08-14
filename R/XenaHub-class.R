@@ -116,6 +116,68 @@ XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
     .XenaHub(hosts=hosts, cohorts=cohorts, datasets=datasets)
 }
 
+##' Get or Update Newest Data Information of UCSC Xena Data Hubs
+##' @param saveTolocal logical. Whether save to local R package data directory for permanent use
+##' or Not.
+##' @return a \code{data.frame} contains all datasets information of Xena.
+##' @author Shixiang Wang <w_shixiang@163.com>
+##' @export
+##' @examples
+##'
+##' \dontrun{
+##'  XenaDataUpdate() # update newest information to local directory for use
+##'  newest_Xena = XenaDataUpdate(saveTolocal=FALSE) # just get info, not save
+##' }
+XenaDataUpdate = function(saveTolocal=TRUE){
+    hosts = xena_default_hosts()
+    XenaList = sapply(hosts, function(x){
+        onehost_cohorts = unlist(.host_cohorts(x), use.names = FALSE)
+        sapply(onehost_cohorts, function(y){
+            onecohort_datasets = unlist(.cohort_datasets(x, y))
+        })
+    })
+
+    resDF = data.frame(stringsAsFactors = FALSE)
+    for(i in 1:length(XenaList)){
+        hostNames = names(XenaList)[i]
+        cohortNames = names(XenaList[[i]])
+        res = data.frame(stringsAsFactors = FALSE)
+
+        for (j in 1:length(cohortNames)){
+            oneCohort = XenaList[[i]][j]
+            # The unassigned cohorts have NULL data, remove it
+            if(names(oneCohort) != "(unassigned)"){
+                resCohort = data.frame(XenaCohorts=names(oneCohort),
+                                       XenaDatasets=as.character(oneCohort[[1]]),
+                                       stringsAsFactors = FALSE)
+                res = rbind(res, resCohort)
+            }
+        }
+        res$XenaHosts = hostNames
+        resDF = rbind(resDF, res)
+    }
+
+    XenaHostNames = c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil")
+    names(XenaHostNames) = c("https://ucscpublic.xenahubs.net",
+                             "https://tcga.xenahubs.net",
+                             "https://gdc.xenahubs.net",
+                             "https://icgc.xenahubs.net",
+                             "https://toil.xenahubs.net")
+
+    resDF$XenaHostNames = XenaHostNames[resDF$XenaHosts]
+    XenaData = resDF[, c("XenaHosts", "XenaHostNames", "XenaCohorts", "XenaDatasets")]
+    if(saveTolocal){
+        data_dir = base::system.file("data",package = "UCSCXenaTools")
+        if(dir.exists(data_dir)){
+            save(XenaData, file=paste0(data_dir, "/XenaData.rda"))
+        }else{
+            message("There is no data directory ", data_dir)
+            message("Please check it.")
+        }
+    }
+    XenaData
+}
+
 
 ##' Filter a XenaHub Object
 ##'
@@ -139,9 +201,9 @@ XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
 ##' xe = XenaHub(hostName = "TCGA")
 ##' xe
 ##' # get all names of clinical data
-##' xe2 = filterXena(xe, filterDatasets = "clinical")
+##' xe2 = XenaFilter(xe, filterDatasets = "clinical")
 ##' datasets(xe2)
-filterXena = function(x, filterCohorts=NULL, filterDatasets=NULL, ignore.case=TRUE){
+XenaFilter = function(x, filterCohorts=NULL, filterDatasets=NULL, ignore.case=TRUE){
     if(is.null(filterCohorts) & is.null(filterDatasets)){
         message("No operation for input, do nothing...")
     }
