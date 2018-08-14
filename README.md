@@ -263,7 +263,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpqMoYS8XenaData.
+#> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpAJvpqlXenaData.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
@@ -356,3 +356,9 @@ thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 GPL-3
 
 please note, code from XenaR package under Apache 2.0 license.
+
+## Code of conduct
+
+Please note that this project is released with a [Contributor Code of
+Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
+to abide by its terms.
