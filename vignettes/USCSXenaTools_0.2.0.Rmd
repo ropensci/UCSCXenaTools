@@ -86,7 +86,7 @@ We can set `subset` argument to narrow datasets.
 XenaGenerate(subset = XenaHostNames=="TCGA")
 ```
 
->You can use `XenaHub()` to generate a `XenaHub` object from API communication, but it is not recommended. 
+>You can use `XenaHub()` to generate a `XenaHub` object for API communication, but it is not recommended. 
 
 It's possible to explore `hosts()`, `cohorts()` and `datasets()`.
 
