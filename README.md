@@ -1,20 +1,21 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
-=================================================================================
+
+# UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 
 ![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/UCSCXenaTools/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
 
 **UCSC Xena data hubs**, which are
 
-> A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
->
-> -- [UCSC Xena](https://xena.ucsc.edu/)
+> A collection of UCSC-hosted public databases such as TCGA, ICGC,
+> TARGET, GTEx, CCLE, and others. Databases are normalized so they can
+> be combined, linked, filtered, explored and downloaded.
+> 
+> – [UCSC Xena](https://xena.ucsc.edu/)
 
 **Current Version: 0.2.1**
 
-Installation
-------------
+## Installation
 
 You can install UCSCXenaTools from github with:
 
@@ -29,33 +30,54 @@ Read this vignettes.
 browseVignettes("UCSCXenaTools")
 ```
 
-Data Hub List
--------------
+## Data Hub List
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
 Currently, `UCSCXenaTools` support all 7 data hubs of UCSC Xena.
 
--   [UCSC Public Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fucscpublic.xenahubs.net): <https://ucscpublic.xenahubs.net>
--   [TCGA Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net): <https://tcga.xenahubs.net>
--   [GDC Xena Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fgdc.xenahubs.net): <https://gdc.xenahubs.net>
--   [ICGC Xena Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ficgc.xenahubs.net): <https://icgc.xenahubs.net>
--   [Pan-Cancer Atlas Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net): <https://pancanatlas.xenahubs.net>
--   [GA4GH (TOIL) Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftoil.xenahubs.net): <https://toil.xenahubs.net>
--   [Treehouse Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu): <https://xena.treehouse.gi.ucsc.edu>
+  - [UCSC Public
+    Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fucscpublic.xenahubs.net):
+    <https://ucscpublic.xenahubs.net>
+  - [TCGA
+    Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net):
+    <https://tcga.xenahubs.net>
+  - [GDC Xena
+    Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fgdc.xenahubs.net):
+    <https://gdc.xenahubs.net>
+  - [ICGC Xena
+    Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ficgc.xenahubs.net):
+    <https://icgc.xenahubs.net>
+  - [Pan-Cancer Atlas
+    Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net):
+    <https://pancanatlas.xenahubs.net>
+  - [GA4GH (TOIL)
+    Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftoil.xenahubs.net):
+    <https://toil.xenahubs.net>
+  - [Treehouse
+    Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu):
+    <https://xena.treehouse.gi.ucsc.edu>
 
-If the `API` changed, please remind me by email to <w_shixiang@163.com> or open an issue on [GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
+If the `API` changed, please remind me by email to <w_shixiang@163.com>
+or open an issue on
+[GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
-Usage
------
+## Usage
 
-Download UCSC Xena Datasets and load them into R by `UCSCXenaTools` is a workflow in `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare`, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
+Download UCSC Xena Datasets and load them into R by `UCSCXenaTools` is a
+workflow in `generate`, `filter`, `query`, `download` and `prepare` 5
+steps, which are implemented as `XenaGenerate`, `XenaFilter`,
+`XenaQuery`, `XenaDownload` and `XenaPrepare`, respectively. They are
+very clear and easy to use and combine with other packages like `dplyr`.
 
-The following use clinical data download of LUNG, LUAD, LUSC from TCGA (hg19 version) as an example.
+The following use clinical data download of LUNG, LUAD, LUSC from TCGA
+(hg19 version) as an example.
 
 ### XenaData data.frame
 
-Begin from version `0.2.0`, `UCSCXenaTools` use a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which communicate with API of UCSC Xena Data Hubs.
+Begin from version `0.2.0`, `UCSCXenaTools` use a `data.frame` object
+(built in package) `XenaData` to generate an instance of `XenaHub`
+class, which communicate with API of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
@@ -89,7 +111,8 @@ head(XenaData)
 
 ### Generate a XenaHub object
 
-This can be implemented by `XenaGenerate` function, which generate `XenaHub` object from `XenaData` data frame.
+This can be implemented by `XenaGenerate` function, which generate
+`XenaHub` object from `XenaData` data frame.
 
 ``` r
 XenaGenerate()
@@ -139,9 +162,10 @@ XenaGenerate(subset = XenaHostNames=="TCGA")
 #>   TCGA.UCS.sampleMap/mutation_curated_broad
 ```
 
-> You can use `XenaHub()` to generate a `XenaHub` object for API communication, but it is not recommended.
+> You can use `XenaHub()` to generate a `XenaHub` object for API
+> communication, but it is not recommended.
 
-It's possible to explore `hosts()`, `cohorts()` and `datasets()`.
+It’s possible to explore `hosts()`, `cohorts()` and `datasets()`.
 
 ``` r
 xe = XenaGenerate(subset = XenaHostNames=="TCGA")
@@ -217,10 +241,10 @@ XenaFilter(xe2, filterDatasets = "LUAD|LUSC|LUNG") -> xe2
 Pipe can be used here.
 
     suppressMessages(require(dplyr))
-
+    
     xe %>% 
-        filterXena(filterDatasets = "clinical") %>% 
-        filterXena(filterDatasets = "luad|lusc|lung")
+        XenaFilter(filterDatasets = "clinical") %>% 
+        XenaFilter(filterDatasets = "luad|lusc|lung")
     ## class: XenaHub 
     ## hosts():
     ##   https://tcga.xenahubs.net
@@ -255,13 +279,15 @@ xe2_query
 
 ### Download
 
-Default, data will be downloaded to `XenaData` directory under system temp directory. You can specify the path.
+Default, data will be downloaded to `XenaData` directory under system
+temp directory. You can specify the path.
 
-If the data exists, command will not run to download them, but you can force it by `force` option.
+If the data exists, command will not run to download them, but you can
+force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory D:\tmp\Rtmpo3pjDmXenaData.
+#> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpegDeX9XenaData.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
@@ -270,7 +296,8 @@ xe2_download = XenaDownload(xe2_query)
 #xe2_download = XenaDownload(xe2_query, destdir = "E:/Github/XenaData/test/")
 ```
 
-> Note fileNames transfromed from datasets name and / chracter all changed to \_\_ character.
+> Note fileNames transfromed from datasets name and / chracter all
+> changed to \_\_ character.
 
 ### Prepare
 
@@ -287,7 +314,7 @@ There are 4 ways to prepare data to R.
     cli2 = XenaPrepare("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz")
     class(cli2)
     ## [1] "tbl_df"     "tbl"        "data.frame"
-
+    
     cli2 = XenaPrepare(c("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz",
                          "E:/Github/XenaData/test/TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"))
     class(cli2)
@@ -314,18 +341,18 @@ names(cli4)
 
 ``` r
 sessionInfo()
-#> R version 3.5.1 (2018-07-02)
+#> R version 3.5.0 (2018-04-23)
 #> Platform: x86_64-w64-mingw32/x64 (64-bit)
-#> Running under: Windows 7 x64 (build 7601) Service Pack 1
+#> Running under: Windows 10 x64 (build 17134)
 #> 
 #> Matrix products: default
 #> 
 #> locale:
-#> [1] LC_COLLATE=Chinese (Simplified)_People's Republic of China.936 
-#> [2] LC_CTYPE=Chinese (Simplified)_People's Republic of China.936   
-#> [3] LC_MONETARY=Chinese (Simplified)_People's Republic of China.936
-#> [4] LC_NUMERIC=C                                                   
-#> [5] LC_TIME=Chinese (Simplified)_People's Republic of China.936    
+#> [1] LC_COLLATE=Chinese (Simplified)_China.936 
+#> [2] LC_CTYPE=Chinese (Simplified)_China.936   
+#> [3] LC_MONETARY=Chinese (Simplified)_China.936
+#> [4] LC_NUMERIC=C                              
+#> [5] LC_TIME=Chinese (Simplified)_China.936    
 #> 
 #> attached base packages:
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -337,31 +364,30 @@ sessionInfo()
 #>  [1] Rcpp_0.12.18    crayon_1.3.4    digest_0.6.15   rprojroot_1.3-2
 #>  [5] R6_2.2.2        jsonlite_1.5    backports_1.1.2 magrittr_1.5   
 #>  [9] evaluate_0.11   pillar_1.3.0    httr_1.3.1      rlang_0.2.1    
-#> [13] stringi_1.1.7   curl_3.2        rmarkdown_1.10  tools_3.5.1    
+#> [13] stringi_1.2.4   curl_3.2        rmarkdown_1.10  tools_3.5.0    
 #> [17] readr_1.1.1     stringr_1.3.1   hms_0.4.2       yaml_2.2.0     
-#> [21] compiler_3.5.1  pkgconfig_2.0.1 htmltools_0.3.6 knitr_1.20     
+#> [21] compiler_3.5.0  pkgconfig_2.0.1 htmltools_0.3.6 knitr_1.20     
 #> [25] tibble_1.4.2
 ```
 
-Acknowledgement
----------------
+## Acknowledgement
 
-This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
+This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
+thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 
-LICENSE
--------
+## LICENSE
 
 GPL-3
 
 please note, code from XenaR package under Apache 2.0 license.
 
-ToDo
-----
+## ToDo
 
--   Shinny
--   More easier download workflow
+  - Shinny
+  - More easier download workflow
 
-Code of conduct
----------------
+## Code of conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of
+Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
+to abide by its terms.

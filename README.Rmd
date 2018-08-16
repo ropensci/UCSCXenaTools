@@ -152,8 +152,8 @@ Pipe can be used here.
 suppressMessages(require(dplyr))
 
 xe %>% 
-    filterXena(filterDatasets = "clinical") %>% 
-    filterXena(filterDatasets = "luad|lusc|lung")
+    XenaFilter(filterDatasets = "clinical") %>% 
+    XenaFilter(filterDatasets = "luad|lusc|lung")
 ## class: XenaHub 
 ## hosts():
 ##   https://tcga.xenahubs.net
