@@ -18,7 +18,7 @@ Get or Update Newest Data Information of UCSC Xena Data Hubs
 }
 \examples{
 
-\dontrun{
+\donttest{
  XenaDataUpdate() # update newest information to local directory for use
  newest_Xena = XenaDataUpdate(saveTolocal=FALSE) # just get info, not save
 }

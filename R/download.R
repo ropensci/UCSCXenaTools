@@ -15,13 +15,6 @@
 ##' XenaGenerate(subset = XenaCohorts == "TCGA Breast Cancer (BRCA)")
 ##' # 3
 ##' XenaGenerate(subset = grepl("BRCA", XenaCohorts))
-##' # 4 use pipe
-##' \dontrun{
-##' library(tidyverse)
-##' XenaData %>% filter(XenaHostNames == "TCGA", grepl("BRCA", XenaCohorts)) %>% XenaGenerate()
-##' XenaData %>% filter(XenaHostNames == "TCGA", grepl("BRCA", XenaCohorts)) %>% XenaGenerate()
-##' }
-##'
 
 XenaGenerate = function(XenaData = UCSCXenaTools::XenaData, subset = TRUE){
     enclos = parent.frame()
@@ -83,7 +76,7 @@ XenaQuery = function(x){
 ##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 ##' hosts(xe)
 ##' xe_query = XenaQuery(xe)
-##' \dontrun{
+##' \donttest{
 ##' xe_download = XenaDownload(xe_query)
 ##' }
 
@@ -143,7 +136,7 @@ XenaDownload = function(xquery, destdir=paste0(tempdir(), "XenaData"), force=FAL
 ##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 ##' hosts(xe)
 ##' xe_query = XenaQuery(xe)
-##' \dontrun{
+##' \donttest{
 ##' xe_download = XenaDownload(xe_query)
 ##' dat = XenaPrepare(xe_download)
 ##' }

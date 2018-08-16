@@ -26,11 +26,6 @@ XenaGenerate(subset = XenaCohorts == "TCGA Breast Cancer (BRCA)")
 # 3
 XenaGenerate(subset = grepl("BRCA", XenaCohorts))
 # 4 use pipe
-\dontrun{
-library(tidyverse)
-XenaData \%>\% filter(XenaHostNames == "TCGA", grepl("BRCA", XenaCohorts)) \%>\% XenaGenerate()
-XenaData \%>\% filter(XenaHostNames == "TCGA", grepl("BRCA", XenaCohorts)) \%>\% XenaGenerate()
-}
 
 }
 \author{

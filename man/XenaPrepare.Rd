@@ -30,7 +30,7 @@ Prepare (Load) datasets to R download from UCSC Xena
 xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 hosts(xe)
 xe_query = XenaQuery(xe)
-\dontrun{
+\donttest{
 xe_download = XenaDownload(xe_query)
 dat = XenaPrepare(xe_download)
 }

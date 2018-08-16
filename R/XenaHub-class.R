@@ -119,7 +119,7 @@ XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
 ##' @export
 ##' @examples
 ##'
-##' \dontrun{
+##' \donttest{
 ##'  XenaDataUpdate() # update newest information to local directory for use
 ##'  newest_Xena = XenaDataUpdate(saveTolocal=FALSE) # just get info, not save
 ##' }
@@ -313,7 +313,7 @@ datasets = function(x) slot(x, "datasets")
 ##' @import methods
 ##' @export
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' xe = XenaHub(cohorts = "Cancer Cell Line Encyclopedia (CCLE)")
 ##' # samples in each dataset, first host
 ##' x = samples(xe, by="datasets", how="each")[[1]]

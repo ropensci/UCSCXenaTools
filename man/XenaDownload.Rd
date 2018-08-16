@@ -28,7 +28,7 @@ Avaliable datasets list: <https://xenabrowser.net/datapages/>
 xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 hosts(xe)
 xe_query = XenaQuery(xe)
-\dontrun{
+\donttest{
 xe_download = XenaDownload(xe_query)
 }
 }

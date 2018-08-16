@@ -25,7 +25,7 @@ or shared by all data sets, or present in any of several data sets.
 Identifying these samples, including samples in arbitrarily chosen data sets.
 }
 \examples{
-\dontrun{
+\donttest{
 xe = XenaHub(cohorts = "Cancer Cell Line Encyclopedia (CCLE)")
 # samples in each dataset, first host
 x = samples(xe, by="datasets", how="each")[[1]]
