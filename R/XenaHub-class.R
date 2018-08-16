@@ -19,7 +19,10 @@ xena_default_hosts = function() {
       "https://tcga.xenahubs.net",
       "https://gdc.xenahubs.net",
       "https://icgc.xenahubs.net",
-      "https://toil.xenahubs.net")
+      "https://toil.xenahubs.net",
+      "https://pancanatlas.xenahubs.net",
+      "https://xena.treehouse.gi.ucsc.edu"
+      )
 }
 
 ##' Generate a XenaHub Object
@@ -36,7 +39,7 @@ xena_default_hosts = function() {
 ##' for substitute this.
 ##' @param cohorts default is empty character vector, all cohorts will be returned.
 ##' @param datasets default is empty character vector, all datasets will be returned.
-##' @param hostName one to five of \code{"UCSC_Public", "TCGA", "GDC", "ICGC", "Toil"}. This is
+##' @param hostName one to seven of \code{c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")}. This is
 ##' a easier option for user than \code{hosts} option. Note, this option will overlap \code{hosts}.
 ##' @return a \code{XenaHub} object
 ##' @author Shixiang Wang <w_shixiang@163.com>
@@ -56,32 +59,24 @@ xena_default_hosts = function() {
 ##' datasets(xe)  # get datasets
 ##' samples(xe)   # get samples
 XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
-             datasets=character(), hostName=c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil")){
+             datasets=character(), hostName=c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")){
 
     stopifnot(is.character(hosts), is.character(cohorts),
               is.character(datasets))
 
     hostName = unique(hostName)
 
-    if(length(hostName) != 5 & all(hostName %in% c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil")) ){
+    if(length(hostName) != 7 & all(hostName %in% c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")) ){
       hostNames = data.frame(UCSC_Public="https://ucscpublic.xenahubs.net",
                              TCGA="https://tcga.xenahubs.net",
                              GDC="https://gdc.xenahubs.net",
                              ICGC="https://icgc.xenahubs.net",
-                             Toil="https://toil.xenahubs.net", stringsAsFactors = FALSE)
+                             Toil="https://toil.xenahubs.net",
+                             PanCancer="https://pancanatlas.xenahubs.net",
+                             Treehouse="https://xena.treehouse.gi.ucsc.edu",
+                             stringsAsFactors = FALSE)
       hosts = as.character(hostNames[, hostName])
     }
-
-    # hostName = match.arg(hostName)
-    #
-    # if(hostName != ""){
-    #     hosts = switch(hostName,
-    #                     UCSC_Public="https://ucscpublic.xenahubs.net",
-    #                     TCGA="https://tcga.xenahubs.net",
-    #                     GDC="https://gdc.xenahubs.net",
-    #                     ICGC="https://icgc.xenahubs.net",
-    #                     Toil="https://toil.xenahubs.net")
-    # }
 
     if (is.null(names(hosts)))
         names(hosts) = hosts
@@ -137,6 +132,16 @@ XenaDataUpdate = function(saveTolocal=TRUE){
         })
     })
 
+    # check XenaList, the structure of Truehouse differ from others, is a matrix
+    for(i in 1:length(XenaList)){
+        if(!is.list(XenaList[[i]])){
+            x = XenaList[[i]]
+            Tolist = lapply(seq_len(ncol(x)), function(i) x[,i])
+            names(Tolist) = colnames(x)
+            XenaList[[i]] = Tolist
+        }
+    }
+
     resDF = data.frame(stringsAsFactors = FALSE)
     for(i in 1:length(XenaList)){
         hostNames = names(XenaList)[i]
@@ -157,12 +162,14 @@ XenaDataUpdate = function(saveTolocal=TRUE){
         resDF = rbind(resDF, res)
     }
 
-    XenaHostNames = c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil")
+    XenaHostNames = c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")
     names(XenaHostNames) = c("https://ucscpublic.xenahubs.net",
                              "https://tcga.xenahubs.net",
                              "https://gdc.xenahubs.net",
                              "https://icgc.xenahubs.net",
-                             "https://toil.xenahubs.net")
+                             "https://toil.xenahubs.net",
+                             "https://pancanatlas.xenahubs.net",
+                             "https://xena.treehouse.gi.ucsc.edu")
 
     resDF$XenaHostNames = XenaHostNames[resDF$XenaHosts]
     XenaData = resDF[, c("XenaHosts", "XenaHostNames", "XenaCohorts", "XenaDatasets")]
