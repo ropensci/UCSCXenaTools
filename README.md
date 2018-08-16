@@ -3,7 +3,7 @@
 UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 =================================================================================
 
-![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/sync-deploy/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
+![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/UCSCXenaTools/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
 
 **UCSC Xena data hubs**, which are
 
@@ -261,7 +261,7 @@ If the data exists, command will not run to download them, but you can force it 
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory D:\tmp\RtmpW877TkXenaData.
+#> We will download files to directory D:\tmp\Rtmpo3pjDmXenaData.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
