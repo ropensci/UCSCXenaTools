@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/USCSXenaTools_0.2.0.html">UCSCXenaTools: Download Public Data from UCSC Xena Hubs</a>
+      <a href="../articles/USCSXenaTools_0.2.0.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
     </li>
   </ul>
 </li>
@@ -153,20 +153,22 @@ argument can only be <code>data(XenaData)</code> or its subset.</p></td>
 #&gt;   https://gdc.xenahubs.net
 #&gt;   https://icgc.xenahubs.net
 #&gt;   https://toil.xenahubs.net
-#&gt; cohorts() (131 total):
+#&gt;   https://pancanatlas.xenahubs.net
+#&gt;   https://xena.treehouse.gi.ucsc.edu
+#&gt; cohorts() (134 total):
 #&gt;   1000_genomes
 #&gt;   Acute lymphoblastic leukemia (Mullighan 2008)
 #&gt;   B cells (Basso 2005)
 #&gt;   ...
-#&gt;   TCGA and TARGET Pan-Cancer (PANCAN)
-#&gt;   TCGA TARGET GTEx
-#&gt; datasets() (1521 total):
+#&gt;   Treehouse PED v8
+#&gt;   Treehouse public expression dataset (July 2017)
+#&gt; datasets() (1549 total):
 #&gt;   1000_genomes/BRCA2
 #&gt;   1000_genomes/BRCA1
 #&gt;   mullighan2008_public/mullighan2008_500K_genomicMatrix
 #&gt;   ...
-#&gt;   TcgaTargetGtex_rsem_isoform_tpm
-#&gt;   TcgaTargetGtex_rsem_isopct</div><div class='input'><span class='co'># 2</span>
+#&gt;   treehouse_public_samples_unique_ensembl_expected_count.2017-09-11.tsv
+#&gt;   treehouse_public_samples_unique_hugo_log2_tpm_plus_1.2017-09-11.tsv</div><div class='input'><span class='co'># 2</span>
 <span class='fu'>XenaGenerate</span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>XenaCohorts</span> <span class='kw'>==</span> <span class='st'>"TCGA Breast Cancer (BRCA)"</span>)</div><div class='output co'>#&gt; class: XenaHub 
 #&gt; hosts():
 #&gt;   https://tcga.xenahubs.net

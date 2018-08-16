@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UCSCXenaTools: Download Public Data from UCSC Xena Hubs • UCSCXenaTools</title>
+<title>UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs • UCSCXenaTools</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="UCSCXenaTools: Download Public Data from UCSC Xena Hubs">
+<script src="../pkgdown.js"></script><meta property="og:title" content="UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -52,7 +52,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/USCSXenaTools_0.2.0.html">UCSCXenaTools: Download Public Data from UCSC Xena Hubs</a>
+      <a href="../articles/USCSXenaTools_0.2.0.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
     </li>
   </ul>
 </li>
@@ -79,11 +79,11 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>UCSCXenaTools: Download Public Data from UCSC Xena Hubs</h1>
+      <h1>UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</h1>
                         <h4 class="author">Shixiang Wang<br>
 ShanghaiTech. University</h4>
             
-            <h4 class="date">2018-08-15</h4>
+            <h4 class="date">2018-08-16</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/vignettes/USCSXenaTools_0.2.0.Rmd"><code>vignettes/USCSXenaTools_0.2.0.Rmd</code></a></small>
       <div class="hidden name"><code>USCSXenaTools_0.2.0.Rmd</code></div>
@@ -92,7 +92,7 @@ ShanghaiTech. University</h4>
 
     
     
-<p><strong>Current Version: 0.2.0</strong></p>
+<p><strong>Current Version: 0.2.1</strong></p>
 <p><code>UCSCXenaTools</code> is a R package download and explore data from <strong>UCSC Xena data hubs</strong>, which are</p>
 <blockquote>
 <p>A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.</p>
@@ -107,6 +107,36 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p>Read this vignettes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">browseVignettes</span>(<span class="st">"UCSCXenaTools"</span>)</code></pre></div>
 </div>
+<div id="data-hub-list" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-hub-list" class="anchor"></a>Data Hub List</h2>
+<p>All datasets are available at <a href="https://xenabrowser.net/datapages/" class="uri">https://xenabrowser.net/datapages/</a>.</p>
+<p>Currently, <code>UCSCXenaTools</code> support all 7 data hubs of UCSC Xena.</p>
+<ul>
+<li>
+<a href="https://xenabrowser.net/datapages/?host=https%3A%2F%2Fucscpublic.xenahubs.net">UCSC Public Hub</a>: <a href="https://ucscpublic.xenahubs.net" class="uri">https://ucscpublic.xenahubs.net</a>
+</li>
+<li>
+<a href="https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net">TCGA Hub</a>: <a href="https://tcga.xenahubs.net" class="uri">https://tcga.xenahubs.net</a>
+</li>
+<li>
+<a href="https://xenabrowser.net/datapages/?host=https%3A%2F%2Fgdc.xenahubs.net">GDC Xena Hub</a>: <a href="https://gdc.xenahubs.net" class="uri">https://gdc.xenahubs.net</a>
+</li>
+<li>
+<a href="https://xenabrowser.net/datapages/?host=https%3A%2F%2Ficgc.xenahubs.net">ICGC Xena Hub</a>: <a href="https://icgc.xenahubs.net" class="uri">https://icgc.xenahubs.net</a>
+</li>
+<li>
+<a href="https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net">Pan-Cancer Atlas Hub</a>: <a href="https://pancanatlas.xenahubs.net" class="uri">https://pancanatlas.xenahubs.net</a>
+</li>
+<li>
+<a href="https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftoil.xenahubs.net">GA4GH (TOIL) Hub</a>: <a href="https://toil.xenahubs.net" class="uri">https://toil.xenahubs.net</a>
+</li>
+<li>
+<a href="https://xenabrowser.net/datapages/?host=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu">Treehouse Hub</a>: <a href="https://xena.treehouse.gi.ucsc.edu" class="uri">https://xena.treehouse.gi.ucsc.edu</a>
+</li>
+</ul>
+<p>If the <code>API</code> changed, please remind me by email to <a href="mailto:w_shixiang@163.com">w_shixiang@163.com</a> or open an issue on <a href="https://github.com/ShixiangWang/UCSCXenaTools/issues">GitHub</a>.</p>
+</div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
@@ -115,7 +145,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="xenadata-data-frame" class="section level3">
 <h3 class="hasAnchor">
 <a href="#xenadata-data-frame" class="anchor"></a>XenaData data.frame</h3>
-<p>From version <code>0.2.0</code>, <code>UCSCXenaTools</code> use built-in R <code>data.frame</code> object <code>XenaData</code> to generate an instance of <code>XenaHub</code> class, which communicate with API of UCSC Xena Data Hubs.</p>
+<p>Begin from version <code>0.2.0</code>, <code>UCSCXenaTools</code> use a <code>data.frame</code> object (built in package) <code>XenaData</code> to generate an instance of <code>XenaHub</code> class, which communicate with API of UCSC Xena Data Hubs.</p>
 <p>You can load <code>XenaData</code> after loading <code>UCSCXenaTools</code> into R.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(UCSCXenaTools)
 <span class="kw">data</span>(XenaData)
@@ -293,7 +323,7 @@ xe2_query
 <p>Default, data will be downloaded to <code>XenaData</code> directory under system temp directory. You can specify the path.</p>
 <p>If the data exists, command will not run to download them, but you can force it by <code>force</code> option.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xe2_download =<span class="st"> </span><span class="kw"><a href="../reference/XenaDownload.html">XenaDownload</a></span>(xe2_query)
-<span class="co">#&gt; We will download files to directory D:\tmp\Rtmpgp7W9oXenaData.</span>
+<span class="co">#&gt; We will download files to directory D:\tmp\Rtmp6rIKWCXenaData.</span>
 <span class="co">#&gt; Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz</span>
 <span class="co">#&gt; Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz</span>
 <span class="co">#&gt; Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz</span>
@@ -386,6 +416,14 @@ cli4 =<span class="st"> </span><span class="kw"><a href="../reference/XenaPrepar
 <p>GPL-3</p>
 <p>please note, code from XenaR package under Apache 2.0 license.</p>
 </div>
+<div id="todo" class="section level2">
+<h2 class="hasAnchor">
+<a href="#todo" class="anchor"></a>ToDo</h2>
+<ul>
+<li>Shinny</li>
+<li>More easier download workflow</li>
+</ul>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -394,9 +432,11 @@ cli4 =<span class="st"> </span><span class="kw"><a href="../reference/XenaPrepar
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#installation">Installation</a></li>
+      <li><a href="#data-hub-list">Data Hub List</a></li>
       <li><a href="#usage">Usage</a></li>
       <li><a href="#acknowledgement">Acknowledgement</a></li>
       <li><a href="#license">LICENSE</a></li>
+      <li><a href="#todo">ToDo</a></li>
       </ul>
 </div>
       </div>

@@ -65,7 +65,7 @@ at &amp;lt;https://xenabrowser.net/datapages/&amp;gt;." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@ at &amp;lt;https://xenabrowser.net/datapages/&amp;gt;." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/USCSXenaTools_0.2.0.html">UCSCXenaTools: Download Public Data from UCSC Xena Hubs</a>
+      <a href="../articles/USCSXenaTools_0.2.0.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
     </li>
   </ul>
 </li>
@@ -133,7 +133,7 @@ at &lt;https://xenabrowser.net/datapages/&gt;.</p>
 
     <pre class="usage"><span class='fu'>XenaHub</span>(<span class='kw'>hosts</span> <span class='kw'>=</span> <span class='fu'><a href='xena_default_hosts.html'>xena_default_hosts</a></span>(), <span class='kw'>cohorts</span> <span class='kw'>=</span> <span class='fu'>character</span>(),
   <span class='kw'>datasets</span> <span class='kw'>=</span> <span class='fu'>character</span>(), <span class='kw'>hostName</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"UCSC_Public"</span>, <span class='st'>"TCGA"</span>, <span class='st'>"GDC"</span>,
-  <span class='st'>"ICGC"</span>, <span class='st'>"Toil"</span>))</pre>
+  <span class='st'>"ICGC"</span>, <span class='st'>"Toil"</span>, <span class='st'>"PanCancer"</span>, <span class='st'>"Treehouse"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,7 +154,7 @@ for substitute this.</p></td>
     </tr>
     <tr>
       <th>hostName</th>
-      <td><p>one to five of <code>"UCSC_Public", "TCGA", "GDC", "ICGC", "Toil"</code>. This is
+      <td><p>one to seven of <code>c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")</code>. This is
 a easier option for user than <code>hosts</code> option. Note, this option will overlap <code>hosts</code>.</p></td>
     </tr>
     </table>
@@ -174,20 +174,22 @@ a easier option for user than <code>hosts</code> option. Note, this option will 
 #&gt;   https://gdc.xenahubs.net
 #&gt;   https://icgc.xenahubs.net
 #&gt;   https://toil.xenahubs.net
-#&gt; cohorts() (137 total):
+#&gt;   https://pancanatlas.xenahubs.net
+#&gt;   https://xena.treehouse.gi.ucsc.edu
+#&gt; cohorts() (142 total):
 #&gt;   (unassigned)
 #&gt;   1000_genomes
 #&gt;   Acute lymphoblastic leukemia (Mullighan 2008)
 #&gt;   ...
-#&gt;   TCGA Pan-Cancer (PANCAN)
-#&gt;   TCGA TARGET GTEx
-#&gt; datasets() (1521 total):
+#&gt;   Treehouse PED v8
+#&gt;   Treehouse public expression dataset (July 2017)
+#&gt; datasets() (1549 total):
 #&gt;   parsons2008cgh_public/parsons2008cgh_genomicMatrix
 #&gt;   parsons2008cgh_public/parsons2008cgh_public_clinicalMatrix
 #&gt;   vijver2002_public/vijver2002_genomicMatrix
 #&gt;   ...
-#&gt;   tcga_target_no_normal_RSEM_hugo_norm_count
-#&gt;   TCGA_TARGET_phenotype</div><div class='input'><span class='co'>#2 query only TCGA hosts</span>
+#&gt;   TreehousePEDv8_unique_hugo_log2_tpm_plus_1.2018-07-25.tsv
+#&gt;   TreehousePEDv8_unique_ensembl_expected_count.2018-07-26.tsv</div><div class='input'><span class='co'>#2 query only TCGA hosts</span>
 <span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'>XenaHub</span>(<span class='kw'>hostName</span> <span class='kw'>=</span> <span class='st'>"TCGA"</span>)
 <span class='no'>xe</span></div><div class='output co'>#&gt; class: XenaHub 
 #&gt; hosts():
