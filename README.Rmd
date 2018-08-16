@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 > -- [UCSC Xena](https://xena.ucsc.edu/)
 
 
-**Current Version: 0.2.0**
+**Current Version: 0.2.1**
 
 ## Installation
 
@@ -37,12 +37,28 @@ You can install UCSCXenaTools from github with:
 devtools::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
 ```
 
-Read vignettes.
+Read this vignettes.
 
 ```{r, eval=FALSE}
 browseVignettes("UCSCXenaTools")
 ```
 
+
+## Data Hub List
+
+All datasets are available at <https://xenabrowser.net/datapages/>.
+
+Currently, `UCSCXenaTools` support all 7 data hubs of UCSC Xena.
+
+* [UCSC Public Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fucscpublic.xenahubs.net): <https://ucscpublic.xenahubs.net>
+* [TCGA Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net): <https://tcga.xenahubs.net>
+* [GDC Xena Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fgdc.xenahubs.net): <https://gdc.xenahubs.net>
+* [ICGC Xena Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ficgc.xenahubs.net): <https://icgc.xenahubs.net>
+* [Pan-Cancer Atlas Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net): <https://pancanatlas.xenahubs.net>
+* [GA4GH (TOIL) Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftoil.xenahubs.net): <https://toil.xenahubs.net>
+* [Treehouse Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu): <https://xena.treehouse.gi.ucsc.edu>
+
+If the `API` changed, please remind me by email to <w_shixiang@163.com> or open an issue on [GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
 ## Usage
 
@@ -53,7 +69,7 @@ The following use clinical data download of LUNG, LUAD, LUSC from TCGA (hg19 ver
 
 ### XenaData data.frame
 
-From version `0.2.0`, `UCSCXenaTools` use built-in R `data.frame` object `XenaData` to generate an instance of `XenaHub` class, which communicate with API of UCSC Xena Data Hubs.
+Begin from version `0.2.0`, `UCSCXenaTools` use a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which communicate with API of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
@@ -233,6 +249,12 @@ This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Mar
 GPL-3
 
 please note, code from XenaR package under Apache 2.0 license.
+
+## ToDo
+
+* Shinny
+* More easier download workflow
+
 
 ## Code of conduct
 

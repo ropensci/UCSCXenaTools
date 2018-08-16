@@ -1,7 +1,6 @@
-# UCSCXenaTools 0.2.0
+# UCSCXenaTools 0.2.1
 
-* Build a workflow for package
-* Add vignettes for new usage
+* Add two hosts: Treehouse and TCGA Pan-Cancer
 
 
 
