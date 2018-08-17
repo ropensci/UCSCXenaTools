@@ -25,8 +25,6 @@ XenaGenerate()
 XenaGenerate(subset = XenaCohorts == "TCGA Breast Cancer (BRCA)")
 # 3
 XenaGenerate(subset = grepl("BRCA", XenaCohorts))
-# 4 use pipe
-
 }
 \author{
 Shixiang Wang <w_shixiang@163.com>
