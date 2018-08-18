@@ -4,13 +4,16 @@
 # UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 
 ![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools)
+[![GitHub
+tag](https://img.shields.io/github/tag/ShixiangWang/UCSCXenaTools.svg?label=Github)](https://github.com/ShixiangWang/UCSCXenaTools)
 ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools)
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/UCSCXenaTools/graphs/commit-activity)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
+[![GitHub
+issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools)
 
 **UCSC Xena data hubs**, which are
 
@@ -303,7 +306,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpuI1pYcXenaData.
+#> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpeUqxcWXenaData.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
