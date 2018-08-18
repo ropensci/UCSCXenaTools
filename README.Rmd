@@ -14,10 +14,8 @@ knitr::opts_chunk$set(
 
 # UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 
-```
-![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red)
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/UCSCXenaTools/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
-```
+![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/UCSCXenaTools/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
+
 
 **UCSC Xena data hubs**, which are
 
@@ -30,10 +28,17 @@ knitr::opts_chunk$set(
 
 ## Installation
 
-You can install UCSCXenaTools from github with:
+Install stable release from CRAN with:
+
+```{r, eval = FALSE}
+install.packages("UCSCXenaTools")
+```
+
+
+You can also install devel version of UCSCXenaTools from github with:
 
 ```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
+if(!require("devtools")) install.packages("devtools")
 devtools::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
 ```
 

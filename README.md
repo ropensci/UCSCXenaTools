@@ -3,7 +3,14 @@
 
 # UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 
-![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/UCSCXenaTools/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
+![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools)
+![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools)
+![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/UCSCXenaTools/graphs/commit-activity)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
 
 **UCSC Xena data hubs**, which are
 
@@ -17,10 +24,16 @@
 
 ## Installation
 
-You can install UCSCXenaTools from github with:
+Install stable release from CRAN with:
 
 ``` r
-# install.packages("devtools")
+install.packages("UCSCXenaTools")
+```
+
+You can also install devel version of UCSCXenaTools from github with:
+
+``` r
+if(!require("devtools")) install.packages("devtools")
 devtools::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
 ```
 
@@ -83,6 +96,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 
 ``` r
 library(UCSCXenaTools)
+#> Warning: package 'UCSCXenaTools' was built under R version 3.5.1
 data(XenaData)
 
 head(XenaData)
@@ -123,20 +137,22 @@ XenaGenerate()
 #>   https://gdc.xenahubs.net
 #>   https://icgc.xenahubs.net
 #>   https://toil.xenahubs.net
-#> cohorts() (131 total):
+#>   https://pancanatlas.xenahubs.net
+#>   https://xena.treehouse.gi.ucsc.edu
+#> cohorts() (134 total):
 #>   1000_genomes
 #>   Acute lymphoblastic leukemia (Mullighan 2008)
 #>   B cells (Basso 2005)
 #>   ...
-#>   TCGA and TARGET Pan-Cancer (PANCAN)
-#>   TCGA TARGET GTEx
-#> datasets() (1521 total):
+#>   Treehouse PED v8
+#>   Treehouse public expression dataset (July 2017)
+#> datasets() (1549 total):
 #>   1000_genomes/BRCA2
 #>   1000_genomes/BRCA1
 #>   mullighan2008_public/mullighan2008_500K_genomicMatrix
 #>   ...
-#>   TcgaTargetGtex_rsem_isoform_tpm
-#>   TcgaTargetGtex_rsem_isopct
+#>   treehouse_public_samples_unique_ensembl_expected_count.2017-09-11.tsv
+#>   treehouse_public_samples_unique_hugo_log2_tpm_plus_1.2017-09-11.tsv
 ```
 
 We can set `subset` argument to narrow datasets.
@@ -287,7 +303,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpegDeX9XenaData.
+#> We will download files to directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpuI1pYcXenaData.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
@@ -358,7 +374,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] UCSCXenaTools_0.2.0 pacman_0.4.6       
+#> [1] UCSCXenaTools_0.2.1 pacman_0.4.6       
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] Rcpp_0.12.18    crayon_1.3.4    digest_0.6.15   rprojroot_1.3-2
