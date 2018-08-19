@@ -4,7 +4,7 @@
 \alias{XenaDownload}
 \title{Download datasets form UCSC Xena datasets.}
 \usage{
-XenaDownload(xquery, destdir = paste0(tempdir(), "XenaData"),
+XenaDownload(xquery, destdir = file.path(tempdir(), "XenaData"),
   force = FALSE, ...)
 }
 \arguments{
