@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-**Current Version: 0.2.1**
+**Current Version: 0.2.2**
 
 `UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
 
@@ -36,7 +36,14 @@ knitr::opts_chunk$set(
 
 ## Installation
 
-You can install UCSCXenaTools from github with:
+Install stable release from CRAN with:
+
+```{r, eval=FALSE}
+install.packages("UCSCXenaTools")
+```
+
+
+You can also install devel version of UCSCXenaTools from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
@@ -47,6 +54,8 @@ Read this vignettes.
 
 ```{r, eval=FALSE}
 browseVignettes("UCSCXenaTools")
+# or
+?UCSCXenaTools
 ```
 
 
