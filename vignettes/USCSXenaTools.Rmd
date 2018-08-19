@@ -55,7 +55,7 @@ Read this vignettes.
 ```{r, eval=FALSE}
 browseVignettes("UCSCXenaTools")
 # or
-?UCSCXenaTools
+??UCSCXenaTools
 ```
 
 

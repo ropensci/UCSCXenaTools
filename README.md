@@ -13,12 +13,6 @@ UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs*
 
 **Current Version: 0.2.2**
 
-`UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
-
-> A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
->
-> -- [UCSC Xena](https://xena.ucsc.edu/)
-
 Installation
 ------------
 
@@ -40,7 +34,7 @@ Read this vignettes.
 ``` r
 browseVignettes("UCSCXenaTools")
 # or
-?UCSCXenaTools
+??UCSCXenaTools
 ```
 
 Data Hub List
@@ -277,7 +271,7 @@ If the data exists, command will not run to download them, but you can force it 
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory D:\tmp\RtmpW8qnrz/XenaData.
+#> We will download files to directory D:\tmp\RtmpmE0q5lXenaData.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
