@@ -17,7 +17,6 @@ Encoding: UTF-8
 LazyData: true
 Suggests: knitr,
     rmarkdown,
-    prettydoc,
-    testthat
+    prettydoc
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
