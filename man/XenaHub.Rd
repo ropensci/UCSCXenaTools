@@ -31,6 +31,7 @@ will be returned as a \code{XenaHub} object. All datasets can be found
 at <https://xenabrowser.net/datapages/>.
 }
 \examples{
+\donttest{
 #1 query all hosts, cohorts and datasets
 xe = XenaHub()
 xe
@@ -41,6 +42,7 @@ hosts(xe)     # get hosts
 cohorts(xe)   # get cohorts
 datasets(xe)  # get datasets
 samples(xe)   # get samples
+}
 }
 \author{
 Shixiang Wang <w_shixiang@163.com>

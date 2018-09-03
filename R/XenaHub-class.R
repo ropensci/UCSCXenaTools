@@ -48,6 +48,7 @@ xena_default_hosts = function() {
 ##' @importFrom utils head tail
 ##' @import methods
 ##' @examples
+##' \donttest{
 ##' #1 query all hosts, cohorts and datasets
 ##' xe = XenaHub()
 ##' xe
@@ -58,6 +59,7 @@ xena_default_hosts = function() {
 ##' cohorts(xe)   # get cohorts
 ##' datasets(xe)  # get datasets
 ##' samples(xe)   # get samples
+##' }
 XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
              datasets=character(), hostName=c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")){
 

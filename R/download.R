@@ -87,7 +87,7 @@ XenaQuery = function(x){
 ##' xe_download = XenaDownload(xe_query)
 ##' }
 
-XenaDownload = function(xquery, destdir=paste0(tempdir(), "XenaData"), force=FALSE, ...){
+XenaDownload = function(xquery, destdir=tempdir(), force=FALSE, ...){
 
     stopifnot(is.data.frame(xquery), c("url") %in% names(xquery))
 

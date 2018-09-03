@@ -46,16 +46,29 @@
 #           U133A, by RABIT
 
 ##' @title Easily Download TCGA Data by Several Options
+##' @description TCGA is a very useful database and here we provide this function to
+##' download TCGA (include TCGA Pancan) datasets in human-friendly way. User who are not
+##' familiar with R operation will benefit from this.
+##' @details All availble information about datasets of TCGA can access vis \code{tcgaAvail()} and check with \code{showTCGA}.
 ##' @author Shixiang Wang <w_shixiang@163.com>
-##' @param project
-##' @param data_type
-##' @param file_type
+##' @param project default is \code{NULL}. Should be one or more of TCGA project id (character vector) provided by Xena.
+##' See all available project id, please use \code{tcgaAvail("ProjectID")}.
+##' @param data_type default is \code{NULL}. Should be a character vector specify data type.
+##' See all available data types by \code{tcgaAvail("DataType")}.
+##' @param file_type default is \code{NULL}. Should be a character vector specify file type.
+##' See all available file types by \code{tcgaAvail("FileType")}.
+##' @inheritParams XenaDownload
+##' @return same as \code{XenaDownload()} function result.
 ##' @import dplyr
 ##' @export
 ##' @examples
 ##' # download RNASeq data (use UVM as example)
-##' tcgaEasyDownload(project = "UVM", data_type = "Gene Expression RNASeq", file_type = "IlluminaHiSeq RNASeqV2")
-tcgaEasyDownload = function(project=NULL, data_type=NULL, file_type=NULL){
+##' tcgaEasyDownload(project = "UVM",
+##'                  data_type = "Gene Expression RNASeq",
+##'                  file_type = "IlluminaHiSeq RNASeqV2")
+##' @seealso [XenaQuery()], [XenaFilter()], [XenaDownload()], [XenaPrepare()], [tcgaAvail()], [showTCGA()]
+##'
+tcgaEasyDownload = function(project=NULL, data_type=NULL, file_type=NULL, destdir=tempdir(), force=FALSE, ...){
     stopifnot(!is.null(project), !is.null(data_type), !is.null(file_type))
     tcga_all = .decodeDataType(Target = "TCGA")
     tcga_projects = unique(tcga_all$ProjectID)
@@ -80,17 +93,25 @@ tcgaEasyDownload = function(project=NULL, data_type=NULL, file_type=NULL){
     res %>%
         XenaGenerate() %>%
         XenaQuery() %>%
-        XenaDownload()
+        XenaDownload(destdir = destdir, force = force, ...)
 }
 
-tcgaAvail = function(which=c("All", "ProjectID", "DataType", "FileType")){
+##' @title TCGA available ProjectID, DataType and FileType
+##' @param which a character of \code{c("All", "ProjectID", "DataType", "FileType")}
+##' @author Shixiang Wang <w_shixiang@163.com>
+##' @export
+##' @examples
+##' \donttest{
+##' tcgaAvail("all")
+##' }
+tcgaAvail = function(which=c("all", "ProjectID", "DataType", "FileType")){
     which = match.arg(which)
     tcga_all = .decodeDataType(Target = "TCGA")
     tcga_projects = unique(tcga_all$ProjectID)
     tcga_datatype = unique(tcga_all$DataType)
     tcga_filetype = unique(tcga_all$FileType)
 
-    if(which == "All"){
+    if(which == "all"){
         message("Note not all projects have listed data types and file types, you can use showTCGA function to check if exist")
         return(list(ProjectID=tcga_projects, DataType=tcga_datatype, FileType=tcga_filetype))
     }
@@ -101,6 +122,18 @@ tcgaAvail = function(which=c("All", "ProjectID", "DataType", "FileType")){
 
 }
 
+##' @title Show TCGA data structure by Project ID or ALL
+##' @description This can used to check if data type or file type exist in one or more projects by hand.
+##' @param project a character vector. Can be "all" or one or more of TCGA Project IDs.
+##' @return a \code{data.frame} including project data structure information.
+##' @author Shixiang Wang <w_shixiang@163.com>
+##' @export
+##' @import dplyr
+##' @examples
+##' \donttest{
+##' showTCGA("all")
+##' }
+##' @seealso [tcgaAvail()]
 showTCGA = function(project="all"){
     tcga_all = .decodeDataType(Target = "TCGA")
     if(project=="all"){
