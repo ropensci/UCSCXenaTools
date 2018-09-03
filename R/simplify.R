@@ -45,6 +45,17 @@
 #           HiSeqV2, by RABIT
 #           U133A, by RABIT
 
+# compiler::setCompilerOptions(suppressAll = TRUE)
+# suppress Binding Notes
+# suppressBindingNotes <- function(variablesMentionedInNotes) {
+#     for(variable in variablesMentionedInNotes) {
+#         assign(variable, NULL, envir = .GlobalEnv)
+#     }
+# }
+
+# suppressBindingNotes(c("XenaHostNames","XenaCohorts", "ProjectID", "DataType", "FileType"))
+
+
 ##' @title Easily Download TCGA Data by Several Options
 ##' @description TCGA is a very useful database and here we provide this function to
 ##' download TCGA (include TCGA Pancan) datasets in human-friendly way. User who are not
@@ -137,11 +148,15 @@ tcgaAvail = function(which=c("all", "ProjectID", "DataType", "FileType")){
 showTCGA = function(project="all"){
     tcga_all = .decodeDataType(Target = "TCGA")
     if(project=="all"){
+        # res = data.table::data.table(tcga_all)
+        # res = res[, .(ProjectID, DataType, FileType)]
         res = tcga_all %>% select(ProjectID, DataType, FileType)
     }else{
         res = tcga_all %>%
-            filter(ProjectID %in% project) %>%
-            select(ProjectID, DataType, FileType)
+        filter(ProjectID %in% project) %>%
+        select(ProjectID, DataType, FileType)
+        # res = data.table::data.table(tcga_all)
+        # res = res[ProjectID %in% project, .(ProjectID, DataType, FileType)]
     }
 
     if(nrow(res)==0){
