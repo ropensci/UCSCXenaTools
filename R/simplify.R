@@ -84,6 +84,9 @@ tcgaEasyDownload = function(project=NULL, data_type=NULL, file_type=NULL, destdi
     tcga_all = .decodeDataType(Target = "TCGA")
     tcga_projects = unique(tcga_all$ProjectID)
 
+    # suppress binding notes
+    ProjectID = DataType = FileType = NULL
+
     if(!all(project %in% tcga_projects)){
         message(project, " are not (all) valid, please select one or more of following valid project ID:")
         print(tcga_projects, quote = FALSE)
@@ -146,6 +149,10 @@ tcgaAvail = function(which=c("all", "ProjectID", "DataType", "FileType")){
 ##' }
 ##' @seealso [tcgaAvail()]
 showTCGA = function(project="all"){
+
+    # suppress binding notes
+    ProjectID = DataType = FileType = NULL
+
     tcga_all = .decodeDataType(Target = "TCGA")
     if(project=="all"){
         # res = data.table::data.table(tcga_all)
@@ -171,6 +178,9 @@ showTCGA = function(project="all"){
     if("TCGA" %in% Target){
         Target = c(Target, "PanCancer")
     }
+
+    # supress binding notes
+    XenaHostNames = XenaCohorts = NULL
 
     ob = XenaData %>%  filter(XenaHostNames %in% Target)
 
