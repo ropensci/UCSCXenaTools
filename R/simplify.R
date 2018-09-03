@@ -13,15 +13,15 @@
 #       DNA Methylation
 #           Methylation27k
 #           Methylation450k
-#       Exon Expression RNAseq
+#       Exon Expression RNASeq
 #           IlluminaHiSeq
 #       Gene Expression Array
 #           AffyU133a (always change)
-#       Gene Expression RNAseq
+#       Gene Expression RNASeq
 #           IlluminaHiSeq
 #           IlluminaHiSeq pancan normalized
 #           IlluminaHiSeq percentile
-#       miRNA Mature Strand Expression RNAseq
+#       miRNA Mature Strand Expression RNASeq
 #           IlluminaHiseq
 #       PARADIGM Pathway Activity
 #           expression
@@ -52,42 +52,71 @@
 ##' @param file_type
 ##' @import dplyr
 ##' @export
-tcgaEasyQuery = function(project=NULL, data_type = NULL, file_type = NULL){
-    tcga = UCSCXenaTools::XenaData %>% filter(XenaHostNames == "TCGA")
+##' @examples
+##' # download RNASeq data (use UVM as example)
+##' tcgaEasyDownload(project = "UVM", data_type = "Gene Expression RNASeq", file_type = "IlluminaHiSeq RNASeqV2")
+tcgaEasyDownload = function(project=NULL, data_type=NULL, file_type=NULL){
+    stopifnot(!is.null(project), !is.null(data_type), !is.null(file_type))
+    tcga_all = .decodeDataType(Target = "TCGA")
+    tcga_projects = unique(tcga_all$ProjectID)
 
+    if(!all(project %in% tcga_projects)){
+        message(project, " are not (all) valid, please select one or more of following valid project ID:")
+        print(tcga_projects, quote = FALSE)
+        return(invisible(NULL))
+    }
+
+    res = tcga_all %>%
+        filter(ProjectID %in% project,
+               DataType %in% data_type,
+               FileType %in% file_type)
+
+    if(nrow(res) == 0){
+        message("Find nothing about your input, please check it.")
+        message("tcgaAvail and showTCGA function may help you.")
+        return(invisible(NULL))
+    }
+
+    res %>%
+        XenaGenerate() %>%
+        XenaQuery() %>%
+        XenaDownload()
+}
+
+tcgaAvail = function(which=c("All", "ProjectID", "DataType", "FileType")){
+    which = match.arg(which)
+    tcga_all = .decodeDataType(Target = "TCGA")
+    tcga_projects = unique(tcga_all$ProjectID)
+    tcga_datatype = unique(tcga_all$DataType)
+    tcga_filetype = unique(tcga_all$FileType)
+
+    if(which == "All"){
+        message("Note not all projects have listed data types and file types, you can use showTCGA function to check if exist")
+        return(list(ProjectID=tcga_projects, DataType=tcga_datatype, FileType=tcga_filetype))
+    }
+
+    if(which == "ProjectID") return(tcga_projects)
+    if(which == "DataType")  return(tcga_datatype)
+    if(which == "FileType")  return(tcga_filetype)
 
 }
 
-tcgaEasyDownload = function(){
+showTCGA = function(project="all"){
+    tcga_all = .decodeDataType(Target = "TCGA")
+    if(project=="all"){
+        res = tcga_all %>% select(ProjectID, DataType, FileType)
+    }else{
+        res = tcga_all %>%
+            filter(ProjectID %in% project) %>%
+            select(ProjectID, DataType, FileType)
+    }
 
+    if(nrow(res)==0){
+        message("Something in your input, NULL will be returned, please check.")
+        return(NULL)
+    }
+    return(res)
 }
-
-# tcgaAvailData = function(which = c("all", "project", "data category")){
-#     which = match.arg(which)
-#     tcga = UCSCXenaTools::XenaData %>% filter(XenaHostNames == "TCGA")
-#     projects = unique(tcga$XenaCohorts)
-#     data_categories = c("Gene Level Copy Number", "Copy Number Segments", "DNA Methylation",
-#                         "Exon Expression RNAseq", "Gene Expression Array", "Gene Expression RNAseq",
-#                         "miRNA Mature Strand Expression RNAseq", "PARADIGM Pathway Activity",
-#                         "Phenotype", "Protein Expression RPPA", "Somatic Mutation",
-#                         "Gene Somatic Non-silent Mutation", "Transcription Factor Regulatory Impact")
-#
-#     if(which == "all"){
-#         res = list()
-#         res$projects = projects
-#         res$data_categories = data_categories
-#         message("There are ", length(projects), " projects in TCGA on Xena,")
-#         message("  which include ", length(data_categories), " categories of data")
-#         res
-#     }else if(which == "project"){
-#         projects
-#     }else if(which == "data category"){
-#         data_categories
-#     }else{
-#         message("Find nothing, aborting...")
-#     }
-# }
-
 
 .decodeDataType = function(XenaData = UCSCXenaTools::XenaData, Target = c("TCGA", "UCSC_Public", "GDC", "ICGC", "Toil", "Treehouse")){
     # This TCGA include TCGA PANCAN dataset
@@ -98,6 +127,8 @@ tcgaEasyDownload = function(){
     ob = XenaData %>%  filter(XenaHostNames %in% Target)
 
     if("TCGA" %in% Target){
+        # decode project id
+        ob %>% mutate(ProjectID = sub(".*\\((.*)\\)", "\\1", XenaCohorts)) -> ob
         # decode DataType
         ob %>%
             mutate(DataType = case_when(
@@ -107,20 +138,20 @@ tcgaEasyDownload = function(){
                 grepl("PANCAN_Genome_Wide_SNP_6_whitelisted.xena", XenaDatasets) ~ "Copy Number Segments", # pancan
                 grepl("HumanMethylation", XenaDatasets) ~ "DNA Methylation",
                 grepl("MethylMix", XenaDatasets) ~ "DNA Methylation",
-                grepl("HiSeq.*_exon", XenaDatasets) ~ "Exon Expression RNAseq",
-                grepl("GA_exon", XenaDatasets) ~ "Exon Expression RNAseq",
-                grepl("GAV2_exon", XenaDatasets) ~ "Exon Expression RNAseq",
+                grepl("HiSeq.*_exon", XenaDatasets) ~ "Exon Expression RNASeq",
+                grepl("GA_exon", XenaDatasets) ~ "Exon Expression RNASeq",
+                grepl("GAV2_exon", XenaDatasets) ~ "Exon Expression RNASeq",
                 grepl("AgilentG", XenaDatasets) ~ "Gene Expression Array",
                 grepl("HT_HG-U133A", XenaDatasets) ~ "Gene Expression Array",
-                grepl("GA$", XenaDatasets) ~ "Gene Expression RNAseq",
-                grepl("GAV2$", XenaDatasets) ~ "Gene Expression RNAseq",
-                grepl("HiSeq$", XenaDatasets) & ! grepl("RABIT", XenaDatasets) ~ "Gene Expression RNAseq",
-                grepl("HiSeqV2$", XenaDatasets) ~ "Gene Expression RNAseq",
-                grepl("HiSeqV2_PANCAN$", XenaDatasets) ~ "Gene Expression RNAseq",
-                grepl("HiSeqV2_percentile$", XenaDatasets) ~ "Gene Expression RNAseq",
-                grepl("EB\\+\\+AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena", XenaDatasets) ~ "Gene Expression RNAseq", # pancan
-                grepl("miRNA", XenaDatasets) ~ "miRNA Mature Strand Expression RNAseq",
-                grepl("pancanMiRs_EBadjOnProtocolPlatformWithoutRepsWithUnCorrectMiRs", XenaDatasets) ~ "miRNA Mature Strand Expression RNAseq", # pancan
+                grepl("GA$", XenaDatasets) & ! grepl("RABIT", XenaDatasets) ~ "Gene Expression RNASeq",
+                grepl("GAV2$", XenaDatasets) & ! grepl("RABIT", XenaDatasets) ~ "Gene Expression RNASeq",
+                grepl("HiSeq$", XenaDatasets) & ! grepl("RABIT", XenaDatasets) ~ "Gene Expression RNASeq",
+                grepl("HiSeqV2$", XenaDatasets) & ! grepl("RABIT", XenaDatasets) ~ "Gene Expression RNASeq",
+                grepl("HiSeqV2_PANCAN$", XenaDatasets) ~ "Gene Expression RNASeq",
+                grepl("HiSeqV2_percentile$", XenaDatasets) ~ "Gene Expression RNASeq",
+                grepl("EB\\+\\+AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena", XenaDatasets) ~ "Gene Expression RNASeq", # pancan
+                grepl("miRNA", XenaDatasets) ~ "miRNA Mature Strand Expression RNASeq",
+                grepl("pancanMiRs_EBadjOnProtocolPlatformWithoutRepsWithUnCorrectMiRs", XenaDatasets) ~ "miRNA Mature Strand Expression RNASeq", # pancan
                 grepl("Pathway_Paradigm", XenaDatasets) ~ "PARADIGM Pathway Activity",
                 grepl("erge_merged_reals", XenaDatasets) ~ "PARADIGM Pathway Activity", # pancan
                 grepl("clinicalMatrix", XenaDatasets) ~ "Phenotype",
@@ -161,26 +192,26 @@ tcgaEasyDownload = function(){
                 DataType == "DNA Methylation" & grepl("oneoff_TCGA_LGG_MethylMix", XenaDatasets) ~ "MethylMix",
 
 
-                DataType == "Exon Expression RNAseq" & grepl("GA_exon", XenaDatasets) ~ "IlluminaGA RNASeq",
-                DataType == "Exon Expression RNAseq" & grepl("GAV2_exon", XenaDatasets) ~ "IlluminaGA RNASeqV2",
-                DataType == "Exon Expression RNAseq" & grepl("HiSeq_exon", XenaDatasets) ~ "IlluminaHiSeq RNASeq",
-                DataType == "Exon Expression RNAseq" & grepl("HiSeqV2_exon", XenaDatasets) ~ "IlluminaHiSeq RNASeqV2",
+                DataType == "Exon Expression RNASeq" & grepl("GA_exon", XenaDatasets) ~ "IlluminaGA RNASeq",
+                DataType == "Exon Expression RNASeq" & grepl("GAV2_exon", XenaDatasets) ~ "IlluminaGA RNASeqV2",
+                DataType == "Exon Expression RNASeq" & grepl("HiSeq_exon", XenaDatasets) ~ "IlluminaHiSeq RNASeq",
+                DataType == "Exon Expression RNASeq" & grepl("HiSeqV2_exon", XenaDatasets) ~ "IlluminaHiSeq RNASeqV2",
 
 
                 DataType == "Gene Expression Array" & grepl("AgilentG4502A", XenaDatasets) ~ "Agilent 244K Microarray",
                 DataType == "Gene Expression Array" & grepl("HT_HG-U133A", XenaDatasets) ~ "Affymetrix U133A Microarray",
 
-                DataType == "Gene Expression RNAseq" & endsWith(XenaDatasets, "GA") ~ "IlluminaGA RNASeq",
-                DataType == "Gene Expression RNAseq" & endsWith(XenaDatasets, "GAV2") ~ "IlluminaGA RNASeqV2",
-                DataType == "Gene Expression RNAseq" & endsWith(XenaDatasets, "HiSeq") ~ "IlluminaHiSeq RNASeq",
-                DataType == "Gene Expression RNAseq" & endsWith(XenaDatasets, "HiSeqV2") ~ "IlluminaHiSeq RNASeqV2",
-                DataType == "Gene Expression RNAseq" & endsWith(XenaDatasets, "HiSeqV2_PANCAN") ~ "IlluminaHiSeq RNASeqV2 pancan normalized",
-                DataType == "Gene Expression RNAseq" & endsWith(XenaDatasets, "HiSeqV2_percentile") ~ "IlluminaHiSeq RNASeqV2 in percentile rank",
+                DataType == "Gene Expression RNASeq" & endsWith(XenaDatasets, "GA") ~ "IlluminaGA RNASeq",
+                DataType == "Gene Expression RNASeq" & endsWith(XenaDatasets, "GAV2") ~ "IlluminaGA RNASeqV2",
+                DataType == "Gene Expression RNASeq" & endsWith(XenaDatasets, "HiSeq") ~ "IlluminaHiSeq RNASeq",
+                DataType == "Gene Expression RNASeq" & endsWith(XenaDatasets, "HiSeqV2") ~ "IlluminaHiSeq RNASeqV2",
+                DataType == "Gene Expression RNASeq" & endsWith(XenaDatasets, "HiSeqV2_PANCAN") ~ "IlluminaHiSeq RNASeqV2 pancan normalized",
+                DataType == "Gene Expression RNASeq" & endsWith(XenaDatasets, "HiSeqV2_percentile") ~ "IlluminaHiSeq RNASeqV2 in percentile rank",
+                DataType == "Gene Expression RNASeq" & grepl("AdjustPANCAN_IlluminaHiSeq_RNASeqV2", XenaDatasets) ~ "Batch effects normalized",
 
-
-                DataType == "miRNA Mature Strand Expression RNAseq" & endsWith(XenaDatasets, "miRNA_GA_gene") ~ "IlluminaGA RNASeq",
-                DataType == "miRNA Mature Strand Expression RNAseq" & endsWith(XenaDatasets, "miRNA_HiSeq_gene") ~ "IlluminaHiSeq RNASeq",
-                DataType == "miRNA Mature Strand Expression RNAseq" & grepl("pancanMiRs_EBadjOnProtocolPlatformWithoutRepsWithU", XenaDatasets) ~ "Batch effects normalized",
+                DataType == "miRNA Mature Strand Expression RNASeq" & endsWith(XenaDatasets, "miRNA_GA_gene") ~ "IlluminaGA RNASeq",
+                DataType == "miRNA Mature Strand Expression RNASeq" & endsWith(XenaDatasets, "miRNA_HiSeq_gene") ~ "IlluminaHiSeq RNASeq",
+                DataType == "miRNA Mature Strand Expression RNASeq" & grepl("pancanMiRs_EBadjOnProtocolPlatformWithoutRepsWithU", XenaDatasets) ~ "Batch effects normalized",
 
 
                 DataType == "PARADIGM Pathway Activity" & grepl("merge_merged_reals", XenaDatasets) ~ "Platform-corrected PANCAN12 dataset",
@@ -198,7 +229,7 @@ tcgaEasyDownload = function(){
                 DataType == "Phenotype" & grepl("TCGA_phenotype_denseDataOnlyDownload", XenaDatasets) ~ "TCGA Sample Type and Primary Disease",
 
                 DataType == "Protein Expression RPPA" & endsWith(XenaDatasets, "RPPA") ~ "RPPA",
-                DataType == "Protein Expression RPPA" & endsWith(XenaDatasets, "RPPA") ~ "RPPA normalized by RBN",
+                DataType == "Protein Expression RPPA" & endsWith(XenaDatasets, "RPPA_RBN") ~ "RPPA normalized by RBN",
                 DataType == "Protein Expression RPPA" & grepl("TCGA-RPPA-pancan-clean", XenaDatasets) ~ "RPPA pancan normalized",
 
 
@@ -215,169 +246,43 @@ tcgaEasyDownload = function(){
                 DataType == "Somatic Mutation" & endsWith(XenaDatasets, "mutation_wustl") ~ "wustl automated",
                 DataType == "Somatic Mutation" & endsWith(XenaDatasets, "mutation_wustl_hiseq") ~ "wustl hiseq automated",
 
-
-                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation") ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Gene Somatic Non-silent Mutation" & grepl("iCluster", XenaDatasets) ~ NA,
-
-
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Transcription Factor Regulatory Impact" & grepl("iCluster", XenaDatasets) ~ NA,
+                DataType == "Gene Somatic Non-silent Mutation" & grepl("mc3.v0.2.8.PUBLIC.nonsilentGene.xena", XenaDatasets) ~ "MC3 Public Version",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation") ~ "PANCAN AWG analyzed",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_bcgsc_gene") ~ "bsgsc automated",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_bcm_gene") ~ "bcm automated",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_bcm_solid_gene") ~ "bcm SOLiD",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_broad_gene") ~ "broad automated",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_curated_bcm_gene") ~ "bcm curated",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_curated_bcm_solid_gene") ~ "bcm SOLiD curated",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_curated_broad_gene") ~ "broad curated",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_curated_wustl_gene") ~ "wustl curated",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_ucsc_maf_gene") ~ "ucsc automated",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_wustl_gene") ~ "wustl automated",
+                DataType == "Gene Somatic Non-silent Mutation" & endsWith(XenaDatasets, "mutation_wustl_hiseq_gene") ~ "wustl hiseq automated",
 
 
-                DataType == "iCluster" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "iCluster" & grepl("iCluster", XenaDatasets) ~ NA,
+                DataType == "Transcription Factor Regulatory Impact" & grepl("HiSeq.V2$", XenaDatasets) ~ "RABIT Use IlluminaHiSeq RNASeqV2",
+                DataType == "Transcription Factor Regulatory Impact" & grepl("HiSeq$", XenaDatasets) ~ "RABIT Use IlluminaHiSeq RNASeq",
+                DataType == "Transcription Factor Regulatory Impact" & grepl("GA.V2$", XenaDatasets) ~ "RABIT Use IlluminaGA RNASeqV2",
+                DataType == "Transcription Factor Regulatory Impact" & grepl("GA$", XenaDatasets) ~ "RABIT Use IlluminaGA RNASeq",
+                DataType == "Transcription Factor Regulatory Impact" & grepl("Agilent$", XenaDatasets) ~ "RABIT Use Agilent 244K Microarray",
+                DataType == "Transcription Factor Regulatory Impact" & grepl("U133A$", XenaDatasets) ~ "RABIT Use Affymetrix U133A Microarray",
 
+                DataType == "iCluster" & grepl("TCGA_PanCan33_iCluster_k28_tumor", XenaDatasets) ~ "iCluster cluster assignments",
+                DataType == "iCluster" & grepl("lat.vars.iCluster.redo.tumor", XenaDatasets) ~ "iCluster latent variables",
 
-                DataType == "Signatures" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Signatures" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Signatures" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Signatures" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Signatures" & grepl("iCluster", XenaDatasets) ~ NA,
-                DataType == "Signatures" & grepl("iCluster", XenaDatasets) ~ NA
+                DataType == "Signatures" & grepl("Pancan12_GenePrograms_drugTargetCanon", XenaDatasets) ~ "Pancan Gene Programs",
+                DataType == "Signatures" & grepl("StemnessScores_DNAmeth_", XenaDatasets) ~ "DNA methylation based StemnessScore",
+                DataType == "Signatures" & grepl("StemnessScores_RNAexp", XenaDatasets) ~ "RNA based StemnessScore",
+                DataType == "Signatures" & grepl("TCGA_pancancer_10852whitelistsamples_68ImmuneSigs", XenaDatasets) ~ "Immune Signature Scores",
+                DataType == "Signatures" & grepl("TCGA.HRD_withSampleID.txt", XenaDatasets) ~ "Genome-wide DNA Damage Footprint HRD Score"
 
-            ))
+            )) -> ob_tcga
     }
+    ob_tcga
 }
 
-#
+# grep unique pattern
 # ob1 = sub("TCGA.*/(.*)", "\\1", ob$XenaDatasets) %>% table() %>% names() -> uniqueDatasets
 # ob1 = tibble(XenaDatasets = uniqueDatasets)
 # grep("gene_expression_subtype", ob$XenaDatasets, value = TRUE)
-
-# > dput(ob2)
-ob2 = structure(list(XenaDatasets = c("ACC_clinicalMatrix", "AgilentG4502A_07_1",
-                                "AgilentG4502A_07_2", "AgilentG4502A_07_3", "BLCA_clinicalMatrix",
-                                "BRCA_clinicalMatrix", "broad.mit.edu_PANCAN_Genome_Wide_SNP_6_whitelisted.gene.xena",
-                                "broad.mit.edu_PANCAN_Genome_Wide_SNP_6_whitelisted.xena", "CESC_clinicalMatrix",
-                                "CHOL_clinicalMatrix", "COAD_clinicalMatrix", "COADREAD_clinicalMatrix",
-                                "DLBC_clinicalMatrix", "EB++AdjustPANCAN_IlluminaHiSeq_RNASeqV2.geneExp.xena",
-                                "ESCA_clinicalMatrix", "FPPP_clinicalMatrix", "GA", "GA_exon",
-                                "GAV2", "GAV2_exon", "GBM_clinicalMatrix", "GBMLGG_clinicalMatrix",
-                                "Gistic2_CopyNumber_Gistic2_all_data_by_genes", "Gistic2_CopyNumber_Gistic2_all_thresholded.by_genes",
-                                "HiSeq", "HiSeq_exon", "HiSeqV2", "HiSeqV2_exon", "HiSeqV2_PANCAN",
-                                "HiSeqV2_percentile", "HNSC_clinicalMatrix", "HT_HG-U133A", "HumanMethylation27",
-                                "HumanMethylation450", "jhu-usc.edu_PANCAN_HumanMethylation450.betaValue_whitelisted.tsv.synapse_download_5096262.xena",
-                                "KICH_clinicalMatrix", "KIRC_clinicalMatrix", "KIRP_clinicalMatrix",
-                                "LAML_clinicalMatrix", "lat.vars.iCluster.redo.tumor", "LGG_clinicalMatrix",
-                                "LIHC_clinicalMatrix", "LUAD_clinicalMatrix", "LUNG_clinicalMatrix",
-                                "LUSC_clinicalMatrix", "mc3.v0.2.8.PUBLIC.nonsilentGene.xena",
-                                "mc3.v0.2.8.PUBLIC.xena", "merge_merged_reals", "MESO_clinicalMatrix",
-                                "miRNA_GA_gene", "miRNA_HiSeq_gene", "mutation", "mutation_bcgsc",
-                                "mutation_bcgsc_gene", "mutation_bcm", "mutation_bcm_gene", "mutation_bcm_solid",
-                                "mutation_bcm_solid_gene", "mutation_broad", "mutation_broad_gene",
-                                "mutation_curated_bcm", "mutation_curated_bcm_gene", "mutation_curated_bcm_solid",
-                                "mutation_curated_bcm_solid_gene", "mutation_curated_broad",
-                                "mutation_curated_broad_gene", "mutation_curated_wustl", "mutation_curated_wustl_gene",
-                                "mutation_ucsc_maf", "mutation_ucsc_maf_gene", "mutation_wustl",
-                                "mutation_wustl_gene", "mutation_wustl_hiseq", "mutation_wustl_hiseq_gene",
-                                "oneoff_TCGA_LGG_MethylMix", "OV_clinicalMatrix", "PAAD_clinicalMatrix",
-                                "Pancan12_GenePrograms_drugTargetCanon_in_Pancan33.tsv", "pancanMiRs_EBadjOnProtocolPlatformWithoutRepsWithUnCorrectMiRs_08_04_16.xena",
-                                "Pathway_Paradigm_mRNA", "Pathway_Paradigm_mRNA_And_Copy_Number",
-                                "Pathway_Paradigm_RNASeq", "Pathway_Paradigm_RNASeq_And_Copy_Number",
-                                "PCPG_clinicalMatrix", "PRAD_clinicalMatrix", "RABIT/pancan/RABIT_pancan.HiSeq",
-                                "RABIT/pancan/RABIT_pancan.HiSeq.V2", "RABIT/separate_processed/RABIT_BLCA.HiSeq",
-                                "RABIT/separate_processed/RABIT_BLCA.HiSeq.V2", "RABIT/separate_processed/RABIT_BRCA.Agilent",
-                                "RABIT/separate_processed/RABIT_BRCA.HiSeq", "RABIT/separate_processed/RABIT_BRCA.HiSeq.V2",
-                                "RABIT/separate_processed/RABIT_CESC.HiSeq.V2", "RABIT/separate_processed/RABIT_COAD.Agilent",
-                                "RABIT/separate_processed/RABIT_COAD.HiSeq.V2", "RABIT/separate_processed/RABIT_GBM.Agilent",
-                                "RABIT/separate_processed/RABIT_GBM.HiSeq.V2", "RABIT/separate_processed/RABIT_GBM.U133A",
-                                "RABIT/separate_processed/RABIT_HNSC.HiSeq", "RABIT/separate_processed/RABIT_HNSC.HiSeq.V2",
-                                "RABIT/separate_processed/RABIT_KICH.HiSeq.V2", "RABIT/separate_processed/RABIT_KIRC.HiSeq",
-                                "RABIT/separate_processed/RABIT_KIRC.HiSeq.V2", "RABIT/separate_processed/RABIT_KIRP.HiSeq.V2",
-                                "RABIT/separate_processed/RABIT_LIHC.HiSeq", "RABIT/separate_processed/RABIT_LIHC.HiSeq.V2",
-                                "RABIT/separate_processed/RABIT_LUAD.HiSeq", "RABIT/separate_processed/RABIT_LUAD.HiSeq.V2",
-                                "RABIT/separate_processed/RABIT_LUSC.HiSeq", "RABIT/separate_processed/RABIT_LUSC.HiSeq.V2",
-                                "RABIT/separate_processed/RABIT_OV.Agilent", "RABIT/separate_processed/RABIT_OV.U133A",
-                                "RABIT/separate_processed/RABIT_PRAD.HiSeq.V2", "RABIT/separate_processed/RABIT_READ.Agilent",
-                                "RABIT/separate_processed/RABIT_READ.HiSeq.V2", "RABIT/separate_processed/RABIT_STAD.HiSeq",
-                                "RABIT/separate_processed/RABIT_THCA.HiSeq.V2", "RABIT/separate_processed/RABIT_UCEC.GA",
-                                "RABIT/separate_processed/RABIT_UCEC.GA.V2", "RABIT/separate_processed/RABIT_UCEC.HiSeq.V2",
-                                "READ_clinicalMatrix", "RPPA", "RPPA_RBN", "SARC_clinicalMatrix",
-                                "SKCM_clinicalMatrix", "SNP6_genomicSegment", "SNP6_nocnv_genomicSegment",
-                                "STAD_clinicalMatrix", "StemnessScores_DNAmeth_20170210.tsv",
-                                "StemnessScores_RNAexp_20170127.2.tsv", "Subtype_Immune_Model_Based.txt",
-                                "Survival_SupplementalTable_S1_20171025_xena_sp", "TCGA_OV_gene_expression_subtype",
-                                "TCGA_PanCan33_iCluster_k28_tumor", "TCGA_pancancer_10852whitelistsamples_68ImmuneSigs.xena",
-                                "TCGA_phenotype_denseDataOnlyDownload.tsv", "TCGA-RPPA-pancan-clean.xena",
-                                "TCGA.HRD_withSampleID.txt", "TCGASubtype.20170308.tsv", "TGCT_clinicalMatrix",
-                                "THCA_clinicalMatrix", "THYM_clinicalMatrix", "UCEC_clinicalMatrix",
-                                "UCS_clinicalMatrix", "UVM_clinicalMatrix"), DataType = c("Phenotype",
-                                                                                          "Gene Expression Array", "Gene Expression Array", "Gene Expression Array",
-                                                                                          "Phenotype", "Phenotype", "Gene Level Copy Number", "Copy Number Segments",
-                                                                                          "Phenotype", "Phenotype", "Phenotype", "Phenotype", "Phenotype",
-                                                                                          "Gene Expression RNAseq", "Phenotype", "Phenotype", "Gene Expression RNAseq",
-                                                                                          "Exon Expression RNAseq", "Gene Expression RNAseq", "Exon Expression RNAseq",
-                                                                                          "Phenotype", "Phenotype", "Gene Level Copy Number", "Gene Level Copy Number",
-                                                                                          "Gene Expression RNAseq", "Exon Expression RNAseq", "Gene Expression RNAseq",
-                                                                                          "Exon Expression RNAseq", "Gene Expression RNAseq", "Gene Expression RNAseq",
-                                                                                          "Phenotype", "Gene Expression Array", "DNA Methylation", "DNA Methylation",
-                                                                                          "DNA Methylation", "Phenotype", "Phenotype", "Phenotype", "Phenotype",
-                                                                                          "iCluster", "Phenotype", "Phenotype", "Phenotype", "Phenotype",
-                                                                                          "Phenotype", "Gene Somatic Non-silent Mutation", "Somatic Mutation",
-                                                                                          "PARADIGM Pathway Activity", "Phenotype", "miRNA Mature Strand Expression RNAseq",
-                                                                                          "miRNA Mature Strand Expression RNAseq", "Gene Somatic Non-silent Mutation",
-                                                                                          "Somatic Mutation", "Gene Somatic Non-silent Mutation", "Somatic Mutation",
-                                                                                          "Gene Somatic Non-silent Mutation", "Somatic Mutation", "Gene Somatic Non-silent Mutation",
-                                                                                          "Somatic Mutation", "Gene Somatic Non-silent Mutation", "Somatic Mutation",
-                                                                                          "Gene Somatic Non-silent Mutation", "Somatic Mutation", "Gene Somatic Non-silent Mutation",
-                                                                                          "Somatic Mutation", "Gene Somatic Non-silent Mutation", "Somatic Mutation",
-                                                                                          "Gene Somatic Non-silent Mutation", "Somatic Mutation", "Gene Somatic Non-silent Mutation",
-                                                                                          "Somatic Mutation", "Gene Somatic Non-silent Mutation", "Somatic Mutation",
-                                                                                          "Gene Somatic Non-silent Mutation", "DNA Methylation", "Phenotype",
-                                                                                          "Phenotype", "Signatures", "miRNA Mature Strand Expression RNAseq",
-                                                                                          "PARADIGM Pathway Activity", "PARADIGM Pathway Activity", "PARADIGM Pathway Activity",
-                                                                                          "PARADIGM Pathway Activity", "Phenotype", "Phenotype", "Gene Expression RNAseq",
-                                                                                          "Transcription Factor Regulatory Impact", "Gene Expression RNAseq",
-                                                                                          "Transcription Factor Regulatory Impact", "Gene Expression Array",
-                                                                                          "Gene Expression RNAseq", "Transcription Factor Regulatory Impact",
-                                                                                          "Transcription Factor Regulatory Impact", "Gene Expression Array",
-                                                                                          "Transcription Factor Regulatory Impact", "Gene Expression Array",
-                                                                                          "Transcription Factor Regulatory Impact", "Transcription Factor Regulatory Impact",
-                                                                                          "Gene Expression RNAseq", "Transcription Factor Regulatory Impact",
-                                                                                          "Transcription Factor Regulatory Impact", "Gene Expression RNAseq",
-                                                                                          "Transcription Factor Regulatory Impact", "Transcription Factor Regulatory Impact",
-                                                                                          "Gene Expression RNAseq", "Transcription Factor Regulatory Impact",
-                                                                                          "Gene Expression RNAseq", "Transcription Factor Regulatory Impact",
-                                                                                          "Gene Expression RNAseq", "Transcription Factor Regulatory Impact",
-                                                                                          "Gene Expression Array", "Transcription Factor Regulatory Impact",
-                                                                                          "Transcription Factor Regulatory Impact", "Gene Expression Array",
-                                                                                          "Transcription Factor Regulatory Impact", "Gene Expression RNAseq",
-                                                                                          "Transcription Factor Regulatory Impact", "Gene Expression RNAseq",
-                                                                                          "Transcription Factor Regulatory Impact", "Transcription Factor Regulatory Impact",
-                                                                                          "Phenotype", "Protein Expression RPPA", "Protein Expression RPPA",
-                                                                                          "Phenotype", "Phenotype", "Copy Number Segments", "Copy Number Segments",
-                                                                                          "Phenotype", "Signatures", "Signatures", "Phenotype", "Phenotype",
-                                                                                          "Phenotype", "iCluster", "Signatures", "Phenotype", "Protein Expression RPPA",
-                                                                                          "Signatures", "Phenotype", "Phenotype", "Phenotype", "Phenotype",
-                                                                                          "Phenotype", "Phenotype", "Phenotype")), class = c("tbl_df",
-                                                                                                                                             "tbl", "data.frame"), row.names = c(NA, -145L))
