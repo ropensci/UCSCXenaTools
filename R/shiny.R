@@ -6,6 +6,7 @@
 ##' @title Xena Shiny App
 ##' @import shiny
 ##' @import shinydashboard
+##' @export
 XenaShiny = function(){
     data <- showTCGA()
     projects  = unique(data$ProjectID)
