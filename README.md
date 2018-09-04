@@ -3,7 +3,7 @@
 UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 =================================================================================
 
-![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/sync-deploy/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
+![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) [![GitHub tag](https://img.shields.io/github/tag/ShixiangWang/UCSCXenaTools.svg?label=Github)](https://github.com/ShixiangWang/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master) [![GitHub issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+)
 
 **UCSC Xena data hubs**, which are
 
@@ -271,7 +271,7 @@ If the data exists, command will not run to download them, but you can force it 
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpPJb5e1.
+#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmp2fEM90.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
