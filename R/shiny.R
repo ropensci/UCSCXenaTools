@@ -6,8 +6,6 @@
 ##' @title Xena Shiny App
 ##' @import shiny
 ##' @import shinydashboard
-##' @importFrom DT dataTableOutput
-##' @importFrom DT renderDataTable
 XenaShiny = function(){
     data <- showTCGA()
     projects  = unique(data$ProjectID)

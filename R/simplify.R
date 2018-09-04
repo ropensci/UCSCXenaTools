@@ -344,3 +344,6 @@ showTCGA = function(project="all"){
 # ob1 = sub("TCGA.*/(.*)", "\\1", ob$XenaDatasets) %>% table() %>% names() -> uniqueDatasets
 # ob1 = tibble(XenaDatasets = uniqueDatasets)
 # grep("gene_expression_subtype", ob$XenaDatasets, value = TRUE)
+
+
+# utils::globalVariables(c("rowname"))
