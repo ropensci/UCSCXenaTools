@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-**Current Version: 0.2.2**
+**Current Version: 0.2.3**
 
 `UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
 
@@ -254,6 +254,26 @@ names(cli4)
 ```{r}
 sessionInfo()
 ```
+
+## New feature
+
+* Add easy download function and Xena information for TCGA data
+
+```
+# download RNASeq data (use UVM as example)
+tcgaEasyDownload(project = "UVM",
+                 data_type = "Gene Expression RNASeq",
+                  file_type = "IlluminaHiSeq RNASeqV2")
+```
+
+Run shiny by
+
+```
+UCSCXenaTools::XenaShiny()
+```
+
+
+Download by shiny is under consideration, I am try learning more about how to operate shiny.
 
 ## Acknowledgement
 

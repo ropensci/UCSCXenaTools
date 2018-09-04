@@ -3,9 +3,7 @@
 UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 =================================================================================
 
-<img src="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/inst/figures/UCSCXenaTools.png" height="200" align="right" />
-
-![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) [![GitHub tag](https://img.shields.io/github/tag/ShixiangWang/UCSCXenaTools.svg?label=Github)](https://github.com/ShixiangWang/UCSCXenaTools/tags) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master) [![GitHub issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+)
+![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools?color=red) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/) [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/ShixiangWang/sync-deploy/graphs/commit-activity) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
 
 **UCSC Xena data hubs**, which are
 
@@ -13,7 +11,7 @@ UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs*
 >
 > -- [UCSC Xena](https://xena.ucsc.edu/)
 
-**Current Version: 0.2.2**
+**Current Version: 0.2.3**
 
 Installation
 ------------
@@ -273,7 +271,7 @@ If the data exists, command will not run to download them, but you can force it 
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory D:\tmp\RtmpmE0q5lXenaData.
+#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpPJb5e1.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
@@ -322,37 +320,57 @@ names(cli4)
 #> [3] "TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz"
 ```
 
+New feature
+-----------
+
+-   Add easy download function and Xena information for TCGA data
+
+<!-- -->
+
+    # download RNASeq data (use UVM as example)
+    tcgaEasyDownload(project = "UVM",
+                     data_type = "Gene Expression RNASeq",
+                      file_type = "IlluminaHiSeq RNASeqV2")
+
+Run shiny by
+
+    UCSCXenaTools::XenaShiny()
+
 ### SessionInfo
 
 ``` r
 sessionInfo()
 #> R version 3.5.1 (2018-07-02)
-#> Platform: x86_64-w64-mingw32/x64 (64-bit)
-#> Running under: Windows 7 x64 (build 7601) Service Pack 1
+#> Platform: x86_64-apple-darwin15.6.0 (64-bit)
+#> Running under: macOS High Sierra 10.13.6
 #> 
 #> Matrix products: default
+#> BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+#> LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
 #> 
 #> locale:
-#> [1] LC_COLLATE=Chinese (Simplified)_People's Republic of China.936 
-#> [2] LC_CTYPE=Chinese (Simplified)_People's Republic of China.936   
-#> [3] LC_MONETARY=Chinese (Simplified)_People's Republic of China.936
-#> [4] LC_NUMERIC=C                                                   
-#> [5] LC_TIME=Chinese (Simplified)_People's Republic of China.936    
+#> [1] zh_CN.UTF-8/zh_CN.UTF-8/zh_CN.UTF-8/C/zh_CN.UTF-8/zh_CN.UTF-8
 #> 
 #> attached base packages:
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] UCSCXenaTools_0.2.1 pacman_0.4.6       
+#> [1] UCSCXenaTools_0.2.3 pacman_0.4.6       
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] Rcpp_0.12.18    crayon_1.3.4    digest_0.6.15   rprojroot_1.3-2
-#>  [5] R6_2.2.2        jsonlite_1.5    backports_1.1.2 magrittr_1.5   
-#>  [9] evaluate_0.11   pillar_1.3.0    httr_1.3.1      rlang_0.2.1    
-#> [13] stringi_1.1.7   curl_3.2        rmarkdown_1.10  tools_3.5.1    
-#> [17] readr_1.1.1     stringr_1.3.1   hms_0.4.2       yaml_2.2.0     
-#> [21] compiler_3.5.1  pkgconfig_2.0.1 htmltools_0.3.6 knitr_1.20     
-#> [25] tibble_1.4.2
+#>  [1] Rcpp_0.12.18         knitr_1.20           bindr_0.1.1         
+#>  [4] magrittr_1.5         hms_0.4.2            tidyselect_0.2.4    
+#>  [7] xtable_1.8-2         R6_2.2.2             rlang_0.2.2         
+#> [10] httr_1.3.1           stringr_1.3.1        dplyr_0.7.6         
+#> [13] tools_3.5.1          shinydashboard_0.7.0 htmltools_0.3.6     
+#> [16] yaml_2.2.0           rprojroot_1.3-2      digest_0.6.16       
+#> [19] assertthat_0.2.0     tibble_1.4.2         crayon_1.3.4        
+#> [22] bindrcpp_0.2.2       shiny_1.1.0          readr_1.1.1         
+#> [25] later_0.7.3          purrr_0.2.5          promises_1.0.1      
+#> [28] curl_3.2             mime_0.5             glue_1.3.0          
+#> [31] evaluate_0.11        rmarkdown_1.10       stringi_1.2.4       
+#> [34] compiler_3.5.1       pillar_1.3.0         backports_1.1.2     
+#> [37] jsonlite_1.5         httpuv_1.4.5         pkgconfig_2.0.2
 ```
 
 Acknowledgement
@@ -370,7 +388,7 @@ please note, code from XenaR package under Apache 2.0 license.
 ToDo
 ----
 
--   Shinny
+-   Shinny App for download data
 -   More easier download workflow
 
 Code of conduct
