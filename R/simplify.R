@@ -56,11 +56,67 @@
 # suppressBindingNotes(c("XenaHostNames","XenaCohorts", "ProjectID", "DataType", "FileType"))
 
 
+##' @title Get TCGA Common Data Sets by Project ID and Property
+##' @description This is the most useful function for user to download common TCGA datasets,
+##'it is similar to \code{getFirehoseData} function in \code{RTCGAToolbox} package. If you are
+##'not familiar with data structure of TCGA on Xena, please visit
+##'<https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu> and
+##'select one tumor type (or what you want to download).
+##'
+getTCGAdata = function(project=NULL, clinical=TRUE,
+                       mRNASeq=FALSE, mRNAArray=FALSE, mRNASeqType = c("normalized", "pancan normalized", "percentile"),
+                       miRNASeq=FALSE, miRNAArray=FALSE,
+                       RPPAArray=FALSE, ReplicateBaseNormalization=FALSE,
+                       Methylation=FALSE, MethylationType = c("27K", "450K"),
+                       GeneMutation=FALSE, SomaticMutation=FALSE,
+                       GisticCopyNumber=FALSE, Gistic2Threshold=TRUE,
+                       CopyNumberSegment=FALSE, RemoveGermlineCNV=TRUE,
+                       download=FALSE, forceDownload=FALSE){
+    stopifnot(!is.null(project))
+    if(clinical){
+
+    }
+    if(mRNASeq){
+
+    }
+    if(mRNAArray){
+
+    }
+    if(miRNASeq){
+
+    }
+    if(miRNAArray){
+
+    }
+    if(RPPAArray){
+
+    }
+    if(Methylation){
+
+    }
+    if(GeneMutation){
+
+    }
+    if(SomaticMutation){
+
+    }
+    if(GisticCopyNumber){
+
+    }
+    if(CopyNumberSegment){
+
+    }
+    if(download){
+
+    }
+}
+
 ##' @title Easily Download TCGA Data by Several Options
 ##' @description TCGA is a very useful database and here we provide this function to
 ##' download TCGA (include TCGA Pancan) datasets in human-friendly way. User who are not
 ##' familiar with R operation will benefit from this.
-##' @details All availble information about datasets of TCGA can access vis \code{tcgaAvail()} and check with \code{showTCGA}.
+##' @details All availble information about datasets of TCGA can access vis \code{tcgaAvail()} and
+##' check with \code{showTCGA()}.
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @param project default is \code{NULL}. Should be one or more of TCGA project id (character vector) provided by Xena.
 ##' See all available project id, please use \code{tcgaAvail("ProjectID")}.
@@ -77,9 +133,14 @@
 ##' tcgaEasyDownload(project = "UVM",
 ##'                  data_type = "Gene Expression RNASeq",
 ##'                  file_type = "IlluminaHiSeq RNASeqV2")
-##' @seealso [XenaQuery()], [XenaFilter()], [XenaDownload()], [XenaPrepare()], [tcgaAvail()], [showTCGA()]
-##'
-tcgaEasyDownload = function(project=NULL, data_type=NULL, file_type=NULL, destdir=tempdir(), force=FALSE, ...){
+##' @seealso \code{\link[UCSCXenaTools]{XenaQuery}},
+##' \code{\link[UCSCXenaTools]{XenaFilter}},
+##' \code{\link[UCSCXenaTools]{XenaDownload}},
+##' \code{\link[UCSCXenaTools]{XenaPrepare}},
+##' \code{\link[UCSCXenaTools]{availTCGA}},
+##' \code{\link[UCSCXenaTools]{showTCGA}}
+
+downloadTCGA = function(project=NULL, data_type=NULL, file_type=NULL, destdir=tempdir(), force=FALSE, ...){
     stopifnot(!is.null(project), !is.null(data_type), !is.null(file_type))
     tcga_all = .decodeDataType(Target = "TCGA")
     tcga_projects = unique(tcga_all$ProjectID)
@@ -110,7 +171,7 @@ tcgaEasyDownload = function(project=NULL, data_type=NULL, file_type=NULL, destdi
         XenaDownload(destdir = destdir, force = force, ...)
 }
 
-##' @title TCGA available ProjectID, DataType and FileType
+##' @title Get or Check TCGA Available ProjectID, DataType and FileType
 ##' @param which a character of \code{c("All", "ProjectID", "DataType", "FileType")}
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
@@ -118,7 +179,7 @@ tcgaEasyDownload = function(project=NULL, data_type=NULL, file_type=NULL, destdi
 ##' \donttest{
 ##' tcgaAvail("all")
 ##' }
-tcgaAvail = function(which=c("all", "ProjectID", "DataType", "FileType")){
+availTCGA = function(which=c("all", "ProjectID", "DataType", "FileType")){
     which = match.arg(which)
     tcga_all = .decodeDataType(Target = "TCGA")
     tcga_projects = unique(tcga_all$ProjectID)
@@ -147,7 +208,7 @@ tcgaAvail = function(which=c("all", "ProjectID", "DataType", "FileType")){
 ##' \donttest{
 ##' showTCGA("all")
 ##' }
-##' @seealso [tcgaAvail()]
+##' @seealso \code{\link[UCSCXenaTools](availTCGA)}
 showTCGA = function(project="all"){
 
     # suppress binding notes
@@ -172,6 +233,10 @@ showTCGA = function(project="all"){
     }
     return(res)
 }
+
+
+
+
 
 .decodeDataType = function(XenaData = UCSCXenaTools::XenaData, Target = c("TCGA", "UCSC_Public", "GDC", "ICGC", "Toil", "Treehouse")){
     # This TCGA include TCGA PANCAN dataset
@@ -339,6 +404,8 @@ showTCGA = function(project="all"){
     }
     ob_tcga
 }
+
+
 
 # grep unique pattern
 # ob1 = sub("TCGA.*/(.*)", "\\1", ob$XenaDatasets) %>% table() %>% names() -> uniqueDatasets
