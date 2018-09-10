@@ -62,7 +62,9 @@
 ##'not familiar with data structure of TCGA on Xena, please visit
 ##'<https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu> and
 ##'select one tumor type (or what you want to download).
+##'@author Shixiang Wang <w_shixiang@163.com>
 ##'
+##'@export
 getTCGAdata = function(project=NULL, clinical=TRUE,
                        mRNASeq=FALSE, mRNAArray=FALSE, mRNASeqType = c("normalized", "pancan normalized", "percentile"),
                        miRNASeq=FALSE, miRNAArray=FALSE,
@@ -73,12 +75,54 @@ getTCGAdata = function(project=NULL, clinical=TRUE,
                        CopyNumberSegment=FALSE, RemoveGermlineCNV=TRUE,
                        download=FALSE, forceDownload=FALSE){
     stopifnot(!is.null(project))
+
+    projects = c("LAML", "ACC", "CHOL", "BLCA", "BRCA", "CESC", "COADREAD",
+                 "COAD", "UCEC", "ESCA", "FPPP", "GBM", "HNSC", "KICH", "KIRC",
+                 "KIRP", "DLBC", "LIHC", "LGG", "GBMLGG", "LUAD", "LUNG", "LUSC",
+                 "SKCM", "MESO", "UVM", "OV", "PANCAN", "PAAD", "PCPG", "PRAD",
+                 "READ", "SARC", "STAD", "TGCT", "THYM", "THCA", "UCS")
+
+    if(!all(project %in% projects)){
+        message("Only following Project valid:")
+        print(project)
+        stop("Not Vaild Input!")
+    }
+
+    tcga_all = .decodeDataType(Target = "TCGA")
+
+    tcga_all %>%
+        filter(ProjectID %in% project) %>% # select project
+        filter()
+
+
+    res = subset(tcga_all, ProjectID %in% project)
+
+
+
     if(clinical){
-
+        quo_cli = dplyr::quo((FileType == "Clinical Information"))
+    }else{
+        quo_cli = dplyr::quo((FileType != "Clinical Information"))
     }
+
     if(mRNASeq){
+        if(!all(mRNASeqType %in% c("normalized", "pancan normalized", "percentile"))){
+            message("Available mRNASeqType values are:")
+            print(c("normalized", "pancan normalized", "percentile"))
+            stop("Not Vaild Input!")
+        }
 
+        RNA = c("IlluminaHiSeq RNASeq", "IlluminaHiSeq RNASeqV2", "IlluminaHiSeq RNASeqV2 in percentile rank")
+        names(RNA) = c("normalized", "pancan normalized", "percentile")
+        RNA_select = RNA[mRNASeqType]
+
+        quo_RNA = dplyr::quo((DataType == "Gene Expression RNASeq" & FileType %in% RNA_select))
+
+
+    }else{
+        quo_RNA = dplyr::quo((DatyType != "Gene Expression RNASeq"))
     }
+
     if(mRNAArray){
 
     }
@@ -115,15 +159,15 @@ getTCGAdata = function(project=NULL, clinical=TRUE,
 ##' @description TCGA is a very useful database and here we provide this function to
 ##' download TCGA (include TCGA Pancan) datasets in human-friendly way. User who are not
 ##' familiar with R operation will benefit from this.
-##' @details All availble information about datasets of TCGA can access vis \code{tcgaAvail()} and
+##' @details All availble information about datasets of TCGA can access vis \code{availTCGA()} and
 ##' check with \code{showTCGA()}.
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @param project default is \code{NULL}. Should be one or more of TCGA project id (character vector) provided by Xena.
-##' See all available project id, please use \code{tcgaAvail("ProjectID")}.
+##' See all available project id, please use \code{availTCGA("ProjectID")}.
 ##' @param data_type default is \code{NULL}. Should be a character vector specify data type.
-##' See all available data types by \code{tcgaAvail("DataType")}.
+##' See all available data types by \code{availTCGA("DataType")}.
 ##' @param file_type default is \code{NULL}. Should be a character vector specify file type.
-##' See all available file types by \code{tcgaAvail("FileType")}.
+##' See all available file types by \code{availTCGA("FileType")}.
 ##' @inheritParams XenaDownload
 ##' @return same as \code{XenaDownload()} function result.
 ##' @import dplyr
@@ -161,7 +205,7 @@ downloadTCGA = function(project=NULL, data_type=NULL, file_type=NULL, destdir=te
 
     if(nrow(res) == 0){
         message("Find nothing about your input, please check it.")
-        message("tcgaAvail and showTCGA function may help you.")
+        message("availTCGA and showTCGA function may help you.")
         return(invisible(NULL))
     }
 
@@ -177,7 +221,7 @@ downloadTCGA = function(project=NULL, data_type=NULL, file_type=NULL, destdir=te
 ##' @export
 ##' @examples
 ##' \donttest{
-##' tcgaAvail("all")
+##' availTCGA("all")
 ##' }
 availTCGA = function(which=c("all", "ProjectID", "DataType", "FileType")){
     which = match.arg(which)
