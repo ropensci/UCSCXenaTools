@@ -62,19 +62,55 @@
 ##'not familiar with data structure of TCGA on Xena, please visit
 ##'<https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu> and
 ##'select one tumor type (or what you want to download).
+##'@details All availble information about datasets of TCGA can access vis \code{availTCGA()} and
+##' check with \code{showTCGA()}.
 ##'@author Shixiang Wang <w_shixiang@163.com>
-##'
+##'@inheritParams downloadTCGA
+##'@param clinical
+##'@param forceDownload
+##'@param mRNASeq
+##'@param mRNAArray
+##'@param mRNASeqType
+##'@param miRNASeq
+##'@param exonRNASeq
+##'@param RPPAArray
+##'@param ReplicateBaseNormalization
+##'@param Methylation
+##'@param MethylationType
+##'@param GeneMutation
+##'@param SomaticMutation
+##'@param GisticCopyNumber
+##'@param Gistic2Threshold
+##'@param CopyNumberSegment
+##'@param RemoveGermlineCNV
+##'@import dplyr
 ##'@export
-getTCGAdata = function(project=NULL, clinical=TRUE,
+getTCGAdata = function(project=NULL, clinical=TRUE, download=FALSE, forceDownload=FALSE, destdir = tempdir(),
                        mRNASeq=FALSE, mRNAArray=FALSE, mRNASeqType = c("normalized", "pancan normalized", "percentile"),
-                       miRNASeq=FALSE, miRNAArray=FALSE,
+                       miRNASeq=FALSE, exonRNASeq=FALSE,
                        RPPAArray=FALSE, ReplicateBaseNormalization=FALSE,
                        Methylation=FALSE, MethylationType = c("27K", "450K"),
                        GeneMutation=FALSE, SomaticMutation=FALSE,
                        GisticCopyNumber=FALSE, Gistic2Threshold=TRUE,
-                       CopyNumberSegment=FALSE, RemoveGermlineCNV=TRUE,
-                       download=FALSE, forceDownload=FALSE){
+                       CopyNumberSegment=FALSE, RemoveGermlineCNV=TRUE, ...){
+
+    #----- check data type of input
     stopifnot(!is.null(project))
+    stopifnot(is.logical(c(clinical,
+                           mRNASeq,
+                           mRNAArray,
+                           miRNASeq,
+                           RPPAArray,
+                           ReplicateBaseNormalization,
+                           Methylation,
+                           GeneMutation,
+                           SomaticMutation,
+                           GisticCopyNumber,
+                           Gistic2Threshold,
+                           CopyNumberSegment,
+                           RemoveGermlineCNV,
+                           download,
+                           forceDownload)))
 
     projects = c("LAML", "ACC", "CHOL", "BLCA", "BRCA", "CESC", "COADREAD",
                  "COAD", "UCEC", "ESCA", "FPPP", "GBM", "HNSC", "KICH", "KIRC",
@@ -90,19 +126,23 @@ getTCGAdata = function(project=NULL, clinical=TRUE,
 
     tcga_all = .decodeDataType(Target = "TCGA")
 
-    tcga_all %>%
-        filter(ProjectID %in% project) %>% # select project
-        filter()
+    # tcga_all %>%
+    #     filter(ProjectID %in% project) %>% # select project
+    #     filter()
 
 
     res = subset(tcga_all, ProjectID %in% project)
-
+    res %>%
+        filter(DataType != "Transcription Factor Regulatory Impact",
+               DataType != "Signatures",
+               DataType != "PARADIGM Pathway Activity",
+               DataType != "iCluster") -> res
 
 
     if(clinical){
         quo_cli = dplyr::quo((FileType == "Clinical Information"))
     }else{
-        quo_cli = dplyr::quo((FileType != "Clinical Information"))
+        quo_cli = dplyr::quo((FALSE))
     }
 
     if(mRNASeq){
@@ -112,48 +152,124 @@ getTCGAdata = function(project=NULL, clinical=TRUE,
             stop("Not Vaild Input!")
         }
 
-        RNA = c("IlluminaHiSeq RNASeq", "IlluminaHiSeq RNASeqV2", "IlluminaHiSeq RNASeqV2 in percentile rank")
+        RNA = c("IlluminaHiSeq RNASeqV2", "IlluminaHiSeq RNASeqV2 pancan normalized", "IlluminaHiSeq RNASeqV2 in percentile rank")
         names(RNA) = c("normalized", "pancan normalized", "percentile")
-        RNA_select = RNA[mRNASeqType]
+        RNA_select = c(RNA[mRNASeqType], "Batch effects normalized")
 
         quo_RNA = dplyr::quo((DataType == "Gene Expression RNASeq" & FileType %in% RNA_select))
 
 
     }else{
-        quo_RNA = dplyr::quo((DatyType != "Gene Expression RNASeq"))
+        quo_RNA = dplyr::quo((FALSE))
     }
 
     if(mRNAArray){
-
+        quo_RNAa = dplyr::quo((DataType == "Gene Expression Array"))
+    }else{
+        quo_RNAa = dplyr::quo((FALSE))
     }
+
     if(miRNASeq){
-
+        miRNA_select = c("IlluminaHiSeq RNASeq", "Batch effects normalized")
+        quo_miRNA = dplyr::quo((DataType == "miRNA Mature Strand Expression RNASeq" & FileType %in% miRNA_select))
+    }else{
+        quo_miRNA = dplyr::quo((FALSE))
     }
-    if(miRNAArray){
 
+    if(exonRNASeq){
+        quo_exon = dplyr::quo((DataType == "Exon Expression RNASeq" & FileType == "IlluminaHiSeq RNASeqV2"))
+    }else{
+        quo_exon = dplyr::quo((FALSE))
     }
+    # Have no miRNA Array? Need Check
+    # if(miRNAArray){
+    #
+    # }
     if(RPPAArray){
-
+        if(ReplicateBaseNormalization){
+            RPPA_select = "RPPA normalized by RBN"
+        }else{
+            RPPA_select = "RPPA"
+        }
+        quo_RPPA = dplyr::quo((DataType == "Protein Expression RPPA" & FileType %in% c(RPPA_select, "RPPA pancan normalized")))
+    }else{
+        quo_RPPA = dplyr::quo((FALSE))
     }
+
     if(Methylation){
+        if(!all(MethylationType %in% c("27K", "450K"))){
+            message("Available MethylationType values are:")
+            print(c("27K", "450K"))
+            stop("Not Vaild Input!")
+        }
 
+        Methy = c("Methylation27K", "Methylation450K")
+        names(Methy) = c("27K", "450K")
+        Methy_select = Methy[MethylationType]
+
+        quo_Methy = dplyr::quo((DataType == "DNA Methylation" & FileType %in% Methy_select))
+    }else{
+        quo_Methy = dplyr::quo((FALSE))
     }
+
     if(GeneMutation){
-
+        quo_genMutation = dplyr::quo((DataType == "Gene Somatic Non-silent Mutation" & FileType %in% c("broad automated", "MC3 Public Version")))
+    }else{
+        quo_genMutation = dplyr::quo((FALSE))
     }
+
     if(SomaticMutation){
-
+        quo_somaticMutation = dplyr::quo((DataType == "Somatic Mutation" & FileType %in% c("broad automated", "MC3 Public Version")))
+    }else{
+        quo_somaticMutation = dplyr::quo((FALSE))
     }
+
     if(GisticCopyNumber){
-
+        if(Gistic2Threshold){
+            gistic_select = "Gistic2 thresholded"
+        }else{
+            gistic_select = "Gistic2"
+        }
+        quo_gistic = dplyr::quo((DataType == "Gene Level Copy Number" & FileType == gistic_select))
+    }else{
+        quo_gistic = dplyr::quo((FALSE))
     }
+
     if(CopyNumberSegment){
-
+        if(RemoveGermlineCNV){
+            cns_select = "After remove germline cnv"
+        }else{
+            cns_select = "Before remove germline cnv"
+        }
+        quo_cns = dplyr::quo((DataType == "Copy Number Segments" & FileType == cns_select))
+    }else{
+        quo_cns = dplyr::quo((FALSE))
     }
+
+    cond_select = dplyr::quo(!!quo_cli | !!quo_RNA | !!quo_RNAa | !!quo_miRNA | !!quo_exon | !!quo_RPPA | !!quo_Methy | !!quo_genMutation | !!quo_somaticMutation | !!quo_gistic | !!quo_cns)
+    res = filter(res, !!cond_select)
+
     if(download){
-
+        res %>%
+            XenaGenerate() %>%
+            XenaQuery() %>%
+            XenaDownload(destdir = destdir, force = forceDownload, ...)
+    }else{
+        xe = res %>% XenaGenerate()
+        list(Xena=xe, DataInfo=res)
     }
+
 }
+
+
+getTCGAdata(project = "LUAD", mRNASeq = TRUE, mRNAArray = TRUE,
+            mRNASeqType = "normalized", miRNASeq = TRUE, exonRNASeq = TRUE,
+            RPPAArray = TRUE, Methylation = TRUE, MethylationType = "450K",
+            GeneMutation = TRUE, SomaticMutation = TRUE)
+getTCGAdata(project = "LUAD")
+getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, download = TRUE)
+
+getTCGAdata(project = c("LUAD", "LUSC", "PANCAN"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)
 
 ##' @title Easily Download TCGA Data by Several Options
 ##' @description TCGA is a very useful database and here we provide this function to
@@ -174,7 +290,7 @@ getTCGAdata = function(project=NULL, clinical=TRUE,
 ##' @export
 ##' @examples
 ##' # download RNASeq data (use UVM as example)
-##' tcgaEasyDownload(project = "UVM",
+##' downloadTCGA(project = "UVM",
 ##'                  data_type = "Gene Expression RNASeq",
 ##'                  file_type = "IlluminaHiSeq RNASeqV2")
 ##' @seealso \code{\link[UCSCXenaTools]{XenaQuery}},
