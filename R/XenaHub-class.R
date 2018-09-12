@@ -121,10 +121,10 @@ XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
 ##' @export
 ##' @examples
 ##'
-##' \donttest{
-##'  XenaDataUpdate() # update newest information to local directory for use
-##'  newest_Xena = XenaDataUpdate(saveTolocal=FALSE) # just get info, not save
-##' }
+##'
+##' # XenaDataUpdate() # update newest information to local directory for use
+##' # newest_Xena = XenaDataUpdate(saveTolocal=FALSE) # just get info, not save
+##'
 XenaDataUpdate = function(saveTolocal=TRUE){
     hosts = xena_default_hosts()
     XenaList = sapply(hosts, function(x){

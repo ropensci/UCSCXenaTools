@@ -75,10 +75,8 @@ XenaQuery = function(x){
 ##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 ##' hosts(xe)
 ##' xe_query = XenaQuery(xe)
-##' \donttest{
-##' xe_download = XenaDownload(xe_query)
-##' }
-
+##' # xe_download = XenaDownload(xe_query)
+##'
 
 XenaDownload = function(xquery, destdir=tempdir(), force=FALSE, ...){
     stopifnot(is.data.frame(xquery), c("url") %in% names(xquery))
@@ -135,10 +133,10 @@ XenaDownload = function(xquery, destdir=tempdir(), force=FALSE, ...){
 ##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 ##' hosts(xe)
 ##' xe_query = XenaQuery(xe)
-##' \donttest{
-##' xe_download = XenaDownload(xe_query)
-##' dat = XenaPrepare(xe_download)
-##' }
+##'
+##' # xe_download = XenaDownload(xe_query)
+##' # dat = XenaPrepare(xe_download)
+##'
 
 XenaPrepare = function(objects, objectsName=NULL, comment="#", na=c("", "NA", "[Discrepancy]"), ...){
     # objects can be url, local files/directory or xena object from xena download process

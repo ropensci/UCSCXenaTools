@@ -111,7 +111,7 @@
 ##'getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, download = TRUE)
 ##'
 ##'# 4 download clinical, RPPA and gene mutation datasets of LUAD and LUSC
-##'getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)
+##'# getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)
 ##'}
 getTCGAdata = function(project=NULL, clinical=TRUE, download=FALSE, forceDownload=FALSE, destdir = tempdir(),
                        mRNASeq=FALSE, mRNAArray=FALSE, mRNASeqType = "normalized",

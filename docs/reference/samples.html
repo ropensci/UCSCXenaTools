@@ -63,7 +63,7 @@ Identifying these samples, including samples in arbitrarily chosen data sets." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@ Identifying these samples, including samples in arbitrarily chosen data sets." /
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/USCSXenaTools_0.2.0.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
+      <a href="../articles/USCSXenaTools.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
     </li>
   </ul>
 </li>
@@ -157,12 +157,27 @@ Identifying these samples, including samples in arbitrarily chosen data sets.</p
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'><a href='XenaHub.html'>XenaHub</a></span>(<span class='kw'>cohorts</span> <span class='kw'>=</span> <span class='st'>"Cancer Cell Line Encyclopedia (CCLE)"</span>)
+    <pre class="examples"><div class='input'><span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'><a href='XenaHub.html'>XenaHub</a></span>(<span class='kw'>cohorts</span> <span class='kw'>=</span> <span class='st'>"Cancer Cell Line Encyclopedia (CCLE)"</span>)
 <span class='co'># samples in each dataset, first host</span>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>samples</span>(<span class='no'>xe</span>, <span class='kw'>by</span><span class='kw'>=</span><span class='st'>"datasets"</span>, <span class='kw'>how</span><span class='kw'>=</span><span class='st'>"each"</span>)<span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='fu'>lengths</span>(<span class='no'>x</span>)        <span class='co'># data sets in ccle cohort on first (only) host</span>
-<span class='co'># }</span></pre>
+<span class='fu'>lengths</span>(<span class='no'>x</span>)        <span class='co'># data sets in ccle cohort on first (only) host</span></div><div class='output co'>#&gt;          ccle/CCLE_copynumber_2013-12-03.seg.txt 
+#&gt;                                             1043 
+#&gt;           ccle/CCLE_copynumber_byGene_2013-12-03 
+#&gt;                                             1043 
+#&gt;               ccle/CCLE_DepMap_18Q2_maf_20180502 
+#&gt;                                             1549 
+#&gt; ccle/CCLE_DepMap_18Q2_RNAseq_reads_20180502.log2 
+#&gt;                                             1076 
+#&gt;       ccle/CCLE_DepMap_18Q2_RNAseq_RPKM_20180502 
+#&gt;                                             1076 
+#&gt;         ccle/CCLE_NP24.2009_Drug_data_2015.02.24 
+#&gt;                                              504 
+#&gt;                          ccle/CCLE_RPPA_20180123 
+#&gt;                                              899 
+#&gt;        ccle/CCLE_sample_info_file_2012-10-18.txt 
+#&gt;                                             1046 
+#&gt;                    ccle/sample_info_primary_site 
+#&gt;                                             1629 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

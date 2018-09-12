@@ -3,6 +3,8 @@
 UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 =================================================================================
 
+<img src="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/inst/figures/UCSCXenaTools.png" height="200" align="right" />
+
 ![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) [![GitHub tag](https://img.shields.io/github/tag/ShixiangWang/UCSCXenaTools.svg?label=Github)](https://github.com/ShixiangWang/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master) [![GitHub issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+)
 
 **Current Version: 0.2.4**
@@ -273,7 +275,7 @@ If the data exists, command will not run to download them, but you can force it 
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpirJQdQ.
+#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpHCo1Zz.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
@@ -405,8 +407,8 @@ Set `download=TRUE` to download data, default data will be downloaded to system 
 ``` r
 # only download clinical data
 getTCGAdata(c("UVM", "LUAD"), download = TRUE)
-#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpirJQdQ.
-#> /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpirJQdQ/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
+#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpHCo1Zz.
+#> /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpHCo1Zz/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
 #> Downloading TCGA.UVM.sampleMap__UVM_clinicalMatrix.gz
 #> Note fileNames transfromed from datasets name and / chracter all changed to __ character.
 ```

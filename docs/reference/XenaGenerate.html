@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.4</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/USCSXenaTools_0.2.0.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
+      <a href="../articles/USCSXenaTools.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
     </li>
   </ul>
 </li>
@@ -155,17 +155,17 @@ argument can only be <code>data(XenaData)</code> or its subset.</p></td>
 #&gt;   https://toil.xenahubs.net
 #&gt;   https://pancanatlas.xenahubs.net
 #&gt;   https://xena.treehouse.gi.ucsc.edu
-#&gt; cohorts() (134 total):
-#&gt;   1000_genomes
+#&gt; cohorts() (124 total):
 #&gt;   Acute lymphoblastic leukemia (Mullighan 2008)
-#&gt;   B cells (Basso 2005)
+#&gt;   Breast Cancer (Caldas 2007)
+#&gt;   Breast Cancer (Chin 2006)
 #&gt;   ...
 #&gt;   Treehouse PED v8
 #&gt;   Treehouse public expression dataset (July 2017)
-#&gt; datasets() (1549 total):
-#&gt;   1000_genomes/BRCA2
-#&gt;   1000_genomes/BRCA1
+#&gt; datasets() (1530 total):
 #&gt;   mullighan2008_public/mullighan2008_500K_genomicMatrix
+#&gt;   mullighan2008_public/mullighan2008_public_clinicalMatrix
+#&gt;   mullighan2008_public/mullighan2008_SNP6_genomicMatrix
 #&gt;   ...
 #&gt;   treehouse_public_samples_unique_ensembl_expected_count.2017-09-11.tsv
 #&gt;   treehouse_public_samples_unique_hugo_log2_tpm_plus_1.2017-09-11.tsv</div><div class='input'><span class='co'># 2</span>
@@ -194,13 +194,7 @@ argument can only be <code>data(XenaData)</code> or its subset.</p></td>
 #&gt;   RABIT/separate_processed/RABIT_BRCA.HiSeq.V2
 #&gt;   ...
 #&gt;   TCGA-BRCA/Xena_Matrices/TCGA-BRCA.survival.tsv
-#&gt;   TCGA-BRCA/Xena_Matrices/TCGA-BRCA.varscan2_snv.tsv</div><div class='input'># 4 use pipe
-</div><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>tidyverse</span>)
-<span class='no'>XenaData</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter</span>(<span class='no'>XenaHostNames</span> <span class='kw'>==</span> <span class='st'>"TCGA"</span>, <span class='fu'>grepl</span>(<span class='st'>"BRCA"</span>, <span class='no'>XenaCohorts</span>)) <span class='kw'>%&gt;%</span> <span class='fu'>XenaGenerate</span>()
-<span class='no'>XenaData</span> <span class='kw'>%&gt;%</span> <span class='fu'>filter</span>(<span class='no'>XenaHostNames</span> <span class='kw'>==</span> <span class='st'>"TCGA"</span>, <span class='fu'>grepl</span>(<span class='st'>"BRCA"</span>, <span class='no'>XenaCohorts</span>)) <span class='kw'>%&gt;%</span> <span class='fu'>XenaGenerate</span>()
-<span class='co'># }</span><div class='input'>
-</div></pre>
+#&gt;   TCGA-BRCA/Xena_Matrices/TCGA-BRCA.varscan2_snv.tsv</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
