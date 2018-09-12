@@ -89,8 +89,8 @@
 ##'@param CopyNumberSegment logical. if \code{TRUE}, download Copy Number Segment data. Default is \code{FALSE}.
 ##'@param RemoveGermlineCNV logical. if \code{TRUE}, download Copy Number Segment data which has removed
 ##'germline copy number variation. Default is \code{TRUE}.
-##'@return if \code{download=TRUE}, return nothing, otherwise return a list including \code{XenaHub} object and
-##'datasets information
+##'@return if \code{download=TRUE}, return \code{data.frame} from \code{XenaDownload},
+##' otherwise return a list including \code{XenaHub} object and datasets information
 ##'@import dplyr
 ##'@export
 ##'@examples
