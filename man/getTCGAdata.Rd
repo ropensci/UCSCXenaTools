@@ -6,13 +6,13 @@
 \usage{
 getTCGAdata(project = NULL, clinical = TRUE, download = FALSE,
   forceDownload = FALSE, destdir = tempdir(), mRNASeq = FALSE,
-  mRNAArray = FALSE, mRNASeqType = c("normalized", "pancan normalized",
-  "percentile"), miRNASeq = FALSE, exonRNASeq = FALSE,
-  RPPAArray = FALSE, ReplicateBaseNormalization = FALSE,
-  Methylation = FALSE, MethylationType = c("27K", "450K"),
-  GeneMutation = FALSE, SomaticMutation = FALSE,
-  GisticCopyNumber = FALSE, Gistic2Threshold = TRUE,
-  CopyNumberSegment = FALSE, RemoveGermlineCNV = TRUE, ...)
+  mRNAArray = FALSE, mRNASeqType = "normalized", miRNASeq = FALSE,
+  exonRNASeq = FALSE, RPPAArray = FALSE,
+  ReplicateBaseNormalization = FALSE, Methylation = FALSE,
+  MethylationType = c("27K", "450K"), GeneMutation = FALSE,
+  SomaticMutation = FALSE, GisticCopyNumber = FALSE,
+  Gistic2Threshold = TRUE, CopyNumberSegment = FALSE,
+  RemoveGermlineCNV = TRUE, ...)
 }
 \arguments{
 \item{project}{default is \code{NULL}. Should be one or more of TCGA project id (character vector) provided by Xena.
@@ -21,7 +21,7 @@ See all available project id, please use \code{availTCGA("ProjectID")}.}
 \item{clinical}{logical. if \code{TRUE}, download clinical information. Default is \code{TRUE}.}
 
 \item{download}{logical. if \code{TRUE}, download data, otherwise return a result list include data
-information otherwise. You can set this to \code{FALSE} if you want to check what you will download or
+information. Default is \code{FALSE}. You can set this to \code{FALSE} if you want to check what you will download or
 use other function provided by \code{UCSCXenaTools} to filter result datasets you want to download.}
 
 \item{forceDownload}{logical. if \code{TRUE}, force to download files no matter if exist. Default is \code{FALSE}.}
@@ -62,6 +62,10 @@ germline copy number variation. Default is \code{TRUE}.}
 
 \item{...}{other argument to \code{download.file} function}
 }
+\value{
+if \code{download=TRUE}, return nothing, otherwise return a list including \code{XenaHub} object and
+datasets information
+}
 \description{
 This is the most useful function for user to download common TCGA datasets,
 it is similar to \code{getFirehoseData} function in \code{RTCGAToolbox} package. If you are
@@ -70,7 +74,8 @@ not familiar with data structure of TCGA on Xena, please visit
 select one tumor type (or what you want to download).
 }
 \details{
-All availble information about datasets of TCGA can access vis \code{availTCGA()} and
+TCGA Common Data Sets are frequently used for biological analysis. To make easier to achieve these
+data, this function provide really easy options to choose datasets and behavior. All availble information about datasets of TCGA can access vis \code{availTCGA()} and
 check with \code{showTCGA()}.
 }
 \examples{

@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-**Current Version: 0.2.3**
+**Current Version: 0.2.4**
 
 `UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
 
@@ -163,26 +163,12 @@ XenaFilter(xe2, filterDatasets = "LUAD|LUSC|LUNG") -> xe2
 
 Pipe can be used here.
 
-```
+```{r}
 suppressMessages(require(dplyr))
 
 xe %>% 
     XenaFilter(filterDatasets = "clinical") %>% 
     XenaFilter(filterDatasets = "luad|lusc|lung")
-## class: XenaHub 
-## hosts():
-##   https://tcga.xenahubs.net
-## cohorts() (39 total):
-##   (unassigned)
-##   TCGA Acute Myeloid Leukemia (LAML)
-##   TCGA Adrenocortical Cancer (ACC)
-##   ...
-##   TCGA Thyroid Cancer (THCA)
-##   TCGA Uterine Carcinosarcoma (UCS)
-## datasets() (3 total):
-##   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
-##   TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
-##   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
 ```
 
 ### Query
@@ -196,7 +182,7 @@ xe2_query
 
 ### Download
 
-Default, data will be downloaded to `XenaData` directory under system temp directory. You can specify the path.
+Default, data will be downloaded to system temp directory. You can specify the path.
 
 If the data exists, command will not run to download them, but you can force it by `force` option.
 
@@ -249,31 +235,117 @@ cli4 = XenaPrepare(xe2_download)
 names(cli4)
 ```
 
-### SessionInfo
+
+## TCGA Common Data Easy Download
+
+### getTCGAdata
+
+`getTCGAdata` provide a quite easy download way for TCGA datasets, user can specify multiple options to select which data and corresponding file type want to download. Default this function will return a list include `XenaHub` object and selective datasets information. Once you are sure the datasets is exactly what you want, `download` can be set to `TRUE` to download the data.
+
+Check arguments of `getTCGAdata`:
 
 ```{r}
-sessionInfo()
+args(getTCGAdata)
+
+# or run
+# ??getTCGAdata to read documentation
 ```
 
-## New feature
+Select one or more projects, default will select only clinical datasets:
 
-* Add easy download function and Xena information for TCGA data
+```{r}
+getTCGAdata(c("UVM", "LUAD"))
 
+tcga_data = getTCGAdata(c("UVM", "LUAD"))
+
+# only return XenaHub object
+tcga_data$Xena
+
+# only return datasets information
+tcga_data$DataInfo
 ```
-# download RNASeq data (use UVM as example)
+
+Set `download=TRUE` to download data, default data will be downloaded to system temp directory (you can specify the path with `destdir` option):
+
+```{r}
+# only download clinical data
+getTCGAdata(c("UVM", "LUAD"), download = TRUE)
+```
+
+#### Support Data Type and Options
+
+* clinical information: `clinical`
+* mRNA Sequencing: `mRNASeq`
+* mRNA microarray: `mRNAArray`
+* miRNA Sequencing: `miRNASeq`
+* exon Sequencing: `exonRNASeq`
+* RPPA array: `RPPAArray`
+* DNA Methylation: `Methylation`
+* Gene mutation: `GeneMutation`
+* Somatic mutation: `SomaticMutation`
+* Gistic2 Copy Number: `GisticCopyNumber`
+* Copy Number Segment: `CopyNumberSegment`
+
+> other data type supported by Xena cannot download use this function. Please refer to `downloadTCGA` function or `XenaGenerate` function.
+
+
+**NOTE**: Sequencing data are all based on  Illumina Hiseq platform, other platform (Illumina GA) data supported by Xena cannot download using this function. This is for building consistent data download flow. Mutation use `broad automated` version (except `PANCAN` use `MC3 Public Version`). If you wan to download other datasets, please refer to `downloadTCGA` function or `XenaGenerate` function.
+
+
+### download any TCGA data by datatypes and filetypes 
+
+`downloadTCGA` function can used to download any TCGA data supported by Xena, but in a way different from `getTCGAdata` function.
+
+```{r, eval=FALSE}
+# download RNASeq data (use UVM as an example)
 downloadTCGA(project = "UVM",
                  data_type = "Gene Expression RNASeq",
                   file_type = "IlluminaHiSeq RNASeqV2")
 ```
 
-Run shiny by
 
+See the arguments:
+
+```{r}
+args(downloadTCGA)
 ```
+
+Except `destdir` option, you only need to select three arguments for downloading data. Even throught the number is far less than `getTCGAdata`, it is more complex than the latter.
+
+Before you download data, you need spare some time to figure out what data type and file type available and what your datasets have.
+
+`availTCGA` can return all information you need:
+
+```{r}
+availTCGA()
+```
+
+Note not all datasets have these property, `showTCGA` can help you to check it. It will return all data in TCGA, you can use following code in RStudio and search your data.
+
+```{r, eval=FALSE}
+View(showTCGA())
+```
+
+**OR you can use shiny app provided by `UCSCXenaTools` to search**.
+
+Run shiny by:
+
+```{r, eval=FALSE}
 UCSCXenaTools::XenaShiny()
 ```
 
-
 Download by shiny is under consideration, I am try learning more about how to operate shiny.
+
+
+## SessionInfo
+
+```{r}
+sessionInfo()
+```
+
+## Bug Report
+
+I have no time to test if all condition are right and all datasets can normally be downloaded. So if you have any question or suggestion, please open an issue on Github at <https://github.com/ShixiangWang/UCSCXenaTools/issues>. 
 
 ## Acknowledgement
 
@@ -287,5 +359,4 @@ please note, code from XenaR package under Apache 2.0 license.
 
 ## ToDo
 
-* Shinny
-* More easier download workflow
+* Shinny and more

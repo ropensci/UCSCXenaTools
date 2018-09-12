@@ -62,13 +62,14 @@
 ##'not familiar with data structure of TCGA on Xena, please visit
 ##'<https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu> and
 ##'select one tumor type (or what you want to download).
-##'@details All availble information about datasets of TCGA can access vis \code{availTCGA()} and
+##'@details TCGA Common Data Sets are frequently used for biological analysis. To make easier to achieve these
+##'data, this function provide really easy options to choose datasets and behavior. All availble information about datasets of TCGA can access vis \code{availTCGA()} and
 ##' check with \code{showTCGA()}.
 ##'@author Shixiang Wang <w_shixiang@163.com>
 ##'@inheritParams downloadTCGA
 ##'@param clinical logical. if \code{TRUE}, download clinical information. Default is \code{TRUE}.
 ##'@param download logical. if \code{TRUE}, download data, otherwise return a result list include data
-##'information otherwise. You can set this to \code{FALSE} if you want to check what you will download or
+##'information. Default is \code{FALSE}. You can set this to \code{FALSE} if you want to check what you will download or
 ##'use other function provided by \code{UCSCXenaTools} to filter result datasets you want to download.
 ##'@param forceDownload logical. if \code{TRUE}, force to download files no matter if exist. Default is \code{FALSE}.
 ##'@param mRNASeq logical. if \code{TRUE}, download mRNASeq data. Default is \code{FALSE}.
@@ -88,6 +89,8 @@
 ##'@param CopyNumberSegment logical. if \code{TRUE}, download Copy Number Segment data. Default is \code{FALSE}.
 ##'@param RemoveGermlineCNV logical. if \code{TRUE}, download Copy Number Segment data which has removed
 ##'germline copy number variation. Default is \code{TRUE}.
+##'@return if \code{download=TRUE}, return nothing, otherwise return a list including \code{XenaHub} object and
+##'datasets information
 ##'@import dplyr
 ##'@export
 ##'@examples
@@ -111,7 +114,7 @@
 ##'getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)
 ##'}
 getTCGAdata = function(project=NULL, clinical=TRUE, download=FALSE, forceDownload=FALSE, destdir = tempdir(),
-                       mRNASeq=FALSE, mRNAArray=FALSE, mRNASeqType = c("normalized", "pancan normalized", "percentile"),
+                       mRNASeq=FALSE, mRNAArray=FALSE, mRNASeqType = "normalized",
                        miRNASeq=FALSE, exonRNASeq=FALSE,
                        RPPAArray=FALSE, ReplicateBaseNormalization=FALSE,
                        Methylation=FALSE, MethylationType = c("27K", "450K"),
