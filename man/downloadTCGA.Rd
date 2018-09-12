@@ -9,13 +9,13 @@ downloadTCGA(project = NULL, data_type = NULL, file_type = NULL,
 }
 \arguments{
 \item{project}{default is \code{NULL}. Should be one or more of TCGA project id (character vector) provided by Xena.
-See all available project id, please use \code{tcgaAvail("ProjectID")}.}
+See all available project id, please use \code{availTCGA("ProjectID")}.}
 
 \item{data_type}{default is \code{NULL}. Should be a character vector specify data type.
-See all available data types by \code{tcgaAvail("DataType")}.}
+See all available data types by \code{availTCGA("DataType")}.}
 
 \item{file_type}{default is \code{NULL}. Should be a character vector specify file type.
-See all available file types by \code{tcgaAvail("FileType")}.}
+See all available file types by \code{availTCGA("FileType")}.}
 
 \item{destdir}{specify a location to store download data. Default is system temp directory.}
 
@@ -33,12 +33,12 @@ download TCGA (include TCGA Pancan) datasets in human-friendly way. User who are
 familiar with R operation will benefit from this.
 }
 \details{
-All availble information about datasets of TCGA can access vis \code{tcgaAvail()} and
+All availble information about datasets of TCGA can access vis \code{availTCGA()} and
 check with \code{showTCGA()}.
 }
 \examples{
 # download RNASeq data (use UVM as example)
-tcgaEasyDownload(project = "UVM",
+downloadTCGA(project = "UVM",
                  data_type = "Gene Expression RNASeq",
                  file_type = "IlluminaHiSeq RNASeqV2")
 }

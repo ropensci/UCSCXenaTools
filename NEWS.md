@@ -2,12 +2,12 @@
 
 ## v0.2.4
 
-* add new function to help user download TCGA data by projects
+* add new function `getTCGAdata` to help user download TCGA data by projects and biological data type
 
 ## v0.2.3
 
 * add shiny app to show TCGA datasets information of Xena
-* add `tcgaEasyDownload` function to help user quickly download TCGA datasets
+* add `downloadTCGA` function to help user quickly download TCGA datasets
 
 ## v0.2.2
 

@@ -14,7 +14,7 @@ Get or Check TCGA Available ProjectID, DataType and FileType
 }
 \examples{
 \donttest{
-tcgaAvail("all")
+availTCGA("all")
 }
 }
 \author{

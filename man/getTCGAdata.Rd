@@ -4,15 +4,63 @@
 \alias{getTCGAdata}
 \title{Get TCGA Common Data Sets by Project ID and Property}
 \usage{
-getTCGAdata(project = NULL, clinical = TRUE, mRNASeq = FALSE,
+getTCGAdata(project = NULL, clinical = TRUE, download = FALSE,
+  forceDownload = FALSE, destdir = tempdir(), mRNASeq = FALSE,
   mRNAArray = FALSE, mRNASeqType = c("normalized", "pancan normalized",
-  "percentile"), miRNASeq = FALSE, miRNAArray = FALSE,
+  "percentile"), miRNASeq = FALSE, exonRNASeq = FALSE,
   RPPAArray = FALSE, ReplicateBaseNormalization = FALSE,
   Methylation = FALSE, MethylationType = c("27K", "450K"),
   GeneMutation = FALSE, SomaticMutation = FALSE,
   GisticCopyNumber = FALSE, Gistic2Threshold = TRUE,
-  CopyNumberSegment = FALSE, RemoveGermlineCNV = TRUE,
-  download = FALSE, forceDownload = FALSE)
+  CopyNumberSegment = FALSE, RemoveGermlineCNV = TRUE, ...)
+}
+\arguments{
+\item{project}{default is \code{NULL}. Should be one or more of TCGA project id (character vector) provided by Xena.
+See all available project id, please use \code{availTCGA("ProjectID")}.}
+
+\item{clinical}{logical. if \code{TRUE}, download clinical information. Default is \code{TRUE}.}
+
+\item{download}{logical. if \code{TRUE}, download data, otherwise return a result list include data
+information otherwise. You can set this to \code{FALSE} if you want to check what you will download or
+use other function provided by \code{UCSCXenaTools} to filter result datasets you want to download.}
+
+\item{forceDownload}{logical. if \code{TRUE}, force to download files no matter if exist. Default is \code{FALSE}.}
+
+\item{destdir}{specify a location to store download data. Default is system temp directory.}
+
+\item{mRNASeq}{logical. if \code{TRUE}, download mRNASeq data. Default is \code{FALSE}.}
+
+\item{mRNAArray}{logical. if \code{TRUE}, download mRNA microarray data. Default is \code{FALSE}.}
+
+\item{mRNASeqType}{character vector. Can be one, two or three in \code{c("normalized", "pancan normalized", "percentile")}.}
+
+\item{miRNASeq}{logical. if \code{TRUE}, download miRNASeq data. Default is \code{FALSE}.}
+
+\item{exonRNASeq}{logical. if \code{TRUE}, download exon RNASeq data. Default is \code{FALSE}.}
+
+\item{RPPAArray}{logical. if \code{TRUE}, download RPPA data. Default is \code{FALSE}.}
+
+\item{ReplicateBaseNormalization}{logical. if \code{TRUE}, download RPPA data by Replicate Base
+Normalization (RBN). Default is \code{FALSE}.}
+
+\item{Methylation}{logical. if \code{TRUE}, download DNA Methylation data. Default is \code{FALSE}.}
+
+\item{MethylationType}{character vector. Can be one or two in \code{c("27K", "450K")}.}
+
+\item{GeneMutation}{logical. if \code{TRUE}, download gene mutation data. Default is \code{FALSE}.}
+
+\item{SomaticMutation}{logical. if \code{TRUE}, download somatic mutation data. Default is \code{FALSE}.}
+
+\item{GisticCopyNumber}{logical. if \code{TRUE}, download Gistic2 Copy Number data. Default is \code{FALSE}.}
+
+\item{Gistic2Threshold}{logical. if \code{TRUE}, download Threshold Gistic2 data. Default is \code{TRUE}.}
+
+\item{CopyNumberSegment}{logical. if \code{TRUE}, download Copy Number Segment data. Default is \code{FALSE}.}
+
+\item{RemoveGermlineCNV}{logical. if \code{TRUE}, download Copy Number Segment data which has removed
+germline copy number variation. Default is \code{TRUE}.}
+
+\item{...}{other argument to \code{download.file} function}
 }
 \description{
 This is the most useful function for user to download common TCGA datasets,
@@ -20,4 +68,32 @@ it is similar to \code{getFirehoseData} function in \code{RTCGAToolbox} package.
 not familiar with data structure of TCGA on Xena, please visit
 <https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu> and
 select one tumor type (or what you want to download).
+}
+\details{
+All availble information about datasets of TCGA can access vis \code{availTCGA()} and
+check with \code{showTCGA()}.
+}
+\examples{
+###### get data, but not download
+
+# 1 choose project and data types you wanna download
+getTCGAdata(project = "LUAD", mRNASeq = TRUE, mRNAArray = TRUE,
+mRNASeqType = "normalized", miRNASeq = TRUE, exonRNASeq = TRUE,
+RPPAArray = TRUE, Methylation = TRUE, MethylationType = "450K",
+GeneMutation = TRUE, SomaticMutation = TRUE)
+
+# 2 only choose 'LUAD' and its clinical data
+getTCGAdata(project = "LUAD")
+\donttest{
+###### download datasets
+
+# 3 download clinical datasets of LUAD and LUSC
+getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, download = TRUE)
+
+# 4 download clinical, RPPA and gene mutation datasets of LUAD and LUSC
+getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)
+}
+}
+\author{
+Shixiang Wang <w_shixiang@163.com>
 }

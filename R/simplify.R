@@ -66,25 +66,50 @@
 ##' check with \code{showTCGA()}.
 ##'@author Shixiang Wang <w_shixiang@163.com>
 ##'@inheritParams downloadTCGA
-##'@param clinical
-##'@param forceDownload
-##'@param mRNASeq
-##'@param mRNAArray
-##'@param mRNASeqType
-##'@param miRNASeq
-##'@param exonRNASeq
-##'@param RPPAArray
-##'@param ReplicateBaseNormalization
-##'@param Methylation
-##'@param MethylationType
-##'@param GeneMutation
-##'@param SomaticMutation
-##'@param GisticCopyNumber
-##'@param Gistic2Threshold
-##'@param CopyNumberSegment
-##'@param RemoveGermlineCNV
+##'@param clinical logical. if \code{TRUE}, download clinical information. Default is \code{TRUE}.
+##'@param download logical. if \code{TRUE}, download data, otherwise return a result list include data
+##'information otherwise. You can set this to \code{FALSE} if you want to check what you will download or
+##'use other function provided by \code{UCSCXenaTools} to filter result datasets you want to download.
+##'@param forceDownload logical. if \code{TRUE}, force to download files no matter if exist. Default is \code{FALSE}.
+##'@param mRNASeq logical. if \code{TRUE}, download mRNASeq data. Default is \code{FALSE}.
+##'@param mRNAArray logical. if \code{TRUE}, download mRNA microarray data. Default is \code{FALSE}.
+##'@param mRNASeqType character vector. Can be one, two or three in \code{c("normalized", "pancan normalized", "percentile")}.
+##'@param miRNASeq logical. if \code{TRUE}, download miRNASeq data. Default is \code{FALSE}.
+##'@param exonRNASeq logical. if \code{TRUE}, download exon RNASeq data. Default is \code{FALSE}.
+##'@param RPPAArray logical. if \code{TRUE}, download RPPA data. Default is \code{FALSE}.
+##'@param ReplicateBaseNormalization logical. if \code{TRUE}, download RPPA data by Replicate Base
+##'Normalization (RBN). Default is \code{FALSE}.
+##'@param Methylation logical. if \code{TRUE}, download DNA Methylation data. Default is \code{FALSE}.
+##'@param MethylationType character vector. Can be one or two in \code{c("27K", "450K")}.
+##'@param GeneMutation logical. if \code{TRUE}, download gene mutation data. Default is \code{FALSE}.
+##'@param SomaticMutation logical. if \code{TRUE}, download somatic mutation data. Default is \code{FALSE}.
+##'@param GisticCopyNumber logical. if \code{TRUE}, download Gistic2 Copy Number data. Default is \code{FALSE}.
+##'@param Gistic2Threshold logical. if \code{TRUE}, download Threshold Gistic2 data. Default is \code{TRUE}.
+##'@param CopyNumberSegment logical. if \code{TRUE}, download Copy Number Segment data. Default is \code{FALSE}.
+##'@param RemoveGermlineCNV logical. if \code{TRUE}, download Copy Number Segment data which has removed
+##'germline copy number variation. Default is \code{TRUE}.
 ##'@import dplyr
 ##'@export
+##'@examples
+##'###### get data, but not download
+##'
+##'# 1 choose project and data types you wanna download
+##'getTCGAdata(project = "LUAD", mRNASeq = TRUE, mRNAArray = TRUE,
+##'mRNASeqType = "normalized", miRNASeq = TRUE, exonRNASeq = TRUE,
+##'RPPAArray = TRUE, Methylation = TRUE, MethylationType = "450K",
+##'GeneMutation = TRUE, SomaticMutation = TRUE)
+##'
+##'# 2 only choose 'LUAD' and its clinical data
+##'getTCGAdata(project = "LUAD")
+##'\donttest{
+##'###### download datasets
+##'
+##'# 3 download clinical datasets of LUAD and LUSC
+##'getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, download = TRUE)
+##'
+##'# 4 download clinical, RPPA and gene mutation datasets of LUAD and LUSC
+##'getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)
+##'}
 getTCGAdata = function(project=NULL, clinical=TRUE, download=FALSE, forceDownload=FALSE, destdir = tempdir(),
                        mRNASeq=FALSE, mRNAArray=FALSE, mRNASeqType = c("normalized", "pancan normalized", "percentile"),
                        miRNASeq=FALSE, exonRNASeq=FALSE,
@@ -262,14 +287,7 @@ getTCGAdata = function(project=NULL, clinical=TRUE, download=FALSE, forceDownloa
 }
 
 
-getTCGAdata(project = "LUAD", mRNASeq = TRUE, mRNAArray = TRUE,
-            mRNASeqType = "normalized", miRNASeq = TRUE, exonRNASeq = TRUE,
-            RPPAArray = TRUE, Methylation = TRUE, MethylationType = "450K",
-            GeneMutation = TRUE, SomaticMutation = TRUE)
-getTCGAdata(project = "LUAD")
-getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, download = TRUE)
 
-getTCGAdata(project = c("LUAD", "LUSC", "PANCAN"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)
 
 ##' @title Easily Download TCGA Data by Several Options
 ##' @description TCGA is a very useful database and here we provide this function to
@@ -368,7 +386,7 @@ availTCGA = function(which=c("all", "ProjectID", "DataType", "FileType")){
 ##' \donttest{
 ##' showTCGA("all")
 ##' }
-##' @seealso \code{\link[UCSCXenaTools](availTCGA)}
+##' @seealso \code{\link[UCSCXenaTools]{availTCGA}}
 showTCGA = function(project="all"){
 
     # suppress binding notes
@@ -573,4 +591,4 @@ showTCGA = function(project="all"){
 # grep("gene_expression_subtype", ob$XenaDatasets, value = TRUE)
 
 
-# utils::globalVariables(c("rowname"))
+utils::globalVariables(c("DataType", "FileType", "ProjectID"))
