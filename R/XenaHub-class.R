@@ -21,7 +21,8 @@ xena_default_hosts = function() {
       "https://icgc.xenahubs.net",
       "https://toil.xenahubs.net",
       "https://pancanatlas.xenahubs.net",
-      "https://xena.treehouse.gi.ucsc.edu"
+      "https://xena.treehouse.gi.ucsc.edu",
+      "https://pcawg.xenahubs.net"
       )
 }
 
@@ -39,7 +40,7 @@ xena_default_hosts = function() {
 ##' for substitute this.
 ##' @param cohorts default is empty character vector, all cohorts will be returned.
 ##' @param datasets default is empty character vector, all datasets will be returned.
-##' @param hostName one to seven of \code{c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")}. This is
+##' @param hostName one to seven of \code{c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG")}. This is
 ##' a easier option for user than \code{hosts} option. Note, this option will overlap \code{hosts}.
 ##' @return a \code{XenaHub} object
 ##' @author Shixiang Wang <w_shixiang@163.com>
@@ -61,14 +62,14 @@ xena_default_hosts = function() {
 ##' samples(xe)   # get samples
 ##' }
 XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
-             datasets=character(), hostName=c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")){
+             datasets=character(), hostName=c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG")){
 
     stopifnot(is.character(hosts), is.character(cohorts),
               is.character(datasets))
 
     hostName = unique(hostName)
 
-    if(length(hostName) != 7 & all(hostName %in% c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")) ){
+    if(length(hostName) != 7 & all(hostName %in% c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG")) ){
       hostNames = data.frame(UCSC_Public="https://ucscpublic.xenahubs.net",
                              TCGA="https://tcga.xenahubs.net",
                              GDC="https://gdc.xenahubs.net",
@@ -76,6 +77,7 @@ XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
                              Toil="https://toil.xenahubs.net",
                              PanCancer="https://pancanatlas.xenahubs.net",
                              Treehouse="https://xena.treehouse.gi.ucsc.edu",
+                             PCAWG="https://pcawg.xenahubs.net",
                              stringsAsFactors = FALSE)
       hosts = as.character(hostNames[, hostName])
     }
@@ -164,14 +166,15 @@ XenaDataUpdate = function(saveTolocal=TRUE){
         resDF = rbind(resDF, res)
     }
 
-    XenaHostNames = c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")
+    XenaHostNames = c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG")
     names(XenaHostNames) = c("https://ucscpublic.xenahubs.net",
                              "https://tcga.xenahubs.net",
                              "https://gdc.xenahubs.net",
                              "https://icgc.xenahubs.net",
                              "https://toil.xenahubs.net",
                              "https://pancanatlas.xenahubs.net",
-                             "https://xena.treehouse.gi.ucsc.edu")
+                             "https://xena.treehouse.gi.ucsc.edu",
+                             "https://pcawg.xenahubs.net")
 
     resDF$XenaHostNames = XenaHostNames[resDF$XenaHosts]
     XenaData = resDF[, c("XenaHosts", "XenaHostNames", "XenaCohorts", "XenaDatasets")]
