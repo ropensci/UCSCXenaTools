@@ -16,13 +16,6 @@ a \code{data.frame} contains all datasets information of Xena.
 \description{
 Get or Update Newest Data Information of UCSC Xena Data Hubs
 }
-\examples{
-
-
-# XenaDataUpdate() # update newest information to local directory for use
-# newest_Xena = XenaDataUpdate(saveTolocal=FALSE) # just get info, not save
-
-}
 \author{
 Shixiang Wang <w_shixiang@163.com>
 }

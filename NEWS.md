@@ -1,5 +1,10 @@
 # UCSCXenaTools 
 
+## v0.2.5
+
+* add new datahub **PCAWG**
+* speed up `XenaFilter` function
+
 ## v0.2.4
 
 * add new function `getTCGAdata` to help user download TCGA data by projects and biological data type

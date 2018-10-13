@@ -6,7 +6,7 @@
 \usage{
 XenaHub(hosts = xena_default_hosts(), cohorts = character(),
   datasets = character(), hostName = c("UCSC_Public", "TCGA", "GDC",
-  "ICGC", "Toil", "PanCancer", "Treehouse"))
+  "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG"))
 }
 \arguments{
 \item{hosts}{a character vector specify UCSC Xena hosts, all available hosts can be
@@ -17,7 +17,7 @@ for substitute this.}
 
 \item{datasets}{default is empty character vector, all datasets will be returned.}
 
-\item{hostName}{one to seven of \code{c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse")}. This is
+\item{hostName}{one to seven of \code{c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG")}. This is
 a easier option for user than \code{hosts} option. Note, this option will overlap \code{hosts}.}
 }
 \value{

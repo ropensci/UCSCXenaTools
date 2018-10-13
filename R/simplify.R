@@ -310,10 +310,12 @@ getTCGAdata = function(project=NULL, clinical=TRUE, download=FALSE, forceDownloa
 ##' @import dplyr
 ##' @export
 ##' @examples
+##' \donttest{
 ##' # download RNASeq data (use UVM as example)
 ##' downloadTCGA(project = "UVM",
 ##'                  data_type = "Gene Expression RNASeq",
 ##'                  file_type = "IlluminaHiSeq RNASeqV2")
+##' }
 ##' @seealso \code{\link[UCSCXenaTools]{XenaQuery}},
 ##' \code{\link[UCSCXenaTools]{XenaFilter}},
 ##' \code{\link[UCSCXenaTools]{XenaDownload}},

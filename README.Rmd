@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) [![GitHub tag](https://img.shields.io/github/tag/ShixiangWang/UCSCXenaTools.svg?label=Github)](https://github.com/ShixiangWang/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master) [![GitHub issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+)
 
 
-**Current Version: 0.2.4**
+**Current Version: 0.2.5**
 
 `UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
 
@@ -57,15 +57,16 @@ browseVignettes("UCSCXenaTools")
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
-Currently, `UCSCXenaTools` support all 7 data hubs of UCSC Xena.
+Currently, `UCSCXenaTools` support all 8 data hubs of UCSC Xena.
 
-* [UCSC Public Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fucscpublic.xenahubs.net): <https://ucscpublic.xenahubs.net>
-* [TCGA Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net): <https://tcga.xenahubs.net>
-* [GDC Xena Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fgdc.xenahubs.net): <https://gdc.xenahubs.net>
-* [ICGC Xena Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ficgc.xenahubs.net): <https://icgc.xenahubs.net>
-* [Pan-Cancer Atlas Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net): <https://pancanatlas.xenahubs.net>
-* [GA4GH (TOIL) Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftoil.xenahubs.net): <https://toil.xenahubs.net>
-* [Treehouse Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu): <https://xena.treehouse.gi.ucsc.edu>
+* UCSC Public Hub: <https://ucscpublic.xenahubs.net>
+* TCGA Hub: <https://tcga.xenahubs.net>
+* GDC Xena Hub: <https://gdc.xenahubs.net>
+* ICGC Xena Hub: <https://icgc.xenahubs.net>
+* Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
+* GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
+* Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
+* PCAWG: <https://pcawg.xenahubs.net>
 
 If the `API` changed, please remind me by email to <w_shixiang@163.com> or open an issue on [GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 

@@ -7,7 +7,7 @@ UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs*
 
 ![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) [![GitHub tag](https://img.shields.io/github/tag/ShixiangWang/UCSCXenaTools.svg?label=Github)](https://github.com/ShixiangWang/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master) [![GitHub issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+)
 
-**Current Version: 0.2.4**
+**Current Version: 0.2.5**
 
 `UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
 
@@ -44,15 +44,16 @@ Data Hub List
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
-Currently, `UCSCXenaTools` support all 7 data hubs of UCSC Xena.
+Currently, `UCSCXenaTools` support all 8 data hubs of UCSC Xena.
 
--   [UCSC Public Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fucscpublic.xenahubs.net): <https://ucscpublic.xenahubs.net>
--   [TCGA Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net): <https://tcga.xenahubs.net>
--   [GDC Xena Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fgdc.xenahubs.net): <https://gdc.xenahubs.net>
--   [ICGC Xena Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ficgc.xenahubs.net): <https://icgc.xenahubs.net>
--   [Pan-Cancer Atlas Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fpancanatlas.xenahubs.net): <https://pancanatlas.xenahubs.net>
--   [GA4GH (TOIL) Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftoil.xenahubs.net): <https://toil.xenahubs.net>
--   [Treehouse Hub](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu): <https://xena.treehouse.gi.ucsc.edu>
+-   UCSC Public Hub: <https://ucscpublic.xenahubs.net>
+-   TCGA Hub: <https://tcga.xenahubs.net>
+-   GDC Xena Hub: <https://gdc.xenahubs.net>
+-   ICGC Xena Hub: <https://icgc.xenahubs.net>
+-   Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
+-   GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
+-   Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
+-   PCAWG: <https://pcawg.xenahubs.net>
 
 If the `API` changed, please remind me by email to <w_shixiang@163.com> or open an issue on [GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
@@ -275,7 +276,7 @@ If the data exists, command will not run to download them, but you can force it 
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpHCo1Zz.
+#> We will download files to directory /Volumes/Data/Rtmp/Rtmp7dXWa3.
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
@@ -337,12 +338,12 @@ Check arguments of `getTCGAdata`:
 args(getTCGAdata)
 #> function (project = NULL, clinical = TRUE, download = FALSE, 
 #>     forceDownload = FALSE, destdir = tempdir(), mRNASeq = FALSE, 
-#>     mRNAArray = FALSE, mRNASeqType = c("normalized", "pancan normalized", 
-#>         "percentile"), miRNASeq = FALSE, exonRNASeq = FALSE, 
-#>     RPPAArray = FALSE, ReplicateBaseNormalization = FALSE, Methylation = FALSE, 
-#>     MethylationType = c("27K", "450K"), GeneMutation = FALSE, 
-#>     SomaticMutation = FALSE, GisticCopyNumber = FALSE, Gistic2Threshold = TRUE, 
-#>     CopyNumberSegment = FALSE, RemoveGermlineCNV = TRUE, ...) 
+#>     mRNAArray = FALSE, mRNASeqType = "normalized", miRNASeq = FALSE, 
+#>     exonRNASeq = FALSE, RPPAArray = FALSE, ReplicateBaseNormalization = FALSE, 
+#>     Methylation = FALSE, MethylationType = c("27K", "450K"), 
+#>     GeneMutation = FALSE, SomaticMutation = FALSE, GisticCopyNumber = FALSE, 
+#>     Gistic2Threshold = TRUE, CopyNumberSegment = FALSE, RemoveGermlineCNV = TRUE, 
+#>     ...) 
 #> NULL
 
 # or run
@@ -407,8 +408,8 @@ Set `download=TRUE` to download data, default data will be downloaded to system 
 ``` r
 # only download clinical data
 getTCGAdata(c("UVM", "LUAD"), download = TRUE)
-#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpHCo1Zz.
-#> /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpHCo1Zz/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
+#> We will download files to directory /Volumes/Data/Rtmp/Rtmp7dXWa3.
+#> /Volumes/Data/Rtmp/Rtmp7dXWa3/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
 #> Downloading TCGA.UVM.sampleMap__UVM_clinicalMatrix.gz
 #> Note fileNames transfromed from datasets name and / chracter all changed to __ character.
 ```
@@ -586,16 +587,16 @@ sessionInfo()
 #> [4] pacman_0.4.6       
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] Rcpp_0.12.18         knitr_1.20           bindr_0.1.1         
+#>  [1] Rcpp_0.12.19         knitr_1.20           bindr_0.1.1         
 #>  [4] magrittr_1.5         hms_0.4.2            tidyselect_0.2.4    
-#>  [7] xtable_1.8-2         R6_2.2.2             rlang_0.2.2         
+#>  [7] xtable_1.8-3         R6_2.3.0             rlang_0.2.2         
 #> [10] httr_1.3.1           stringr_1.3.1        tools_3.5.1         
 #> [13] shinydashboard_0.7.0 htmltools_0.3.6      yaml_2.2.0          
-#> [16] rprojroot_1.3-2      digest_0.6.16        assertthat_0.2.0    
+#> [16] rprojroot_1.3-2      digest_0.6.18        assertthat_0.2.0    
 #> [19] tibble_1.4.2         crayon_1.3.4         shiny_1.1.0         
-#> [22] readr_1.1.1          later_0.7.3          purrr_0.2.5         
-#> [25] promises_1.0.1       curl_3.2             mime_0.5            
-#> [28] glue_1.3.0           evaluate_0.11        rmarkdown_1.10      
+#> [22] readr_1.1.1          later_0.7.5          purrr_0.2.5         
+#> [25] promises_1.0.1       curl_3.2             mime_0.6            
+#> [28] glue_1.3.0           evaluate_0.12        rmarkdown_1.10      
 #> [31] stringi_1.2.4        compiler_3.5.1       pillar_1.3.0        
 #> [34] backports_1.1.2      jsonlite_1.5         httpuv_1.4.5        
 #> [37] pkgconfig_2.0.2

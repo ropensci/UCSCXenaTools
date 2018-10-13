@@ -24,8 +24,7 @@ a \code{XenaHub} object
 \description{
 Major function of \code{UCSCXenatools}. It is used to filter
 \code{XenaHub} object according to cohorts, datasets. All datasets can be found
-at <https://xenabrowser.net/datapages/>. Note, the change for filtering cohorts and
-datasets are independent.
+at <https://xenabrowser.net/datapages/>.
 }
 \examples{
 # operate TCGA datasets

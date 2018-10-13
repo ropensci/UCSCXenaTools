@@ -37,10 +37,12 @@ All availble information about datasets of TCGA can access vis \code{availTCGA()
 check with \code{showTCGA()}.
 }
 \examples{
+\donttest{
 # download RNASeq data (use UVM as example)
 downloadTCGA(project = "UVM",
                  data_type = "Gene Expression RNASeq",
                  file_type = "IlluminaHiSeq RNASeqV2")
+}
 }
 \seealso{
 \code{\link[UCSCXenaTools]{XenaQuery}},
