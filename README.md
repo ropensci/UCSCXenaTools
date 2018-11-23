@@ -1,22 +1,40 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
-=================================================================================
+
+# UCSCXenaTools: A R package download and explore data from **UCSC Xena data hubs**
 
 <img src="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/inst/figures/UCSCXenaTools.png" height="200" align="right" />
 
-![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools) [![GitHub tag](https://img.shields.io/github/tag/ShixiangWang/UCSCXenaTools.svg?label=Github)](https://github.com/ShixiangWang/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master) [![GitHub issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+)
+![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools)
+[![GitHub
+tag](https://img.shields.io/github/tag/ShixiangWang/UCSCXenaTools.svg?label=Github)](https://github.com/ShixiangWang/UCSCXenaTools)
+![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools)
+![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
+[![GitHub
+issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+)
 
 **Current Version: 0.2.5**
 
-`UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
+`UCSCXenaTools` is a R package download and explore data from **UCSC
+Xena data hubs**, which are
 
-> A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
->
-> -- [UCSC Xena](https://xena.ucsc.edu/)
+> A collection of UCSC-hosted public databases such as TCGA, ICGC,
+> TARGET, GTEx, CCLE, and others. Databases are normalized so they can
+> be combined, linked, filtered, explored and downloaded.
+> 
+> – [UCSC Xena](https://xena.ucsc.edu/)
 
-Installation
-------------
+If you use this package in academic field, please cite:
+
+*Wang, Shixiang, et al. “APOBEC3B and APOBEC mutational signature as
+potential predictive markers for immunotherapy response in non-small
+cell lung cancer.” Oncogene (2018).*
+
+## Installation
 
 Install stable release from CRAN with:
 
@@ -39,34 +57,41 @@ browseVignettes("UCSCXenaTools")
 ??UCSCXenaTools
 ```
 
-Data Hub List
--------------
+## Data Hub List
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
 Currently, `UCSCXenaTools` support all 8 data hubs of UCSC Xena.
 
--   UCSC Public Hub: <https://ucscpublic.xenahubs.net>
--   TCGA Hub: <https://tcga.xenahubs.net>
--   GDC Xena Hub: <https://gdc.xenahubs.net>
--   ICGC Xena Hub: <https://icgc.xenahubs.net>
--   Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
--   GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
--   Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
--   PCAWG: <https://pcawg.xenahubs.net>
+  - UCSC Public Hub: <https://ucscpublic.xenahubs.net>
+  - TCGA Hub: <https://tcga.xenahubs.net>
+  - GDC Xena Hub: <https://gdc.xenahubs.net>
+  - ICGC Xena Hub: <https://icgc.xenahubs.net>
+  - Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
+  - GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
+  - Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
+  - PCAWG: <https://pcawg.xenahubs.net>
 
-If the `API` changed, please remind me by email to <w_shixiang@163.com> or open an issue on [GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
+If the `API` changed, please remind me by email to <w_shixiang@163.com>
+or open an issue on
+[GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
-Usage
------
+## Usage
 
-Download UCSC Xena Datasets and load them into R by `UCSCXenaTools` is a workflow in `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare`, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
+Download UCSC Xena Datasets and load them into R by `UCSCXenaTools` is a
+workflow in `generate`, `filter`, `query`, `download` and `prepare` 5
+steps, which are implemented as `XenaGenerate`, `XenaFilter`,
+`XenaQuery`, `XenaDownload` and `XenaPrepare`, respectively. They are
+very clear and easy to use and combine with other packages like `dplyr`.
 
-The following use clinical data download of LUNG, LUAD, LUSC from TCGA (hg19 version) as an example.
+The following use clinical data download of LUNG, LUAD, LUSC from TCGA
+(hg19 version) as an example.
 
 ### XenaData data.frame
 
-Begin from version `0.2.0`, `UCSCXenaTools` use a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which communicate with API of UCSC Xena Data Hubs.
+Begin from version `0.2.0`, `UCSCXenaTools` use a `data.frame` object
+(built in package) `XenaData` to generate an instance of `XenaHub`
+class, which communicate with API of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
@@ -83,24 +108,25 @@ head(XenaData)
 #> 5 https://ucscpublic.xenahubs.net   UCSC_Public
 #> 6 https://ucscpublic.xenahubs.net   UCSC_Public
 #>                                     XenaCohorts
-#> 1                                  1000_genomes
-#> 2                                  1000_genomes
+#> 1 Acute lymphoblastic leukemia (Mullighan 2008)
+#> 2 Acute lymphoblastic leukemia (Mullighan 2008)
 #> 3 Acute lymphoblastic leukemia (Mullighan 2008)
-#> 4 Acute lymphoblastic leukemia (Mullighan 2008)
-#> 5 Acute lymphoblastic leukemia (Mullighan 2008)
-#> 6                          B cells (Basso 2005)
+#> 4                   Breast Cancer (Caldas 2007)
+#> 5                   Breast Cancer (Caldas 2007)
+#> 6                   Breast Cancer (Caldas 2007)
 #>                                               XenaDatasets
-#> 1                                       1000_genomes/BRCA2
-#> 2                                       1000_genomes/BRCA1
-#> 3    mullighan2008_public/mullighan2008_500K_genomicMatrix
-#> 4 mullighan2008_public/mullighan2008_public_clinicalMatrix
-#> 5    mullighan2008_public/mullighan2008_SNP6_genomicMatrix
-#> 6         basso2005_public/basso2005_public_clinicalMatrix
+#> 1    mullighan2008_public/mullighan2008_500K_genomicMatrix
+#> 2 mullighan2008_public/mullighan2008_public_clinicalMatrix
+#> 3    mullighan2008_public/mullighan2008_SNP6_genomicMatrix
+#> 4              Caldas2007/chinSF2007_public_clinicalMatrix
+#> 5             Caldas2007/chinSFGenomeBio2007_genomicMatrix
+#> 6                   Caldas2007/naderi2007Exp_genomicMatrix
 ```
 
 ### Generate a XenaHub object
 
-This can be implemented by `XenaGenerate` function, which generate `XenaHub` object from `XenaData` data frame.
+This can be implemented by `XenaGenerate` function, which generate
+`XenaHub` object from `XenaData` data frame.
 
 ``` r
 XenaGenerate()
@@ -113,20 +139,21 @@ XenaGenerate()
 #>   https://toil.xenahubs.net
 #>   https://pancanatlas.xenahubs.net
 #>   https://xena.treehouse.gi.ucsc.edu
-#> cohorts() (134 total):
-#>   1000_genomes
+#>   https://pcawg.xenahubs.net
+#> cohorts() (126 total):
 #>   Acute lymphoblastic leukemia (Mullighan 2008)
-#>   B cells (Basso 2005)
+#>   Breast Cancer (Caldas 2007)
+#>   Breast Cancer (Chin 2006)
 #>   ...
-#>   Treehouse PED v8
-#>   Treehouse public expression dataset (July 2017)
-#> datasets() (1549 total):
-#>   1000_genomes/BRCA2
-#>   1000_genomes/BRCA1
+#>   PCAWG (donor centric)
+#>   PCAWG (specimen centric)
+#> datasets() (1583 total):
 #>   mullighan2008_public/mullighan2008_500K_genomicMatrix
+#>   mullighan2008_public/mullighan2008_public_clinicalMatrix
+#>   mullighan2008_public/mullighan2008_SNP6_genomicMatrix
 #>   ...
-#>   treehouse_public_samples_unique_ensembl_expected_count.2017-09-11.tsv
-#>   treehouse_public_samples_unique_hugo_log2_tpm_plus_1.2017-09-11.tsv
+#>   relativePromoterActivity.sp
+#>   promoterCentricTable_0.2_1.0.sp
 ```
 
 We can set `subset` argument to narrow datasets.
@@ -152,9 +179,10 @@ XenaGenerate(subset = XenaHostNames=="TCGA")
 #>   TCGA.UCS.sampleMap/mutation_curated_broad
 ```
 
-> You can use `XenaHub()` to generate a `XenaHub` object for API communication, but it is not recommended.
+> You can use `XenaHub()` to generate a `XenaHub` object for API
+> communication, but it is not recommended.
 
-It's possible to explore `hosts()`, `cohorts()` and `datasets()`.
+It’s possible to explore `hosts()`, `cohorts()` and `datasets()`.
 
 ``` r
 xe = XenaGenerate(subset = XenaHostNames=="TCGA")
@@ -205,20 +233,20 @@ Regular expression can be used to filter XenaHub object to what we want.
 #> class: XenaHub 
 #> hosts():
 #>   https://tcga.xenahubs.net
-#> cohorts() (39 total):
-#>   (unassigned)
+#> cohorts() (37 total):
 #>   TCGA Acute Myeloid Leukemia (LAML)
 #>   TCGA Adrenocortical Cancer (ACC)
+#>   TCGA Bile Duct Cancer (CHOL)
 #>   ...
 #>   TCGA Thyroid Cancer (THCA)
 #>   TCGA Uterine Carcinosarcoma (UCS)
 #> datasets() (37 total):
-#>   TCGA.OV.sampleMap/OV_clinicalMatrix
-#>   TCGA.DLBC.sampleMap/DLBC_clinicalMatrix
-#>   TCGA.KIRC.sampleMap/KIRC_clinicalMatrix
+#>   TCGA.LAML.sampleMap/LAML_clinicalMatrix
+#>   TCGA.ACC.sampleMap/ACC_clinicalMatrix
+#>   TCGA.CHOL.sampleMap/CHOL_clinicalMatrix
 #>   ...
-#>   TCGA.READ.sampleMap/READ_clinicalMatrix
-#>   TCGA.MESO.sampleMap/MESO_clinicalMatrix
+#>   TCGA.THCA.sampleMap/THCA_clinicalMatrix
+#>   TCGA.UCS.sampleMap/UCS_clinicalMatrix
 ```
 
 Then select `LUAD`, `LUSC` and `LUNG` 3 datasets.
@@ -238,17 +266,14 @@ xe %>%
 #> class: XenaHub 
 #> hosts():
 #>   https://tcga.xenahubs.net
-#> cohorts() (39 total):
-#>   (unassigned)
-#>   TCGA Acute Myeloid Leukemia (LAML)
-#>   TCGA Adrenocortical Cancer (ACC)
-#>   ...
-#>   TCGA Thyroid Cancer (THCA)
-#>   TCGA Uterine Carcinosarcoma (UCS)
+#> cohorts() (3 total):
+#>   TCGA Lung Adenocarcinoma (LUAD)
+#>   TCGA Lung Cancer (LUNG)
+#>   TCGA Lung Squamous Cell Carcinoma (LUSC)
 #> datasets() (3 total):
-#>   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
-#>   TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
 #>   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
+#>   TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
+#>   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
 ```
 
 ### Query
@@ -259,33 +284,36 @@ Create a query before download data
 xe2_query = XenaQuery(xe2)
 xe2_query
 #>                       hosts                                datasets
-#> 1 https://tcga.xenahubs.net TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
+#> 1 https://tcga.xenahubs.net TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
 #> 2 https://tcga.xenahubs.net TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
-#> 3 https://tcga.xenahubs.net TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
+#> 3 https://tcga.xenahubs.net TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
 #>                                                                             url
-#> 1 https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix.gz
+#> 1 https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
 #> 2 https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix.gz
-#> 3 https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
+#> 3 https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix.gz
 ```
 
 ### Download
 
-Default, data will be downloaded to system temp directory. You can specify the path.
+Default, data will be downloaded to system temp directory. You can
+specify the path.
 
-If the data exists, command will not run to download them, but you can force it by `force` option.
+If the data exists, command will not run to download them, but you can
+force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /Volumes/Data/Rtmp/Rtmp7dXWa3.
-#> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
-#> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
+#> We will download files to directory /tmp/RtmpB7MWXL.
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
+#> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
+#> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
 #> Note fileNames transfromed from datasets name and / chracter all changed to __ character.
 ## not run
 #xe2_download = XenaDownload(xe2_query, destdir = "E:/Github/XenaData/test/")
 ```
 
-> Note fileNames transfromed from datasets name and / chracter all changed to \_\_ character.
+> Note fileNames transfromed from datasets name and / chracter all
+> changed to \_\_ character.
 
 ### Prepare
 
@@ -302,7 +330,7 @@ There are 4 ways to prepare data to R.
     cli2 = XenaPrepare("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz")
     class(cli2)
     ## [1] "tbl_df"     "tbl"        "data.frame"
-
+    
     cli2 = XenaPrepare(c("E:/Github/XenaData/test/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz",
                          "E:/Github/XenaData/test/TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"))
     class(cli2)
@@ -320,17 +348,21 @@ There are 4 ways to prepare data to R.
 # way4: xenadownload object
 cli4 = XenaPrepare(xe2_download)
 names(cli4)
-#> [1] "TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz"
+#> [1] "TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz"
 #> [2] "TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"
-#> [3] "TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz"
+#> [3] "TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz"
 ```
 
-TCGA Common Data Easy Download
-------------------------------
+## TCGA Common Data Easy Download
 
 ### getTCGAdata
 
-`getTCGAdata` provide a quite easy download way for TCGA datasets, user can specify multiple options to select which data and corresponding file type want to download. Default this function will return a list include `XenaHub` object and selective datasets information. Once you are sure the datasets is exactly what you want, `download` can be set to `TRUE` to download the data.
+`getTCGAdata` provide a quite easy download way for TCGA datasets, user
+can specify multiple options to select which data and corresponding file
+type want to download. Default this function will return a list include
+`XenaHub` object and selective datasets information. Once you are sure
+the datasets is exactly what you want, `download` can be set to `TRUE`
+to download the data.
 
 Check arguments of `getTCGAdata`:
 
@@ -403,38 +435,46 @@ tcga_data$DataInfo
 #> 2 Clinical Information
 ```
 
-Set `download=TRUE` to download data, default data will be downloaded to system temp directory (you can specify the path with `destdir` option):
+Set `download=TRUE` to download data, default data will be downloaded to
+system temp directory (you can specify the path with `destdir` option):
 
 ``` r
 # only download clinical data
 getTCGAdata(c("UVM", "LUAD"), download = TRUE)
-#> We will download files to directory /Volumes/Data/Rtmp/Rtmp7dXWa3.
-#> /Volumes/Data/Rtmp/Rtmp7dXWa3/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
+#> We will download files to directory /tmp/RtmpB7MWXL.
+#> /tmp/RtmpB7MWXL/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
 #> Downloading TCGA.UVM.sampleMap__UVM_clinicalMatrix.gz
 #> Note fileNames transfromed from datasets name and / chracter all changed to __ character.
 ```
 
 #### Support Data Type and Options
 
--   clinical information: `clinical`
--   mRNA Sequencing: `mRNASeq`
--   mRNA microarray: `mRNAArray`
--   miRNA Sequencing: `miRNASeq`
--   exon Sequencing: `exonRNASeq`
--   RPPA array: `RPPAArray`
--   DNA Methylation: `Methylation`
--   Gene mutation: `GeneMutation`
--   Somatic mutation: `SomaticMutation`
--   Gistic2 Copy Number: `GisticCopyNumber`
--   Copy Number Segment: `CopyNumberSegment`
+  - clinical information: `clinical`
+  - mRNA Sequencing: `mRNASeq`
+  - mRNA microarray: `mRNAArray`
+  - miRNA Sequencing: `miRNASeq`
+  - exon Sequencing: `exonRNASeq`
+  - RPPA array: `RPPAArray`
+  - DNA Methylation: `Methylation`
+  - Gene mutation: `GeneMutation`
+  - Somatic mutation: `SomaticMutation`
+  - Gistic2 Copy Number: `GisticCopyNumber`
+  - Copy Number Segment: `CopyNumberSegment`
 
-> other data type supported by Xena cannot download use this function. Please refer to `downloadTCGA` function or `XenaGenerate` function.
+> other data type supported by Xena cannot download use this function.
+> Please refer to `downloadTCGA` function or `XenaGenerate` function.
 
-**NOTE**: Sequencing data are all based on Illumina Hiseq platform, other platform (Illumina GA) data supported by Xena cannot download using this function. This is for building consistent data download flow. Mutation use `broad automated` version (except `PANCAN` use `MC3 Public Version`). If you wan to download other datasets, please refer to `downloadTCGA` function or `XenaGenerate` function.
+**NOTE**: Sequencing data are all based on Illumina Hiseq platform,
+other platform (Illumina GA) data supported by Xena cannot download
+using this function. This is for building consistent data download flow.
+Mutation use `broad automated` version (except `PANCAN` use `MC3 Public
+Version`). If you wan to download other datasets, please refer to
+`downloadTCGA` function or `XenaGenerate` function.
 
 ### download any TCGA data by datatypes and filetypes
 
-`downloadTCGA` function can used to download any TCGA data supported by Xena, but in a way different from `getTCGAdata` function.
+`downloadTCGA` function can used to download any TCGA data supported by
+Xena, but in a way different from `getTCGAdata` function.
 
 ``` r
 # download RNASeq data (use UVM as an example)
@@ -452,9 +492,12 @@ args(downloadTCGA)
 #> NULL
 ```
 
-Except `destdir` option, you only need to select three arguments for downloading data. Even throught the number is far less than `getTCGAdata`, it is more complex than the latter.
+Except `destdir` option, you only need to select three arguments for
+downloading data. Even throught the number is far less than
+`getTCGAdata`, it is more complex than the latter.
 
-Before you download data, you need spare some time to figure out what data type and file type available and what your datasets have.
+Before you download data, you need spare some time to figure out what
+data type and file type available and what your datasets have.
 
 `availTCGA` can return all information you need:
 
@@ -547,7 +590,9 @@ availTCGA()
 #> [57] "Immune Signature Scores"
 ```
 
-Note not all datasets have these property, `showTCGA` can help you to check it. It will return all data in TCGA, you can use following code in RStudio and search your data.
+Note not all datasets have these property, `showTCGA` can help you to
+check it. It will return all data in TCGA, you can use following code in
+RStudio and search your data.
 
 ``` r
 View(showTCGA())
@@ -561,70 +606,73 @@ Run shiny by:
 UCSCXenaTools::XenaShiny()
 ```
 
-Download by shiny is under consideration, I am try learning more about how to operate shiny.
+Download by shiny is under consideration, I am try learning more about
+how to operate shiny.
 
-SessionInfo
------------
+## SessionInfo
 
 ``` r
 sessionInfo()
-#> R version 3.5.1 (2018-07-02)
-#> Platform: x86_64-apple-darwin15.6.0 (64-bit)
-#> Running under: macOS High Sierra 10.13.6
+#> R version 3.5.0 (2018-04-23)
+#> Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+#> Running under: elementary OS 5.0 Juno
 #> 
 #> Matrix products: default
-#> BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
-#> LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+#> BLAS/LAPACK: /home/zd/anaconda3/lib/R/lib/libRblas.so
 #> 
 #> locale:
-#> [1] zh_CN.UTF-8/zh_CN.UTF-8/zh_CN.UTF-8/C/zh_CN.UTF-8/zh_CN.UTF-8
+#>  [1] LC_CTYPE=zh_CN.UTF-8       LC_NUMERIC=C              
+#>  [3] LC_TIME=zh_CN.UTF-8        LC_COLLATE=zh_CN.UTF-8    
+#>  [5] LC_MONETARY=zh_CN.UTF-8    LC_MESSAGES=zh_CN.UTF-8   
+#>  [7] LC_PAPER=zh_CN.UTF-8       LC_NAME=C                 
+#>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#> [11] LC_MEASUREMENT=zh_CN.UTF-8 LC_IDENTIFICATION=C       
 #> 
 #> attached base packages:
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] bindrcpp_0.2.2      dplyr_0.7.6         UCSCXenaTools_0.2.4
-#> [4] pacman_0.4.6       
+#> [1] bindrcpp_0.2.2      dplyr_0.7.8         UCSCXenaTools_0.2.5
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] Rcpp_0.12.19         knitr_1.20           bindr_0.1.1         
-#>  [4] magrittr_1.5         hms_0.4.2            tidyselect_0.2.4    
-#>  [7] xtable_1.8-3         R6_2.3.0             rlang_0.2.2         
-#> [10] httr_1.3.1           stringr_1.3.1        tools_3.5.1         
-#> [13] shinydashboard_0.7.0 htmltools_0.3.6      yaml_2.2.0          
-#> [16] rprojroot_1.3-2      digest_0.6.18        assertthat_0.2.0    
-#> [19] tibble_1.4.2         crayon_1.3.4         shiny_1.1.0         
+#>  [1] Rcpp_1.0.0           knitr_1.20           bindr_0.1.1         
+#>  [4] magrittr_1.5         hms_0.4.2            tidyselect_0.2.5    
+#>  [7] xtable_1.8-3         R6_2.2.2             rlang_0.3.0.1       
+#> [10] httr_1.3.1           stringr_1.3.1        tools_3.5.0         
+#> [13] shinydashboard_0.7.1 htmltools_0.3.6      yaml_2.2.0          
+#> [16] rprojroot_1.3-2      digest_0.6.15        assertthat_0.2.0    
+#> [19] tibble_1.4.2         crayon_1.3.4         shiny_1.2.0         
 #> [22] readr_1.1.1          later_0.7.5          purrr_0.2.5         
-#> [25] promises_1.0.1       curl_3.2             mime_0.6            
-#> [28] glue_1.3.0           evaluate_0.12        rmarkdown_1.10      
-#> [31] stringi_1.2.4        compiler_3.5.1       pillar_1.3.0        
-#> [34] backports_1.1.2      jsonlite_1.5         httpuv_1.4.5        
-#> [37] pkgconfig_2.0.2
+#> [25] promises_1.0.1       mime_0.5             glue_1.3.0          
+#> [28] evaluate_0.12        rmarkdown_1.10       stringi_1.2.4       
+#> [31] compiler_3.5.0       pillar_1.3.0         backports_1.1.2     
+#> [34] httpuv_1.4.5         pkgconfig_2.0.2
 ```
 
-Bug Report
-----------
+## Bug Report
 
-I have no time to test if all condition are right and all datasets can normally be downloaded. So if you have any question or suggestion, please open an issue on Github at <https://github.com/ShixiangWang/UCSCXenaTools/issues>.
+I have no time to test if all condition are right and all datasets can
+normally be downloaded. So if you have any question or suggestion,
+please open an issue on Github at
+<https://github.com/ShixiangWang/UCSCXenaTools/issues>.
 
-Acknowledgement
----------------
+## Acknowledgement
 
-This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
+This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
+thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 
-LICENSE
--------
+## LICENSE
 
 GPL-3
 
 please note, code from XenaR package under Apache 2.0 license.
 
-ToDo
-----
+## ToDo
 
--   Shinny and more
+  - Shinny and more
 
-Code of conduct
----------------
+## Code of conduct
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of
+Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
+to abide by its terms.

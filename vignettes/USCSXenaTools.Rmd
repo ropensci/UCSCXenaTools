@@ -33,6 +33,9 @@ knitr::opts_chunk$set(
 >
 > -- [UCSC Xena](https://xena.ucsc.edu/)
 
+If you use this package in academic field, please cite:
+
+*Wang, Shixiang, et al. "APOBEC3B and APOBEC mutational signature as potential predictive markers for immunotherapy response in non-small cell lung cancer." Oncogene (2018).*
 
 ## Installation
 
