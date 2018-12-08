@@ -1,5 +1,10 @@
 # UCSCXenaTools 
 
+## v0.2.6
+
+* add new datahub [**ATACseq**](https://xenabrowser.net/datapages/?host=https%3A%2F%2Fatacseq.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443) 
+* enhance preparing data to R: provide options to select subset of original file data
+
 ## v0.2.5
 
 * add new datahub **PCAWG**

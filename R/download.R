@@ -122,13 +122,22 @@ XenaDownload = function(xquery, destdir=tempdir(), force=FALSE, ...){
 ##' @param objects a object of character vector or data.frame. If \code{objects} is data.frame,
 ##' it should be returned object of \code{XenaDownload} function. More easier way is
 ##' that objects can be character vector specify local files/directory and download urls.
-##' @param objectsName specify objectsName of result
+##' @param objectsName specify names for elements of return object, i.e. names of list
+##' @param use_chunk default is \code{FALSE}. If you want to select subset of original data, please set it to
+##' \code{TRUE} and specify corresponding arguments: \code{chunk_size}, \code{select_direction}, \code{select_names},
+##' \code{callback}
+##' @param chunk_size the number of rows to include in each chunk
+##' @param select_direction use 'columns' or 'rows' to select subset of data, default is 'columns'
+##' @param select_names default is \code{NULL}
+##' @param callback a callback function to call on each chunk
 ##' @param comment a character specify comment rows in files
 ##' @param na a character vectory specify \code{NA} values in files
-##' @param ... other arguments transfer to \code{read_tsv} function of \code{readr} package
+##' @param ... other arguments transfer to \code{read_tsv} function or \code{read_tsv_chunked} function of \code{readr} package
 ##' @return a list contains file data, which in way of tibbles
 ##' @export
 ##' @importFrom readr read_tsv
+##' @importFrom readr read_tsv_chunked
+##' @importFrom readr cols
 ##' @examples
 ##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 ##' hosts(xe)
@@ -138,9 +147,14 @@ XenaDownload = function(xquery, destdir=tempdir(), force=FALSE, ...){
 ##' # dat = XenaPrepare(xe_download)
 ##'
 
-XenaPrepare = function(objects, objectsName=NULL, comment="#", na=c("", "NA", "[Discrepancy]"), ...){
+XenaPrepare = function(objects, objectsName=NULL,
+                       use_chunk=FALSE, chunk_size = 100, select_direction = c("columns", "rows"),
+                       select_names = NULL, callback = NULL,
+                       comment="#", na=c("", "NA", "[Discrepancy]"), ...){
     # objects can be url, local files/directory or xena object from xena download process
-    stopifnot(is.character(objects) | is.data.frame(objects))
+    stopifnot(is.character(objects) | is.data.frame(objects), is.logical(use_chunk))
+
+    select_direction = match.arg(select_direction)
 
     objects2 = objects
 
@@ -155,7 +169,24 @@ XenaPrepare = function(objects, objectsName=NULL, comment="#", na=c("", "NA", "[
             }else{
                 files = paste0(objects, "/", dir(objects))
                 res = lapply(files, function(x){
-                    y = suppressMessages(read_tsv(x, comment=comment, na=na, ...))
+                    if (!use_chunk) {
+                        if (select_direction == "columns") {
+                            f = function(x, pos) {
+
+                            }
+                        } else if (select_direction == "rows") {
+                            f = function(x, pos) {
+
+                            }
+                        }
+
+                        y = readr::read_tsv_chunked(x, readr::DataFrameCallback$new(f),
+                                                    chunk_size = chunk_size, comment = comment,
+                                                    col_types = readr::cols())
+                    } else {
+                        y = readr::read_tsv(x, comment=comment, na=na, col_types = readr::cols(), ...)
+                    }
+
                     y
             })
             if(is.null(objectsName)){
@@ -220,3 +251,9 @@ XenaPrepare = function(objects, objectsName=NULL, comment="#", na=c("", "NA", "[
 
     return(res)
 }
+
+
+# # only read some rows or some columns of data
+# XenaPrepareSubset = function(){
+#
+# }

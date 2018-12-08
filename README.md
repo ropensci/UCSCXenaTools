@@ -61,7 +61,7 @@ browseVignettes("UCSCXenaTools")
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
-Currently, `UCSCXenaTools` support all 8 data hubs of UCSC Xena.
+Currently, `UCSCXenaTools` support all 9 data hubs of UCSC Xena.
 
   - UCSC Public Hub: <https://ucscpublic.xenahubs.net>
   - TCGA Hub: <https://tcga.xenahubs.net>
@@ -71,6 +71,7 @@ Currently, `UCSCXenaTools` support all 8 data hubs of UCSC Xena.
   - GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
   - Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
   - PCAWG: <https://pcawg.xenahubs.net>
+  - ATAC-seq: <https://atacseq.xenahubs.net>
 
 If the `API` changed, please remind me by email to <w_shixiang@163.com>
 or open an issue on
@@ -303,7 +304,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /tmp/RtmpB7MWXL.
+#> We will download files to directory /tmp/Rtmp9myJ5E.
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
@@ -441,8 +442,8 @@ system temp directory (you can specify the path with `destdir` option):
 ``` r
 # only download clinical data
 getTCGAdata(c("UVM", "LUAD"), download = TRUE)
-#> We will download files to directory /tmp/RtmpB7MWXL.
-#> /tmp/RtmpB7MWXL/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
+#> We will download files to directory /tmp/Rtmp9myJ5E.
+#> /tmp/Rtmp9myJ5E/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
 #> Downloading TCGA.UVM.sampleMap__UVM_clinicalMatrix.gz
 #> Note fileNames transfromed from datasets name and / chracter all changed to __ character.
 ```
@@ -613,12 +614,13 @@ how to operate shiny.
 
 ``` r
 sessionInfo()
-#> R version 3.5.0 (2018-04-23)
-#> Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+#> R version 3.5.1 (2018-07-02)
+#> Platform: x86_64-pc-linux-gnu (64-bit)
 #> Running under: elementary OS 5.0 Juno
 #> 
 #> Matrix products: default
-#> BLAS/LAPACK: /home/zd/anaconda3/lib/R/lib/libRblas.so
+#> BLAS: /home/zd/anaconda3/lib/R/lib/libRblas.so
+#> LAPACK: /home/zd/anaconda3/lib/R/lib/libRlapack.so
 #> 
 #> locale:
 #>  [1] LC_CTYPE=zh_CN.UTF-8       LC_NUMERIC=C              
@@ -632,21 +634,22 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] bindrcpp_0.2.2      dplyr_0.7.8         UCSCXenaTools_0.2.5
+#> [1] bindrcpp_0.2.2       dplyr_0.7.6          UCSCXenaTools_0.2.5 
+#> [4] RevoUtils_11.0.1     RevoUtilsMath_11.0.0
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] Rcpp_1.0.0           knitr_1.20           bindr_0.1.1         
-#>  [4] magrittr_1.5         hms_0.4.2            tidyselect_0.2.5    
-#>  [7] xtable_1.8-3         R6_2.2.2             rlang_0.3.0.1       
-#> [10] httr_1.3.1           stringr_1.3.1        tools_3.5.0         
+#>  [1] Rcpp_0.12.18         knitr_1.20           bindr_0.1.1         
+#>  [4] magrittr_1.5         hms_0.4.2            tidyselect_0.2.4    
+#>  [7] xtable_1.8-2         R6_2.2.2             rlang_0.2.1         
+#> [10] httr_1.3.1           stringr_1.3.1        tools_3.5.1         
 #> [13] shinydashboard_0.7.1 htmltools_0.3.6      yaml_2.2.0          
 #> [16] rprojroot_1.3-2      digest_0.6.15        assertthat_0.2.0    
-#> [19] tibble_1.4.2         crayon_1.3.4         shiny_1.2.0         
-#> [22] readr_1.1.1          later_0.7.5          purrr_0.2.5         
+#> [19] tibble_1.4.2         crayon_1.3.4         shiny_1.1.0         
+#> [22] readr_1.1.1          later_0.7.3          purrr_0.2.5         
 #> [25] promises_1.0.1       mime_0.5             glue_1.3.0          
-#> [28] evaluate_0.12        rmarkdown_1.10       stringi_1.2.4       
-#> [31] compiler_3.5.0       pillar_1.3.0         backports_1.1.2     
-#> [34] httpuv_1.4.5         pkgconfig_2.0.2
+#> [28] evaluate_0.11        rmarkdown_1.10       stringi_1.2.4       
+#> [31] compiler_3.5.1       pillar_1.3.0         backports_1.1.2     
+#> [34] httpuv_1.4.5         pkgconfig_2.0.1
 ```
 
 ## Bug Report

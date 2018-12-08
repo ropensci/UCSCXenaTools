@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-**Current Version: 0.2.5**
+**Current Version: 0.2.6**
 
 `UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
 
@@ -66,7 +66,7 @@ browseVignettes("UCSCXenaTools")
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
-Currently, `UCSCXenaTools` support all 8 data hubs of UCSC Xena.
+Currently, `UCSCXenaTools` support all 9 data hubs of UCSC Xena.
 
 * UCSC Public Hub: <https://ucscpublic.xenahubs.net>
 * TCGA Hub: <https://tcga.xenahubs.net>
@@ -76,6 +76,7 @@ Currently, `UCSCXenaTools` support all 8 data hubs of UCSC Xena.
 * GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
 * Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
 * PCAWG: <https://pcawg.xenahubs.net>
+* ATAC-seq: <https://atacseq.xenahubs.net>
 
 If the `API` changed, please remind me by email to <w_shixiang@163.com> or open an issue on [GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 

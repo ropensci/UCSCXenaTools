@@ -4,7 +4,9 @@
 \alias{XenaPrepare}
 \title{Prepare (Load) datasets to R download from UCSC Xena}
 \usage{
-XenaPrepare(objects, objectsName = NULL, comment = "#", na = c("",
+XenaPrepare(objects, objectsName = NULL, use_chunk = FALSE,
+  chunk_size = 100, select_direction = c("columns", "rows"),
+  select_names = NULL, callback = NULL, comment = "#", na = c("",
   "NA", "[Discrepancy]"), ...)
 }
 \arguments{
@@ -12,13 +14,25 @@ XenaPrepare(objects, objectsName = NULL, comment = "#", na = c("",
 it should be returned object of \code{XenaDownload} function. More easier way is
 that objects can be character vector specify local files/directory and download urls.}
 
-\item{objectsName}{specify objectsName of result}
+\item{objectsName}{specify names for elements of return object, i.e. names of list}
+
+\item{use_chunk}{default is \code{FALSE}. If you want to select subset of original data, please set it to
+\code{TRUE} and specify corresponding arguments: \code{chunk_size}, \code{select_direction}, \code{select_names},
+\code{callback}}
+
+\item{chunk_size}{the number of rows to include in each chunk}
+
+\item{select_direction}{use 'columns' or 'rows' to select subset of data, default is 'columns'}
+
+\item{select_names}{default is \code{NULL}}
+
+\item{callback}{a callback function to call on each chunk}
 
 \item{comment}{a character specify comment rows in files}
 
 \item{na}{a character vectory specify \code{NA} values in files}
 
-\item{...}{other arguments transfer to \code{read_tsv} function of \code{readr} package}
+\item{...}{other arguments transfer to \code{read_tsv} function or \code{read_tsv_chunked} function of \code{readr} package}
 }
 \value{
 a list contains file data, which in way of tibbles
