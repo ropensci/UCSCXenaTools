@@ -17,7 +17,7 @@ Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/maste
 [![GitHub
 issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+)
 
-**Current Version: 0.2.5**
+**Current Version: 0.2.6**
 
 `UCSCXenaTools` is a R package download and explore data from **UCSC
 Xena data hubs**, which are
@@ -304,7 +304,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /tmp/Rtmp9myJ5E.
+#> We will download files to directory /tmp/RtmpNXm4j5.
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
@@ -442,8 +442,8 @@ system temp directory (you can specify the path with `destdir` option):
 ``` r
 # only download clinical data
 getTCGAdata(c("UVM", "LUAD"), download = TRUE)
-#> We will download files to directory /tmp/Rtmp9myJ5E.
-#> /tmp/Rtmp9myJ5E/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
+#> We will download files to directory /tmp/RtmpNXm4j5.
+#> /tmp/RtmpNXm4j5/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!
 #> Downloading TCGA.UVM.sampleMap__UVM_clinicalMatrix.gz
 #> Note fileNames transfromed from datasets name and / chracter all changed to __ character.
 ```
@@ -669,10 +669,6 @@ thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 GPL-3
 
 please note, code from XenaR package under Apache 2.0 license.
-
-## ToDo
-
-  - Shinny and more
 
 ## Code of conduct
 

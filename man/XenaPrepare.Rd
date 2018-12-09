@@ -5,9 +5,9 @@
 \title{Prepare (Load) datasets to R download from UCSC Xena}
 \usage{
 XenaPrepare(objects, objectsName = NULL, use_chunk = FALSE,
-  chunk_size = 100, select_direction = c("columns", "rows"),
-  select_names = NULL, callback = NULL, comment = "#", na = c("",
-  "NA", "[Discrepancy]"), ...)
+  chunk_size = 100, subset_rows = TRUE, select_cols = TRUE,
+  callback = NULL, comment = "#", na = c("", "NA", "[Discrepancy]"),
+  ...)
 }
 \arguments{
 \item{objects}{a object of character vector or data.frame. If \code{objects} is data.frame,
@@ -22,17 +22,21 @@ that objects can be character vector specify local files/directory and download 
 
 \item{chunk_size}{the number of rows to include in each chunk}
 
-\item{select_direction}{use 'columns' or 'rows' to select subset of data, default is 'columns'}
+\item{subset_rows}{logical expression indicating elements or rows to keep: missing values are taken as false.
+\code{x} can be a representation of data frame you wanna do subset operation. Of note, the first colname of most of
+ datasets in Xena will be set to "sample", you can use it to select rows,}
 
-\item{select_names}{default is \code{NULL}}
+\item{select_cols}{expression, indicating columns to select from a data frame. 'x' can be a representation of data frame you
+wanna do subset operation, e.g. \code{select_cols = colnames(x)[1:3]} will keep only first to third column.}
 
-\item{callback}{a callback function to call on each chunk}
+\item{callback}{a function to call on each chunk, default is \code{NULL}, this option will overvide operations of
+subset_rows and select_cols.}
 
 \item{comment}{a character specify comment rows in files}
 
 \item{na}{a character vectory specify \code{NA} values in files}
 
-\item{...}{other arguments transfer to \code{read_tsv} function or \code{read_tsv_chunked} function of \code{readr} package}
+\item{...}{other arguments transfer to \code{read_tsv} function or \code{read_tsv_chunked} function (when \code{use_chunk} is \code{TRUE}) of \code{readr} package}
 }
 \value{
 a list contains file data, which in way of tibbles

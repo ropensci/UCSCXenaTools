@@ -240,6 +240,16 @@ cli4 = XenaPrepare(xe2_download)
 names(cli4)
 ```
 
+From v0.2.6, `XenaPrepare()` can enable chunk feature when file is too big and user only need subset of file.
+
+Following code show how to subset some rows or columns of files, `sample` is the name of the first column, user can directly use it in logical expression,  `x` can be a representation of data frame user wanna do subset operation. More custom operation can be set as a function and pass to `callback` option.
+
+```
+# select rows which sample (gene symbol here) in "HIF3A" or "RNF17"
+testRNA = UCSCXenaTools::XenaPrepare("~/Download/HiSeqV2.gz", use_chunk = TRUE, subset_rows = sample %in% c("HIF3A", "RNF17"))
+# only keep 1 to 3 columns
+testRNA = UCSCXenaTools::XenaPrepare("~/Download/HiSeqV2.gz", use_chunk = TRUE, select_cols = colnames(x)[1:3])
+```
 
 ## TCGA Common Data Easy Download
 
@@ -361,7 +371,3 @@ This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Mar
 GPL-3
 
 please note, code from XenaR package under Apache 2.0 license.
-
-## ToDo
-
-* Shinny and more
