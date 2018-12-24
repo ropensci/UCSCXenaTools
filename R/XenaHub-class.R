@@ -3,9 +3,14 @@
 ##'  @slot cohorts cohorts of data hubs
 ##'  @slot datasets datasets of data hubs
 ##'  @importFrom methods new
-.XenaHub = setClass("XenaHub",
-    representation=representation(hosts="character", cohorts="character",
-      datasets="character"))
+.XenaHub = setClass(
+    "XenaHub",
+    representation = representation(
+        hosts = "character",
+        cohorts = "character",
+        datasets = "character"
+    )
+)
 
 
 ##' @title UCSC Xena Default Hosts
@@ -15,16 +20,17 @@
 ##' @seealso \code{\link[UCSCXenaTools]{XenaHub}}
 ##' @export
 xena_default_hosts = function() {
-    c("https://ucscpublic.xenahubs.net",
-      "https://tcga.xenahubs.net",
-      "https://gdc.xenahubs.net",
-      "https://icgc.xenahubs.net",
-      "https://toil.xenahubs.net",
-      "https://pancanatlas.xenahubs.net",
-      "https://xena.treehouse.gi.ucsc.edu",
-      "https://pcawg.xenahubs.net",
-      "https://atacseq.xenahubs.net"
-      )
+    c(
+        "https://ucscpublic.xenahubs.net",
+        "https://tcga.xenahubs.net",
+        "https://gdc.xenahubs.net",
+        "https://icgc.xenahubs.net",
+        "https://toil.xenahubs.net",
+        "https://pancanatlas.xenahubs.net",
+        "https://xena.treehouse.gi.ucsc.edu",
+        "https://pcawg.xenahubs.net",
+        "https://atacseq.xenahubs.net"
+    )
 }
 
 ##' Generate a XenaHub Object
@@ -62,27 +68,53 @@ xena_default_hosts = function() {
 ##' datasets(xe)  # get datasets
 ##' samples(xe)   # get samples
 ##' }
-XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
-             datasets=character(), hostName=c("UCSC_Public", "TCGA", "GDC", "ICGC",
-                                              "Toil", "PanCancer", "Treehouse", "PCAWG","ATACseq")){
-
-    stopifnot(is.character(hosts), is.character(cohorts),
+XenaHub = function(hosts = xena_default_hosts(),
+                   cohorts = character(),
+                   datasets = character(),
+                   hostName = c(
+                       "UCSC_Public",
+                       "TCGA",
+                       "GDC",
+                       "ICGC",
+                       "Toil",
+                       "PanCancer",
+                       "Treehouse",
+                       "PCAWG",
+                       "ATACseq"
+                   )) {
+    stopifnot(is.character(hosts),
+              is.character(cohorts),
               is.character(datasets))
 
     hostName = unique(hostName)
 
-    if(length(hostName) != 9 & all(hostName %in% c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq")) ){
-      hostNames = data.frame(UCSC_Public="https://ucscpublic.xenahubs.net",
-                             TCGA="https://tcga.xenahubs.net",
-                             GDC="https://gdc.xenahubs.net",
-                             ICGC="https://icgc.xenahubs.net",
-                             Toil="https://toil.xenahubs.net",
-                             PanCancer="https://pancanatlas.xenahubs.net",
-                             Treehouse="https://xena.treehouse.gi.ucsc.edu",
-                             PCAWG="https://pcawg.xenahubs.net",
-                             ATACseq="https://atacseq.xenahubs.net",
-                             stringsAsFactors = FALSE)
-      hosts = as.character(hostNames[, hostName])
+    if (length(hostName) != 9 &
+        all(
+            hostName %in% c(
+                "UCSC_Public",
+                "TCGA",
+                "GDC",
+                "ICGC",
+                "Toil",
+                "PanCancer",
+                "Treehouse",
+                "PCAWG",
+                "ATACseq"
+            )
+        )) {
+        hostNames = data.frame(
+            UCSC_Public = "https://ucscpublic.xenahubs.net",
+            TCGA = "https://tcga.xenahubs.net",
+            GDC = "https://gdc.xenahubs.net",
+            ICGC = "https://icgc.xenahubs.net",
+            Toil = "https://toil.xenahubs.net",
+            PanCancer = "https://pancanatlas.xenahubs.net",
+            Treehouse = "https://xena.treehouse.gi.ucsc.edu",
+            PCAWG = "https://pcawg.xenahubs.net",
+            ATACseq = "https://atacseq.xenahubs.net",
+            stringsAsFactors = FALSE
+        )
+        hosts = as.character(hostNames[, hostName])
     }
 
     if (is.null(names(hosts)))
@@ -92,9 +124,10 @@ XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
     hosts = Filter(.host_is_alive, hosts)
     if (length(hosts) == 0L)
         stop("\n  no hosts responding:",
-             "\n    ", paste0(hosts0, collapse="\n  "))
+             "\n    ",
+             paste0(hosts0, collapse = "\n  "))
 
-    all_cohorts = unlist(.host_cohorts(hosts), use.names=FALSE)
+    all_cohorts = unlist(.host_cohorts(hosts), use.names = FALSE)
     if (length(cohorts) == 0L) {
         cohorts = all_cohorts
     } else {
@@ -102,11 +135,11 @@ XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
     }
 
     all_datasets = unlist(.cohort_datasets(hosts, cohorts),
-                          use.names=FALSE)
-    if (length(datasets) == 0L){
+                          use.names = FALSE)
+    if (length(datasets) == 0L) {
         datasets = all_datasets
-    }else{
-        if(!all(datasets %in% all_datasets)){
+    } else{
+        if (!all(datasets %in% all_datasets)) {
             bad_dataset = datasets[!datasets %in% all_datasets]
             message("Following datasets are not in datasets of hosts, ignore them...")
             message(bad_dataset)
@@ -115,7 +148,9 @@ XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
     }
 
 
-    .XenaHub(hosts=hosts, cohorts=cohorts, datasets=datasets)
+    .XenaHub(hosts = hosts,
+             cohorts = cohorts,
+             datasets = datasets)
 }
 
 ##' Get or Update Newest Data Information of UCSC Xena Data Hubs
@@ -124,38 +159,41 @@ XenaHub = function(hosts=xena_default_hosts(), cohorts=character(),
 ##' @return a \code{data.frame} contains all datasets information of Xena.
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
-XenaDataUpdate = function(saveTolocal=TRUE){
+XenaDataUpdate = function(saveTolocal = TRUE) {
     hosts = xena_default_hosts()
-    XenaList = sapply(hosts, function(x){
+    XenaList = sapply(hosts, function(x) {
         onehost_cohorts = unlist(.host_cohorts(x), use.names = FALSE)
-        sapply(onehost_cohorts, function(y){
+        sapply(onehost_cohorts, function(y) {
             onecohort_datasets = unlist(.cohort_datasets(x, y))
         })
     })
 
     # check XenaList, the structure of Truehouse differ from others, is a matrix
-    for(i in 1:length(XenaList)){
-        if(!is.list(XenaList[[i]])){
+    for (i in 1:length(XenaList)) {
+        if (!is.list(XenaList[[i]])) {
             x = XenaList[[i]]
-            Tolist = lapply(seq_len(ncol(x)), function(i) x[,i])
+            Tolist = lapply(seq_len(ncol(x)), function(i)
+                x[, i])
             names(Tolist) = colnames(x)
             XenaList[[i]] = Tolist
         }
     }
 
     resDF = data.frame(stringsAsFactors = FALSE)
-    for(i in 1:length(XenaList)){
+    for (i in 1:length(XenaList)) {
         hostNames = names(XenaList)[i]
         cohortNames = names(XenaList[[i]])
         res = data.frame(stringsAsFactors = FALSE)
 
-        for (j in 1:length(cohortNames)){
+        for (j in 1:length(cohortNames)) {
             oneCohort = XenaList[[i]][j]
             # The unassigned cohorts have NULL data, remove it
-            if(names(oneCohort) != "(unassigned)"){
-                resCohort = data.frame(XenaCohorts=names(oneCohort),
-                                       XenaDatasets=as.character(oneCohort[[1]]),
-                                       stringsAsFactors = FALSE)
+            if (names(oneCohort) != "(unassigned)") {
+                resCohort = data.frame(
+                    XenaCohorts = names(oneCohort),
+                    XenaDatasets = as.character(oneCohort[[1]]),
+                    stringsAsFactors = FALSE
+                )
                 res = rbind(res, resCohort)
             }
         }
@@ -163,24 +201,39 @@ XenaDataUpdate = function(saveTolocal=TRUE){
         resDF = rbind(resDF, res)
     }
 
-    XenaHostNames = c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq")
-    names(XenaHostNames) = c("https://ucscpublic.xenahubs.net",
-                             "https://tcga.xenahubs.net",
-                             "https://gdc.xenahubs.net",
-                             "https://icgc.xenahubs.net",
-                             "https://toil.xenahubs.net",
-                             "https://pancanatlas.xenahubs.net",
-                             "https://xena.treehouse.gi.ucsc.edu",
-                             "https://pcawg.xenahubs.net",
-                             "https://atacseq.xenahubs.net")
+    XenaHostNames = c(
+        "UCSC_Public",
+        "TCGA",
+        "GDC",
+        "ICGC",
+        "Toil",
+        "PanCancer",
+        "Treehouse",
+        "PCAWG",
+        "ATACseq"
+    )
+    names(XenaHostNames) = c(
+        "https://ucscpublic.xenahubs.net",
+        "https://tcga.xenahubs.net",
+        "https://gdc.xenahubs.net",
+        "https://icgc.xenahubs.net",
+        "https://toil.xenahubs.net",
+        "https://pancanatlas.xenahubs.net",
+        "https://xena.treehouse.gi.ucsc.edu",
+        "https://pcawg.xenahubs.net",
+        "https://atacseq.xenahubs.net"
+    )
 
     resDF$XenaHostNames = XenaHostNames[resDF$XenaHosts]
-    XenaData = resDF[, c("XenaHosts", "XenaHostNames", "XenaCohorts", "XenaDatasets")]
-    if(saveTolocal){
-        data_dir = base::system.file("data",package = "UCSCXenaTools")
-        if(dir.exists(data_dir)){
-            save(XenaData, file=paste0(data_dir, "/XenaData.rda"))
-        }else{
+    XenaData = resDF[, c("XenaHosts",
+                         "XenaHostNames",
+                         "XenaCohorts",
+                         "XenaDatasets")]
+    if (saveTolocal) {
+        data_dir = base::system.file("data", package = "UCSCXenaTools")
+        if (dir.exists(data_dir)) {
+            save(XenaData, file = paste0(data_dir, "/XenaData.rda"))
+        } else{
             message("There is no data directory ", data_dir)
             message("Please check it.")
         }
@@ -211,8 +264,11 @@ XenaDataUpdate = function(saveTolocal=TRUE){
 ##' # get all names of clinical data
 ##' xe2 = XenaFilter(xe, filterDatasets = "clinical")
 ##' datasets(xe2)
-XenaFilter = function(x, filterCohorts=NULL, filterDatasets=NULL, ignore.case=TRUE){
-    if(is.null(filterCohorts) & is.null(filterDatasets)){
+XenaFilter = function(x,
+                      filterCohorts = NULL,
+                      filterDatasets = NULL,
+                      ignore.case = TRUE) {
+    if (is.null(filterCohorts) & is.null(filterDatasets)) {
         message("No operation for input, do nothing...")
     }
 
@@ -222,24 +278,43 @@ XenaFilter = function(x, filterCohorts=NULL, filterDatasets=NULL, ignore.case=TR
     # suppress binding notes
     XenaHosts = XenaCohorts = XenaDatasets = NULL
 
-    if (!is.null(filterCohorts)){
-        cohorts_select = grep(pattern = filterCohorts, x@cohorts, ignore.case = ignore.case, value = TRUE)
+    if (!is.null(filterCohorts)) {
+        cohorts_select = grep(
+            pattern = filterCohorts,
+            x@cohorts,
+            ignore.case = ignore.case,
+            value = TRUE
+        )
     }
 
-    if (!is.null(filterDatasets)){
-        datasets_select = grep(pattern = filterDatasets, x@datasets, ignore.case = ignore.case, value = TRUE)
+    if (!is.null(filterDatasets)) {
+        datasets_select = grep(
+            pattern = filterDatasets,
+            x@datasets,
+            ignore.case = ignore.case,
+            value = TRUE
+        )
     }
 
-    if (identical(cohorts_select, character()) & identical(datasets_select, character())) {
-         warning("No valid cohorts or datasets find! Please check your input.")
-    }else{
-        if(identical(cohorts_select, character()) & !identical(datasets_select, character())){
-            UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts & XenaDatasets %in% datasets_select)
-        }else{
-            if(!identical(cohorts_select, character()) & identical(datasets_select, character())){
-                UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts & XenaCohorts %in% cohorts_select)
-            }else{
-                UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts & XenaCohorts %in% cohorts_select & XenaDatasets %in% datasets_select)
+    if (identical(cohorts_select, character()) &
+        identical(datasets_select, character())) {
+        warning("No valid cohorts or datasets find! Please check your input.")
+    } else{
+        if (identical(cohorts_select, character()) &
+            !identical(datasets_select, character())) {
+            UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts &
+                                            XenaDatasets %in% datasets_select)
+        } else{
+            if (!identical(cohorts_select, character()) &
+                identical(datasets_select, character())) {
+                UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts &
+                                                XenaCohorts %in% cohorts_select)
+            } else{
+                UCSCXenaTools::XenaGenerate(
+                    subset = XenaHosts %in% x@hosts &
+                        XenaCohorts %in% cohorts_select &
+                        XenaDatasets %in% datasets_select
+                )
             }
         }
     }
@@ -251,21 +326,24 @@ XenaFilter = function(x, filterCohorts=NULL, filterDatasets=NULL, ignore.case=TR
 ##' @return a character vector contains hosts
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "TCGA"); hosts(xe)
-hosts = function(x) unname(slot(x, "hosts"))
+hosts = function(x)
+    unname(slot(x, "hosts"))
 ##' Get cohorts of XenaHub object
 ##' @param x a \code{XenaHub} object
 ##' @return a character vector contains cohorts
 ##' @import methods
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "TCGA"); cohorts(xe)
-cohorts = function(x) slot(x, "cohorts")
+cohorts = function(x)
+    slot(x, "cohorts")
 ##' Get datasets of XenaHub object
 ##' @param x a \code{XenaHub} object
 ##' @return a character vector contains datasets
 ##' @import methods
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "TCGA"); datasets(xe)
-datasets = function(x) slot(x, "datasets")
+datasets = function(x)
+    slot(x, "datasets")
 
 .samples_by_host = function(x, hosts, how) {
     if (length(hosts) == 0L) {
@@ -280,10 +358,13 @@ datasets = function(x) slot(x, "datasets")
     if (is.null(names(cohorts)))
         names(cohorts) = cohorts
     x = .cohort_samples_any(hosts, cohorts)
-    switch(how,
-           each=x,
-           any=unique(unlist(x, use.names=FALSE)),
-           all=Reduce(function(x, y) x[x %in% y], x))
+    switch(
+        how,
+        each = x,
+        any = unique(unlist(x, use.names = FALSE)),
+        all = Reduce(function(x, y)
+            x[x %in% y], x)
+    )
 }
 
 .samples_by_cohort = function(x, cohorts, how) {
@@ -295,9 +376,10 @@ datasets = function(x) slot(x, "datasets")
     if (is.null(names(cohorts)))
         names(cohorts) = cohorts
 
-    fun = switch(how, each = .cohort_samples_each,
-                  all = .cohort_samples_all,
-                  any = .cohort_samples_any)
+    fun = switch(how,
+                 each = .cohort_samples_each,
+                 all = .cohort_samples_all,
+                 any = .cohort_samples_any)
     fun(hosts(x), cohorts)
 }
 
@@ -310,9 +392,10 @@ datasets = function(x) slot(x, "datasets")
     if (is.null(names(datasets)))
         names(datasets) = datasets
 
-    fun = switch(how, each = .dataset_samples_each,
-                  all = .dataset_samples_all,
-                  any = .dataset_samples_any)
+    fun = switch(how,
+                 each = .dataset_samples_each,
+                 all = .dataset_samples_all,
+                 any = .dataset_samples_any)
     fun(hosts(x), datasets)
 }
 
@@ -336,15 +419,21 @@ datasets = function(x) slot(x, "datasets")
 ##' lengths(x)        # data sets in ccle cohort on first (only) host
 ##' }
 
-samples = function(x, i=character(), by=c("hosts", "cohorts", "datasets"),
-                    how=c("each", "any", "all"))
+samples = function(x,
+                   i = character(),
+                   by = c("hosts", "cohorts", "datasets"),
+                   how = c("each", "any", "all"))
 {
     stopifnot(is(x, "XenaHub"), is.character(i))
     by = match.arg(by)
     how = match.arg(how)
 
-    fun = switch(match.arg(by), hosts=.samples_by_host,
-           cohorts=.samples_by_cohort, datasets=.samples_by_dataset)
+    fun = switch(
+        match.arg(by),
+        hosts = .samples_by_host,
+        cohorts = .samples_by_cohort,
+        datasets = .samples_by_dataset
+    )
     fun(x, i, how)
 }
 
@@ -353,15 +442,19 @@ setMethod("show", "XenaHub", function(object) {
         len = length(x)
         if (len > 6)
             x = c(head(x, 3), "...", tail(x, 2))
-        cat(label, "() (", len, " total):",
-            "\n  ", paste0(x, collapse="\n  "),
-            "\n", sep="")
+        cat(label,
+            "() (",
+            len,
+            " total):",
+            "\n  ",
+            paste0(x, collapse = "\n  "),
+            "\n",
+            sep = "")
     }
     cat("class:", class(object), "\n")
     cat("hosts():",
-        "\n  ", paste0(hosts(object), collapse="\n  "),
-        "\n", sep="")
+        "\n  ", paste0(hosts(object), collapse = "\n  "),
+        "\n", sep = "")
     showsome("cohorts", cohorts(object))
     showsome("datasets", datasets(object))
 })
-

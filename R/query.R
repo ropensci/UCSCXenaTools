@@ -2,7 +2,7 @@
 
 .xena_post = function(host, query, ...) {
     host = paste0(host, "/data/")
-    res = POST(host, body=query)
+    res = POST(host, body = query)
     stop_for_status(res)
     content(res, ...)
 }
@@ -18,14 +18,14 @@
     ifelse(cohort == .null_cohort, 'nil', .quote(cohort))
 }
 
-.collapse = function(l, collapse=" ") {
-    paste0(.quote(l), collapse=collapse)
+.collapse = function(l, collapse = " ") {
+    paste0(.quote(l), collapse = collapse)
 }
 
-.collapse_cohort = function(cohorts, collapse=" ")
-    paste0(.quote_cohort(cohorts), collapse=collapse)
+.collapse_cohort = function(cohorts, collapse = " ")
+    paste0(.quote_cohort(cohorts), collapse = collapse)
 
-.arrayfmt = function(l, collapse=.collapse) {
+.arrayfmt = function(l, collapse = .collapse) {
     paste0('[', collapse(l), ']')
 }
 
@@ -40,7 +40,8 @@
         '(map :cohort\n',
         '  (query\n',
         '    {:select [[#sql/call [:distinct #sql/call [:ifnull :cohort "(unassigned)"]] :cohort]]\n',
-        '     :from [:dataset]}))')
+        '     :from [:dataset]}))'
+    )
 }
 
 ## cohorts
@@ -48,8 +49,11 @@
 .cohort_datasets_query = function(cohorts) {
     paste0(
         '(map :name\n',
-         '(query {:select [:name] :from [:dataset]\n',
-                 ':where [:in :cohort ', .arrayfmt(cohorts), ']}))\n')
+        '(query {:select [:name] :from [:dataset]\n',
+        ':where [:in :cohort ',
+        .arrayfmt(cohorts),
+        ']}))\n'
+    )
 }
 
 .cohort_samples_any_query = function(cohorts) {
@@ -76,35 +80,51 @@
 
 ## samples
 
-.samples_any_query = function(what) paste0('
-    (map :value
-      (query {
-         :select [:%distinct.value]
-         :from [:dataset]
-         :join [:field [:= :dataset.id :dataset_id]
-                :code [:= :field_id :field.id]]
-         :where [:and
-                 [:in ',  what, ']
-                 [:= :field.name "sampleID"]]
-       }))
-')
-
-.samples_all_query = function(where, what, n) paste0('
-    (map :value
+.samples_any_query = function(what)
+    paste0(
+        '
+        (map :value
         (query {
-            :select [:value] :from [{
-                :select [', where, ' :value]
-                :modifiers [:distinct]
-                :join [:field [:= :dataset.id :dataset_id]
-                       :code [:= :field_id :field.id]]
-                :where [:and [:in ', where, ' ', what, ']
-                        [:= :field.name "sampleID"]]
-                :from [:dataset]
-            }]
-            :group-by [:value]
-            :having [:= :%count.value ', n, ']
+        :select [:%distinct.value]
+        :from [:dataset]
+        :join [:field [:= :dataset.id :dataset_id]
+        :code [:= :field_id :field.id]]
+        :where [:and
+        [:in ',
+        what,
+        ']
+        [:= :field.name "sampleID"]]
         }))
-')
+        '
+    )
+
+.samples_all_query = function(where, what, n)
+    paste0(
+        '
+        (map :value
+        (query {
+        :select [:value] :from [{
+        :select [',
+        where,
+        ' :value]
+        :modifiers [:distinct]
+        :join [:field [:= :dataset.id :dataset_id]
+        :code [:= :field_id :field.id]]
+        :where [:and [:in ',
+        where,
+        ' ',
+        what,
+        ']
+        [:= :field.name "sampleID"]]
+        :from [:dataset]
+        }]
+        :group-by [:value]
+        :having [:= :%count.value ',
+        n,
+        ']
+        }))
+        '
+        )
 
 ## features
 
@@ -114,8 +134,11 @@
         '        :from [:field]\n',
         '        :where [:= :dataset_id {:select [:id]\n',
         '                         :from [:dataset]\n',
-        '                         :where [:= :name ', .quote(dataset), ']}]\n',
-        '        :left-join [:feature [:= :feature.field_id :field.id]]})')
+        '                         :where [:= :name ',
+        .quote(dataset),
+        ']}]\n',
+        '        :left-join [:feature [:= :feature.field_id :field.id]]})'
+    )
 }
 
 ##
@@ -129,7 +152,7 @@
         result = .xena_post(host, "(+ 1 2)")
         stop_for_status(result)
         TRUE
-    }, error=function(...) {
+    }, error = function(...) {
         FALSE
     })
 }
@@ -137,7 +160,7 @@
 .host_cohorts = function(hosts) {
     query = .host_cohorts_query()
     lapply(hosts, function(h) {
-        sort(unlist(.xena_post(h, query), use.names=FALSE))
+        sort(unlist(.xena_post(h, query), use.names = FALSE))
     })
 }
 
@@ -148,15 +171,18 @@
 .cohort_datasets_count = function(hosts, cohorts) {
     query = paste0(
         '(query {:select [:%count.*]\n',
-                ':from [:dataset]\n',
-                ':where [:in :cohort', .arrayfmt(cohorts), ']}))\n')
-    unlist(lapply(hosts, .xena_post, query), use.names=FALSE)
+        ':from [:dataset]\n',
+        ':where [:in :cohort',
+        .arrayfmt(cohorts),
+        ']}))\n'
+    )
+    unlist(lapply(hosts, .xena_post, query), use.names = FALSE)
 }
 
 .cohort_samples_each = function(hosts, cohorts) {
     lapply(hosts, function(h) {
         result = lapply(cohorts, function(c) {
-            .xena_post(h, .cohort_samples_any_query(c), simplifyVector=TRUE)
+            .xena_post(h, .cohort_samples_any_query(c), simplifyVector = TRUE)
         })
         Filter(Negate(is.null), result)
     })
@@ -164,18 +190,20 @@
 
 .cohort_samples_any = function(hosts, cohorts) {
     query = .cohort_samples_any_query(cohorts)
-    lapply(hosts, .xena_post, query, simplifyVector=TRUE)
+    lapply(hosts, .xena_post, query, simplifyVector = TRUE)
 }
 
 .cohort_samples_all = function(hosts, cohorts) {
     query = .cohort_samples_all_query(cohorts)
-    lapply(hosts, .xena_post, query, simplifyVector=TRUE)
+    lapply(hosts, .xena_post, query, simplifyVector = TRUE)
 }
 
 .dataset_samples_each = function(hosts, datasets) {
     lapply(hosts, function(h) {
         result = lapply(datasets, function(d) {
-            .xena_post(h, .dataset_samples_any_query(d), simplifyVector=TRUE)
+            .xena_post(h,
+                       .dataset_samples_any_query(d),
+                       simplifyVector = TRUE)
         })
         Filter(Negate(is.null), result)
     })
@@ -183,10 +211,10 @@
 
 .dataset_samples_any = function(hosts, datasets) {
     query = .dataset_samples_any_query(datasets)
-    lapply(hosts, .xena_post, query, simplifyVector=TRUE)
+    lapply(hosts, .xena_post, query, simplifyVector = TRUE)
 }
 
 .dataset_samples_all = function(hosts, datasets) {
     query = .dataset_samples_all_query(datasets)
-    lapply(hosts, .xena_post, query, simplifyVector=TRUE)
+    lapply(hosts, .xena_post, query, simplifyVector = TRUE)
 }

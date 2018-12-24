@@ -7,7 +7,7 @@
 ##' @import shiny
 ##' @import shinydashboard
 ##' @export
-XenaShiny = function(){
+XenaShiny = function() {
     data <- showTCGA()
     projects  = unique(data$ProjectID)
     datatypes = unique(data$DataType)
@@ -16,56 +16,82 @@ XenaShiny = function(){
     ui = dashboardPage(
         dashboardHeader(title = "UCSCXenaTools"),
         dashboardSidebar(sidebarMenu(
-            menuItem("TCGA DataTable",
-                     tabName = "tcga_datatable", icon = icon("list")),
-            menuItem("Xena Information",
-                     tabName = "xena_info", icon = icon("list"))
+            menuItem(
+                "TCGA DataTable",
+                tabName = "tcga_datatable",
+                icon = icon("list")
+            ),
+            menuItem(
+                "Xena Information",
+                tabName = "xena_info",
+                icon = icon("list")
+            )
         )),
         dashboardBody(tabItems(
-            tabItem(tabName = "tcga_datatable",
-                    fluidRow(
-                        column(2,
-                               selectInput("projectid",
-                                           "ProjectID:",
-                                           c("All", projects), selected = "All", multiple = TRUE)),
-                        column(3,
-                               selectInput("datatype",
-                                           "DataType:",
-                                           c("All", datatypes), selected = "All", multiple = TRUE)),
-                        column(4,
-                               selectInput("filetype",
-                                           "FileType:",
-                                           c("All", filetypes), selected = "All", multiple = TRUE))
+            tabItem(
+                tabName = "tcga_datatable",
+                fluidRow(
+                    column(
+                        2,
+                        selectInput(
+                            "projectid",
+                            "ProjectID:",
+                            c("All", projects),
+                            selected = "All",
+                            multiple = TRUE
+                        )
                     ),
-                    # Create the table.
-                    fluidRow(
-                        DT::dataTableOutput("tcga_table")
-                    ))
+                    column(
+                        3,
+                        selectInput(
+                            "datatype",
+                            "DataType:",
+                            c("All", datatypes),
+                            selected = "All",
+                            multiple = TRUE
+                        )
+                    ),
+                    column(
+                        4,
+                        selectInput(
+                            "filetype",
+                            "FileType:",
+                            c("All", filetypes),
+                            selected = "All",
+                            multiple = TRUE
+                        )
+                    )
+                ),
+                # Create the table.
+                fluidRow(DT::dataTableOutput("tcga_table"))
+            )
         ))
     )
 
 
     server = function(input, output, session) {
-
-        updateSelectInput(session, "datatype",
+        updateSelectInput(session,
+                          "datatype",
                           "DataType:",
-                          c("All", unique(data$DataType)), selected = "All")
-        updateSelectInput(session, "filetype",
+                          c("All", unique(data$DataType)),
+                          selected = "All")
+        updateSelectInput(session,
+                          "filetype",
                           "FileType:",
-                          c("All", unique(data$FileType)), selected = "All")
+                          c("All", unique(data$FileType)),
+                          selected = "All")
 
         # Filter data based on selections
         output$tcga_table <- DT::renderDataTable(DT::datatable({
-
-            if (! "All" %in% input$projectid) {
-                data <- data[data$ProjectID %in% input$projectid,]
+            if (!"All" %in% input$projectid) {
+                data <- data[data$ProjectID %in% input$projectid, ]
             }
-            if (! "All" %in% input$datatype) {
-                data <- data[data$DataType %in% input$datatype,]
+            if (!"All" %in% input$datatype) {
+                data <- data[data$DataType %in% input$datatype, ]
 
             }
-            if (! "All" %in% input$filetype) {
-                data <- data[data$FileType %in% input$filetype,]
+            if (!"All" %in% input$filetype) {
+                data <- data[data$FileType %in% input$filetype, ]
             }
             data
         }))
