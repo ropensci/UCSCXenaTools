@@ -1,5 +1,5 @@
 .onAttach = function(libname, pkgname) {
-    version = packageDescription(pkgname, fields = "Version")
+    version = utils::packageDescription(pkgname, fields = "Version")
 
     msg = paste0("=========================================================================
 ", pkgname, " version ", version, "
@@ -11,5 +11,5 @@ Wang, Shixiang, et al. \"APOBEC3B and APOBEC mutational signature
     response in non-small cell lung cancer.\" Oncogene (2018).
 =========================================================================
                  ")
-    packageStartupMessage(msg)
+    base::packageStartupMessage(msg)
 }
