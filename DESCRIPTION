@@ -12,7 +12,16 @@ Description: Download and explore datasets from UCSC Xena data hubs, which are
     Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
     This package is based on 'XenaR' package.
 Depends: R (>= 2.10)
-Imports: httr, readr, methods, utils, dplyr, shinydashboard, shiny, DT
+Imports: 
+    httr,
+    readr,
+    methods,
+    utils,
+    dplyr,
+    shinydashboard,
+    shiny,
+    DT,
+    magrittr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

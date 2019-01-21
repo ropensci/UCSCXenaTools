@@ -43,8 +43,12 @@ XenaQuery = function(x) {
     hostsName = hosts(x)
     datasetsName = datasets(x)
 
+    message("This will check url status, please be patient.")
     if (length(hostsName) == 1) {
-        dlink = paste0(hostsName, "/download/", datasetsName, ".gz")
+        urls = paste0(hostsName, "/download/", datasetsName)
+        # if file and file.gz all exist, download file # see issue#2
+        dlink = ifelse(!sapply(urls, httr::http_error),
+                       urls, paste0(urls, ".gz"))
         query = data.frame(
             hosts = hostsName,
             datasets = datasetsName,
@@ -64,7 +68,10 @@ XenaQuery = function(x) {
             dataset_list = datasets(xe)
             query$hosts[query$datasets %in% dataset_list] = hosts(xe)
         }
-        query$url = paste0(query$hosts, "/download/", query$datasets, ".gz")
+        urls = paste0(query$hosts, "/download/", query$datasets)
+        # if file and file.gz all exist, download file # see issue#2
+        query$url = ifelse(!sapply(urls, httr::http_error),
+                           urls, paste0(urls, ".gz"))
 
     }
 
@@ -100,9 +107,11 @@ XenaDownload = function(xquery,
     xquery$fileNames = gsub(pattern = "/",
                             replacement = "__",
                             x = xquery$datasets)
-    xquery$fileNames = paste0(xquery$fileNames, ".gz")
+    xquery$fileNames = ifelse(grepl("\\.gz", xquery$url),
+                              paste0(xquery$fileNames, ".gz"),
+                              xquery$fileNames)
     #destdir = paste0(destdir,"/")
-    xquery$destfiles = paste0(destdir, "/", xquery$fileNames)
+    xquery$destfiles = file.path(destdir, xquery$fileNames)
 
     if (!dir.exists(destdir)) {
         dir.create(destdir, recursive = TRUE)
