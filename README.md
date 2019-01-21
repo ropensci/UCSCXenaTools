@@ -1,9 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# UCSCXenaTools
-
-<img src="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/inst/figures/UCSCXenaTools.png" align="right" width="120"/>
+# UCSCXenaTools <img src="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/inst/figures/UCSCXenaTools.png" align="right" style="padding-left:10px;background-color:white;"/>
 
 [![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools)](https://cran.r-project.org/web/packages/UCSCXenaTools)
 ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools)
@@ -94,6 +92,16 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 
 ``` r
 library(UCSCXenaTools)
+#> =========================================================================
+#> UCSCXenaTools version 0.2.7
+#> Github page: https://github.com/ShixiangWang/UCSCXenaTools
+#> Documentation: https://github.com/ShixiangWang/UCSCXenaTools
+#> If you use it in published research, please cite:
+#> Wang, Shixiang, et al. "APOBEC3B and APOBEC mutational signature
+#>     as potential predictive markers for immunotherapy
+#>     response in non-small cell lung cancer." Oncogene (2018).
+#> =========================================================================
+#> 
 data(XenaData)
 
 head(XenaData)
@@ -138,14 +146,14 @@ XenaGenerate()
 #>   https://xena.treehouse.gi.ucsc.edu
 #>   https://pcawg.xenahubs.net
 #>   https://atacseq.xenahubs.net
-#> cohorts() (126 total):
+#> cohorts() (127 total):
 #>   Acute lymphoblastic leukemia (Mullighan 2008)
 #>   Breast Cancer (Caldas 2007)
 #>   Breast Cancer (Chin 2006)
 #>   ...
 #>   PCAWG (donor centric)
 #>   PCAWG (specimen centric)
-#> datasets() (1591 total):
+#> datasets() (1595 total):
 #>   mullighan2008_public/mullighan2008_500K_genomicMatrix
 #>   mullighan2008_public/mullighan2008_public_clinicalMatrix
 #>   mullighan2008_public/mullighan2008_SNP6_genomicMatrix
@@ -267,15 +275,20 @@ Create a query before download data
 
 ``` r
 xe2_query = XenaQuery(xe2)
+#> This will check url status, please be patient.
 xe2_query
-#>                       hosts                                datasets
-#> 1 https://tcga.xenahubs.net TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
-#> 2 https://tcga.xenahubs.net TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
-#> 3 https://tcga.xenahubs.net TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
-#>                                                                             url
-#> 1 https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
-#> 2 https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix.gz
-#> 3 https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix.gz
+#>                                                                                                hosts
+#> https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix https://tcga.xenahubs.net
+#> https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix https://tcga.xenahubs.net
+#> https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix https://tcga.xenahubs.net
+#>                                                                                                           datasets
+#> https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
+#> https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
+#> https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
+#>                                                                                                                                                      url
+#> https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
+#> https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix.gz
+#> https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix.gz
 ```
 
 ### Download
@@ -288,7 +301,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /tmp/Rtmp6Uhvn2.
+#> We will download files to directory /tmp/RtmpdkaJnj.
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
@@ -628,7 +641,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] bindrcpp_0.2.2       UCSCXenaTools_0.2.6  RevoUtils_11.0.1    
+#> [1] bindrcpp_0.2.2       UCSCXenaTools_0.2.7  RevoUtils_11.0.1    
 #> [4] RevoUtilsMath_11.0.0
 #> 
 #> loaded via a namespace (and not attached):
@@ -640,10 +653,10 @@ sessionInfo()
 #> [16] htmltools_0.3.6      yaml_2.2.0           digest_0.6.18       
 #> [19] assertthat_0.2.0     tibble_2.0.0         crayon_1.3.4        
 #> [22] shiny_1.2.0          readr_1.3.1          later_0.7.5         
-#> [25] purrr_0.2.5          promises_1.0.1       mime_0.6            
-#> [28] glue_1.3.0           evaluate_0.12        rmarkdown_1.11      
-#> [31] stringi_1.2.4        compiler_3.5.1       pillar_1.3.1        
-#> [34] httpuv_1.4.5.1       pkgconfig_2.0.2
+#> [25] purrr_0.2.5          promises_1.0.1       curl_3.3            
+#> [28] mime_0.6             glue_1.3.0           evaluate_0.12       
+#> [31] rmarkdown_1.11       stringi_1.2.4        compiler_3.5.1      
+#> [34] pillar_1.3.1         httpuv_1.4.5.1       pkgconfig_2.0.2
 ```
 
 ## Bug Report
