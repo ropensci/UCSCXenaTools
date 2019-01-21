@@ -36,9 +36,11 @@ XenaGenerate = function(XenaData = UCSCXenaTools::XenaData,
 ##' @return a \code{tibble} contains hosts, datasets and url
 ##' @export
 ##' @examples
+##' \donttest{
 ##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 ##' hosts(xe)
 ##' xe_query = XenaQuery(xe)
+##' }
 XenaQuery = function(x) {
     hostsName = hosts(x)
     datasetsName = datasets(x)
@@ -92,11 +94,12 @@ XenaQuery = function(x) {
 ##' @export
 ##' @importFrom utils download.file
 ##' @examples
+##' \donttest{
 ##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 ##' hosts(xe)
 ##' xe_query = XenaQuery(xe)
-##' # xe_download = XenaDownload(xe_query)
-##'
+##' xe_download = XenaDownload(xe_query)
+##' }
 
 XenaDownload = function(xquery,
                         destdir = tempdir(),
@@ -174,13 +177,14 @@ XenaDownload = function(xquery,
 ##' @importFrom readr read_tsv_chunked
 ##' @importFrom readr cols
 ##' @examples
+##' \donttest{
 ##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
 ##' hosts(xe)
 ##' xe_query = XenaQuery(xe)
 ##'
-##' # xe_download = XenaDownload(xe_query)
-##' # dat = XenaPrepare(xe_download)
-##'
+##' xe_download = XenaDownload(xe_query)
+##' dat = XenaPrepare(xe_download)
+##' }
 
 XenaPrepare = function(objects,
                        objectsName = NULL,
