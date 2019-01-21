@@ -1,6 +1,6 @@
 # Generate, query, download and prepare functions
 
-##' Generate and Subset a \code{XenaHub} Object from \code{XenaData}
+##' Generate and Subset a XenaHub Object from XenaData
 ##'
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @param XenaData a data.frame. Default is \code{data(XenaData)}. The input of this

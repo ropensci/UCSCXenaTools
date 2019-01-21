@@ -4,13 +4,13 @@
 \name{XenaHub-class}
 \alias{XenaHub-class}
 \alias{.XenaHub}
-\title{a S4 class to represent UCSC Xena Data Hubs
+\title{@title a S4 class to represent UCSC Xena Data Hubs
  @slot hosts hosts of data hubs
  @slot cohorts cohorts of data hubs
  @slot datasets datasets of data hubs
  @importFrom methods new}
 \description{
-a S4 class to represent UCSC Xena Data Hubs
+@title a S4 class to represent UCSC Xena Data Hubs
  @slot hosts hosts of data hubs
  @slot cohorts cohorts of data hubs
  @slot datasets datasets of data hubs

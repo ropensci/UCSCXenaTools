@@ -25,8 +25,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-**Current Version: 0.2.6**
-
 `UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
 
 > A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
@@ -168,9 +166,7 @@ XenaFilter(xe2, filterDatasets = "LUAD|LUSC|LUNG") -> xe2
 
 Pipe can be used here.
 
-```{r}
-suppressMessages(require(dplyr))
-
+```{r, eval=FALSE}
 xe %>% 
     XenaFilter(filterDatasets = "clinical") %>% 
     XenaFilter(filterDatasets = "luad|lusc|lung")
@@ -282,7 +278,7 @@ tcga_data$DataInfo
 
 Set `download=TRUE` to download data, default data will be downloaded to system temp directory (you can specify the path with `destdir` option):
 
-```{r}
+```{r, eval=FALSE}
 # only download clinical data
 getTCGAdata(c("UVM", "LUAD"), download = TRUE)
 ```
