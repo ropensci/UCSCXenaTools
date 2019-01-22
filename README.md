@@ -1,17 +1,25 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# UCSCXenaTools <img src="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/inst/figures/UCSCXenaTools.png" align="right" style="padding-left:10px;background-color:white;"/>
+# UCSCXenaTools <img src='man/figures/logo.png' align="right" height="139" />
 
-[![](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools)](https://cran.r-project.org/web/packages/UCSCXenaTools)
-![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools)
-![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools)
+<!-- badges: start -->
+
+[![CRAN](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools)](https://cran.r-project.org/package=UCSCXenaTools)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools)
+[![Travis build
+status](https://travis-ci.org/ShixiangWang/UCSCXenaTools.svg?branch=master)](https://travis-ci.org/ShixiangWang/UCSCXenaTools)
+
+![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools)
+![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools)
 [![Coverage
 Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master)
 [![GitHub
 issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+)
+[![Closed
+issues](https://img.shields.io/github/issues-closed/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
+<!-- badges: end -->
 
 `UCSCXenaTools` is a R package download and explore data from **UCSC
 Xena data hubs**, which are
@@ -24,7 +32,7 @@ Xena data hubs**, which are
 
 If you use this package in academic field, please cite:
 
-*Wang, Shixiang, et al. “APOBEC3B and APOBEC mutational signature as
+*Wang, Shixiang, et al. “APOBEC3B and APOBEC mutational signature as
 potential predictive markers for immunotherapy response in non-small
 cell lung cancer.” Oncogene (2018).*
 
@@ -92,16 +100,6 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 
 ``` r
 library(UCSCXenaTools)
-#> =========================================================================
-#> UCSCXenaTools version 0.2.7
-#> Github page: https://github.com/ShixiangWang/UCSCXenaTools
-#> Documentation: https://github.com/ShixiangWang/UCSCXenaTools
-#> If you use it in published research, please cite:
-#> Wang, Shixiang, et al. "APOBEC3B and APOBEC mutational signature
-#>     as potential predictive markers for immunotherapy
-#>     response in non-small cell lung cancer." Oncogene (2018).
-#> =========================================================================
-#> 
 data(XenaData)
 
 head(XenaData)
@@ -146,14 +144,14 @@ XenaGenerate()
 #>   https://xena.treehouse.gi.ucsc.edu
 #>   https://pcawg.xenahubs.net
 #>   https://atacseq.xenahubs.net
-#> cohorts() (127 total):
+#> cohorts() (126 total):
 #>   Acute lymphoblastic leukemia (Mullighan 2008)
 #>   Breast Cancer (Caldas 2007)
 #>   Breast Cancer (Chin 2006)
 #>   ...
 #>   PCAWG (donor centric)
 #>   PCAWG (specimen centric)
-#> datasets() (1595 total):
+#> datasets() (1591 total):
 #>   mullighan2008_public/mullighan2008_500K_genomicMatrix
 #>   mullighan2008_public/mullighan2008_public_clinicalMatrix
 #>   mullighan2008_public/mullighan2008_SNP6_genomicMatrix
@@ -275,20 +273,15 @@ Create a query before download data
 
 ``` r
 xe2_query = XenaQuery(xe2)
-#> This will check url status, please be patient.
 xe2_query
-#>                                                                                                hosts
-#> https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix https://tcga.xenahubs.net
-#> https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix https://tcga.xenahubs.net
-#> https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix https://tcga.xenahubs.net
-#>                                                                                                           datasets
-#> https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
-#> https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
-#> https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
-#>                                                                                                                                                      url
-#> https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
-#> https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix.gz
-#> https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix.gz
+#>                       hosts                                datasets
+#> 1 https://tcga.xenahubs.net TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
+#> 2 https://tcga.xenahubs.net TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
+#> 3 https://tcga.xenahubs.net TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
+#>                                                                             url
+#> 1 https://tcga.xenahubs.net/download/TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
+#> 2 https://tcga.xenahubs.net/download/TCGA.LUNG.sampleMap/LUNG_clinicalMatrix.gz
+#> 3 https://tcga.xenahubs.net/download/TCGA.LUSC.sampleMap/LUSC_clinicalMatrix.gz
 ```
 
 ### Download
@@ -301,7 +294,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /tmp/RtmpdkaJnj.
+#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpH0xadn.
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
@@ -621,42 +614,36 @@ how to operate shiny.
 
 ``` r
 sessionInfo()
-#> R version 3.5.1 (2018-07-02)
-#> Platform: x86_64-pc-linux-gnu (64-bit)
-#> Running under: Deepin 15
+#> R version 3.5.2 (2018-12-20)
+#> Platform: x86_64-apple-darwin15.6.0 (64-bit)
+#> Running under: macOS High Sierra 10.13.6
 #> 
 #> Matrix products: default
-#> BLAS: /opt/microsoft/ropen/3.5.1/lib64/R/lib/libRblas.so
-#> LAPACK: /opt/microsoft/ropen/3.5.1/lib64/R/lib/libRlapack.so
+#> BLAS: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRblas.0.dylib
+#> LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
 #> 
 #> locale:
-#>  [1] LC_CTYPE=zh_CN.UTF-8       LC_NUMERIC=C              
-#>  [3] LC_TIME=zh_CN.UTF-8        LC_COLLATE=zh_CN.UTF-8    
-#>  [5] LC_MONETARY=zh_CN.UTF-8    LC_MESSAGES=zh_CN.UTF-8   
-#>  [7] LC_PAPER=zh_CN.UTF-8       LC_NAME=C                 
-#>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#> [11] LC_MEASUREMENT=zh_CN.UTF-8 LC_IDENTIFICATION=C       
+#> [1] zh_CN.UTF-8/zh_CN.UTF-8/zh_CN.UTF-8/C/zh_CN.UTF-8/zh_CN.UTF-8
 #> 
 #> attached base packages:
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] bindrcpp_0.2.2       UCSCXenaTools_0.2.7  RevoUtils_11.0.1    
-#> [4] RevoUtilsMath_11.0.0
+#> [1] bindrcpp_0.2.2      UCSCXenaTools_0.2.6 pacman_0.5.0       
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] Rcpp_1.0.0           knitr_1.21           bindr_0.1.1         
 #>  [4] magrittr_1.5         hms_0.4.2            tidyselect_0.2.5    
 #>  [7] xtable_1.8-3         R6_2.3.0             rlang_0.3.1         
 #> [10] httr_1.4.0           stringr_1.3.1        dplyr_0.7.8         
-#> [13] tools_3.5.1          shinydashboard_0.7.1 xfun_0.4            
+#> [13] tools_3.5.2          shinydashboard_0.7.1 xfun_0.4            
 #> [16] htmltools_0.3.6      yaml_2.2.0           digest_0.6.18       
 #> [19] assertthat_0.2.0     tibble_2.0.0         crayon_1.3.4        
 #> [22] shiny_1.2.0          readr_1.3.1          later_0.7.5         
-#> [25] purrr_0.2.5          promises_1.0.1       curl_3.3            
-#> [28] mime_0.6             glue_1.3.0           evaluate_0.12       
-#> [31] rmarkdown_1.11       stringi_1.2.4        compiler_3.5.1      
-#> [34] pillar_1.3.1         httpuv_1.4.5.1       pkgconfig_2.0.2
+#> [25] purrr_0.2.5          promises_1.0.1       mime_0.6            
+#> [28] glue_1.3.0           evaluate_0.12        rmarkdown_1.11      
+#> [31] stringi_1.2.4        compiler_3.5.2       pillar_1.3.1        
+#> [34] httpuv_1.4.5.1       pkgconfig_2.0.2
 ```
 
 ## Bug Report

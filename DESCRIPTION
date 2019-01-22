@@ -29,6 +29,7 @@ Suggests:
     knitr,
     rmarkdown,
     prettydoc,
-    testthat
+    testthat,
+    covr
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
