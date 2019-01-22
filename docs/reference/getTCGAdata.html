@@ -37,6 +37,8 @@ it is similar to getFirehoseData function in RTCGAToolbox package. If you are
 not familiar with data structure of TCGA on Xena, please visit
 &amp;lt;https://xenabrowser.net/datapages/?host=https
 select one tumor type (or what you want to download)." />
+
+<meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -322,7 +324,7 @@ check with <code><a href='showTCGA.html'>showTCGA()</a></code>.</p>
 #&gt; </div><div class='input'><span class='co'>###### download datasets</span>
 
 <span class='co'># 3 download clinical datasets of LUAD and LUSC</span>
-<span class='fu'>getTCGAdata</span>(<span class='kw'>project</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"LUAD"</span>, <span class='st'>"LUSC"</span>), <span class='kw'>clinical</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>This will check url status, please be patient.</span></div><div class='output co'>#&gt; <span class='message'>We will download files to directory /tmp/RtmpdwCe0x.</span></div><div class='output co'>#&gt; <span class='message'>Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz</span></div><div class='output co'>#&gt; <span class='message'>Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz</span></div><div class='output co'>#&gt; <span class='message'>Note fileNames transfromed from datasets name and / chracter all changed to __ character.</span></div><div class='input'>
+<span class='fu'>getTCGAdata</span>(<span class='kw'>project</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"LUAD"</span>, <span class='st'>"LUSC"</span>), <span class='kw'>clinical</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>This will check url status, please be patient.</span></div><div class='output co'>#&gt; <span class='message'>We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpi2C2GP.</span></div><div class='output co'>#&gt; <span class='message'>/var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpi2C2GP/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!</span></div><div class='output co'>#&gt; <span class='message'>/var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpi2C2GP/TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz, the file has been download!</span></div><div class='output co'>#&gt; <span class='message'>Note fileNames transfromed from datasets name and / chracter all changed to __ character.</span></div><div class='input'>
 # 4 download clinical, RPPA and gene mutation datasets of LUAD and LUSC
 # getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)
 </div></pre>
