@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 `UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
 
-> A collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
+> a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
 >
 > -- [UCSC Xena](https://xena.ucsc.edu/)
 
@@ -44,11 +44,11 @@ install.packages("UCSCXenaTools")
 ```
 
 
-You can also install devel version of UCSCXenaTools from github with:
+You can also install devel version of **UCSCXenaTools** from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
-devtools::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
+remotes::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
 ```
 
 Read this vignettes.
@@ -64,7 +64,7 @@ browseVignettes("UCSCXenaTools")
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
-Currently, `UCSCXenaTools` support all 9 data hubs of UCSC Xena.
+Currently, **UCSCXenaTools** support all 9 data hubs of UCSC Xena.
 
 * UCSC Public Hub: <https://ucscpublic.xenahubs.net>
 * TCGA Hub: <https://tcga.xenahubs.net>
@@ -76,18 +76,17 @@ Currently, `UCSCXenaTools` support all 9 data hubs of UCSC Xena.
 * PCAWG: <https://pcawg.xenahubs.net>
 * ATAC-seq: <https://atacseq.xenahubs.net>
 
-If the `API` changed, please remind me by email to <w_shixiang@163.com> or open an issue on [GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
+If the url of data hub changed, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
 ## Usage
 
-Download UCSC Xena Datasets and load them into R by `UCSCXenaTools` is a workflow in `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare`, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
+Download UCSC Xena Datasets and load them into R by **UCSCXenaTools** is a workflow in `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare` functions, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
 
-The following use clinical data download of LUNG, LUAD, LUSC from TCGA (hg19 version) as an example.
-
+To show the basic usage of **UCSCXenaTools**, we download clinical data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
 
 ### XenaData data.frame
 
-Begin from version `0.2.0`, `UCSCXenaTools` use a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which communicate with API of UCSC Xena Data Hubs.
+Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which communicate with API of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
@@ -98,8 +97,6 @@ data(XenaData)
 head(XenaData)
 ```
 
-
-
 ### Generate a XenaHub object
 
 This can be implemented by `XenaGenerate` function, which generate `XenaHub` object from `XenaData` data frame.
@@ -108,13 +105,13 @@ This can be implemented by `XenaGenerate` function, which generate `XenaHub` obj
 XenaGenerate()
 ```
 
-We can set `subset` argument to narrow datasets.
+You can set `subset` argument to narrow datasets.
 
 ```{r}
 XenaGenerate(subset = XenaHostNames=="TCGA")
 ```
 
->You can use `XenaHub()` to generate a `XenaHub` object for API communication, but it is not recommended. 
+>You can also use `XenaHub()` to generate a `XenaHub` object for API communication, but it is not recommended. 
 
 It's possible to explore `hosts()`, `cohorts()` and `datasets()`.
 
@@ -130,28 +127,16 @@ head(datasets(xe))
 
 Pipe operator `%>%` can also be used here.
 
-
-```
-> library(tidyverse)
-> XenaData %>% filter(XenaHostNames == "TCGA", grepl("BRCA", XenaCohorts), grepl("Path", XenaDatasets)) %>% XenaGenerate()
-class: XenaHub 
-hosts():
-  https://tcga.xenahubs.net
-cohorts() (1 total):
-  TCGA Breast Cancer (BRCA)
-datasets() (4 total):
-  TCGA.BRCA.sampleMap/Pathway_Paradigm_mRNA_And_Copy_Number
-  TCGA.BRCA.sampleMap/Pathway_Paradigm_RNASeq
-  TCGA.BRCA.sampleMap/Pathway_Paradigm_RNASeq_And_Copy_Number
-  TCGA.BRCA.sampleMap/Pathway_Paradigm_mRNA
+```{r, message=FALSE}
+library(dplyr)
+XenaData %>% 
+    filter(XenaHostNames == "TCGA", grepl("BRCA", XenaCohorts), grepl("Path", XenaDatasets)) %>%
+    XenaGenerate()
 ```
 
 ### Filter 
 
-There are too many datasets, we filter them by `XenaFilter` function.
-
-Regular expression can be used to filter XenaHub object to what we want.
-
+There are too many datasets in `xe`, you can filter them by `XenaFilter` function.Regular expression can be used here.
 
 ```{r}
 (XenaFilter(xe, filterDatasets = "clinical") -> xe2)
@@ -166,7 +151,7 @@ XenaFilter(xe2, filterDatasets = "LUAD|LUSC|LUNG") -> xe2
 
 Pipe can be used here.
 
-```{r, eval=FALSE}
+```{r}
 xe %>% 
     XenaFilter(filterDatasets = "clinical") %>% 
     XenaFilter(filterDatasets = "luad|lusc|lung")
@@ -174,7 +159,7 @@ xe %>%
 
 ### Query
 
-Create a query before download data
+Create a query before downloading data.
 
 ```{r}
 xe2_query = XenaQuery(xe2)
@@ -189,8 +174,6 @@ If the data exists, command will not run to download them, but you can force it 
 
 ```{r}
 xe2_download = XenaDownload(xe2_query)
-## not run
-#xe2_download = XenaDownload(xe2_query, destdir = "E:/Github/XenaData/test/")
 ```
 
 > Note fileNames transfromed from datasets name and / chracter all changed to __ character.
