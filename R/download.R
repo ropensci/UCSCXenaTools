@@ -144,7 +144,7 @@ XenaDownload = function(xquery,
     })
 
     message(
-        "Note fileNames transfromed from datasets name and / chracter all changed to __ character."
+        "Note file names inherit from names in datasets column\n  and '/' all changed to '__'."
     )
     invisible(xquery)
 }
