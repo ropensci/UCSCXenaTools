@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# UCSCXenaTools <img src='man/figures/logo.png' align="right" height="139" />
+# UCSCXenaTools <img src='man/figures/logo.png' align="right" height="140" width="120" alt="logo"/>
 
 <!-- badges: start -->
 [![CRAN](http://www.r-pkg.org/badges/version-last-release/UCSCXenaTools)](https://cran.r-project.org/package=UCSCXenaTools) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true)](https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools) [![Travis build status](https://travis-ci.org/ShixiangWang/UCSCXenaTools.svg?branch=master)](https://travis-ci.org/ShixiangWang/UCSCXenaTools)
@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master) [![GitHub issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+) [![Closed issues](https://img.shields.io/github/issues-closed/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
 <!-- badges: end -->
 
-`UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
+**UCSCXenaTools** is a R package download and explore data from **UCSC Xena data hubs**, which are
 
 > a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
 >

@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-`UCSCXenaTools` is a R package download and explore data from **UCSC Xena data hubs**, which are
+**UCSCXenaTools** is a R package download and explore data from **UCSC Xena data hubs**, which are
 
 > a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
 >

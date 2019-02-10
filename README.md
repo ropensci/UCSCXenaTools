@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# UCSCXenaTools <img src='man/figures/logo.png' align="right" height="139" />
+# UCSCXenaTools <img src='man/figures/logo.png' align="right" height="140" width="120" alt="logo"/>
 
 <!-- badges: start -->
 
@@ -21,7 +21,7 @@ issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](ht
 issues](https://img.shields.io/github/issues-closed/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
 <!-- badges: end -->
 
-`UCSCXenaTools` is a R package download and explore data from **UCSC
+**UCSCXenaTools** is a R package download and explore data from **UCSC
 Xena data hubs**, which are
 
 > a collection of UCSC-hosted public databases such as TCGA, ICGC,
@@ -325,7 +325,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /tmp/Rtmp5dL0FR.
+#> We will download files to directory /tmp/RtmpWpyLoM.
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz

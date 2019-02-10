@@ -1,5 +1,10 @@
 # UCSCXenaTools 
 
+## v0.2.8
+
+* update README and vignette
+* fix some typo
+
 ## v0.2.7
 
 * fix bug #2
