@@ -48,7 +48,7 @@ You can also install devel version of **UCSCXenaTools** from github
 with:
 
 ``` r
-# install.packages("devtools")
+# install.packages("remotes")
 remotes::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
 ```
 
@@ -103,7 +103,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 0.2.7
+#> UCSCXenaTools version 0.2.7.9000
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
 #> Documentation: https://github.com/ShixiangWang/UCSCXenaTools
 #> If you use it in published research, please cite:
@@ -325,15 +325,16 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /tmp/RtmpWpyLoM.
+#> We will download files to directory /tmp/RtmpfnJlsP.
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
-#> Note fileNames transfromed from datasets name and / chracter all changed to __ character.
+#> Note file names inherit from names in datasets column
+#>   and '/' all changed to '__'.
 ```
 
-> Note fileNames transfromed from datasets name and / chracter all
-> changed to \_\_ character.
+> **Note** file names inherit from names in datasets columnand ‘/’ all
+> changed to ’\_\_’.
 
 ### Prepare
 
@@ -663,8 +664,9 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] bindrcpp_0.2.2       dplyr_0.7.8          UCSCXenaTools_0.2.7 
-#> [4] RevoUtils_11.0.1     RevoUtilsMath_11.0.0
+#> [1] bindrcpp_0.2.2           dplyr_0.7.8             
+#> [3] UCSCXenaTools_0.2.7.9000 RevoUtils_11.0.1        
+#> [5] RevoUtilsMath_11.0.0    
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] Rcpp_1.0.0           knitr_1.21           bindr_0.1.1         

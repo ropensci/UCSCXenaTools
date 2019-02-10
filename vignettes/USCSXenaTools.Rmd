@@ -47,7 +47,7 @@ install.packages("UCSCXenaTools")
 You can also install devel version of **UCSCXenaTools** from github with:
 
 ```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
+# install.packages("remotes")
 remotes::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
 ```
 
@@ -176,7 +176,7 @@ If the data exists, command will not run to download them, but you can force it 
 xe2_download = XenaDownload(xe2_query)
 ```
 
-> Note fileNames transfromed from datasets name and / chracter all changed to __ character.
+> **Note** file names inherit from names in datasets column\n  and '/' all changed to '__'.
 
 ### Prepare
 
