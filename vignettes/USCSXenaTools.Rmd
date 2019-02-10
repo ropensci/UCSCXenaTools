@@ -176,7 +176,7 @@ If the data exists, command will not run to download them, but you can force it 
 xe2_download = XenaDownload(xe2_query)
 ```
 
-> **Note** file names inherit from names in datasets column\n  and '/' all changed to '__'.
+> **Note** file names inherit from names in datasets column and '/' all changed to '__'.
 
 ### Prepare
 

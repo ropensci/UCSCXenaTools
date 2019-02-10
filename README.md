@@ -325,7 +325,7 @@ force it by `force` option.
 
 ``` r
 xe2_download = XenaDownload(xe2_query)
-#> We will download files to directory /tmp/RtmpfnJlsP.
+#> We will download files to directory /tmp/RtmppqRtNF.
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
@@ -333,7 +333,7 @@ xe2_download = XenaDownload(xe2_query)
 #>   and '/' all changed to '__'.
 ```
 
-> **Note** file names inherit from names in datasets columnand ‘/’ all
+> **Note** file names inherit from names in datasets column and ‘/’ all
 > changed to ’\_\_’.
 
 ### Prepare
