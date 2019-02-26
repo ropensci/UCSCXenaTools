@@ -17,18 +17,20 @@ for substitute this.}
 
 \item{datasets}{default is empty character vector, all datasets will be returned.}
 
-\item{hostName}{one to seven of \code{c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq")}. This is
-a easier option for user than \code{hosts} option. Note, this option will overlap \code{hosts}.}
+\item{hostName}{one to seven of
+\code{c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq")}.
+This is an easier option for user than \code{hosts} option. Note, this option
+will overlap \code{hosts}.}
 }
 \value{
-a \code{XenaHub} object
+a \link{XenaHub} object
 }
 \description{
 Major function of \code{UCSCXenatools}. It is used to generate original
 \code{XenaHub} object according to hosts, cohorts, datasets or hostName.
 If these arguments not specified, all hosts and corresponding datasets
 will be returned as a \code{XenaHub} object. All datasets can be found
-at <https://xenabrowser.net/datapages/>.
+at \url{https://xenabrowser.net/datapages/}.
 }
 \examples{
 \donttest{
@@ -45,5 +47,5 @@ samples(xe)   # get samples
 }
 }
 \author{
-Shixiang Wang <w_shixiang@163.com>
+Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}
 }

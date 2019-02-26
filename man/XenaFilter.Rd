@@ -5,10 +5,10 @@
 \title{Filter a XenaHub Object}
 \usage{
 XenaFilter(x, filterCohorts = NULL, filterDatasets = NULL,
-  ignore.case = TRUE)
+  ignore.case = TRUE, ...)
 }
 \arguments{
-\item{x}{a \code{XenaHub} object}
+\item{x}{a \link{XenaHub} object}
 
 \item{filterCohorts}{default is \code{NULL}. A character used to filter cohorts,
 regular expression is supported.}
@@ -16,15 +16,18 @@ regular expression is supported.}
 \item{filterDatasets}{default is \code{NULL}. A character used to filter datasets,
 regular expression is supported.}
 
-\item{ignore.case}{if \code{FALSE}, the pattern matching is case sensitive and if \code{TRUE}, case is ignored during matching.}
+\item{ignore.case}{if \code{FALSE}, the pattern matching is case sensitive
+and if \code{TRUE}, case is ignored during matching.}
+
+\item{...}{other arguments except \code{value} passed to \code{\link[base:grep]{base::grep()}}.}
 }
 \value{
 a \code{XenaHub} object
 }
 \description{
-Major function of \code{UCSCXenatools}. It is used to filter
+One of main functions in \strong{UCSCXenatools}. It is used to filter
 \code{XenaHub} object according to cohorts, datasets. All datasets can be found
-at <https://xenabrowser.net/datapages/>.
+at \url{https://xenabrowser.net/datapages/}.
 }
 \examples{
 # operate TCGA datasets
@@ -35,5 +38,5 @@ xe2 = XenaFilter(xe, filterDatasets = "clinical")
 datasets(xe2)
 }
 \author{
-Shixiang Wang <w_shixiang@163.com>
+Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}
 }

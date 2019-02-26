@@ -17,5 +17,5 @@ a \code{data.frame} contains all datasets information of Xena.
 Get or Update Newest Data Information of UCSC Xena Data Hubs
 }
 \author{
-Shixiang Wang <w_shixiang@163.com>
+Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}
 }

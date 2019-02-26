@@ -9,8 +9,8 @@
 Generated from UCSC Xena Data Hubs.
 }
 \description{
-This \code{data.frame} is very useful for selecting datasets quickly and indepent on
- API of UCSC Xena Hubs.
+This \code{data.frame} is very useful for selecting datasets quickly and
+indepent on API of UCSC Xena Hubs.
 }
 \examples{
 data(XenaData)

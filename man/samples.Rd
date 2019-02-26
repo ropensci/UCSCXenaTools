@@ -8,7 +8,7 @@ samples(x, i = character(), by = c("hosts", "cohorts", "datasets"),
   how = c("each", "any", "all"))
 }
 \arguments{
-\item{x}{a \code{XenaHub} object}
+\item{x}{a \link{XenaHub} object}
 
 \item{i}{a empty character}
 

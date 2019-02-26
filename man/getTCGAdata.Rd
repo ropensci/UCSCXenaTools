@@ -32,7 +32,8 @@ use other function provided by \code{UCSCXenaTools} to filter result datasets yo
 
 \item{mRNAArray}{logical. if \code{TRUE}, download mRNA microarray data. Default is \code{FALSE}.}
 
-\item{mRNASeqType}{character vector. Can be one, two or three in \code{c("normalized", "pancan normalized", "percentile")}.}
+\item{mRNASeqType}{character vector. Can be one, two or three
+in \code{c("normalized", "pancan normalized", "percentile")}.}
 
 \item{miRNASeq}{logical. if \code{TRUE}, download miRNASeq data. Default is \code{FALSE}.}
 
@@ -67,16 +68,15 @@ if \code{download=TRUE}, return \code{data.frame} from \code{XenaDownload},
 otherwise return a list including \code{XenaHub} object and datasets information
 }
 \description{
-This is the most useful function for user to download common TCGA datasets,
-it is similar to \code{getFirehoseData} function in \code{RTCGAToolbox} package. If you are
-not familiar with data structure of TCGA on Xena, please visit
-<https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu> and
-select one tumor type (or what you want to download).
+This is the most useful function for user to download common
+TCGA datasets, it is similar to \code{getFirehoseData} function in \code{RTCGAToolbox}
+package.
 }
 \details{
-TCGA Common Data Sets are frequently used for biological analysis. To make easier to achieve these
-data, this function provide really easy options to choose datasets and behavior. All availble information about datasets of TCGA can access vis \code{availTCGA()} and
-check with \code{showTCGA()}.
+TCGA Common Data Sets are frequently used for biological analysis.
+To make easier to achieve these data, this function provide really easy
+options to choose datasets and behavior. All availble information about
+datasets of TCGA can access vis \code{availTCGA()} and check with \code{showTCGA()}.
 }
 \examples{
 ###### get data, but not download
@@ -100,5 +100,5 @@ getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, download = TRUE)
 }
 }
 \author{
-Shixiang Wang <w_shixiang@163.com>
+Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}
 }

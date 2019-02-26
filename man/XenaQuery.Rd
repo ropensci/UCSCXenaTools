@@ -7,7 +7,7 @@
 XenaQuery(x)
 }
 \arguments{
-\item{x}{a \code{XenaHub} object}
+\item{x}{a \link{XenaHub} object}
 }
 \value{
 a \code{tibble} contains hosts, datasets and url
@@ -23,5 +23,5 @@ xe_query = XenaQuery(xe)
 }
 }
 \author{
-Shixiang Wang <w_shixiang@163.com>
+Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}
 }

@@ -17,7 +17,7 @@
 ##' @description Return Xena Default hosts
 ##' @return A character vector include current defalut hosts
 ##' @author Shixiang Wang <w_shixiang@163.com>
-##' @seealso \code{\link[UCSCXenaTools]{XenaHub}}
+##' @seealso [UCSCXenaTools::XenaHub()]
 ##' @export
 xena_default_hosts = function() {
     c(
@@ -35,21 +35,23 @@ xena_default_hosts = function() {
 
 ##' Generate a XenaHub Object
 ##'
-##' Major function of \code{UCSCXenatools}. It is used to generate original
-##' \code{XenaHub} object according to hosts, cohorts, datasets or hostName.
+##' Major function of `UCSCXenatools`. It is used to generate original
+##' `XenaHub` object according to hosts, cohorts, datasets or hostName.
 ##' If these arguments not specified, all hosts and corresponding datasets
-##' will be returned as a \code{XenaHub} object. All datasets can be found
+##' will be returned as a `XenaHub` object. All datasets can be found
 ##' at <https://xenabrowser.net/datapages/>.
 ##'
 ##'
 ##' @param hosts a character vector specify UCSC Xena hosts, all available hosts can be
-##' found by \code{xena_default_hosts()} function. \code{hostName} is a recommend option
+##' found by `xena_default_hosts()` function. `hostName` is a recommend option
 ##' for substitute this.
 ##' @param cohorts default is empty character vector, all cohorts will be returned.
 ##' @param datasets default is empty character vector, all datasets will be returned.
-##' @param hostName one to seven of \code{c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq")}. This is
-##' a easier option for user than \code{hosts} option. Note, this option will overlap \code{hosts}.
-##' @return a \code{XenaHub} object
+##' @param hostName one to seven of
+##' `c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq")`.
+##'  This is an easier option for user than `hosts` option. Note, this option
+##'  will overlap `hosts`.
+##' @return a [XenaHub] object
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
 ##' @importFrom httr stop_for_status POST content
@@ -156,7 +158,7 @@ XenaHub = function(hosts = xena_default_hosts(),
 ##' Get or Update Newest Data Information of UCSC Xena Data Hubs
 ##' @param saveTolocal logical. Whether save to local R package data directory for permanent use
 ##' or Not.
-##' @return a \code{data.frame} contains all datasets information of Xena.
+##' @return a `data.frame` contains all datasets information of Xena.
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
 XenaDataUpdate = function(saveTolocal = TRUE) {
@@ -244,17 +246,19 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
 
 ##' Filter a XenaHub Object
 ##'
-##' Major function of \code{UCSCXenatools}. It is used to filter
-##' \code{XenaHub} object according to cohorts, datasets. All datasets can be found
+##' One of main functions in **UCSCXenatools**. It is used to filter
+##' `XenaHub` object according to cohorts, datasets. All datasets can be found
 ##' at <https://xenabrowser.net/datapages/>.
 ##'
-##' @param x a \code{XenaHub} object
-##' @param filterCohorts default is \code{NULL}. A character used to filter cohorts,
+##' @param x a [XenaHub] object
+##' @param filterCohorts default is `NULL`. A character used to filter cohorts,
 ##' regular expression is supported.
-##' @param filterDatasets default is \code{NULL}. A character used to filter datasets,
+##' @param filterDatasets default is `NULL`. A character used to filter datasets,
 ##' regular expression is supported.
-##' @param ignore.case if \code{FALSE}, the pattern matching is case sensitive and if \code{TRUE}, case is ignored during matching.
-##' @return a \code{XenaHub} object
+##' @param ignore.case if `FALSE`, the pattern matching is case sensitive
+##' and if `TRUE`, case is ignored during matching.
+##' @param ... other arguments except `value` passed to [base::grep()].
+##' @return a `XenaHub` object
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
 ##' @examples
@@ -267,7 +271,7 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
 XenaFilter = function(x,
                       filterCohorts = NULL,
                       filterDatasets = NULL,
-                      ignore.case = TRUE) {
+                      ignore.case = TRUE, ...) {
     if (is.null(filterCohorts) & is.null(filterDatasets)) {
         message("No operation for input, do nothing...")
     }
@@ -283,7 +287,8 @@ XenaFilter = function(x,
             pattern = filterCohorts,
             x@cohorts,
             ignore.case = ignore.case,
-            value = TRUE
+            value = TRUE,
+            ...
         )
     }
 
@@ -292,7 +297,8 @@ XenaFilter = function(x,
             pattern = filterDatasets,
             x@datasets,
             ignore.case = ignore.case,
-            value = TRUE
+            value = TRUE,
+            ...
         )
     }
 
@@ -321,7 +327,7 @@ XenaFilter = function(x,
 }
 
 ##' Get hosts of XenaHub object
-##' @param x a \code{XenaHub} object
+##' @param x a [XenaHub] object
 ##' @import methods
 ##' @return a character vector contains hosts
 ##' @export
@@ -329,7 +335,7 @@ XenaFilter = function(x,
 hosts = function(x)
     unname(slot(x, "hosts"))
 ##' Get cohorts of XenaHub object
-##' @param x a \code{XenaHub} object
+##' @param x a [XenaHub] object
 ##' @return a character vector contains cohorts
 ##' @import methods
 ##' @export
@@ -337,7 +343,7 @@ hosts = function(x)
 cohorts = function(x)
     slot(x, "cohorts")
 ##' Get datasets of XenaHub object
-##' @param x a \code{XenaHub} object
+##' @param x a [XenaHub] object
 ##' @return a character vector contains datasets
 ##' @import methods
 ##' @export
@@ -404,10 +410,10 @@ datasets = function(x)
 ##' One is often interested in identifying samples or features present in each data set,
 ##' or shared by all data sets, or present in any of several data sets.
 ##' Identifying these samples, including samples in arbitrarily chosen data sets.
-##' @param x a \code{XenaHub} object
+##' @param x a [XenaHub] object
 ##' @param i a empty character
-##' @param by a character specify \code{by} action
-##' @param how a character specify \code{how} action
+##' @param by a character specify `by` action
+##' @param how a character specify `how` action
 ##' @return a list include samples
 ##' @import methods
 ##' @export

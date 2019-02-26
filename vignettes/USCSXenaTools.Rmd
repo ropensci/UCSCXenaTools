@@ -64,7 +64,7 @@ browseVignettes("UCSCXenaTools")
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
-Currently, **UCSCXenaTools** support all 9 data hubs of UCSC Xena.
+Currently, **UCSCXenaTools** supports all 9 data hubs of UCSC Xena.
 
 * UCSC Public Hub: <https://ucscpublic.xenahubs.net>
 * TCGA Hub: <https://tcga.xenahubs.net>
@@ -156,6 +156,55 @@ xe %>%
     XenaFilter(filterDatasets = "clinical") %>% 
     XenaFilter(filterDatasets = "luad|lusc|lung")
 ```
+
+### Browse datasets
+
+Something, you may want to check data before you query and download data.
+A new feature `XenaBrowse` is implemented in **UCSCXenaTools**.
+
+Create two XenaHub objects:
+
+* `to_browse` - a XenaHub object contains a cohort and a dataset.
+* `to_browse2` - a XenaHub object contains 2 cohorts and 2 datasets.
+
+```{r}
+XenaGenerate(subset = XenaHostNames=="TCGA") %>%
+    XenaFilter(filterDatasets = "clinical") %>%
+    XenaFilter(filterDatasets = "LUAD") -> to_browse
+
+to_browse
+
+XenaGenerate(subset = XenaHostNames=="TCGA") %>%
+    XenaFilter(filterDatasets = "clinical") %>%
+    XenaFilter(filterDatasets = "LUAD|LUSC") -> to_browse2
+
+to_browse2
+```
+
+`XenaBrowse()` function can be used to browse dataset/cohort links using your default web browser.
+At default, this function limit one dataset/cohort for preventing user to open too many links at once. 
+
+```{r,eval=FALSE}
+# This will open you web browser
+XenaBrowse(to_browse)
+
+XenaBrowse(to_browse, type = "cohort")
+```
+
+```{r, error=TRUE}
+# This will throw error
+XenaBrowse(to_browse2)
+
+XenaBrowse(to_browse2, type = "cohort")
+```
+
+When you make sure you want to open multiple links, you can set `multiple` option to `TRUE`.
+
+```{r, eval=FALSE}
+XenaBrowse(to_browse2, multiple = TRUE)
+XenaBrowse(to_browse2, type = "cohort", multiple = TRUE)
+```
+
 
 ### Query
 
@@ -327,9 +376,6 @@ Run shiny by:
 ```{r, eval=FALSE}
 UCSCXenaTools::XenaShiny()
 ```
-
-Download by shiny is under consideration, I am try learning more about how to operate shiny.
-
 
 ## SessionInfo
 

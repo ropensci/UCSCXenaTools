@@ -7,13 +7,13 @@
 XenaGenerate(XenaData = UCSCXenaTools::XenaData, subset = TRUE)
 }
 \arguments{
-\item{XenaData}{a data.frame. Default is \code{data(XenaData)}. The input of this
-argument can only be \code{data(XenaData)} or its subset.}
+\item{XenaData}{a \code{data.frame}. Default is \code{data(XenaData)}.
+The input of this option can only be \code{data(XenaData)} or its subset.}
 
 \item{subset}{logical expression indicating elements or rows to keep.}
 }
 \value{
-a \code{XenaHub} object.
+a \link{XenaHub} object.
 }
 \description{
 Generate and Subset a XenaHub Object from XenaData
@@ -21,11 +21,11 @@ Generate and Subset a XenaHub Object from XenaData
 \examples{
 # 1 get all datasets
 XenaGenerate()
-# 2
+# 2 get TCGA BRCA
 XenaGenerate(subset = XenaCohorts == "TCGA Breast Cancer (BRCA)")
-# 3
+# 3 get all datasets containing BRCA
 XenaGenerate(subset = grepl("BRCA", XenaCohorts))
 }
 \author{
-Shixiang Wang <w_shixiang@163.com>
+Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}
 }

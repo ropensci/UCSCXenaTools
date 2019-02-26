@@ -3,12 +3,12 @@
 
 #' Xena Hub Information
 #'
-#' This \code{data.frame} is very useful for selecting datasets quickly and indepent on
-#'  API of UCSC Xena Hubs.
+#' This `data.frame` is very useful for selecting datasets quickly and
+#' indepent on API of UCSC Xena Hubs.
 #'
 #' @docType data
 #' @name XenaData
-#' @format A \code{data.frame}.
+#' @format A `data.frame`.
 #' @source Generated from UCSC Xena Data Hubs.
 #' @examples data(XenaData)
 #' str(XenaData)

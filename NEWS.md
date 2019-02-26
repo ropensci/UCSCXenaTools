@@ -1,9 +1,11 @@
 # UCSCXenaTools 
 
-## v0.2.8
+## v1.0.0
 
-* update README and vignette
+* update README, documentation and vignette
 * fix some typo
+* new function: `XenaBrowse` - open the dataset link using web browser
+* open grel all parameters to `XenaFilter` function
 
 ## v0.2.7
 

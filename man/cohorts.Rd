@@ -7,7 +7,7 @@
 cohorts(x)
 }
 \arguments{
-\item{x}{a \code{XenaHub} object}
+\item{x}{a \link{XenaHub} object}
 }
 \value{
 a character vector contains cohorts

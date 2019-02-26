@@ -5,14 +5,14 @@
 \alias{XenaHub-class}
 \alias{.XenaHub}
 \title{@title a S4 class to represent UCSC Xena Data Hubs
- @slot hosts hosts of data hubs
- @slot cohorts cohorts of data hubs
- @slot datasets datasets of data hubs
- @importFrom methods new}
+@slot hosts hosts of data hubs
+@slot cohorts cohorts of data hubs
+@slot datasets datasets of data hubs
+@importFrom methods new}
 \description{
 @title a S4 class to represent UCSC Xena Data Hubs
- @slot hosts hosts of data hubs
- @slot cohorts cohorts of data hubs
- @slot datasets datasets of data hubs
- @importFrom methods new
+@slot hosts hosts of data hubs
+@slot cohorts cohorts of data hubs
+@slot datasets datasets of data hubs
+@importFrom methods new
 }

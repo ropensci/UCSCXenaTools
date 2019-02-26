@@ -57,40 +57,40 @@
 
 
 ##' @title Get TCGA Common Data Sets by Project ID and Property
-##' @description This is the most useful function for user to download common TCGA datasets,
-##'it is similar to \code{getFirehoseData} function in \code{RTCGAToolbox} package. If you are
-##'not familiar with data structure of TCGA on Xena, please visit
-##'<https://xenabrowser.net/datapages/?host=https%3A%2F%2Ftcga.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu> and
-##'select one tumor type (or what you want to download).
-##'@details TCGA Common Data Sets are frequently used for biological analysis. To make easier to achieve these
-##'data, this function provide really easy options to choose datasets and behavior. All availble information about datasets of TCGA can access vis \code{availTCGA()} and
-##' check with \code{showTCGA()}.
+##' @description This is the most useful function for user to download common
+##' TCGA datasets, it is similar to `getFirehoseData` function in `RTCGAToolbox`
+##'  package.
+##' @details TCGA Common Data Sets are frequently used for biological analysis.
+##' To make easier to achieve these data, this function provide really easy
+##' options to choose datasets and behavior. All availble information about
+##' datasets of TCGA can access vis `availTCGA()` and check with `showTCGA()`.
 ##'@author Shixiang Wang <w_shixiang@163.com>
 ##'@inheritParams downloadTCGA
-##'@param clinical logical. if \code{TRUE}, download clinical information. Default is \code{TRUE}.
-##'@param download logical. if \code{TRUE}, download data, otherwise return a result list include data
-##'information. Default is \code{FALSE}. You can set this to \code{FALSE} if you want to check what you will download or
-##'use other function provided by \code{UCSCXenaTools} to filter result datasets you want to download.
-##'@param forceDownload logical. if \code{TRUE}, force to download files no matter if exist. Default is \code{FALSE}.
-##'@param mRNASeq logical. if \code{TRUE}, download mRNASeq data. Default is \code{FALSE}.
-##'@param mRNAArray logical. if \code{TRUE}, download mRNA microarray data. Default is \code{FALSE}.
-##'@param mRNASeqType character vector. Can be one, two or three in \code{c("normalized", "pancan normalized", "percentile")}.
-##'@param miRNASeq logical. if \code{TRUE}, download miRNASeq data. Default is \code{FALSE}.
-##'@param exonRNASeq logical. if \code{TRUE}, download exon RNASeq data. Default is \code{FALSE}.
-##'@param RPPAArray logical. if \code{TRUE}, download RPPA data. Default is \code{FALSE}.
-##'@param ReplicateBaseNormalization logical. if \code{TRUE}, download RPPA data by Replicate Base
-##'Normalization (RBN). Default is \code{FALSE}.
-##'@param Methylation logical. if \code{TRUE}, download DNA Methylation data. Default is \code{FALSE}.
-##'@param MethylationType character vector. Can be one or two in \code{c("27K", "450K")}.
-##'@param GeneMutation logical. if \code{TRUE}, download gene mutation data. Default is \code{FALSE}.
-##'@param SomaticMutation logical. if \code{TRUE}, download somatic mutation data. Default is \code{FALSE}.
-##'@param GisticCopyNumber logical. if \code{TRUE}, download Gistic2 Copy Number data. Default is \code{FALSE}.
-##'@param Gistic2Threshold logical. if \code{TRUE}, download Threshold Gistic2 data. Default is \code{TRUE}.
-##'@param CopyNumberSegment logical. if \code{TRUE}, download Copy Number Segment data. Default is \code{FALSE}.
-##'@param RemoveGermlineCNV logical. if \code{TRUE}, download Copy Number Segment data which has removed
-##'germline copy number variation. Default is \code{TRUE}.
-##'@return if \code{download=TRUE}, return \code{data.frame} from \code{XenaDownload},
-##' otherwise return a list including \code{XenaHub} object and datasets information
+##'@param clinical logical. if `TRUE`, download clinical information. Default is `TRUE`.
+##'@param download logical. if `TRUE`, download data, otherwise return a result list include data
+##'information. Default is `FALSE`. You can set this to `FALSE` if you want to check what you will download or
+##'use other function provided by `UCSCXenaTools` to filter result datasets you want to download.
+##'@param forceDownload logical. if `TRUE`, force to download files no matter if exist. Default is `FALSE`.
+##'@param mRNASeq logical. if `TRUE`, download mRNASeq data. Default is `FALSE`.
+##'@param mRNAArray logical. if `TRUE`, download mRNA microarray data. Default is `FALSE`.
+##'@param mRNASeqType character vector. Can be one, two or three
+##'in `c("normalized", "pancan normalized", "percentile")`.
+##'@param miRNASeq logical. if `TRUE`, download miRNASeq data. Default is `FALSE`.
+##'@param exonRNASeq logical. if `TRUE`, download exon RNASeq data. Default is `FALSE`.
+##'@param RPPAArray logical. if `TRUE`, download RPPA data. Default is `FALSE`.
+##'@param ReplicateBaseNormalization logical. if `TRUE`, download RPPA data by Replicate Base
+##'Normalization (RBN). Default is `FALSE`.
+##'@param Methylation logical. if `TRUE`, download DNA Methylation data. Default is `FALSE`.
+##'@param MethylationType character vector. Can be one or two in `c("27K", "450K")`.
+##'@param GeneMutation logical. if `TRUE`, download gene mutation data. Default is `FALSE`.
+##'@param SomaticMutation logical. if `TRUE`, download somatic mutation data. Default is `FALSE`.
+##'@param GisticCopyNumber logical. if `TRUE`, download Gistic2 Copy Number data. Default is `FALSE`.
+##'@param Gistic2Threshold logical. if `TRUE`, download Threshold Gistic2 data. Default is `TRUE`.
+##'@param CopyNumberSegment logical. if `TRUE`, download Copy Number Segment data. Default is `FALSE`.
+##'@param RemoveGermlineCNV logical. if `TRUE`, download Copy Number Segment data which has removed
+##'germline copy number variation. Default is `TRUE`.
+##'@return if `download=TRUE`, return `data.frame` from `XenaDownload`,
+##' otherwise return a list including `XenaHub` object and datasets information
 ##'@import dplyr
 ##'@export
 ##'@examples
@@ -387,17 +387,17 @@ getTCGAdata = function(project = NULL,
 ##' @description TCGA is a very useful database and here we provide this function to
 ##' download TCGA (include TCGA Pancan) datasets in human-friendly way. User who are not
 ##' familiar with R operation will benefit from this.
-##' @details All availble information about datasets of TCGA can access vis \code{availTCGA()} and
-##' check with \code{showTCGA()}.
+##' @details All availble information about datasets of TCGA can access vis `availTCGA()` and
+##' check with `showTCGA()`.
 ##' @author Shixiang Wang <w_shixiang@163.com>
-##' @param project default is \code{NULL}. Should be one or more of TCGA project id (character vector) provided by Xena.
-##' See all available project id, please use \code{availTCGA("ProjectID")}.
-##' @param data_type default is \code{NULL}. Should be a character vector specify data type.
-##' See all available data types by \code{availTCGA("DataType")}.
-##' @param file_type default is \code{NULL}. Should be a character vector specify file type.
-##' See all available file types by \code{availTCGA("FileType")}.
+##' @param project default is `NULL`. Should be one or more of TCGA project id (character vector) provided by Xena.
+##' See all available project id, please use `availTCGA("ProjectID")`.
+##' @param data_type default is `NULL`. Should be a character vector specify data type.
+##' See all available data types by `availTCGA("DataType")`.
+##' @param file_type default is `NULL`. Should be a character vector specify file type.
+##' See all available file types by `availTCGA("FileType")`.
 ##' @inheritParams XenaDownload
-##' @return same as \code{XenaDownload()} function result.
+##' @return same as `XenaDownload()` function result.
 ##' @import dplyr
 ##' @export
 ##' @examples
@@ -407,12 +407,12 @@ getTCGAdata = function(project = NULL,
 ##'                  data_type = "Gene Expression RNASeq",
 ##'                  file_type = "IlluminaHiSeq RNASeqV2")
 ##' }
-##' @seealso \code{\link[UCSCXenaTools]{XenaQuery}},
-##' \code{\link[UCSCXenaTools]{XenaFilter}},
-##' \code{\link[UCSCXenaTools]{XenaDownload}},
-##' \code{\link[UCSCXenaTools]{XenaPrepare}},
-##' \code{\link[UCSCXenaTools]{availTCGA}},
-##' \code{\link[UCSCXenaTools]{showTCGA}}
+##' @seealso [UCSCXenaTools::XenaQuery()],
+##' [UCSCXenaTools::XenaFilter()],
+##' [UCSCXenaTools::XenaDownload()],
+##' [UCSCXenaTools::XenaPrepare()],
+##' [UCSCXenaTools::availTCGA()],
+##' [UCSCXenaTools::showTCGA()]
 
 downloadTCGA = function(project = NULL,
                         data_type = NULL,
@@ -456,7 +456,7 @@ downloadTCGA = function(project = NULL,
 }
 
 ##' @title Get or Check TCGA Available ProjectID, DataType and FileType
-##' @param which a character of \code{c("All", "ProjectID", "DataType", "FileType")}
+##' @param which a character of `c("All", "ProjectID", "DataType", "FileType")`
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
 ##' @examples
@@ -495,7 +495,7 @@ availTCGA = function(which = c("all", "ProjectID", "DataType", "FileType")) {
 ##' @title Show TCGA data structure by Project ID or ALL
 ##' @description This can used to check if data type or file type exist in one or more projects by hand.
 ##' @param project a character vector. Can be "all" or one or more of TCGA Project IDs.
-##' @return a \code{data.frame} including project data structure information.
+##' @return a `data.frame` including project data structure information.
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
 ##' @import dplyr
@@ -503,7 +503,7 @@ availTCGA = function(which = c("all", "ProjectID", "DataType", "FileType")) {
 ##' \donttest{
 ##' showTCGA("all")
 ##' }
-##' @seealso \code{\link[UCSCXenaTools]{availTCGA}}
+##' @seealso [UCSCXenaTools::availTCGA()]
 showTCGA = function(project = "all") {
     # suppress binding notes
     ProjectID = DataType = FileType = NULL
