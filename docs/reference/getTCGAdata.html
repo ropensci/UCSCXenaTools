@@ -32,11 +32,9 @@
 
 <meta property="og:title" content="Get TCGA Common Data Sets by Project ID and Property — getTCGAdata" />
 
-<meta property="og:description" content="This is the most useful function for user to download common TCGA datasets,
-it is similar to getFirehoseData function in RTCGAToolbox package. If you are
-not familiar with data structure of TCGA on Xena, please visit
-&amp;lt;https://xenabrowser.net/datapages/?host=https
-select one tumor type (or what you want to download)." />
+<meta property="og:description" content="This is the most useful function for user to download common
+TCGA datasets, it is similar to getFirehoseData function in RTCGAToolbox
+package." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -69,7 +67,7 @@ select one tumor type (or what you want to download)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -127,11 +125,9 @@ select one tumor type (or what you want to download)." />
 
     <div class="ref-description">
     
-    <p>This is the most useful function for user to download common TCGA datasets,
-it is similar to <code>getFirehoseData</code> function in <code>RTCGAToolbox</code> package. If you are
-not familiar with data structure of TCGA on Xena, please visit
-&lt;https://xenabrowser.net/datapages/?host=https<!-- %3A%2F%2Ftcga.xenahubs.net&amp;removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu&gt; and -->
-select one tumor type (or what you want to download).</p>
+    <p>This is the most useful function for user to download common
+TCGA datasets, it is similar to <code>getFirehoseData</code> function in <code>RTCGAToolbox</code>
+package.</p>
     
     </div>
 
@@ -181,7 +177,8 @@ use other function provided by <code>UCSCXenaTools</code> to filter result datas
     </tr>
     <tr>
       <th>mRNASeqType</th>
-      <td><p>character vector. Can be one, two or three in <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c("normalized", "pancan normalized", "percentile")</a></code>.</p></td>
+      <td><p>character vector. Can be one, two or three
+in <code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c("normalized", "pancan normalized", "percentile")</a></code>.</p></td>
     </tr>
     <tr>
       <th>miRNASeq</th>
@@ -246,88 +243,33 @@ otherwise return a list including <code>XenaHub</code> object and datasets infor
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>TCGA Common Data Sets are frequently used for biological analysis. To make easier to achieve these
-data, this function provide really easy options to choose datasets and behavior. All availble information about datasets of TCGA can access vis <code><a href='availTCGA.html'>availTCGA()</a></code> and
-check with <code><a href='showTCGA.html'>showTCGA()</a></code>.</p>
+    <p>TCGA Common Data Sets are frequently used for biological analysis.
+To make easier to achieve these data, this function provide really easy
+options to choose datasets and behavior. All availble information about
+datasets of TCGA can access vis <code><a href='availTCGA.html'>availTCGA()</a></code> and check with <code><a href='showTCGA.html'>showTCGA()</a></code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>###### get data, but not download</span>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'>###### get data, but not download</span>
 
 <span class='co'># 1 choose project and data types you wanna download</span>
 <span class='fu'>getTCGAdata</span>(<span class='kw'>project</span> <span class='kw'>=</span> <span class='st'>"LUAD"</span>, <span class='kw'>mRNASeq</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>mRNAArray</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
 <span class='kw'>mRNASeqType</span> <span class='kw'>=</span> <span class='st'>"normalized"</span>, <span class='kw'>miRNASeq</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>exonRNASeq</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
 <span class='kw'>RPPAArray</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>Methylation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>MethylationType</span> <span class='kw'>=</span> <span class='st'>"450K"</span>,
-<span class='kw'>GeneMutation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>SomaticMutation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; $Xena
-#&gt; class: XenaHub 
-#&gt; hosts():
-#&gt;   https://tcga.xenahubs.net
-#&gt; cohorts() (1 total):
-#&gt;   TCGA Lung Adenocarcinoma (LUAD)
-#&gt; datasets() (9 total):
-#&gt;   TCGA.LUAD.sampleMap/HumanMethylation450
-#&gt;   TCGA.LUAD.sampleMap/mutation_broad
-#&gt;   TCGA.LUAD.sampleMap/HiSeqV2
-#&gt;   ...
-#&gt;   TCGA.LUAD.sampleMap/AgilentG4502A_07_3
-#&gt;   TCGA.LUAD.sampleMap/HiSeqV2_exon
-#&gt; 
-#&gt; $DataInfo
-#&gt;                   XenaHosts XenaHostNames                     XenaCohorts
-#&gt; 1 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt; 2 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt; 3 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt; 4 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt; 5 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt; 6 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt; 7 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt; 8 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt; 9 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt;                              XenaDatasets ProjectID
-#&gt; 1 TCGA.LUAD.sampleMap/HumanMethylation450      LUAD
-#&gt; 2      TCGA.LUAD.sampleMap/mutation_broad      LUAD
-#&gt; 3             TCGA.LUAD.sampleMap/HiSeqV2      LUAD
-#&gt; 4 TCGA.LUAD.sampleMap/mutation_broad_gene      LUAD
-#&gt; 5    TCGA.LUAD.sampleMap/miRNA_HiSeq_gene      LUAD
-#&gt; 6 TCGA.LUAD.sampleMap/LUAD_clinicalMatrix      LUAD
-#&gt; 7                TCGA.LUAD.sampleMap/RPPA      LUAD
-#&gt; 8  TCGA.LUAD.sampleMap/AgilentG4502A_07_3      LUAD
-#&gt; 9        TCGA.LUAD.sampleMap/HiSeqV2_exon      LUAD
-#&gt;                                DataType                FileType
-#&gt; 1                       DNA Methylation         Methylation450K
-#&gt; 2                      Somatic Mutation         broad automated
-#&gt; 3                Gene Expression RNASeq  IlluminaHiSeq RNASeqV2
-#&gt; 4      Gene Somatic Non-silent Mutation         broad automated
-#&gt; 5 miRNA Mature Strand Expression RNASeq    IlluminaHiSeq RNASeq
-#&gt; 6                             Phenotype    Clinical Information
-#&gt; 7               Protein Expression RPPA                    RPPA
-#&gt; 8                 Gene Expression Array Agilent 244K Microarray
-#&gt; 9                Exon Expression RNASeq  IlluminaHiSeq RNASeqV2
-#&gt; </div><div class='input'>
+<span class='kw'>GeneMutation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>SomaticMutation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
 <span class='co'># 2 only choose 'LUAD' and its clinical data</span>
-<span class='fu'>getTCGAdata</span>(<span class='kw'>project</span> <span class='kw'>=</span> <span class='st'>"LUAD"</span>)</div><div class='output co'>#&gt; $Xena
-#&gt; class: XenaHub 
-#&gt; hosts():
-#&gt;   https://tcga.xenahubs.net
-#&gt; cohorts() (1 total):
-#&gt;   TCGA Lung Adenocarcinoma (LUAD)
-#&gt; datasets() (1 total):
-#&gt;   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
-#&gt; 
-#&gt; $DataInfo
-#&gt;                   XenaHosts XenaHostNames                     XenaCohorts
-#&gt; 1 https://tcga.xenahubs.net          TCGA TCGA Lung Adenocarcinoma (LUAD)
-#&gt;                              XenaDatasets ProjectID  DataType
-#&gt; 1 TCGA.LUAD.sampleMap/LUAD_clinicalMatrix      LUAD Phenotype
-#&gt;               FileType
-#&gt; 1 Clinical Information
-#&gt; </div><div class='input'><span class='co'>###### download datasets</span>
+<span class='fu'>getTCGAdata</span>(<span class='kw'>project</span> <span class='kw'>=</span> <span class='st'>"LUAD"</span>)
+<span class='co'># }</span><span class='co'># NOT RUN {</span>
+<span class='co'>###### download datasets</span>
 
 <span class='co'># 3 download clinical datasets of LUAD and LUSC</span>
-<span class='fu'>getTCGAdata</span>(<span class='kw'>project</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"LUAD"</span>, <span class='st'>"LUSC"</span>), <span class='kw'>clinical</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>This will check url status, please be patient.</span></div><div class='output co'>#&gt; <span class='message'>We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpi2C2GP.</span></div><div class='output co'>#&gt; <span class='message'>/var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpi2C2GP/TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz, the file has been download!</span></div><div class='output co'>#&gt; <span class='message'>/var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpi2C2GP/TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz, the file has been download!</span></div><div class='output co'>#&gt; <span class='message'>Note fileNames transfromed from datasets name and / chracter all changed to __ character.</span></div><div class='input'>
-# 4 download clinical, RPPA and gene mutation datasets of LUAD and LUSC
-# getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)
-</div></pre>
+<span class='fu'>getTCGAdata</span>(<span class='kw'>project</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"LUAD"</span>, <span class='st'>"LUSC"</span>), <span class='kw'>clinical</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>download</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># 4 download clinical, RPPA and gene mutation datasets of LUAD and LUSC</span>
+<span class='co'># getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)</span>
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -342,7 +284,7 @@ check with <code><a href='showTCGA.html'>showTCGA()</a></code>.</p>
     </ul>
 
     <h2>Author</h2>
-    <p>Shixiang Wang &lt;w_shixiang@163.com&gt;</p>
+    <p>Shixiang Wang <a href='mailto:w_shixiang@163.com'>w_shixiang@163.com</a></p>
   </div>
 </div>
 

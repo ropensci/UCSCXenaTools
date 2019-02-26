@@ -22,6 +22,17 @@ knitr::opts_chunk$set(
 
 **UCSCXenaTools** is a R package download and explore data from [**UCSC Xena data hubs**](https://xenabrowser.net/datapages/), which are a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
 
+## Table of Contents
+
+* [Installation](#installation)
+* [Data Hub List](#data-hub-list)
+* [Usage](#usage)
+* [Documentation](#documentation)
+* [Citation](#citation)
+* [Acknowledgement](#acknowledgement)
+* [LICENSE](#license)
+* [Code of conduct](#code-of-conduct)
+
 ## Installation
 
 Install stable release from CRAN with:
@@ -148,6 +159,9 @@ XenaBrowse(to_browse2, multiple = TRUE)
 XenaBrowse(to_browse2, type = "cohort", multiple = TRUE)
 ```
 
+## Documentation
+
+More features and usages please read [online documentation on CRAN](https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html) or [Github website](https://shixiangwang.github.io/UCSCXenaTools/).
 
 ## Citation
 

@@ -32,9 +32,9 @@
 
 <meta property="og:title" content="Filter a XenaHub Object — XenaFilter" />
 
-<meta property="og:description" content="Major function of UCSCXenatools. It is used to filter
+<meta property="og:description" content="One of main functions in UCSCXenatools. It is used to filter
 XenaHub object according to cohorts, datasets. All datasets can be found
-at &amp;lt;https://xenabrowser.net/datapages/&amp;gt;." />
+at https://xenabrowser.net/datapages/." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -67,7 +67,7 @@ at &amp;lt;https://xenabrowser.net/datapages/&amp;gt;." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -125,21 +125,21 @@ at &amp;lt;https://xenabrowser.net/datapages/&amp;gt;." />
 
     <div class="ref-description">
     
-    <p>Major function of <code>UCSCXenatools</code>. It is used to filter
+    <p>One of main functions in <strong>UCSCXenatools</strong>. It is used to filter
 <code>XenaHub</code> object according to cohorts, datasets. All datasets can be found
-at &lt;https://xenabrowser.net/datapages/&gt;.</p>
+at <a href='https://xenabrowser.net/datapages/'>https://xenabrowser.net/datapages/</a>.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>XenaFilter</span>(<span class='no'>x</span>, <span class='kw'>filterCohorts</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>filterDatasets</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ignore.case</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>ignore.case</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a <code>XenaHub</code> object</p></td>
+      <td><p>a <a href='XenaHub.html'>XenaHub</a> object</p></td>
     </tr>
     <tr>
       <th>filterCohorts</th>
@@ -153,7 +153,12 @@ regular expression is supported.</p></td>
     </tr>
     <tr>
       <th>ignore.case</th>
-      <td><p>if <code>FALSE</code>, the pattern matching is case sensitive and if <code>TRUE</code>, case is ignored during matching.</p></td>
+      <td><p>if <code>FALSE</code>, the pattern matching is case sensitive
+and if <code>TRUE</code>, case is ignored during matching.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>other arguments except <code>value</code> passed to <code><a href='https://www.rdocumentation.org/packages/base/topics/grep'>base::grep()</a></code>.</p></td>
     </tr>
     </table>
     
@@ -163,63 +168,14 @@ regular expression is supported.</p></td>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># operate TCGA datasets</span>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># operate TCGA datasets</span>
 <span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'><a href='XenaGenerate.html'>XenaGenerate</a></span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>XenaHostNames</span> <span class='kw'>==</span> <span class='st'>"TCGA"</span>)
-<span class='no'>xe</span></div><div class='output co'>#&gt; class: XenaHub 
-#&gt; hosts():
-#&gt;   https://tcga.xenahubs.net
-#&gt; cohorts() (38 total):
-#&gt;   TCGA Acute Myeloid Leukemia (LAML)
-#&gt;   TCGA Adrenocortical Cancer (ACC)
-#&gt;   TCGA Bile Duct Cancer (CHOL)
-#&gt;   ...
-#&gt;   TCGA Thyroid Cancer (THCA)
-#&gt;   TCGA Uterine Carcinosarcoma (UCS)
-#&gt; datasets() (879 total):
-#&gt;   TCGA.LAML.sampleMap/HumanMethylation27
-#&gt;   TCGA.LAML.sampleMap/HumanMethylation450
-#&gt;   TCGA.LAML.sampleMap/Gistic2_CopyNumber_Gistic2_all_data_by_genes
-#&gt;   ...
-#&gt;   TCGA.UCS.sampleMap/Pathway_Paradigm_RNASeq_And_Copy_Number
-#&gt;   TCGA.UCS.sampleMap/mutation_curated_broad</div><div class='input'><span class='co'># get all names of clinical data</span>
+<span class='no'>xe</span>
+<span class='co'># get all names of clinical data</span>
 <span class='no'>xe2</span> <span class='kw'>=</span> <span class='fu'>XenaFilter</span>(<span class='no'>xe</span>, <span class='kw'>filterDatasets</span> <span class='kw'>=</span> <span class='st'>"clinical"</span>)
-<span class='fu'><a href='datasets.html'>datasets</a></span>(<span class='no'>xe2</span>)</div><div class='output co'>#&gt;  [1] "TCGA.LAML.sampleMap/LAML_clinicalMatrix"        
-#&gt;  [2] "TCGA.ACC.sampleMap/ACC_clinicalMatrix"          
-#&gt;  [3] "TCGA.CHOL.sampleMap/CHOL_clinicalMatrix"        
-#&gt;  [4] "TCGA.BLCA.sampleMap/BLCA_clinicalMatrix"        
-#&gt;  [5] "TCGA.BRCA.sampleMap/BRCA_clinicalMatrix"        
-#&gt;  [6] "TCGA.CESC.sampleMap/CESC_clinicalMatrix"        
-#&gt;  [7] "TCGA.COADREAD.sampleMap/COADREAD_clinicalMatrix"
-#&gt;  [8] "TCGA.COAD.sampleMap/COAD_clinicalMatrix"        
-#&gt;  [9] "TCGA.UCEC.sampleMap/UCEC_clinicalMatrix"        
-#&gt; [10] "TCGA.ESCA.sampleMap/ESCA_clinicalMatrix"        
-#&gt; [11] "TCGA.FPPP.sampleMap/FPPP_clinicalMatrix"        
-#&gt; [12] "TCGA.GBM.sampleMap/GBM_clinicalMatrix"          
-#&gt; [13] "TCGA.HNSC.sampleMap/HNSC_clinicalMatrix"        
-#&gt; [14] "TCGA.KICH.sampleMap/KICH_clinicalMatrix"        
-#&gt; [15] "TCGA.KIRC.sampleMap/KIRC_clinicalMatrix"        
-#&gt; [16] "TCGA.KIRP.sampleMap/KIRP_clinicalMatrix"        
-#&gt; [17] "TCGA.DLBC.sampleMap/DLBC_clinicalMatrix"        
-#&gt; [18] "TCGA.LIHC.sampleMap/LIHC_clinicalMatrix"        
-#&gt; [19] "TCGA.LGG.sampleMap/LGG_clinicalMatrix"          
-#&gt; [20] "TCGA.GBMLGG.sampleMap/GBMLGG_clinicalMatrix"    
-#&gt; [21] "TCGA.LUAD.sampleMap/LUAD_clinicalMatrix"        
-#&gt; [22] "TCGA.LUNG.sampleMap/LUNG_clinicalMatrix"        
-#&gt; [23] "TCGA.LUSC.sampleMap/LUSC_clinicalMatrix"        
-#&gt; [24] "TCGA.SKCM.sampleMap/SKCM_clinicalMatrix"        
-#&gt; [25] "TCGA.MESO.sampleMap/MESO_clinicalMatrix"        
-#&gt; [26] "TCGA.UVM.sampleMap/UVM_clinicalMatrix"          
-#&gt; [27] "TCGA.OV.sampleMap/OV_clinicalMatrix"            
-#&gt; [28] "TCGA.PAAD.sampleMap/PAAD_clinicalMatrix"        
-#&gt; [29] "TCGA.PCPG.sampleMap/PCPG_clinicalMatrix"        
-#&gt; [30] "TCGA.PRAD.sampleMap/PRAD_clinicalMatrix"        
-#&gt; [31] "TCGA.READ.sampleMap/READ_clinicalMatrix"        
-#&gt; [32] "TCGA.SARC.sampleMap/SARC_clinicalMatrix"        
-#&gt; [33] "TCGA.STAD.sampleMap/STAD_clinicalMatrix"        
-#&gt; [34] "TCGA.TGCT.sampleMap/TGCT_clinicalMatrix"        
-#&gt; [35] "TCGA.THYM.sampleMap/THYM_clinicalMatrix"        
-#&gt; [36] "TCGA.THCA.sampleMap/THCA_clinicalMatrix"        
-#&gt; [37] "TCGA.UCS.sampleMap/UCS_clinicalMatrix"          </div></pre>
+<span class='fu'><a href='datasets.html'>datasets</a></span>(<span class='no'>xe2</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -232,7 +188,7 @@ regular expression is supported.</p></td>
     </ul>
 
     <h2>Author</h2>
-    <p>Shixiang Wang &lt;w_shixiang@163.com&gt;</p>
+    <p>Shixiang Wang <a href='mailto:w_shixiang@163.com'>w_shixiang@163.com</a></p>
   </div>
 </div>
 

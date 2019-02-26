@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
       </span>
     </div>
 
@@ -134,8 +134,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>XenaData</th>
-      <td><p>a data.frame. Default is <code><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data(XenaData)</a></code>. The input of this
-argument can only be <code><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data(XenaData)</a></code> or its subset.</p></td>
+      <td><p>a <code>data.frame</code>. Default is <code><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data(XenaData)</a></code>.
+The input of this option can only be <code><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data(XenaData)</a></code> or its subset.</p></td>
     </tr>
     <tr>
       <th>subset</th>
@@ -145,63 +145,18 @@ argument can only be <code><a href='https://www.rdocumentation.org/packages/util
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a <code>XenaHub</code> object.</p>
+    <p>a <a href='XenaHub.html'>XenaHub</a> object.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># 1 get all datasets</span>
-<span class='fu'>XenaGenerate</span>()</div><div class='output co'>#&gt; class: XenaHub 
-#&gt; hosts():
-#&gt;   https://ucscpublic.xenahubs.net
-#&gt;   https://tcga.xenahubs.net
-#&gt;   https://gdc.xenahubs.net
-#&gt;   https://icgc.xenahubs.net
-#&gt;   https://toil.xenahubs.net
-#&gt;   https://pancanatlas.xenahubs.net
-#&gt;   https://xena.treehouse.gi.ucsc.edu
-#&gt;   https://pcawg.xenahubs.net
-#&gt;   https://atacseq.xenahubs.net
-#&gt; cohorts() (127 total):
-#&gt;   Acute lymphoblastic leukemia (Mullighan 2008)
-#&gt;   Breast Cancer (Caldas 2007)
-#&gt;   Breast Cancer (Chin 2006)
-#&gt;   ...
-#&gt;   PCAWG (donor centric)
-#&gt;   PCAWG (specimen centric)
-#&gt; datasets() (1595 total):
-#&gt;   mullighan2008_public/mullighan2008_500K_genomicMatrix
-#&gt;   mullighan2008_public/mullighan2008_public_clinicalMatrix
-#&gt;   mullighan2008_public/mullighan2008_SNP6_genomicMatrix
-#&gt;   ...
-#&gt;   brca/pam50
-#&gt;   brca/TCGA-BRCA.methylation450.tsv</div><div class='input'><span class='co'># 2</span>
-<span class='fu'>XenaGenerate</span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>XenaCohorts</span> <span class='kw'>==</span> <span class='st'>"TCGA Breast Cancer (BRCA)"</span>)</div><div class='output co'>#&gt; class: XenaHub 
-#&gt; hosts():
-#&gt;   https://tcga.xenahubs.net
-#&gt; cohorts() (1 total):
-#&gt;   TCGA Breast Cancer (BRCA)
-#&gt; datasets() (30 total):
-#&gt;   RABIT/separate_processed/RABIT_BRCA.HiSeq
-#&gt;   RABIT/separate_processed/RABIT_BRCA.Agilent
-#&gt;   RABIT/separate_processed/RABIT_BRCA.HiSeq.V2
-#&gt;   ...
-#&gt;   TCGA.BRCA.sampleMap/Pathway_Paradigm_mRNA
-#&gt;   TCGA.BRCA.sampleMap/AgilentG4502A_07_3</div><div class='input'><span class='co'># 3</span>
-<span class='fu'>XenaGenerate</span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></span>(<span class='st'>"BRCA"</span>, <span class='no'>XenaCohorts</span>))</div><div class='output co'>#&gt; class: XenaHub 
-#&gt; hosts():
-#&gt;   https://tcga.xenahubs.net
-#&gt;   https://gdc.xenahubs.net
-#&gt;   https://atacseq.xenahubs.net
-#&gt; cohorts() (2 total):
-#&gt;   TCGA Breast Cancer (BRCA)
-#&gt;   GDC TCGA Breast Cancer (BRCA)
-#&gt; datasets() (48 total):
-#&gt;   RABIT/separate_processed/RABIT_BRCA.HiSeq
-#&gt;   RABIT/separate_processed/RABIT_BRCA.Agilent
-#&gt;   RABIT/separate_processed/RABIT_BRCA.HiSeq.V2
-#&gt;   ...
-#&gt;   brca/pam50
-#&gt;   brca/TCGA-BRCA.methylation450.tsv</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># 1 get all datasets</span>
+<span class='fu'>XenaGenerate</span>()
+<span class='co'># 2 get TCGA BRCA</span>
+<span class='fu'>XenaGenerate</span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>XenaCohorts</span> <span class='kw'>==</span> <span class='st'>"TCGA Breast Cancer (BRCA)"</span>)
+<span class='co'># 3 get all datasets containing BRCA</span>
+<span class='fu'>XenaGenerate</span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/grep'>grepl</a></span>(<span class='st'>"BRCA"</span>, <span class='no'>XenaCohorts</span>))
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -214,7 +169,7 @@ argument can only be <code><a href='https://www.rdocumentation.org/packages/util
     </ul>
 
     <h2>Author</h2>
-    <p>Shixiang Wang &lt;w_shixiang@163.com&gt;</p>
+    <p>Shixiang Wang <a href='mailto:w_shixiang@163.com'>w_shixiang@163.com</a></p>
   </div>
 </div>
 

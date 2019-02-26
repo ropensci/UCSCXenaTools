@@ -4,7 +4,7 @@
     msg = paste0("=========================================================================
 ", pkgname, " version ", version, "
 Github page: https://github.com/ShixiangWang/UCSCXenaTools
-Documentation: https://github.com/ShixiangWang/UCSCXenaTools
+Documentation: https://shixiangwang.github.io/UCSCXenaTools/
 If you use it in published research, please cite:
 Wang, Shixiang, et al. \"APOBEC3B and APOBEC mutational signature
     as potential predictive markers for immunotherapy
