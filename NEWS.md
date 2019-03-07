@@ -1,5 +1,9 @@
 # UCSCXenaTools 
 
+## v1.0.1
+
+* fix some grammar errors in documentation
+
 ## v1.0.0
 
 * update README, documentation and vignette

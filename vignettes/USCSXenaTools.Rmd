@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-**UCSCXenaTools** is a R package download and explore data from **UCSC Xena data hubs**, which are
+**UCSCXenaTools** is an R package for downloading and exploring data from **UCSC Xena data hubs**, which are
 
 > a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
 >
@@ -80,13 +80,13 @@ If the url of data hub changed, please remind me by emailing to <w_shixiang@163.
 
 ## Usage
 
-Download UCSC Xena Datasets and load them into R by **UCSCXenaTools** is a workflow in `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare` functions, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
+Download UCSC Xena Datasets and load them into R by **UCSCXenaTools** is a workflow with `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare` functions, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
 
 To show the basic usage of **UCSCXenaTools**, we download clinical data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
 
 ### XenaData data.frame
 
-Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which communicate with API of UCSC Xena Data Hubs.
+Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which communicates with API of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 

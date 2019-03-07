@@ -21,11 +21,11 @@ issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](ht
 issues](https://img.shields.io/github/issues-closed/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
 <!-- badges: end -->
 
-**UCSCXenaTools** is a R package download and explore data from [**UCSC
-Xena data hubs**](https://xenabrowser.net/datapages/), which are a
-collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET,
-GTEx, CCLE, and others. Databases are normalized so they can be
-combined, linked, filtered, explored and downloaded.
+**UCSCXenaTools** is an R package for downloading and exploring data
+from [**UCSC Xena data hubs**](https://xenabrowser.net/datapages/),
+which are a collection of UCSC-hosted public databases such as TCGA,
+ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they
+can be combined, linked, filtered, explored and downloaded.
 
 ## Table of Contents
 
@@ -76,9 +76,9 @@ GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
 ## Usage
 
-Download UCSC Xena Datasets and load them into R by **UCSCXenaTools** is
-a workflow in `generate`, `filter`, `query`, `download` and `prepare` 5
-steps, which are implemented as `XenaGenerate`, `XenaFilter`,
+Download UCSC Xena datasets and load them into R by **UCSCXenaTools** is
+a workflow with `generate`, `filter`, `query`, `download` and `prepare`
+5 steps, which are implemented as `XenaGenerate`, `XenaFilter`,
 `XenaQuery`, `XenaDownload` and `XenaPrepare` functions, respectively.
 They are very clear and easy to use and combine with other packages like
 `dplyr`.
@@ -89,8 +89,8 @@ of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
 ### XenaData data.frame
 
 **UCSCXenaTools** uses a `data.frame` object (built in package)
-`XenaData` to generate an instance of `XenaHub` class, which communicate
-with API of UCSC Xena Data Hubs.
+`XenaData` to generate an instance of `XenaHub` class, which
+communicates with API of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
@@ -162,7 +162,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpO4OT2S.
+#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpOTE23c.
 #> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
 #> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
 #> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
@@ -259,7 +259,7 @@ or [Github website](https://shixiangwang.github.io/UCSCXenaTools/).
 
 ## Citation
 
-*Wang, Shixiang, et al. “APOBEC3B and APOBEC mutational signature as
+*Wang, Shixiang, et al. “APOBEC3B and APOBEC mutational signature as
 potential predictive markers for immunotherapy response in non-small
 cell lung cancer.” Oncogene (2018).*
 
