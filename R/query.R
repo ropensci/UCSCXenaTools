@@ -126,20 +126,6 @@
         '
         )
 
-## features
-
-.feature_list_query = function(dataset) {
-    paste0(
-        '(query {:select [:field.name :feature.longtitle]\n',
-        '        :from [:field]\n',
-        '        :where [:= :dataset_id {:select [:id]\n',
-        '                         :from [:dataset]\n',
-        '                         :where [:= :name ',
-        .quote(dataset),
-        ']}]\n',
-        '        :left-join [:feature [:= :feature.field_id :field.id]]})'
-    )
-}
 
 ##
 ## actions
