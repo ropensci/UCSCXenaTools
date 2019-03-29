@@ -10,7 +10,9 @@ samples(x, i = character(), by = c("hosts", "cohorts", "datasets"),
 \arguments{
 \item{x}{a \link{XenaHub} object}
 
-\item{i}{a empty character}
+\item{i}{default is a empty character, it is used to specify
+the host, cohort or dataset by \code{by} option otherwise
+info will be automatically extracted by code}
 
 \item{by}{a character specify \code{by} action}
 

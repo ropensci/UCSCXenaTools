@@ -388,7 +388,9 @@ datasets = function(x)
 ##' or shared by all data sets, or present in any of several data sets.
 ##' Identifying these samples, including samples in arbitrarily chosen data sets.
 ##' @param x a [XenaHub] object
-##' @param i a empty character
+##' @param i default is a empty character, it is used to specify
+##' the host, cohort or dataset by `by` option otherwise
+##' info will be automatically extracted by code
 ##' @param by a character specify `by` action
 ##' @param how a character specify `how` action
 ##' @return a list include samples

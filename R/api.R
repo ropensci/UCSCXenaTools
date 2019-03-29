@@ -83,7 +83,7 @@ to_snake = function(name) {
         xquery = paste0(".xq_", fun)
         assign(xquery, query,
                envir = as.environment("package:UCSCXenaTools"))
-        body = sprintf("xquery=get(\".xq_%s\", as.environment(\"package:UCSCXenaTools\")) \n.xena_post(host, .call(xquery, list(%s)))",
+        body = sprintf("xquery=get(\".xq_%s\", as.environment(\"package:UCSCXenaTools\")) \n.xena_post(host, .call(xquery, list(%s)), simplifyVector = TRUE)",
                        fun,
                        params)
 

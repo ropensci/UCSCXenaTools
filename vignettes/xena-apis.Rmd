@@ -27,3 +27,33 @@ knitr::opts_chunk$set(
 
 This vignette gives users the summary information of API functions provided by **UCSCXenaTools** for UCSC Xena. 
 
+Before using API, user should know some concepts about Xena elements. Following description is copied from [xenaPython `__init__.py`](https://github.com/ucscXena/xenaPython/blob/master/xenaPython/__init__.py).
+
+> Data rows are associated with "sample" IDs.
+>
+> Sample IDs are unique within a "**cohort**".
+>s
+> A "**dataset**" is a particular assay of a cohort, e.g. gene expression.
+>
+> Datasets have associated metadata, specifying their data type and cohort.
+>
+> There are three primary data types: **dense matrix** (samples by probes), **sparse** (sample, position, variant), and **segmented** (sample, position, value).
+> 
+> Dense matrices can be genotypic or phenotypic. Phenotypic matrices have associated **field metadata** (descriptive names, codes, etc.).
+Genotypic matricies may have an associated **probeMap**, which maps probes to genomic locations. If a matrix has hugo probeMap, the probes themselves are gene names. Otherwise, a probeMap is used to map a gene location to a set of probes.
+
+## API categories
+
+## API report
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+devtools::load_all("~/Repo/UCSCXenaTools/")
+library(dplyr)
+#library(UCSCXenaTools)
+load(system.file("api.RData", package = "UCSCXenaTools"))
+api_df = arrange(api_df, Level)
+knitr::kable(api_df, caption = "APIs in UCSCXenaTools")
+```
+
+
