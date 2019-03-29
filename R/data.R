@@ -3,8 +3,8 @@
 
 #' Xena Hub Information
 #'
-#' This `data.frame` is very useful for selecting datasets quickly and
-#' indepent on API of UCSC Xena Hubs.
+#' This `data.frame` is very useful for selecting datasets fastly and
+#' independent on APIs of UCSC Xena Hubs.
 #'
 #' @docType data
 #' @name XenaData

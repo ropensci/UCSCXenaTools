@@ -203,7 +203,7 @@ getTCGAdata = function(project = NULL,
         stop("Not Vaild Input!")
     }
 
-    tcga_all = .decodeDataType(Target = "TCGA")
+    tcga_all = .decodeDataType(Target = "tcgaHub")
 
     # tcga_all %>%
     #     filter(ProjectID %in% project) %>% # select project
@@ -423,7 +423,7 @@ downloadTCGA = function(project = NULL,
     stopifnot(!is.null(project),
               !is.null(data_type),
               !is.null(file_type))
-    tcga_all = .decodeDataType(Target = "TCGA")
+    tcga_all = .decodeDataType(Target = "tcgaHub")
     tcga_projects = unique(tcga_all$ProjectID)
 
     # suppress binding notes
@@ -465,7 +465,7 @@ downloadTCGA = function(project = NULL,
 ##' }
 availTCGA = function(which = c("all", "ProjectID", "DataType", "FileType")) {
     which = match.arg(which)
-    tcga_all = .decodeDataType(Target = "TCGA")
+    tcga_all = .decodeDataType(Target = "tcgaHub")
     tcga_projects = unique(tcga_all$ProjectID)
     tcga_datatype = unique(tcga_all$DataType)
     tcga_filetype = unique(tcga_all$FileType)
@@ -508,7 +508,7 @@ showTCGA = function(project = "all") {
     # suppress binding notes
     ProjectID = DataType = FileType = NULL
 
-    tcga_all = .decodeDataType(Target = "TCGA")
+    tcga_all = .decodeDataType(Target = "tcgaHub")
     if (project == "all") {
         # res = data.table::data.table(tcga_all)
         # res = res[, .(ProjectID, DataType, FileType)]
@@ -531,12 +531,12 @@ showTCGA = function(project = "all") {
 
 
 
-
+# Only works for TCGA
 .decodeDataType = function(XenaData = UCSCXenaTools::XenaData,
-                           Target = c("TCGA", "UCSC_Public", "GDC", "ICGC", "Toil", "Treehouse")) {
+                           Target = "tcgaHub") {
     # This TCGA include TCGA PANCAN dataset
-    if ("TCGA" %in% Target) {
-        Target = c(Target, "PanCancer")
+    if ("tcgaHub" %in% Target) {
+        Target = c(Target, "pancanAtlasHub")
     }
 
     # supress binding notes
@@ -544,7 +544,7 @@ showTCGA = function(project = "all") {
 
     ob = XenaData %>%  filter(XenaHostNames %in% Target)
 
-    if ("TCGA" %in% Target) {
+    if ("tcgaHub" %in% Target) {
         # decode project id
         ob %>% mutate(ProjectID = sub(".*\\((.*)\\)", "\\1", XenaCohorts)) -> ob
         # decode DataType

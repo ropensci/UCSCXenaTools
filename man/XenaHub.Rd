@@ -5,20 +5,19 @@
 \title{Generate a XenaHub Object}
 \usage{
 XenaHub(hosts = xena_default_hosts(), cohorts = character(),
-  datasets = character(), hostName = c("UCSC_Public", "TCGA", "GDC",
-  "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq"))
+  datasets = character(), hostName = c("publicHub", "tcgaHub",
+  "gdcHub", "icgcHub", "toilHub", "pancanAtlasHub", "treehouseHub",
+  "pcawgHub", "atacseqHub", "singlecellHub"))
 }
 \arguments{
 \item{hosts}{a character vector specify UCSC Xena hosts, all available hosts can be
-found by \code{xena_default_hosts()} function. \code{hostName} is a recommend option
-for substitute this.}
+found by \code{xena_default_hosts()} function. \code{hostName} is a more recommend option.}
 
 \item{cohorts}{default is empty character vector, all cohorts will be returned.}
 
 \item{datasets}{default is empty character vector, all datasets will be returned.}
 
-\item{hostName}{one to seven of
-\code{c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq")}.
+\item{hostName}{name of host, available options can be accessed by \code{.xena_hosts}
 This is an easier option for user than \code{hosts} option. Note, this option
 will overlap \code{hosts}.}
 }
@@ -26,7 +25,7 @@ will overlap \code{hosts}.}
 a \link{XenaHub} object
 }
 \description{
-Major function of \code{UCSCXenatools}. It is used to generate original
+It is used to generate original
 \code{XenaHub} object according to hosts, cohorts, datasets or hostName.
 If these arguments not specified, all hosts and corresponding datasets
 will be returned as a \code{XenaHub} object. All datasets can be found
@@ -38,7 +37,7 @@ at \url{https://xenabrowser.net/datapages/}.
 xe = XenaHub()
 xe
 #2 query only TCGA hosts
-xe = XenaHub(hostName = "TCGA")
+xe = XenaHub(hostName = "tcgaHub")
 xe
 hosts(xe)     # get hosts
 cohorts(xe)   # get cohorts

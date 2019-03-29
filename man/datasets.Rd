@@ -16,5 +16,5 @@ a character vector contains datasets
 Get datasets of XenaHub object
 }
 \examples{
-xe = XenaGenerate(subset = XenaHostNames == "TCGA"); datasets(xe)
+xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); datasets(xe)
 }

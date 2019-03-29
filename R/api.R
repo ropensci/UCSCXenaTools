@@ -16,7 +16,8 @@ to_snake = function(name) {
 }
 
 .rm_extension = function(filepath) {
-    sub(pattern = "(.*)\\..*$", replacement = "\\1",               basename(filepath))
+    sub(pattern = "(.*)\\..*$", replacement = "\\1",
+        basename(filepath))
 }
 
 .marshall_param = function(p) {
@@ -85,6 +86,9 @@ to_snake = function(name) {
         body = sprintf("xquery=get(\".xq_%s\", as.environment(\"package:UCSCXenaTools\")) \n.xena_post(host, .call(xquery, list(%s)))",
                        fun,
                        params)
+
+        # Create hidden functions
+        fun = paste0(".p_", fun)
         .make_fun(fun, body, all_params)
     }
 }

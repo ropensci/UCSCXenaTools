@@ -10,7 +10,7 @@ xena_default_hosts()
 A character vector include current defalut hosts
 }
 \description{
-Return Xena Default hosts
+Return Xena default hosts
 }
 \seealso{
 \code{\link[UCSCXenaTools:XenaHub]{UCSCXenaTools::XenaHub()}}

@@ -1,5 +1,15 @@
 # UCSCXenaTools 
 
+## v1.1.0
+
+* this version will change many variable names or functions. Update and Read the [documentation](https://github.com/ShixiangWang/UCSCXenaTools) are highly recommended!
+* add API functions, this is inspired by [xenaPython](https://github.com/ucscXena/xenaPython) package
+* remove useless query sentence from old code from XenaR
+* I rename all hub names
+* single cell hub is added
+* new `XenaData` contains much more information
+* improve internal code
+
 ## v1.0.1
 
 * fix some grammar errors in documentation

@@ -2,7 +2,7 @@
 % Please edit documentation in R/download.R
 \name{XenaQuery}
 \alias{XenaQuery}
-\title{Query url of datasets before download}
+\title{Query URL of Datasets before Downloading}
 \usage{
 XenaQuery(x)
 }
@@ -13,11 +13,11 @@ XenaQuery(x)
 a \code{tibble} contains hosts, datasets and url
 }
 \description{
-Query url of datasets before download
+Query URL of Datasets before Downloading
 }
 \examples{
 \donttest{
-xe = XenaGenerate(subset = XenaHostNames == "TCGA")
+xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 hosts(xe)
 xe_query = XenaQuery(xe)
 }

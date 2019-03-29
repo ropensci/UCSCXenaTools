@@ -2,7 +2,7 @@
 % Please edit documentation in R/download.R
 \name{XenaGenerate}
 \alias{XenaGenerate}
-\title{Generate and Subset a XenaHub Object from XenaData}
+\title{Generate and Subset a XenaHub Object from 'XenaData'}
 \usage{
 XenaGenerate(XenaData = UCSCXenaTools::XenaData, subset = TRUE)
 }
@@ -16,7 +16,7 @@ The input of this option can only be \code{data(XenaData)} or its subset.}
 a \link{XenaHub} object.
 }
 \description{
-Generate and Subset a XenaHub Object from XenaData
+Generate and Subset a XenaHub Object from 'XenaData'
 }
 \examples{
 # 1 get all datasets

@@ -2,7 +2,7 @@
 % Please edit documentation in R/download.R
 \name{XenaPrepare}
 \alias{XenaPrepare}
-\title{Prepare (Load) datasets to R download from UCSC Xena}
+\title{Prepare (Load) Downloaded Datasets to R}
 \usage{
 XenaPrepare(objects, objectsName = NULL, use_chunk = FALSE,
   chunk_size = 100, subset_rows = TRUE, select_cols = TRUE,
@@ -45,11 +45,11 @@ this option will overvide operations of subset_rows and select_cols.}
 a list contains file data, which in way of tibbles
 }
 \description{
-Prepare (Load) datasets to R download from UCSC Xena
+Prepare (Load) Downloaded Datasets to R
 }
 \examples{
 \donttest{
-xe = XenaGenerate(subset = XenaHostNames == "TCGA")
+xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 hosts(xe)
 xe_query = XenaQuery(xe)
 

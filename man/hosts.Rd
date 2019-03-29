@@ -16,5 +16,5 @@ a character vector contains hosts
 Get hosts of XenaHub object
 }
 \examples{
-xe = XenaGenerate(subset = XenaHostNames == "TCGA"); hosts(xe)
+xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); hosts(xe)
 }

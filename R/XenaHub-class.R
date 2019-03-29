@@ -14,7 +14,7 @@
 
 
 ##' @title UCSC Xena Default Hosts
-##' @description Return Xena Default hosts
+##' @description Return Xena default hosts
 ##' @return A character vector include current defalut hosts
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @seealso [UCSCXenaTools::XenaHub()]
@@ -29,13 +29,29 @@ xena_default_hosts = function() {
         "https://pancanatlas.xenahubs.net",
         "https://xena.treehouse.gi.ucsc.edu",
         "https://pcawg.xenahubs.net",
-        "https://atacseq.xenahubs.net"
+        "https://atacseq.xenahubs.net",
+        "https://singlecell.xenahubs.net"
     )
 }
 
+.xena_hosts = c(
+    "publicHub",
+    "tcgaHub",
+    "gdcHub",
+    "icgcHub",
+    "toilHub",
+    "pancanAtlasHub",
+    "treehouseHub",
+    "pcawgHub",
+    "atacseqHub",
+    "singlecellHub"
+)
+names(.xena_hosts) = xena_default_hosts()
+
+
 ##' Generate a XenaHub Object
 ##'
-##' Major function of `UCSCXenatools`. It is used to generate original
+##' It is used to generate original
 ##' `XenaHub` object according to hosts, cohorts, datasets or hostName.
 ##' If these arguments not specified, all hosts and corresponding datasets
 ##' will be returned as a `XenaHub` object. All datasets can be found
@@ -43,12 +59,10 @@ xena_default_hosts = function() {
 ##'
 ##'
 ##' @param hosts a character vector specify UCSC Xena hosts, all available hosts can be
-##' found by `xena_default_hosts()` function. `hostName` is a recommend option
-##' for substitute this.
+##' found by `xena_default_hosts()` function. `hostName` is a more recommend option.
 ##' @param cohorts default is empty character vector, all cohorts will be returned.
 ##' @param datasets default is empty character vector, all datasets will be returned.
-##' @param hostName one to seven of
-##' `c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq")`.
+##' @param hostName name of host, available options can be accessed by `.xena_hosts`
 ##'  This is an easier option for user than `hosts` option. Note, this option
 ##'  will overlap `hosts`.
 ##' @return a [XenaHub] object
@@ -63,7 +77,7 @@ xena_default_hosts = function() {
 ##' xe = XenaHub()
 ##' xe
 ##' #2 query only TCGA hosts
-##' xe = XenaHub(hostName = "TCGA")
+##' xe = XenaHub(hostName = "tcgaHub")
 ##' xe
 ##' hosts(xe)     # get hosts
 ##' cohorts(xe)   # get cohorts
@@ -74,15 +88,16 @@ XenaHub = function(hosts = xena_default_hosts(),
                    cohorts = character(),
                    datasets = character(),
                    hostName = c(
-                       "UCSC_Public",
-                       "TCGA",
-                       "GDC",
-                       "ICGC",
-                       "Toil",
-                       "PanCancer",
-                       "Treehouse",
-                       "PCAWG",
-                       "ATACseq"
+                       "publicHub",
+                       "tcgaHub",
+                       "gdcHub",
+                       "icgcHub",
+                       "toilHub",
+                       "pancanAtlasHub",
+                       "treehouseHub",
+                       "pcawgHub",
+                       "atacseqHub",
+                       "singlecellHub"
                    )) {
     stopifnot(is.character(hosts),
               is.character(cohorts),
@@ -90,32 +105,15 @@ XenaHub = function(hosts = xena_default_hosts(),
 
     hostName = unique(hostName)
 
-    if (length(hostName) != 9 &
+    if (length(hostName) != length(.xena_hosts) &
         all(
-            hostName %in% c(
-                "UCSC_Public",
-                "TCGA",
-                "GDC",
-                "ICGC",
-                "Toil",
-                "PanCancer",
-                "Treehouse",
-                "PCAWG",
-                "ATACseq"
-            )
+            hostName %in% .xena_hosts
         )) {
-        hostNames = data.frame(
-            UCSC_Public = "https://ucscpublic.xenahubs.net",
-            TCGA = "https://tcga.xenahubs.net",
-            GDC = "https://gdc.xenahubs.net",
-            ICGC = "https://icgc.xenahubs.net",
-            Toil = "https://toil.xenahubs.net",
-            PanCancer = "https://pancanatlas.xenahubs.net",
-            Treehouse = "https://xena.treehouse.gi.ucsc.edu",
-            PCAWG = "https://pcawg.xenahubs.net",
-            ATACseq = "https://atacseq.xenahubs.net",
-            stringsAsFactors = FALSE
-        )
+        .temp = names(.xena_hosts)
+        names(.temp) = .xena_hosts
+        hostNames = .temp %>% as.data.frame() %>% t() %>% as.data.frame()
+        rm(.temp)
+
         hosts = as.character(hostNames[, hostName])
     }
 
@@ -203,28 +201,7 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
         resDF = rbind(resDF, res)
     }
 
-    XenaHostNames = c(
-        "UCSC_Public",
-        "TCGA",
-        "GDC",
-        "ICGC",
-        "Toil",
-        "PanCancer",
-        "Treehouse",
-        "PCAWG",
-        "ATACseq"
-    )
-    names(XenaHostNames) = c(
-        "https://ucscpublic.xenahubs.net",
-        "https://tcga.xenahubs.net",
-        "https://gdc.xenahubs.net",
-        "https://icgc.xenahubs.net",
-        "https://toil.xenahubs.net",
-        "https://pancanatlas.xenahubs.net",
-        "https://xena.treehouse.gi.ucsc.edu",
-        "https://pcawg.xenahubs.net",
-        "https://atacseq.xenahubs.net"
-    )
+    XenaHostNames = .xena_hosts
 
     resDF$XenaHostNames = XenaHostNames[resDF$XenaHosts]
     XenaData = resDF[, c("XenaHosts",
@@ -234,7 +211,7 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
     if (saveTolocal) {
         data_dir = base::system.file("data", package = "UCSCXenaTools")
         if (dir.exists(data_dir)) {
-            save(XenaData, file = paste0(data_dir, "/XenaData.rda"))
+            save(XenaData, file = file.path(data_dir, "XenaData.rda"))
         } else{
             message("There is no data directory ", data_dir)
             message("Please check it.")
@@ -263,7 +240,7 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
 ##' @export
 ##' @examples
 ##' # operate TCGA datasets
-##' xe = XenaGenerate(subset = XenaHostNames == "TCGA")
+##' xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 ##' xe
 ##' # get all names of clinical data
 ##' xe2 = XenaFilter(xe, filterDatasets = "clinical")
@@ -331,7 +308,7 @@ XenaFilter = function(x,
 ##' @import methods
 ##' @return a character vector contains hosts
 ##' @export
-##' @examples xe = XenaGenerate(subset = XenaHostNames == "TCGA"); hosts(xe)
+##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); hosts(xe)
 hosts = function(x)
     unname(slot(x, "hosts"))
 ##' Get cohorts of XenaHub object
@@ -339,7 +316,7 @@ hosts = function(x)
 ##' @return a character vector contains cohorts
 ##' @import methods
 ##' @export
-##' @examples xe = XenaGenerate(subset = XenaHostNames == "TCGA"); cohorts(xe)
+##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); cohorts(xe)
 cohorts = function(x)
     slot(x, "cohorts")
 ##' Get datasets of XenaHub object
@@ -347,7 +324,7 @@ cohorts = function(x)
 ##' @return a character vector contains datasets
 ##' @import methods
 ##' @export
-##' @examples xe = XenaGenerate(subset = XenaHostNames == "TCGA"); datasets(xe)
+##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); datasets(xe)
 datasets = function(x)
     slot(x, "datasets")
 
@@ -405,7 +382,7 @@ datasets = function(x)
     fun(hosts(x), datasets)
 }
 
-##' get samples of XenaHub object according to by and how action arguments
+##' Get Samples of a XenaHub object according to 'by' and 'how' action arguments
 ##'
 ##' One is often interested in identifying samples or features present in each data set,
 ##' or shared by all data sets, or present in any of several data sets.

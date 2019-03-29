@@ -13,7 +13,7 @@ output:
   pdf_document:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{download publical data in batch quickly and easily}
+  %\VignetteIndexEntry{Download Public Cancer Genomic Data from UCSC Xena Hubs}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
@@ -64,7 +64,7 @@ browseVignettes("UCSCXenaTools")
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
-Currently, **UCSCXenaTools** supports all 9 data hubs of UCSC Xena.
+Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
 
 * UCSC Public Hub: <https://ucscpublic.xenahubs.net>
 * TCGA Hub: <https://tcga.xenahubs.net>
@@ -73,10 +73,11 @@ Currently, **UCSCXenaTools** supports all 9 data hubs of UCSC Xena.
 * Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
 * GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
 * Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
-* PCAWG: <https://pcawg.xenahubs.net>
-* ATAC-seq: <https://atacseq.xenahubs.net>
+* PCAWG Hub: <https://pcawg.xenahubs.net>
+* ATAC-seq Hub: <https://atacseq.xenahubs.net>
+* Singel Cell Xena hub: <https://singlecell.xenahubs.net>
 
-If the url of data hub changed, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
+If the url of data hub changed or new data hub online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
 ## Usage
 
@@ -86,7 +87,7 @@ To show the basic usage of **UCSCXenaTools**, we download clinical data of LUNG,
 
 ### XenaData data.frame
 
-Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which communicates with API of UCSC Xena Data Hubs.
+Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which records information of all datasets of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
@@ -95,6 +96,12 @@ library(UCSCXenaTools)
 data(XenaData)
 
 head(XenaData)
+```
+
+Names of all hub names can be accessed by object `.xena_hosts`:
+
+```{r}
+UCSCXenaTools:::.xena_hosts
 ```
 
 ### Generate a XenaHub object
@@ -108,7 +115,7 @@ XenaGenerate()
 You can set `subset` argument to narrow datasets.
 
 ```{r}
-XenaGenerate(subset = XenaHostNames=="TCGA")
+XenaGenerate(subset = XenaHostNames=="tcgaHub")
 ```
 
 >You can also use `XenaHub()` to generate a `XenaHub` object for API communication, but it is not recommended. 
@@ -116,7 +123,7 @@ XenaGenerate(subset = XenaHostNames=="TCGA")
 It's possible to explore `hosts()`, `cohorts()` and `datasets()`.
 
 ```{r}
-xe = XenaGenerate(subset = XenaHostNames=="TCGA")
+xe = XenaGenerate(subset = XenaHostNames=="tcgaHub")
 # get hosts
 hosts(xe)
 # get cohorts
@@ -130,13 +137,13 @@ Pipe operator `%>%` can also be used here.
 ```{r, message=FALSE}
 library(dplyr)
 XenaData %>% 
-    filter(XenaHostNames == "TCGA", grepl("BRCA", XenaCohorts), grepl("Path", XenaDatasets)) %>%
+    filter(XenaHostNames == "tcgaHub", grepl("BRCA", XenaCohorts), grepl("Path", XenaDatasets)) %>%
     XenaGenerate()
 ```
 
 ### Filter 
 
-There are too many datasets in `xe`, you can filter them by `XenaFilter` function.Regular expression can be used here.
+There are too many datasets in `xe`, you can filter them by `XenaFilter` function. Regular expression can be used here.
 
 ```{r}
 (XenaFilter(xe, filterDatasets = "clinical") -> xe2)
@@ -168,13 +175,13 @@ Create two XenaHub objects:
 * `to_browse2` - a XenaHub object contains 2 cohorts and 2 datasets.
 
 ```{r}
-XenaGenerate(subset = XenaHostNames=="TCGA") %>%
+XenaGenerate(subset = XenaHostNames=="tcgaHub") %>%
     XenaFilter(filterDatasets = "clinical") %>%
     XenaFilter(filterDatasets = "LUAD") -> to_browse
 
 to_browse
 
-XenaGenerate(subset = XenaHostNames=="TCGA") %>%
+XenaGenerate(subset = XenaHostNames=="tcgaHub") %>%
     XenaFilter(filterDatasets = "clinical") %>%
     XenaFilter(filterDatasets = "LUAD|LUSC") -> to_browse2
 
@@ -225,7 +232,8 @@ If the data exists, command will not run to download them, but you can force it 
 xe2_download = XenaDownload(xe2_query)
 ```
 
-> **Note** file names inherit from names in datasets column and '/' all changed to '__'.
+Of note, at default, the downloaded files will keep same directory structure as Xena. You can set `trans_slash` to TRUE, it will transform
+`/` in dataset id to `__`, this will make all downloaded files are under same directory.
 
 ### Prepare
 
@@ -283,7 +291,7 @@ testRNA = UCSCXenaTools::XenaPrepare("~/Download/HiSeqV2.gz", use_chunk = TRUE, 
 
 ### getTCGAdata
 
-`getTCGAdata` provide a quite easy download way for TCGA datasets, user can specify multiple options to select which data and corresponding file type want to download. Default this function will return a list include `XenaHub` object and selective datasets information. Once you are sure the datasets is exactly what you want, `download` can be set to `TRUE` to download the data.
+`getTCGAdata` provide a quite easy download way for TCGA (hg19 version, different from `gdcHub`) datasets, user can specify multiple options to select which data and corresponding file type want to download. Default this function will return a list include `XenaHub` object and selective datasets information. Once you are sure the datasets is exactly what you want, `download` can be set to `TRUE` to download the data.
 
 Check arguments of `getTCGAdata`:
 

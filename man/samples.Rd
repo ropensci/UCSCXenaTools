@@ -2,7 +2,7 @@
 % Please edit documentation in R/XenaHub-class.R
 \name{samples}
 \alias{samples}
-\title{get samples of XenaHub object according to by and how action arguments}
+\title{Get Samples of a XenaHub object according to 'by' and 'how' action arguments}
 \usage{
 samples(x, i = character(), by = c("hosts", "cohorts", "datasets"),
   how = c("each", "any", "all"))

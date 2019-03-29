@@ -11,7 +11,7 @@ test_that("Load XenaData works", {
     expect_is(XenaData, "data.frame")
 })
 
-xe = XenaGenerate(subset = XenaHostNames=="TCGA")
+xe = XenaGenerate(subset = XenaHostNames=="tcgaHub")
 
 test_that("XenaGenerate works", {
     expect_is(xe, "XenaHub")

@@ -31,7 +31,7 @@ at \url{https://xenabrowser.net/datapages/}.
 }
 \examples{
 # operate TCGA datasets
-xe = XenaGenerate(subset = XenaHostNames == "TCGA")
+xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 xe
 # get all names of clinical data
 xe2 = XenaFilter(xe, filterDatasets = "clinical")

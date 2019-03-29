@@ -11,5 +11,7 @@ Wang, Shixiang, et al. \"APOBEC3B and APOBEC mutational signature
     response in non-small cell lung cancer.\" Oncogene (2018).
 =========================================================================
                  ")
+    # Init API functions
+    .init_api()
     base::packageStartupMessage(msg)
 }

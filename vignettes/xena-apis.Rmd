@@ -1,0 +1,29 @@
+---
+title: "UCSCXenaTools: R API for UCSC Xena Hubs"
+author: "Shixiang Wang \\
+
+        ShanghaiTech. University"
+date: "`r Sys.Date()`"
+
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{R API for UCSC Xena Hubs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette gives users the summary information of API functions provided by **UCSCXenaTools** for UCSC Xena. 
+
