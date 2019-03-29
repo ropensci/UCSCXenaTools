@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prepare (Load) datasets to R download from UCSC Xena — XenaPrepare • UCSCXenaTools</title>
+<title>Prepare (Load) Downloaded Datasets to R — XenaPrepare • UCSCXenaTools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Prepare (Load) datasets to R download from UCSC Xena — XenaPrepare" />
+<meta property="og:title" content="Prepare (Load) Downloaded Datasets to R — XenaPrepare" />
 
-<meta property="og:description" content="Prepare (Load) datasets to R download from UCSC Xena" />
+<meta property="og:description" content="Prepare (Load) Downloaded Datasets to R" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1.9000</span>
       </span>
     </div>
 
@@ -89,6 +89,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/USCSXenaTools.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
+    </li>
+    <li>
+      <a href="../articles/xena-apis.html">UCSCXenaTools: R API for UCSC Xena Hubs</a>
     </li>
   </ul>
 </li>
@@ -116,14 +119,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Prepare (Load) datasets to R download from UCSC Xena</h1>
+    <h1>Prepare (Load) Downloaded Datasets to R</h1>
     <small class="dont-index">Source: <a href='https://github.com/ShixiangWang/UCSCXenaTools/blob/master/R/download.R'><code>R/download.R</code></a></small>
     <div class="hidden name"><code>XenaPrepare.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Prepare (Load) datasets to R download from UCSC Xena</p>
+    <p>Prepare (Load) Downloaded Datasets to R</p>
     
     </div>
 
@@ -195,7 +198,7 @@ this option will overvide operations of subset_rows and select_cols.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'><a href='XenaGenerate.html'>XenaGenerate</a></span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>XenaHostNames</span> <span class='kw'>==</span> <span class='st'>"TCGA"</span>)
+<span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'><a href='XenaGenerate.html'>XenaGenerate</a></span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>XenaHostNames</span> <span class='kw'>==</span> <span class='st'>"tcgaHub"</span>)
 <span class='fu'><a href='hosts.html'>hosts</a></span>(<span class='no'>xe</span>)
 <span class='no'>xe_query</span> <span class='kw'>=</span> <span class='fu'><a href='XenaQuery.html'>XenaQuery</a></span>(<span class='no'>xe</span>)
 

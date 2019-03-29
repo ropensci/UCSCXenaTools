@@ -58,7 +58,7 @@ remotes::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
-Currently, **UCSCXenaTools** supports all 9 data hubs of UCSC Xena.
+Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
 
   - UCSC Public Hub: <https://ucscpublic.xenahubs.net>
   - TCGA Hub: <https://tcga.xenahubs.net>
@@ -67,11 +67,12 @@ Currently, **UCSCXenaTools** supports all 9 data hubs of UCSC Xena.
   - Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
   - GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
   - Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
-  - PCAWG: <https://pcawg.xenahubs.net>
-  - ATAC-seq: <https://atacseq.xenahubs.net>
+  - PCAWG Hub: <https://pcawg.xenahubs.net>
+  - ATAC-seq Hub: <https://atacseq.xenahubs.net>
+  - Singel Cell Xena hub: <https://singlecell.xenahubs.net>
 
-If the url of data hub changed, please remind me by emailing to
-<w_shixiang@163.com> or [opening an issue on
+If the url of data hub changed or new data hub online, please remind me
+by emailing to <w_shixiang@163.com> or [opening an issue on
 GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
 ## Usage
@@ -88,18 +89,18 @@ of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
 
 ### XenaData data.frame
 
-**UCSCXenaTools** uses a `data.frame` object (built in package)
-`XenaData` to generate an instance of `XenaHub` class, which
-communicates with API of UCSC Xena Data Hubs.
+Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object
+(built in package) `XenaData` to generate an instance of `XenaHub`
+class, which records information of all datasets of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 1.0.0
+#> UCSCXenaTools version 1.0.1.9000
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
-#> Documentation: https://github.com/ShixiangWang/UCSCXenaTools
+#> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
 #> If you use it in published research, please cite:
 #> Wang, Shixiang, et al. "APOBEC3B and APOBEC mutational signature
 #>     as potential predictive markers for immunotherapy
@@ -110,12 +111,12 @@ data(XenaData)
 
 head(XenaData)
 #>                         XenaHosts XenaHostNames
-#> 1 https://ucscpublic.xenahubs.net   UCSC_Public
-#> 2 https://ucscpublic.xenahubs.net   UCSC_Public
-#> 3 https://ucscpublic.xenahubs.net   UCSC_Public
-#> 4 https://ucscpublic.xenahubs.net   UCSC_Public
-#> 5 https://ucscpublic.xenahubs.net   UCSC_Public
-#> 6 https://ucscpublic.xenahubs.net   UCSC_Public
+#> 1 https://ucscpublic.xenahubs.net     publicHub
+#> 2 https://ucscpublic.xenahubs.net     publicHub
+#> 3 https://ucscpublic.xenahubs.net     publicHub
+#> 4 https://ucscpublic.xenahubs.net     publicHub
+#> 5 https://ucscpublic.xenahubs.net     publicHub
+#> 6 https://ucscpublic.xenahubs.net     publicHub
 #>                                     XenaCohorts
 #> 1 Acute lymphoblastic leukemia (Mullighan 2008)
 #> 2 Acute lymphoblastic leukemia (Mullighan 2008)
@@ -138,7 +139,7 @@ Select datasets.
 
 ``` r
 # The options in XenaFilter function support Regular Expression
-XenaGenerate(subset = XenaHostNames=="TCGA") %>% 
+XenaGenerate(subset = XenaHostNames=="tcgaHub") %>% 
   XenaFilter(filterDatasets = "clinical") %>% 
   XenaFilter(filterDatasets = "LUAD|LUSC|LUNG") -> df_todo
 
@@ -162,12 +163,12 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> We will download files to directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpOTE23c.
-#> Downloading TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz
-#> Downloading TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz
-#> Downloading TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz
-#> Note file names inherit from names in datasets column
-#>   and '/' all changed to '__'.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpaaFXhQ.
+#> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
+#> Creating directories for datasets...
+#> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
+#> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix.gz
+#> Downloading TCGA.LUSC.sampleMap/LUSC_clinicalMatrix.gz
 ```
 
 Prepare data into R for analysis.
@@ -177,9 +178,8 @@ cli = XenaPrepare(xe_download)
 class(cli)
 #> [1] "list"
 names(cli)
-#> [1] "TCGA.LUAD.sampleMap__LUAD_clinicalMatrix.gz"
-#> [2] "TCGA.LUNG.sampleMap__LUNG_clinicalMatrix.gz"
-#> [3] "TCGA.LUSC.sampleMap__LUSC_clinicalMatrix.gz"
+#> [1] "LUAD_clinicalMatrix.gz" "LUNG_clinicalMatrix.gz"
+#> [3] "LUSC_clinicalMatrix.gz"
 ```
 
 ### Browse datasets
@@ -192,7 +192,7 @@ Create two XenaHub objects:
 <!-- end list -->
 
 ``` r
-XenaGenerate(subset = XenaHostNames=="TCGA") %>%
+XenaGenerate(subset = XenaHostNames=="tcgaHub") %>%
     XenaFilter(filterDatasets = "clinical") %>%
     XenaFilter(filterDatasets = "LUAD") -> to_browse
 
@@ -205,7 +205,7 @@ to_browse
 #> datasets() (1 total):
 #>   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
 
-XenaGenerate(subset = XenaHostNames=="TCGA") %>%
+XenaGenerate(subset = XenaHostNames=="tcgaHub") %>%
     XenaFilter(filterDatasets = "clinical") %>%
     XenaFilter(filterDatasets = "LUAD|LUSC") -> to_browse2
 

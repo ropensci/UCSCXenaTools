@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Generate a XenaHub Object — XenaHub" />
 
-<meta property="og:description" content="Major function of UCSCXenatools. It is used to generate original
+<meta property="og:description" content="It is used to generate original
 XenaHub object according to hosts, cohorts, datasets or hostName.
 If these arguments not specified, all hosts and corresponding datasets
 will be returned as a XenaHub object. All datasets can be found
@@ -69,7 +69,7 @@ at https://xenabrowser.net/datapages/." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1.9000</span>
       </span>
     </div>
 
@@ -93,6 +93,9 @@ at https://xenabrowser.net/datapages/." />
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/USCSXenaTools.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
+    </li>
+    <li>
+      <a href="../articles/xena-apis.html">UCSCXenaTools: R API for UCSC Xena Hubs</a>
     </li>
   </ul>
 </li>
@@ -127,7 +130,7 @@ at https://xenabrowser.net/datapages/." />
 
     <div class="ref-description">
     
-    <p>Major function of <code>UCSCXenatools</code>. It is used to generate original
+    <p>It is used to generate original
 <code>XenaHub</code> object according to hosts, cohorts, datasets or hostName.
 If these arguments not specified, all hosts and corresponding datasets
 will be returned as a <code>XenaHub</code> object. All datasets can be found
@@ -136,8 +139,9 @@ at <a href='https://xenabrowser.net/datapages/'>https://xenabrowser.net/datapage
     </div>
 
     <pre class="usage"><span class='fu'>XenaHub</span>(<span class='kw'>hosts</span> <span class='kw'>=</span> <span class='fu'><a href='xena_default_hosts.html'>xena_default_hosts</a></span>(), <span class='kw'>cohorts</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(),
-  <span class='kw'>datasets</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(), <span class='kw'>hostName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"UCSC_Public"</span>, <span class='st'>"TCGA"</span>, <span class='st'>"GDC"</span>,
-  <span class='st'>"ICGC"</span>, <span class='st'>"Toil"</span>, <span class='st'>"PanCancer"</span>, <span class='st'>"Treehouse"</span>, <span class='st'>"PCAWG"</span>, <span class='st'>"ATACseq"</span>))</pre>
+  <span class='kw'>datasets</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/character'>character</a></span>(), <span class='kw'>hostName</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"publicHub"</span>, <span class='st'>"tcgaHub"</span>,
+  <span class='st'>"gdcHub"</span>, <span class='st'>"icgcHub"</span>, <span class='st'>"toilHub"</span>, <span class='st'>"pancanAtlasHub"</span>, <span class='st'>"treehouseHub"</span>,
+  <span class='st'>"pcawgHub"</span>, <span class='st'>"atacseqHub"</span>, <span class='st'>"singlecellHub"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,8 +149,7 @@ at <a href='https://xenabrowser.net/datapages/'>https://xenabrowser.net/datapage
     <tr>
       <th>hosts</th>
       <td><p>a character vector specify UCSC Xena hosts, all available hosts can be
-found by <code><a href='xena_default_hosts.html'>xena_default_hosts()</a></code> function. <code>hostName</code> is a recommend option
-for substitute this.</p></td>
+found by <code><a href='xena_default_hosts.html'>xena_default_hosts()</a></code> function. <code>hostName</code> is a more recommend option.</p></td>
     </tr>
     <tr>
       <th>cohorts</th>
@@ -158,8 +161,7 @@ for substitute this.</p></td>
     </tr>
     <tr>
       <th>hostName</th>
-      <td><p>one to seven of
-<code><a href='https://www.rdocumentation.org/packages/base/topics/c'>c("UCSC_Public", "TCGA", "GDC", "ICGC", "Toil", "PanCancer", "Treehouse", "PCAWG", "ATACseq")</a></code>.
+      <td><p>name of host, available options can be accessed by <code>.xena_hosts</code>
 This is an easier option for user than <code>hosts</code> option. Note, this option
 will overlap <code>hosts</code>.</p></td>
     </tr>
@@ -176,7 +178,7 @@ will overlap <code>hosts</code>.</p></td>
 <span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'>XenaHub</span>()
 <span class='no'>xe</span>
 <span class='co'>#2 query only TCGA hosts</span>
-<span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'>XenaHub</span>(<span class='kw'>hostName</span> <span class='kw'>=</span> <span class='st'>"TCGA"</span>)
+<span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'>XenaHub</span>(<span class='kw'>hostName</span> <span class='kw'>=</span> <span class='st'>"tcgaHub"</span>)
 <span class='no'>xe</span>
 <span class='fu'><a href='hosts.html'>hosts</a></span>(<span class='no'>xe</span>)     <span class='co'># get hosts</span>
 <span class='fu'><a href='cohorts.html'>cohorts</a></span>(<span class='no'>xe</span>)   <span class='co'># get cohorts</span>

@@ -65,7 +65,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1.9000</span>
       </span>
     </div>
 
@@ -89,6 +89,9 @@
   <ul class="dropdown-menu" role="menu">
     <li>
       <a href="../articles/USCSXenaTools.html">UCSCXenaTools: Download Public Cancer Genomic Data from UCSC Xena Hubs</a>
+    </li>
+    <li>
+      <a href="../articles/xena-apis.html">UCSCXenaTools: R API for UCSC Xena Hubs</a>
     </li>
   </ul>
 </li>
@@ -145,7 +148,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'><a href='XenaGenerate.html'>XenaGenerate</a></span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>XenaHostNames</span> <span class='kw'>==</span> <span class='st'>"TCGA"</span>); <span class='fu'>datasets</span>(<span class='no'>xe</span>)
+<span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'><a href='XenaGenerate.html'>XenaGenerate</a></span>(<span class='kw'>subset</span> <span class='kw'>=</span> <span class='no'>XenaHostNames</span> <span class='kw'>==</span> <span class='st'>"tcgaHub"</span>); <span class='fu'>datasets</span>(<span class='no'>xe</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
