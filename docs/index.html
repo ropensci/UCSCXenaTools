@@ -12,8 +12,7 @@
 <script src="pkgdown.js"></script><meta property="og:title" content="Download and Explore Datasets from UCSC Xena Data Hubs">
 <meta property="og:description" content="Download and explore datasets from UCSC Xena data hubs, which are
     a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others.
-    Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
-    This package is based on 'XenaR' package.">
+    Databases are normalized so they can be combined, linked, filtered, explored and downloaded.">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -34,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
       </span>
     </div>
 
@@ -107,6 +106,7 @@
 <li><a href="#data-hub-list">Data Hub List</a></li>
 <li><a href="#usage">Usage</a></li>
 <li><a href="#documentation">Documentation</a></li>
+<li><a href="#apis">APIs</a></li>
 <li><a href="#citation">Citation</a></li>
 <li><a href="#acknowledgement">Acknowledgement</a></li>
 <li><a href="#license">LICENSE</a></li>
@@ -149,7 +149,7 @@
 <li>Singel Cell Xena hub: <a href="https://singlecell.xenahubs.net" class="uri">https://singlecell.xenahubs.net</a>
 </li>
 </ul>
-<p>If the url of data hub changed or new data hub online, please remind me by emailing to <a href="mailto:w_shixiang@163.com" class="email">w_shixiang@163.com</a> or <a href="https://github.com/ShixiangWang/UCSCXenaTools/issues">opening an issue on GitHub</a>.</p>
+<p>If the url of data hub changed or new data hub online, please remind me by emailing to <a href="mailto:w_shixiang@163.com">w_shixiang@163.com</a> or <a href="https://github.com/ShixiangWang/UCSCXenaTools/issues">opening an issue on GitHub</a>.</p>
 </div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
@@ -163,7 +163,7 @@
 <p>You can load <code>XenaData</code> after loading <code>UCSCXenaTools</code> into R.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(UCSCXenaTools)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; =========================================================================</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; UCSCXenaTools version 1.0.1.9000</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; UCSCXenaTools version 1.1.1</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; Github page: https://github.com/ShixiangWang/UCSCXenaTools</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; Documentation: https://shixiangwang.github.io/UCSCXenaTools/</span></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; If you use it in published research, please cite:</span></a>
@@ -222,7 +222,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/XenaQuery.html">XenaQuery</a></span>(df_todo) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/XenaDownload.html">XenaDownload</a></span>() -&gt;<span class="st"> </span>xe_download</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; This will check url status, please be patient.</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmp6thxxv.</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; All downloaded files will under directory /tmp/Rtmp44cIkr.</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; The 'trans_slash' option is FALSE, keep same directory structure as Xena.</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; Creating directories for datasets...</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz</span></a>
@@ -296,10 +296,27 @@
 <a href="#documentation" class="anchor"></a>Documentation</h2>
 <p>More features and usages please read <a href="https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html">online documentation on CRAN</a> or <a href="https://shixiangwang.github.io/UCSCXenaTools/">Github website</a>.</p>
 </div>
+<div id="apis" class="section level2">
+<h2 class="hasAnchor">
+<a href="#apis" class="anchor"></a>APIs</h2>
+<p>API functions can be used to query specified data (e.g. expression of a few genes for a few samples) or information instead of downloading the entire dataset.</p>
+<p>If you want to use APIs provided by <strong>UCSCXenaTools</strong> to access Xena Hubs, please read <a href="https://shixiangwang.github.io/UCSCXenaTools/articles/xena-apis.html">this vignette</a>.</p>
+</div>
 <div id="citation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#citation" class="anchor"></a>Citation</h2>
 <p><em>Wang, Shixiang, et al. “APOBEC3B and APOBEC mutational signature as potential predictive markers for immunotherapy response in non-small cell lung cancer.” Oncogene (2018).</em></p>
+<p>Or</p>
+<pre><code>@article{wang2018apobec3b,
+  title={APOBEC3B and APOBEC mutational signature as potential predictive markers for immunotherapy response in non-small cell lung cancer},
+  author={Wang, Shixiang and Jia, Mingming and He, Zaoke and Liu, Xue-Song},
+  journal={Oncogene},
+  volume={37},
+  number={29},
+  pages={3924},
+  year={2018},
+  publisher={Nature Publishing Group}
+}</code></pre>
 </div>
 <div id="acknowledgement" class="section level2">
 <h2 class="hasAnchor">
@@ -310,7 +327,7 @@
 <h2 class="hasAnchor">
 <a href="#license" class="anchor"></a>LICENSE</h2>
 <p>GPL-3</p>
-<p>please note, code from XenaR package under Apache 2.0 license.</p>
+<p>Please note, code from XenaR package under Apache 2.0 license.</p>
 </div>
 <div id="code-of-conduct" class="section level2">
 <h2 class="hasAnchor">

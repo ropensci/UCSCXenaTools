@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
                         <h4 class="author">Shixiang Wang<br>
 ShanghaiTech. University</h4>
             
-            <h4 class="date">2019-03-29</h4>
+            <h4 class="date">2019-03-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/vignettes/xena-apis.Rmd"><code>vignettes/xena-apis.Rmd</code></a></small>
       <div class="hidden name"><code>xena-apis.Rmd</code></div>
@@ -98,9 +98,443 @@ ShanghaiTech. University</h4>
     
     
 <p>This vignette gives users the summary information of API functions provided by <strong>UCSCXenaTools</strong> for UCSC Xena.</p>
+<p>Before using API, user should know some concepts about Xena elements. Following description is copied from <a href="https://github.com/ucscXena/xenaPython/blob/master/xenaPython/__init__.py">xenaPython <code>__init__.py</code></a>.</p>
+<blockquote>
+<p>Data rows are associated with “sample” IDs.</p>
+<p>Sample IDs are unique within a “<strong>cohort</strong>”. s A “<strong>dataset</strong>” is a particular assay of a cohort, e.g. gene expression.</p>
+<p>Datasets have associated metadata, specifying their data type and cohort.</p>
+<p>There are three primary data types: <strong>dense matrix</strong> (samples by probes), <strong>sparse</strong> (sample, position, variant), and <strong>segmented</strong> (sample, position, value).</p>
+<p>Dense matrices can be genotypic or phenotypic. Phenotypic matrices have associated <strong>field metadata</strong> (descriptive names, codes, etc.). Genotypic matricies may have an associated <strong>probeMap</strong>, which maps probes to genomic locations. If a matrix has hugo probeMap, the probes themselves are gene names. Otherwise, a probeMap is used to map a gene location to a set of probes.</p>
+</blockquote>
+<div id="api-categories" class="section level2">
+<h2 class="hasAnchor">
+<a href="#api-categories" class="anchor"></a>API categories</h2>
+<p>API functions can be divided into two classes: <strong>lower API functions</strong> and <strong>higher API functions</strong>. They have following difference:</p>
+<ul>
+<li>The main difference between them is that the target of higher API functions is <code>XenaHub</code> object, which is a S4 class built in R. While the targets of lower API functions are Xena hub urls, cohort names or dataset names with character format. The <code>XenaHub</code> object can provide more uniform operation methods and can be used to download corresponding datasets quickly and easily (detail see <a href="https://shixiangwang.github.io/UCSCXenaTools/">another vignette</a>).</li>
+<li>Lower API functions are not registered in package <a href="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/NAMESPACE">NAMESPACE</a>, so user may not access them after <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(UCSCXenaTools)</a></code>, user need to use <code>UCSCXenaTools:::fun_name</code> instead.</li>
+<li>Lower API functions have no help pages, so user cannot find any description about them in R, which means you cannot use <code>?fun_name</code> to get help. However, API report part in this vignette shows all avaiable API functions and their short description.</li>
+<li>Higher API functions are built on lower API functions, they return more meaningful and easy results for operation. Most of lower API functions return nested lists as results, user need to tidy them before using them in next step.</li>
+</ul>
+<div id="lower-api-functions" class="section level3">
+<h3 class="hasAnchor">
+<a href="#lower-api-functions" class="anchor"></a>Lower API functions</h3>
+<p>Lower API functions also have 2 classes:</p>
+<ul>
+<li>
+<p>one is generated from <a href="https://github.com/ShixiangWang/UCSCXenaTools/tree/master/inst/queries"><code>.xq</code> files</a>, function names all start with <code>.p_</code>. All <code>.xq</code> files are copied from <a href="https://github.com/ucscXena/xenaPython">xenaPython</a> package, which is official Python API for Xena. These functions are dynamicly created when <strong>UCSCXenaTools</strong> loaded. Their names are given as following:</p>
+<pre><code>#&gt;  [1] ".p_all_cohorts"                    
+#&gt;  [2] ".p_all_datasets"                   
+#&gt;  [3] ".p_all_datasets_n"                 
+#&gt;  [4] ".p_all_field_metadata"             
+#&gt;  [5] ".p_cohort_samples"                 
+#&gt;  [6] ".p_cohort_summary"                 
+#&gt;  [7] ".p_dataset_fetch"                  
+#&gt;  [8] ".p_dataset_field"                  
+#&gt;  [9] ".p_dataset_field_examples"         
+#&gt; [10] ".p_dataset_field_n"                
+#&gt; [11] ".p_dataset_gene_probe_avg"         
+#&gt; [12] ".p_dataset_gene_probes_values"     
+#&gt; [13] ".p_dataset_list"                   
+#&gt; [14] ".p_dataset_metadata"               
+#&gt; [15] ".p_dataset_probe_signature"        
+#&gt; [16] ".p_dataset_probe_values"           
+#&gt; [17] ".p_dataset_samples"                
+#&gt; [18] ".p_dataset_samples_ndense_matrix"  
+#&gt; [19] ".p_datasets_null_rows"             
+#&gt; [20] ".p_feature_list"                   
+#&gt; [21] ".p_field_codes"                    
+#&gt; [22] ".p_field_metadata"                 
+#&gt; [23] ".p_gene_transcripts"               
+#&gt; [24] ".p_match_fields"                   
+#&gt; [25] ".p_probe_count"                    
+#&gt; [26] ".p_probemap_list"                  
+#&gt; [27] ".p_ref_gene_exons"                 
+#&gt; [28] ".p_ref_gene_position"              
+#&gt; [29] ".p_ref_gene_range"                 
+#&gt; [30] ".p_segment_data_examples"          
+#&gt; [31] ".p_segmented_data_range"           
+#&gt; [32] ".p_sparse_data"                    
+#&gt; [33] ".p_sparse_data_examples"           
+#&gt; [34] ".p_sparse_data_match_field"        
+#&gt; [35] ".p_sparse_data_match_field_slow"   
+#&gt; [36] ".p_sparse_data_match_partial_field"
+#&gt; [37] ".p_sparse_data_range"              
+#&gt; [38] ".p_transcript_expression"</code></pre>
+</li>
+<li>
+<p>the other one is created in package. The function names all start with <code>.</code>, are given as following:</p>
+<pre><code>#&gt; [1] ".host_cohorts"          ".cohort_datasets"      
+#&gt; [3] ".cohort_datasets_count" ".cohort_samples_each"  
+#&gt; [5] ".cohort_samples_any"    ".cohort_samples_all"   
+#&gt; [7] ".dataset_samples_each"  ".dataset_samples_any"  
+#&gt; [9] ".dataset_samples_all"</code></pre>
+</li>
+</ul>
+<p>I don’t know how to write these query sentence for Xena Hubs. So here I want to say thanks to authors of <a href="https://github.com/ucscXena/xenaPython"><strong>xenaPython</strong></a> and <a href="https://github.com/mtmorgan/XenaR"><strong>xenaR</strong></a> packages.</p>
+</div>
+</div>
+<div id="api-report" class="section level2">
+<h2 class="hasAnchor">
+<a href="#api-report" class="anchor"></a>API report</h2>
+<table class="table">
+<caption>API functions in UCSCXenaTools</caption>
+<thead><tr class="header">
+<th align="left">Original Name</th>
+<th align="left">Function Name</th>
+<th align="left">Level</th>
+<th align="left">Description</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">cohorts</td>
+<td align="left">cohorts</td>
+<td align="left">Higher</td>
+<td align="left">Return cohorts as character vector</td>
+</tr>
+<tr class="even">
+<td align="left">datasets</td>
+<td align="left">datasets</td>
+<td align="left">Higher</td>
+<td align="left">Return datasets as character vector</td>
+</tr>
+<tr class="odd">
+<td align="left">hosts</td>
+<td align="left">hosts</td>
+<td align="left">Higher</td>
+<td align="left">Return hosts as character vector</td>
+</tr>
+<tr class="even">
+<td align="left">samples</td>
+<td align="left">samples</td>
+<td align="left">Higher</td>
+<td align="left">Return samples according to “by” and “how” option</td>
+</tr>
+<tr class="odd">
+<td align="left">.cohort_datasets</td>
+<td align="left">.cohort_datasets</td>
+<td align="left">Lower</td>
+<td align="left">Return datasets of cohorts</td>
+</tr>
+<tr class="even">
+<td align="left">.cohort_datasets_count</td>
+<td align="left">.cohort_datasets_count</td>
+<td align="left">Lower</td>
+<td align="left">Return dataset count of cohorts</td>
+</tr>
+<tr class="odd">
+<td align="left">.cohort_samples_all</td>
+<td align="left">.cohort_samples_all</td>
+<td align="left">Lower</td>
+<td align="left">Return samples shared by all cohort</td>
+</tr>
+<tr class="even">
+<td align="left">.cohort_samples_any</td>
+<td align="left">.cohort_samples_any</td>
+<td align="left">Lower</td>
+<td align="left">Return samples present any cohort</td>
+</tr>
+<tr class="odd">
+<td align="left">.cohort_samples_each</td>
+<td align="left">.cohort_samples_each</td>
+<td align="left">Lower</td>
+<td align="left">Return samples present in each cohort</td>
+</tr>
+<tr class="even">
+<td align="left">.dataset_samples_all</td>
+<td align="left">.dataset_samples_all</td>
+<td align="left">Lower</td>
+<td align="left">Return samples shared by all dataset</td>
+</tr>
+<tr class="odd">
+<td align="left">.dataset_samples_any</td>
+<td align="left">.dataset_samples_any</td>
+<td align="left">Lower</td>
+<td align="left">Return samples present in any cohort</td>
+</tr>
+<tr class="even">
+<td align="left">.dataset_samples_each</td>
+<td align="left">.dataset_samples_each</td>
+<td align="left">Lower</td>
+<td align="left">Return samples present in each dataset</td>
+</tr>
+<tr class="odd">
+<td align="left">.host_cohorts</td>
+<td align="left">.host_cohorts</td>
+<td align="left">Lower</td>
+<td align="left">Return cohorts of hosts</td>
+</tr>
+<tr class="even">
+<td align="left">all_datasets_n</td>
+<td align="left">.p_all_datasets_n</td>
+<td align="left">Lower</td>
+<td align="left">Count the number datasets with non-null cohort</td>
+</tr>
+<tr class="odd">
+<td align="left">all_field_metadata</td>
+<td align="left">.p_all_field_metadata</td>
+<td align="left">Lower</td>
+<td align="left">Metadata for all dataset fields (phenotypic datasets)</td>
+</tr>
+<tr class="even">
+<td align="left">cohort_samples</td>
+<td align="left">.p_cohort_samples</td>
+<td align="left">Lower</td>
+<td align="left">All samples in cohort</td>
+</tr>
+<tr class="odd">
+<td align="left">cohort_summary</td>
+<td align="left">.p_cohort_summary</td>
+<td align="left">Lower</td>
+<td align="left">Count datasets per-cohort, excluding the given dataset types</td>
+</tr>
+<tr class="even">
+<td align="left">dataset_fetch</td>
+<td align="left">.p_dataset_fetch</td>
+<td align="left">Lower</td>
+<td align="left">Probe values for give samples</td>
+</tr>
+<tr class="odd">
+<td align="left">dataset_field</td>
+<td align="left">.p_dataset_field</td>
+<td align="left">Lower</td>
+<td align="left">All field (probe) names in dataset</td>
+</tr>
+<tr class="even">
+<td align="left">dataset_field_examples</td>
+<td align="left">.p_dataset_field_examples</td>
+<td align="left">Lower</td>
+<td align="left">Field names in dataset, up to <count></count>
+</td>
+</tr>
+<tr class="odd">
+<td align="left">dataset_field_n</td>
+<td align="left">.p_dataset_field_n</td>
+<td align="left">Lower</td>
+<td align="left">Number of fields in dataset</td>
+</tr>
+<tr class="even">
+<td align="left">dataset_gene_probe_avg</td>
+<td align="left">.p_dataset_gene_probe_avg</td>
+<td align="left">Lower</td>
+<td align="left">Probe average, per-gene, for given samples</td>
+</tr>
+<tr class="odd">
+<td align="left">dataset_gene_probes_values</td>
+<td align="left">.p_dataset_gene_probes_values</td>
+<td align="left">Lower</td>
+<td align="left">Probe values in gene, and probe genomic positions, for given samples</td>
+</tr>
+<tr class="even">
+<td align="left">dataset_list</td>
+<td align="left">.p_dataset_list</td>
+<td align="left">Lower</td>
+<td align="left">Dataset metadata for datasets in the given cohorts</td>
+</tr>
+<tr class="odd">
+<td align="left">dataset_metadata</td>
+<td align="left">.p_dataset_metadata</td>
+<td align="left">Lower</td>
+<td align="left">Dataset metadata</td>
+</tr>
+<tr class="even">
+<td align="left">dataset_probe_signature</td>
+<td align="left">.p_dataset_probe_signature</td>
+<td align="left">Lower</td>
+<td align="left">Computed probe signature for given samples and weight array</td>
+</tr>
+<tr class="odd">
+<td align="left">dataset_probe_values</td>
+<td align="left">.p_dataset_probe_values</td>
+<td align="left">Lower</td>
+<td align="left">Probe values for given samples, and probe genomic positions</td>
+</tr>
+<tr class="even">
+<td align="left">dataset_samples</td>
+<td align="left">.p_dataset_samples</td>
+<td align="left">Lower</td>
+<td align="left">All samples in dataset (optional limit)</td>
+</tr>
+<tr class="odd">
+<td align="left">feature_list</td>
+<td align="left">.p_feature_list</td>
+<td align="left">Lower</td>
+<td align="left">Dataset field names and long titles (phenotypic datasets)</td>
+</tr>
+<tr class="even">
+<td align="left">field_codes</td>
+<td align="left">.p_field_codes</td>
+<td align="left">Lower</td>
+<td align="left">Codes for categorical fields</td>
+</tr>
+<tr class="odd">
+<td align="left">field_metadata</td>
+<td align="left">.p_field_metadata</td>
+<td align="left">Lower</td>
+<td align="left">Metadata for given fields (phenotypic datasets)</td>
+</tr>
+<tr class="even">
+<td align="left">gene_transcripts</td>
+<td align="left">.p_gene_transcripts</td>
+<td align="left">Lower</td>
+<td align="left">Gene transcripts</td>
+</tr>
+<tr class="odd">
+<td align="left">match_fields</td>
+<td align="left">.p_match_fields</td>
+<td align="left">Lower</td>
+<td align="left">Find fields matching names (must be lower-case)</td>
+</tr>
+<tr class="even">
+<td align="left">probemap_list</td>
+<td align="left">.p_probemap_list</td>
+<td align="left">Lower</td>
+<td align="left">Find probemaps</td>
+</tr>
+<tr class="odd">
+<td align="left">ref_gene_exons</td>
+<td align="left">.p_ref_gene_exons</td>
+<td align="left">Lower</td>
+<td align="left">Gene model</td>
+</tr>
+<tr class="even">
+<td align="left">ref_gene_position</td>
+<td align="left">.p_ref_gene_position</td>
+<td align="left">Lower</td>
+<td align="left">Gene position from gene model</td>
+</tr>
+<tr class="odd">
+<td align="left">ref_gene_range</td>
+<td align="left">.p_ref_gene_range</td>
+<td align="left">Lower</td>
+<td align="left">Gene models overlapping range</td>
+</tr>
+<tr class="even">
+<td align="left">segment_data_examples</td>
+<td align="left">.p_segment_data_examples</td>
+<td align="left">Lower</td>
+<td align="left">Initial segmented data rows, with limit</td>
+</tr>
+<tr class="odd">
+<td align="left">segmented_data_range</td>
+<td align="left">.p_segmented_data_range</td>
+<td align="left">Lower</td>
+<td align="left">Segmented (copy number) data overlapping range</td>
+</tr>
+<tr class="even">
+<td align="left">sparse_data</td>
+<td align="left">.p_sparse_data</td>
+<td align="left">Lower</td>
+<td align="left">Sparse (mutation) data rows for genes</td>
+</tr>
+<tr class="odd">
+<td align="left">sparse_data_examples</td>
+<td align="left">.p_sparse_data_examples</td>
+<td align="left">Lower</td>
+<td align="left">Initial sparse data rows, with limit</td>
+</tr>
+<tr class="even">
+<td align="left">sparse_data_match_field</td>
+<td align="left">.p_sparse_data_match_field</td>
+<td align="left">Lower</td>
+<td align="left">Genes in sparse (mutation) dataset matching given names</td>
+</tr>
+<tr class="odd">
+<td align="left">sparse_data_match_field_slow</td>
+<td align="left">.p_sparse_data_match_field_slow</td>
+<td align="left">Lower</td>
+<td align="left">Genes in sparse (mutation) dataset matching given names, case-insensitive (names must be lower-case)</td>
+</tr>
+<tr class="even">
+<td align="left">sparse_data_match_partial_field</td>
+<td align="left">.p_sparse_data_match_partial_field</td>
+<td align="left">Lower</td>
+<td align="left">Partial match genes in sparse (mutation) dataset</td>
+</tr>
+<tr class="odd">
+<td align="left">sparse_data_range</td>
+<td align="left">.p_sparse_data_range</td>
+<td align="left">Lower</td>
+<td align="left">Sparse (mutation) data rows overlapping the given range, for the given samples</td>
+</tr>
+</tbody>
+</table>
+<p>Of note, I don’t know test all functions generated from <code>.xq</code> files, most of them works. Sometimes functions return you errors or <code><a href="https://www.rdocumentation.org/packages/base/topics/list">list()</a></code> may caused by invaild format or bad network, you should try more times. If you make sure there are problems/errors in query procedure, you can check corresponding query variables:</p>
+<pre><code>#&gt;  [1] ".xq_all_cohorts"                    
+#&gt;  [2] ".xq_all_datasets"                   
+#&gt;  [3] ".xq_all_datasets_n"                 
+#&gt;  [4] ".xq_all_field_metadata"             
+#&gt;  [5] ".xq_cohort_samples"                 
+#&gt;  [6] ".xq_cohort_summary"                 
+#&gt;  [7] ".xq_dataset_fetch"                  
+#&gt;  [8] ".xq_dataset_field"                  
+#&gt;  [9] ".xq_dataset_field_examples"         
+#&gt; [10] ".xq_dataset_field_n"                
+#&gt; [11] ".xq_dataset_gene_probe_avg"         
+#&gt; [12] ".xq_dataset_gene_probes_values"     
+#&gt; [13] ".xq_dataset_list"                   
+#&gt; [14] ".xq_dataset_metadata"               
+#&gt; [15] ".xq_dataset_probe_signature"        
+#&gt; [16] ".xq_dataset_probe_values"           
+#&gt; [17] ".xq_dataset_samples"                
+#&gt; [18] ".xq_dataset_samples_ndense_matrix"  
+#&gt; [19] ".xq_datasets_null_rows"             
+#&gt; [20] ".xq_feature_list"                   
+#&gt; [21] ".xq_field_codes"                    
+#&gt; [22] ".xq_field_metadata"                 
+#&gt; [23] ".xq_gene_transcripts"               
+#&gt; [24] ".xq_match_fields"                   
+#&gt; [25] ".xq_probe_count"                    
+#&gt; [26] ".xq_probemap_list"                  
+#&gt; [27] ".xq_ref_gene_exons"                 
+#&gt; [28] ".xq_ref_gene_position"              
+#&gt; [29] ".xq_ref_gene_range"                 
+#&gt; [30] ".xq_segment_data_examples"          
+#&gt; [31] ".xq_segmented_data_range"           
+#&gt; [32] ".xq_sparse_data"                    
+#&gt; [33] ".xq_sparse_data_examples"           
+#&gt; [34] ".xq_sparse_data_match_field"        
+#&gt; [35] ".xq_sparse_data_match_field_slow"   
+#&gt; [36] ".xq_sparse_data_match_partial_field"
+#&gt; [37] ".xq_sparse_data_range"              
+#&gt; [38] ".xq_transcript_expression"</code></pre>
+<p>For example, you’d like to check <code>.p_all_cohorts</code> function, you can take a look at <code>.xq_all_cohorts</code> object.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">.xq_all_cohorts</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; [1] ";allCohorts\n(fn [exclude]\n\t(map :cohort\n\t  (query\n\t\t{:select [[#sql/call [:distinct #sql/call [:ifnull :cohort \"(unassigned)\"]] :cohort]]\n\t\t :from [:dataset]\n\t\t :where [:not [:in :type exclude]]})))\n"</span></a></code></pre></div>
+<p><code>cat</code> it may give you more easy-to-read format.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cat">cat</a></span>(.xq_all_cohorts)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; ;allCohorts</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; (fn [exclude]</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt;  (map :cohort</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt;    (query</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt;      {:select [[#sql/call [:distinct #sql/call [:ifnull :cohort "(unassigned)"]] :cohort]]</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt;       :from [:dataset]</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt;       :where [:not [:in :type exclude]]})))</span></a></code></pre></div>
+</div>
+<div id="use-case" class="section level2">
+<h2 class="hasAnchor">
+<a href="#use-case" class="anchor"></a>Use case</h2>
+<p>More to do, if you have any suggestion, you can open issue on GitHub.</p>
+</div>
+<div id="license" class="section level2">
+<h2 class="hasAnchor">
+<a href="#license" class="anchor"></a>LICENSE</h2>
+<p>GPL-3</p>
+<p>Please note, code from XenaR package under Apache 2.0 license.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#api-categories">API categories</a></li>
+      <li><a href="#api-report">API report</a></li>
+      <li><a href="#use-case">Use case</a></li>
+      <li><a href="#license">LICENSE</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
