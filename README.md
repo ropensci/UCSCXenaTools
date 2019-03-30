@@ -99,7 +99,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 1.1.0
+#> UCSCXenaTools version 1.1.1
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
 #> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
 #> If you use it in published research, please cite:
@@ -164,7 +164,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /tmp/RtmpEwuFgX.
+#> All downloaded files will under directory /tmp/RtmpiBelxO.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -260,7 +260,7 @@ or [Github website](https://shixiangwang.github.io/UCSCXenaTools/).
 
 ## APIs
 
-API functions can be used to query specied data (e.g. expression of a
+API functions can be used to query specified data (e.g. expression of a
 few genes for a few samples) or information instead of downloading the
 entire dataset.
 

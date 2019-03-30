@@ -169,7 +169,7 @@ More features and usages please read [online documentation on CRAN](https://cran
 
 ## APIs
 
-API functions can be used to query specied data 
+API functions can be used to query specified data 
 (e.g. expression of a few genes for a few samples) or 
 information instead of downloading the entire dataset.
 
