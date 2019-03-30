@@ -1,3 +1,5 @@
+#FUN: Set Class & operate XenaHub object directly
+
 ##'  @title a S4 class to represent UCSC Xena Data Hubs
 ##'  @slot hosts hosts of data hubs
 ##'  @slot cohorts cohorts of data hubs
@@ -11,6 +13,50 @@
         datasets = "character"
     )
 )
+
+setMethod("show", "XenaHub", function(object) {
+    showsome = function(label, x) {
+        len = length(x)
+        if (len > 6)
+            x = c(head(x, 3), "...", tail(x, 2))
+        cat(label,
+            "() (",
+            len,
+            " total):",
+            "\n  ",
+            paste0(x, collapse = "\n  "),
+            "\n",
+            sep = "")
+    }
+    cat("class:", class(object), "\n")
+    cat("hosts():",
+        "\n  ", paste0(hosts(object), collapse = "\n  "),
+        "\n", sep = "")
+    showsome("cohorts", cohorts(object))
+    showsome("datasets", datasets(object))
+})
+
+setMethod("show", "XenaHub", function(object) {
+    showsome = function(label, x) {
+        len = length(x)
+        if (len > 6)
+            x = c(head(x, 3), "...", tail(x, 2))
+        cat(label,
+            "() (",
+            len,
+            " total):",
+            "\n  ",
+            paste0(x, collapse = "\n  "),
+            "\n",
+            sep = "")
+    }
+    cat("class:", class(object), "\n")
+    cat("hosts():",
+        "\n  ", paste0(hosts(object), collapse = "\n  "),
+        "\n", sep = "")
+    showsome("cohorts", cohorts(object))
+    showsome("datasets", datasets(object))
+})
 
 
 ##' @title UCSC Xena Default Hosts
@@ -219,227 +265,3 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
     }
     XenaData
 }
-
-
-##' Filter a XenaHub Object
-##'
-##' One of main functions in **UCSCXenatools**. It is used to filter
-##' `XenaHub` object according to cohorts, datasets. All datasets can be found
-##' at <https://xenabrowser.net/datapages/>.
-##'
-##' @param x a [XenaHub] object
-##' @param filterCohorts default is `NULL`. A character used to filter cohorts,
-##' regular expression is supported.
-##' @param filterDatasets default is `NULL`. A character used to filter datasets,
-##' regular expression is supported.
-##' @param ignore.case if `FALSE`, the pattern matching is case sensitive
-##' and if `TRUE`, case is ignored during matching.
-##' @param ... other arguments except `value` passed to [base::grep()].
-##' @return a `XenaHub` object
-##' @author Shixiang Wang <w_shixiang@163.com>
-##' @export
-##' @examples
-##' # operate TCGA datasets
-##' xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
-##' xe
-##' # get all names of clinical data
-##' xe2 = XenaFilter(xe, filterDatasets = "clinical")
-##' datasets(xe2)
-XenaFilter = function(x,
-                      filterCohorts = NULL,
-                      filterDatasets = NULL,
-                      ignore.case = TRUE, ...) {
-    if (is.null(filterCohorts) & is.null(filterDatasets)) {
-        message("No operation for input, do nothing...")
-    }
-
-    cohorts_select = character()
-    datasets_select = character()
-
-    # suppress binding notes
-    XenaHosts = XenaCohorts = XenaDatasets = NULL
-
-    if (!is.null(filterCohorts)) {
-        cohorts_select = grep(
-            pattern = filterCohorts,
-            x@cohorts,
-            ignore.case = ignore.case,
-            value = TRUE,
-            ...
-        )
-    }
-
-    if (!is.null(filterDatasets)) {
-        datasets_select = grep(
-            pattern = filterDatasets,
-            x@datasets,
-            ignore.case = ignore.case,
-            value = TRUE,
-            ...
-        )
-    }
-
-    if (identical(cohorts_select, character()) &
-        identical(datasets_select, character())) {
-        warning("No valid cohorts or datasets find! Please check your input.")
-    } else{
-        if (identical(cohorts_select, character()) &
-            !identical(datasets_select, character())) {
-            UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts &
-                                            XenaDatasets %in% datasets_select)
-        } else{
-            if (!identical(cohorts_select, character()) &
-                identical(datasets_select, character())) {
-                UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts &
-                                                XenaCohorts %in% cohorts_select)
-            } else{
-                UCSCXenaTools::XenaGenerate(
-                    subset = XenaHosts %in% x@hosts &
-                        XenaCohorts %in% cohorts_select &
-                        XenaDatasets %in% datasets_select
-                )
-            }
-        }
-    }
-}
-
-##' Get hosts of XenaHub object
-##' @param x a [XenaHub] object
-##' @import methods
-##' @return a character vector contains hosts
-##' @export
-##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); hosts(xe)
-hosts = function(x)
-    unname(slot(x, "hosts"))
-##' Get cohorts of XenaHub object
-##' @param x a [XenaHub] object
-##' @return a character vector contains cohorts
-##' @import methods
-##' @export
-##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); cohorts(xe)
-cohorts = function(x)
-    slot(x, "cohorts")
-##' Get datasets of XenaHub object
-##' @param x a [XenaHub] object
-##' @return a character vector contains datasets
-##' @import methods
-##' @export
-##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); datasets(xe)
-datasets = function(x)
-    slot(x, "datasets")
-
-.samples_by_host = function(x, hosts, how) {
-    if (length(hosts) == 0L) {
-        hosts = hosts(x)
-    } else {
-        stopifnot(all(hosts %in% hosts(x)))
-    }
-    if (is.null(names(hosts)))
-        names(hosts) = hosts
-
-    cohorts = cohorts(x)
-    if (is.null(names(cohorts)))
-        names(cohorts) = cohorts
-    x = .cohort_samples_any(hosts, cohorts)
-    switch(
-        how,
-        each = x,
-        any = unique(unlist(x, use.names = FALSE)),
-        all = Reduce(function(x, y)
-            x[x %in% y], x)
-    )
-}
-
-.samples_by_cohort = function(x, cohorts, how) {
-    if (length(cohorts) == 0L) {
-        cohorts = cohorts(x)
-    } else {
-        stopifnot(all(cohorts %in% cohorts(x)))
-    }
-    if (is.null(names(cohorts)))
-        names(cohorts) = cohorts
-
-    fun = switch(how,
-                 each = .cohort_samples_each,
-                 all = .cohort_samples_all,
-                 any = .cohort_samples_any)
-    fun(hosts(x), cohorts)
-}
-
-.samples_by_dataset = function(x, datasets, how) {
-    if (length(datasets) == 0L) {
-        datasets = datasets(x)
-    } else {
-        stopifnot(all(datasets %in% datasets(x)))
-    }
-    if (is.null(names(datasets)))
-        names(datasets) = datasets
-
-    fun = switch(how,
-                 each = .dataset_samples_each,
-                 all = .dataset_samples_all,
-                 any = .dataset_samples_any)
-    fun(hosts(x), datasets)
-}
-
-##' Get Samples of a XenaHub object according to 'by' and 'how' action arguments
-##'
-##' One is often interested in identifying samples or features present in each data set,
-##' or shared by all data sets, or present in any of several data sets.
-##' Identifying these samples, including samples in arbitrarily chosen data sets.
-##' @param x a [XenaHub] object
-##' @param i default is a empty character, it is used to specify
-##' the host, cohort or dataset by `by` option otherwise
-##' info will be automatically extracted by code
-##' @param by a character specify `by` action
-##' @param how a character specify `how` action
-##' @return a list include samples
-##' @import methods
-##' @export
-##' @examples
-##' \donttest{
-##' xe = XenaHub(cohorts = "Cancer Cell Line Encyclopedia (CCLE)")
-##' # samples in each dataset, first host
-##' x = samples(xe, by="datasets", how="each")[[1]]
-##' lengths(x)        # data sets in ccle cohort on first (only) host
-##' }
-
-samples = function(x,
-                   i = character(),
-                   by = c("hosts", "cohorts", "datasets"),
-                   how = c("each", "any", "all"))
-{
-    stopifnot(is(x, "XenaHub"), is.character(i))
-    by = match.arg(by)
-    how = match.arg(how)
-
-    fun = switch(
-        match.arg(by),
-        hosts = .samples_by_host,
-        cohorts = .samples_by_cohort,
-        datasets = .samples_by_dataset
-    )
-    fun(x, i, how)
-}
-
-setMethod("show", "XenaHub", function(object) {
-    showsome = function(label, x) {
-        len = length(x)
-        if (len > 6)
-            x = c(head(x, 3), "...", tail(x, 2))
-        cat(label,
-            "() (",
-            len,
-            " total):",
-            "\n  ",
-            paste0(x, collapse = "\n  "),
-            "\n",
-            sep = "")
-    }
-    cat("class:", class(object), "\n")
-    cat("hosts():",
-        "\n  ", paste0(hosts(object), collapse = "\n  "),
-        "\n", sep = "")
-    showsome("cohorts", cohorts(object))
-    showsome("datasets", datasets(object))
-})

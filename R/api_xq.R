@@ -1,4 +1,4 @@
-# Create API functions
+#FUN: Create API functions from .xq files
 
 #' Convert camel case to snake case
 #'

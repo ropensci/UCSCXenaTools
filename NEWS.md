@@ -1,5 +1,10 @@
 # UCSCXenaTools 
 
+## v1.2.0
+
+* reformat code files
+* update `XenaData` & `XenaDataUpdate()` function to obtain more info
+
 ## v1.1.1
 
 * update doc for APIs 

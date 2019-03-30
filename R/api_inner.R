@@ -1,4 +1,6 @@
-## post
+#FUN: API inner utilities, queries and functions.
+
+# post --------------------------------------------------------------------
 
 .xena_post = function(host, query, ...) {
     host = paste0(host, "/data/")
@@ -7,7 +9,8 @@
     content(res, ...)
 }
 
-## utiilities
+
+# utilities ---------------------------------------------------------------
 
 .null_cohort = "(unassigned)"
 
@@ -29,9 +32,9 @@
     paste0('[', collapse(l), ']')
 }
 
-##
-## queries
-##
+
+
+# queries -----------------------------------------------------------------
 
 ## hosts
 
@@ -131,7 +134,8 @@
 ## actions
 ##
 
-## host
+
+# host --------------------------------------------------------------------
 
 .host_is_alive = function(host) {
     tryCatch({
@@ -150,6 +154,10 @@
     })
 }
 
+
+
+# cohort ------------------------------------------------------------------
+
 .cohort_datasets = function(hosts, cohorts) {
     lapply(hosts, .xena_post, .cohort_datasets_query(cohorts))
 }
@@ -164,6 +172,9 @@
     )
     unlist(lapply(hosts, .xena_post, query), use.names = FALSE)
 }
+
+
+# cohort samples ----------------------------------------------------------
 
 .cohort_samples_each = function(hosts, cohorts) {
     lapply(hosts, function(h) {
@@ -184,6 +195,10 @@
     lapply(hosts, .xena_post, query, simplifyVector = TRUE)
 }
 
+
+
+# dataset samples ---------------------------------------------------------
+
 .dataset_samples_each = function(hosts, datasets) {
     lapply(hosts, function(h) {
         result = lapply(datasets, function(d) {
@@ -203,4 +218,62 @@
 .dataset_samples_all = function(hosts, datasets) {
     query = .dataset_samples_all_query(datasets)
     lapply(hosts, .xena_post, query, simplifyVector = TRUE)
+}
+
+
+
+# samples by --------------------------------------------------------------
+
+.samples_by_host = function(x, hosts, how) {
+    if (length(hosts) == 0L) {
+        hosts = hosts(x)
+    } else {
+        stopifnot(all(hosts %in% hosts(x)))
+    }
+    if (is.null(names(hosts)))
+        names(hosts) = hosts
+
+    cohorts = cohorts(x)
+    if (is.null(names(cohorts)))
+        names(cohorts) = cohorts
+    x = .cohort_samples_any(hosts, cohorts)
+    switch(
+        how,
+        each = x,
+        any = unique(unlist(x, use.names = FALSE)),
+        all = Reduce(function(x, y)
+            x[x %in% y], x)
+    )
+}
+
+.samples_by_cohort = function(x, cohorts, how) {
+    if (length(cohorts) == 0L) {
+        cohorts = cohorts(x)
+    } else {
+        stopifnot(all(cohorts %in% cohorts(x)))
+    }
+    if (is.null(names(cohorts)))
+        names(cohorts) = cohorts
+
+    fun = switch(how,
+                 each = .cohort_samples_each,
+                 all = .cohort_samples_all,
+                 any = .cohort_samples_any)
+    fun(hosts(x), cohorts)
+}
+
+.samples_by_dataset = function(x, datasets, how) {
+    if (length(datasets) == 0L) {
+        datasets = datasets(x)
+    } else {
+        stopifnot(all(datasets %in% datasets(x)))
+    }
+    if (is.null(names(datasets)))
+        names(datasets) = datasets
+
+    fun = switch(how,
+                 each = .dataset_samples_each,
+                 all = .dataset_samples_all,
+                 any = .dataset_samples_any)
+    fun(hosts(x), datasets)
 }
