@@ -403,4 +403,4 @@ This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Mar
 
 GPL-3
 
-please note, code from XenaR package under Apache 2.0 license.
+Please note, code from XenaR package under Apache 2.0 license.

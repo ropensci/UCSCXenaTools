@@ -44,16 +44,106 @@ Genotypic matricies may have an associated **probeMap**, which maps probes to ge
 
 ## API categories
 
+API functions can be divided into two classes: **lower API functions** and **higher API functions**. 
+They have following difference:
+
+- The main difference between them is that the target of higher API functions is `XenaHub` object, which is
+a S4 class built in R. While the targets of lower API functions are Xena hub urls, cohort names or 
+dataset names with character format. The `XenaHub` object can provide more uniform operation methods and can be
+used to download corresponding datasets quickly and easily 
+(detail see [another vignette](https://shixiangwang.github.io/UCSCXenaTools/)).
+- Lower API functions are not registered in package 
+[NAMESPACE](https://github.com/ShixiangWang/UCSCXenaTools/blob/master/NAMESPACE), so user may not access them
+after `library(UCSCXenaTools)`, user need to use `UCSCXenaTools:::fun_name` instead.
+- Lower API functions have no help pages, so user cannot find any description about them in R, which means
+you cannot use `?fun_name` to get help. However, API report part in this vignette shows all avaiable API functions and 
+their short description.
+- Higher API functions are built on lower API functions, they return more meaningful and easy results for operation. Most of lower API functions return nested lists as results, user need to tidy them before using them in next step.
+
+
+### Lower API functions
+
+Lower API functions also have 2 classes: 
+
+- one is generated from 
+[`.xq` files](https://github.com/ShixiangWang/UCSCXenaTools/tree/master/inst/queries), 
+function names all start with `.p_`. All `.xq` files are copied from [xenaPython](https://github.com/ucscXena/xenaPython) package, which is official Python API for Xena.
+These functions are dynamicly created when **UCSCXenaTools** loaded. Their names are given as following: 
+
+    ```{r include=FALSE}
+    #devtools::load_all("~/Repo/UCSCXenaTools/")
+    library(UCSCXenaTools)
+    all_vs = ls(envir = as.environment("package:UCSCXenaTools"),
+                all.names = TRUE)
+    ```
+    
+    ```{r echo=FALSE}
+    grep("^\\.p", all_vs, value = TRUE)
+    ```
+
+- the other one is created in package. The function names all start with `.`, are given as following:
+
+    ```{r, echo=F}
+    funs_low_in = c(
+        '.host_cohorts',
+        '.cohort_datasets',
+        '.cohort_datasets_count',
+        '.cohort_samples_each',
+        '.cohort_samples_any',
+        '.cohort_samples_all',
+        '.dataset_samples_each',
+        '.dataset_samples_any',
+        '.dataset_samples_all'
+    )
+    funs_low_in
+    ```
+
+
+I don't know how to write these query sentence for Xena Hubs. So here I want to
+say thanks to authors of [**xenaPython**](https://github.com/ucscXena/xenaPython) 
+and [**xenaR**](https://github.com/mtmorgan/XenaR) packages.
+
 ## API report
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-devtools::load_all("~/Repo/UCSCXenaTools/")
+#devtools::load_all("~/Repo/UCSCXenaTools/")
 library(dplyr)
-#library(UCSCXenaTools)
+library(UCSCXenaTools)
 load(system.file("api.RData", package = "UCSCXenaTools"))
 api_df = arrange(api_df, Level)
-knitr::kable(api_df, caption = "APIs in UCSCXenaTools")
+knitr::kable(api_df, caption = "API functions in UCSCXenaTools")
 ```
 
+Of note, I don't know test all functions generated from `.xq` files, most of them works.
+Sometimes functions return you errors or `list()` may caused by invaild format or bad network, 
+you should try more times. If you make sure there are problems/errors in query procedure,
+you can check corresponding query variables:
 
+```{r echo=FALSE}
+    grep("^\\.xq", all_vs, value = TRUE)
+```
+
+For example, you'd like to check `.p_all_cohorts` function, you can take a look
+at `.xq_all_cohorts` object.
+
+```{r}
+.xq_all_cohorts
+```
+
+`cat` it may give you more easy-to-read format.
+
+```{r}
+cat(.xq_all_cohorts)
+```
+
+## Use case
+
+More to do, if you have any suggestion, you can open issue on GitHub.
+
+
+## LICENSE
+
+GPL-3
+
+Please note, code from XenaR package under Apache 2.0 license.

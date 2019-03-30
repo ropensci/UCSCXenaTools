@@ -33,6 +33,7 @@ can be combined, linked, filtered, explored and downloaded.
   - [Data Hub List](#data-hub-list)
   - [Usage](#usage)
   - [Documentation](#documentation)
+  - [APIs](#apis)
   - [Citation](#citation)
   - [Acknowledgement](#acknowledgement)
   - [LICENSE](#license)
@@ -98,7 +99,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 1.0.1.9000
+#> UCSCXenaTools version 1.1.0
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
 #> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
 #> If you use it in published research, please cite:
@@ -163,7 +164,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpaaFXhQ.
+#> All downloaded files will under directory /tmp/RtmpEwuFgX.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -257,11 +258,34 @@ More features and usages please read [online documentation on
 CRAN](https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html)
 or [Github website](https://shixiangwang.github.io/UCSCXenaTools/).
 
+## APIs
+
+API functions can be used to query specied data (e.g. expression of a
+few genes for a few samples) or information instead of downloading the
+entire dataset.
+
+If you want to use APIs provided by **UCSCXenaTools** to access Xena
+Hubs, please read [this
+vignette](https://shixiangwang.github.io/UCSCXenaTools/articles/xena-apis.html).
+
 ## Citation
 
 *Wang, Shixiang, et al. “APOBEC3B and APOBEC mutational signature as
 potential predictive markers for immunotherapy response in non-small
 cell lung cancer.” Oncogene (2018).*
+
+Or
+
+    @article{wang2018apobec3b,
+      title={APOBEC3B and APOBEC mutational signature as potential predictive markers for immunotherapy response in non-small cell lung cancer},
+      author={Wang, Shixiang and Jia, Mingming and He, Zaoke and Liu, Xue-Song},
+      journal={Oncogene},
+      volume={37},
+      number={29},
+      pages={3924},
+      year={2018},
+      publisher={Nature Publishing Group}
+    }
 
 ## Acknowledgement
 
@@ -272,7 +296,7 @@ thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 
 GPL-3
 
-please note, code from XenaR package under Apache 2.0 license.
+Please note, code from XenaR package under Apache 2.0 license.
 
 ## Code of conduct
 
