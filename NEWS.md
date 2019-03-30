@@ -4,6 +4,7 @@
 
 * reformat code files
 * update `XenaData` & `XenaDataUpdate()` function to obtain more info
+* add `jsonlite` as import package
 
 ## v1.1.1
 

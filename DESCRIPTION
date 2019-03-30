@@ -1,6 +1,6 @@
 Package: UCSCXenaTools
 Title: Download and Explore Datasets from UCSC Xena Data Hubs
-Version: 1.1.1
+Version: 1.1.1.9000
 Authors@R: c(person("Shixiang", "Wang", email = "w_shixiang@163.com", role = c("aut", "cre"), 
             comment = c(ORCID = "0000-0001-9855-7357")),
             person("Martin", "Morgan", role="aut"))
@@ -10,17 +10,18 @@ BugReports: https://github.com/ShixiangWang/UCSCXenaTools/issues
 Description: Download and explore datasets from UCSC Xena data hubs, which are
     a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others.
     Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
-Depends: R (>= 2.10)
+Depends: R (>= 3.0)
 Imports: 
     httr,
     readr,
     methods,
     utils,
     dplyr,
+    magrittr,
+    jsonlite,
     shinydashboard,
     shiny,
-    DT,
-    magrittr
+    DT
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

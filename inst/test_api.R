@@ -193,6 +193,9 @@ save(api_df,
 
 # test XenaDataUpdate -----------------------------------------------------
 
+.p_dataset_metadata(XenaData$XenaHosts[178], XenaData$XenaDatasets[178]) ->tt2
+.p_dataset_metadata(XenaData$XenaHosts[1], XenaData$XenaDatasets[1]) ->tt
+
 # examples for understand structure
 tt = structure(list(pmtext = "{\"idtype\":\"probe\",\"label\":\"Affy Human 500K array (hg18) e.g. SNP_A-1909444\",\"author\":\"Chris Szeto\",\"name\":\"probeMap/probeAffy500K\",\"assembly\":\"hg18\",\"type\":\"probeMap\",\"wrangler\":\"Chris Szeto\",\"version\":\"2012-06-14\",\"notes\":\"did not double check hg18\"}",
                    status = "loaded", text = "{\"longTitle\":\"Child T-ALL 500K CGH (Mullighan et al. 2008)\",\"cohort\":\"Acute lymphoblastic leukemia (Mullighan 2008)\",\"url\":\"http://www.ncbi.nlm.nih.gov/pubmed/19039135\",\"probeMap\":\"probeMap/probeAffy500K\",\"dataSubType\":\"copy number\",\"citation\":\"Science 2008 Nov 28;322(5906):1377-80\",\"label\":\"Mullighan CGH 500K\",\"articletitle\":\"Genomic analysis of the clonal origins of relapsed acute lymphoblastic leukemia.\",\"tags\":[\"white blood cell\",\"cancer\"],\"anatomical_origin\":[\"Blood\"],\"name\":\"mullighan2008_public/mullighan2008_500K_genomicMatrix\",\"dataproducer\":\"Mullighan CG, Phillips LA, Su X, Ma J, Miller CB, Shurtleff SA, Downing JR.\",\"wrangling_procedure\":\"Wrangled from separate 250K_sty and 250K_nsp CEL files using the R aroma.affymetrix package. Quantile normalization was performed, then copy number analyzed using RMA. Chip and fragment length effects were normalized out. A GLAD model was then fitted to make gain and loss calls. Finally, raw copy numbers were extracted for each probeset. The results from each platform were then combined into a 500K file.\",\"sample_type\":[\"tumor\"],\"type\":\"genomicMatrix\",\"wrangler\":\"Chris Szeto\",\"version\":\"2011-11-01\",\"primary_disease\":\"acute lymphoblastic leukemia\"}",
@@ -206,6 +209,7 @@ tt2 = structure(list(pmtext = "{\"name\":\"probeMap/hugo_gencode_good_hg19_V24li
                datasubtype = "gene expression RNAseq", type = "genomicMatrix",
                count = 426L, longtitle = "TCGA bladder urothelial carcinoma (BLCA) gene expression by RNAseq (polyA+ IlluminaHiSeq)",
                name = "TCGA.BLCA.sampleMap/HiSeqV2"), class = "data.frame", row.names = 1L)
+
 
 jsonlite::parse_json(tt$text) # metadata for dataset
 jsonlite::parse_json(tt$pmtext) # metadata for probeMap
