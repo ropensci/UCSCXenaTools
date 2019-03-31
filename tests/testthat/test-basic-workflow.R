@@ -26,7 +26,7 @@ test_that("XenaFilter works", {
 
 xe2_query = XenaQuery(xe2)
 
-test_that("XenaFilter works", {
+test_that("XenaQuery works", {
     expect_is(xe2_query, "data.frame")
 })
 
@@ -39,6 +39,10 @@ getTCGAdata(c("UVM", "LUAD"))
 availTCGA()
 
 showTCGA()
+
+downloadTCGA(project = "UVM",
+             data_type = "Phenotype",
+             file_type = "Clinical Information")
 
 # clean all
 rm(list = ls())
