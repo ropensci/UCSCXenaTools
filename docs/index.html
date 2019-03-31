@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
       </span>
     </div>
 
@@ -163,7 +163,7 @@
 <p>You can load <code>XenaData</code> after loading <code>UCSCXenaTools</code> into R.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(UCSCXenaTools)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; =========================================================================</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; UCSCXenaTools version 1.1.1</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; UCSCXenaTools version 1.2.0</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; Github page: https://github.com/ShixiangWang/UCSCXenaTools</span></a>
 <a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; Documentation: https://shixiangwang.github.io/UCSCXenaTools/</span></a>
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; If you use it in published research, please cite:</span></a>
@@ -175,27 +175,19 @@
 <a class="sourceLine" id="cb3-12" data-line-number="12"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(XenaData)</a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(XenaData)</a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt;                         XenaHosts XenaHostNames</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; 1 https://ucscpublic.xenahubs.net     publicHub</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; 2 https://ucscpublic.xenahubs.net     publicHub</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; 3 https://ucscpublic.xenahubs.net     publicHub</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; 4 https://ucscpublic.xenahubs.net     publicHub</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; 5 https://ucscpublic.xenahubs.net     publicHub</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt; 6 https://ucscpublic.xenahubs.net     publicHub</span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt;                                     XenaCohorts</span></a>
-<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt; 1 Acute lymphoblastic leukemia (Mullighan 2008)</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt; 2 Acute lymphoblastic leukemia (Mullighan 2008)</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt; 3 Acute lymphoblastic leukemia (Mullighan 2008)</span></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; 4                   Breast Cancer (Caldas 2007)</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt; 5                   Breast Cancer (Caldas 2007)</span></a>
-<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#&gt; 6                   Breast Cancer (Caldas 2007)</span></a>
-<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="co">#&gt;                                               XenaDatasets</span></a>
-<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="co">#&gt; 1    mullighan2008_public/mullighan2008_500K_genomicMatrix</span></a>
-<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="co">#&gt; 2 mullighan2008_public/mullighan2008_public_clinicalMatrix</span></a>
-<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="co">#&gt; 3    mullighan2008_public/mullighan2008_SNP6_genomicMatrix</span></a>
-<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="co">#&gt; 4              Caldas2007/chinSF2007_public_clinicalMatrix</span></a>
-<a class="sourceLine" id="cb3-34" data-line-number="34"><span class="co">#&gt; 5             Caldas2007/chinSFGenomeBio2007_genomicMatrix</span></a>
-<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="co">#&gt; 6                   Caldas2007/naderi2007Exp_genomicMatrix</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; # A tibble: 6 x 17</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt;   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;      </span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; 1 https://… publicHub     Acute lymp… mullighan20… 30          copy number</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; 2 https://… publicHub     Acute lymp… mullighan20… 159         phenotype  </span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; 3 https://… publicHub     Acute lymp… mullighan20… 129         copy number</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt; 4 https://… publicHub     Breast Can… Caldas2007/… 242         phenotype  </span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; 5 https://… publicHub     Breast Can… Caldas2007/… 220         copy number</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt; 6 https://… publicHub     Breast Can… Caldas2007/… 135         gene expre…</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt; # … with 11 more variables: Label &lt;chr&gt;, Type &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt; #   AnatomicalOrigin &lt;chr&gt;, SampleType &lt;chr&gt;, Tags &lt;chr&gt;, ProbeMap &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; #   LongTitle &lt;chr&gt;, Citation &lt;chr&gt;, Version &lt;chr&gt;, Unit &lt;chr&gt;,</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt; #   Platform &lt;chr&gt;</span></a></code></pre></div>
 </div>
 <div id="workflow" class="section level3">
 <h3 class="hasAnchor">
@@ -222,7 +214,7 @@
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="reference/XenaQuery.html">XenaQuery</a></span>(df_todo) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/XenaDownload.html">XenaDownload</a></span>() -&gt;<span class="st"> </span>xe_download</a>
 <a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; This will check url status, please be patient.</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; All downloaded files will under directory /tmp/Rtmp44cIkr.</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; All downloaded files will under directory /tmp/RtmpetRsEp.</span></a>
 <a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; The 'trans_slash' option is FALSE, keep same directory structure as Xena.</span></a>
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; Creating directories for datasets...</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz</span></a>

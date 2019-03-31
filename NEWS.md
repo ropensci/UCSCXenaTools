@@ -5,6 +5,7 @@
 * reformat code files
 * update `XenaData` & `XenaDataUpdate()` function to obtain more info
 * add `jsonlite` as import package
+* add metadata for all datasets into package `inst` dir
 
 ## v1.1.1
 

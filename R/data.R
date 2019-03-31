@@ -8,7 +8,7 @@
 #'
 #' @docType data
 #' @name XenaData
-#' @format A `data.frame`.
+#' @format A `tibble`.
 #' @source Generated from UCSC Xena Data Hubs.
 #' @examples data(XenaData)
 #' str(XenaData)

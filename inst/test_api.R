@@ -15,8 +15,8 @@ DOC_LOW_xq=c(
     'dataset_field_n'= 'Number of fields in dataset',
     'dataset_gene_probe_avg'= 'Probe average, per-gene, for given samples',
     'dataset_gene_probes_values'= 'Probe values in gene, and probe genomic positions, for given samples',
-    'dataset_list'= 'Dataset metadata for datasets in the given cohorts',
-    'dataset_metadata'= 'Dataset metadata',
+    'dataset_list'= 'Dataset metadata for datasets in the given cohorts',  # metadata for cohort
+    'dataset_metadata'= 'Dataset metadata',  # metadata for dataset
     'dataset_probe_signature'= 'Computed probe signature for given samples and weight array',
     'dataset_probe_values'= 'Probe values for given samples, and probe genomic positions',
     'dataset_samples'= 'All samples in dataset (optional limit)',
@@ -194,14 +194,8 @@ save(api_df,
 # test XenaDataUpdate -----------------------------------------------------
 
 .p_dataset_metadata(XenaData$XenaHosts[178], XenaData$XenaDatasets[178]) ->tt2
-.p_dataset_metadata(XenaData$XenaHosts[1], XenaData$XenaDatasets[1]) ->tt
 
 # examples for understand structure
-tt = structure(list(pmtext = "{\"idtype\":\"probe\",\"label\":\"Affy Human 500K array (hg18) e.g. SNP_A-1909444\",\"author\":\"Chris Szeto\",\"name\":\"probeMap/probeAffy500K\",\"assembly\":\"hg18\",\"type\":\"probeMap\",\"wrangler\":\"Chris Szeto\",\"version\":\"2012-06-14\",\"notes\":\"did not double check hg18\"}",
-                   status = "loaded", text = "{\"longTitle\":\"Child T-ALL 500K CGH (Mullighan et al. 2008)\",\"cohort\":\"Acute lymphoblastic leukemia (Mullighan 2008)\",\"url\":\"http://www.ncbi.nlm.nih.gov/pubmed/19039135\",\"probeMap\":\"probeMap/probeAffy500K\",\"dataSubType\":\"copy number\",\"citation\":\"Science 2008 Nov 28;322(5906):1377-80\",\"label\":\"Mullighan CGH 500K\",\"articletitle\":\"Genomic analysis of the clonal origins of relapsed acute lymphoblastic leukemia.\",\"tags\":[\"white blood cell\",\"cancer\"],\"anatomical_origin\":[\"Blood\"],\"name\":\"mullighan2008_public/mullighan2008_500K_genomicMatrix\",\"dataproducer\":\"Mullighan CG, Phillips LA, Su X, Ma J, Miller CB, Shurtleff SA, Downing JR.\",\"wrangling_procedure\":\"Wrangled from separate 250K_sty and 250K_nsp CEL files using the R aroma.affymetrix package. Quantile normalization was performed, then copy number analyzed using RMA. Chip and fragment length effects were normalized out. A GLAD model was then fitted to make gain and loss calls. Finally, raw copy numbers were extracted for each probeset. The results from each platform were then combined into a 500K file.\",\"sample_type\":[\"tumor\"],\"type\":\"genomicMatrix\",\"wrangler\":\"Chris Szeto\",\"version\":\"2011-11-01\",\"primary_disease\":\"acute lymphoblastic leukemia\"}",
-                   probemap = "probeMap/probeAffy500K", datasubtype = "copy number",
-                   type = "genomicMatrix", count = 30L, longtitle = "Child T-ALL 500K CGH (Mullighan et al. 2008)",
-                   name = "mullighan2008_public/mullighan2008_500K_genomicMatrix"), class = "data.frame", row.names = 1L)
 
 tt2 = structure(list(pmtext = "{\"name\":\"probeMap/hugo_gencode_good_hg19_V24lift37_probemap\",\"type\":\"probeMap\",\"version\":\"2017-07-25\",\"assembly\":\"hg19\",\"url\":\"http://hgdownload.cse.ucsc.edu/goldenPath/hg19/database/wgEncodeGencodeBasicV24lift37.txt.gz\",\"wrangling_procedure\":\"convert UCSC GB download to start index 1\",\"label\":\"HUGO: human gene symbol (hg19) e.g. TP53\",\"userlevel\":\"basic\",\"idtype\":\"gene\"}",
                status = "loaded", text = "{\"owner\":\"TCGA\",\"longTitle\":\"TCGA bladder urothelial carcinoma (BLCA) gene expression by RNAseq (polyA+ IlluminaHiSeq)\",\"cohort\":\"TCGA Bladder Cancer (BLCA)\",\"url\":\"https://tcga-data.nci.nih.gov/tcgafiles/ftp_auth/distro_ftpusers/anonymous/tumor/blca/cgcc/unc.edu/illuminahiseq_rnaseqv2/rnaseqv2/\",\"probeMap\":\"probeMap/hugo_gencode_good_hg19_V24lift37_probemap\",\"dataSubType\":\"gene expression RNAseq\",\"security\":\"public\",\"rnatype\":\"polyA+\",\"label\":\"IlluminaHiSeq\",\"tags\":[\"cancer\"],\"path\":\"data/public/TCGA/BLCA/HiSeqV2\",\"anatomical_origin\":[\"Bladder\"],\"name\":\"TCGA.BLCA.sampleMap/HiSeqV2\",\"dataproducer\":\"University of North Carolina TCGA genome characterization center\",\"wrangling_procedure\":\"Level_3 data (file names: *.rsem.genes.normalized_results) are downloaded from TCGA DCC, log2(x+1) transformed, and processed at UCSC into Xena repository\",\"sample_type\":[\"tumor\"],\"redistribution\":true,\"groupTitle\":\"TCGA bladder urothelial carcinoma\",\"type\":\"genomicMatrix\",\"wrangler\":\"Xena TCGAscript RNAseq processed on 2017-10-13\",\"version\":\"2017-10-13\",\"gdata_tags\":[\"transcription\"],\"unit\":\"log2(norm_count+1)\",\"notes\":\"the probeMap is hugo for the short term, however probably around 10% of the gene symbols are not HUGO names, but ENTRE genes\",\"primary_disease\":\"bladder urothelial carcinoma\",\"platform\":\"IlluminaHiSeq_RNASeqV2\",\"colnormalization\":true,\"description\":\"The gene expression profile was measured experimentally using the Illumina HiSeq 2000 RNA Sequencing platform by the University of North Carolina TCGA genome characterization center. Level 3 data was downloaded from TCGA data coordination center. This dataset shows the gene-level transcription estimates, as in log2(x+1) transformed RSEM normalized count. Genes are mapped onto the human genome coordinates using UCSC Xena HUGO probeMap (see ID/Gene mapping link below for details). Reference to method description from University of North Carolina TCGA genome characterization center: <a href=\\\"https://tcga-data.nci.nih.gov/tcgafiles/ftp_auth/distro_ftpusers/anonymous/tumor/blca/cgcc/unc.edu/illuminahiseq_rnaseqv2/rnaseqv2/unc.edu_BLCA.IlluminaHiSeq_RNASeqV2.Level_3.1.17.0/DESCRIPTION.txt\\\" target=\\\"_blank\\\"><u>DCC description</u></a><br><br>In order to more easily view the differential expression between samples, we set the default view to center each gene or exon to zero by independently subtracting the mean of each gene or exon on the fly. Users can view the original non-normalized values by adjusting visualization settings.<br><br>\"}",
@@ -211,6 +205,15 @@ tt2 = structure(list(pmtext = "{\"name\":\"probeMap/hugo_gencode_good_hg19_V24li
                name = "TCGA.BLCA.sampleMap/HiSeqV2"), class = "data.frame", row.names = 1L)
 
 
-jsonlite::parse_json(tt$text) # metadata for dataset
-jsonlite::parse_json(tt$pmtext) # metadata for probeMap
-tt$count # n of samples
+jsonlite::parse_json(tt2$text) # metadata for dataset
+jsonlite::parse_json(tt2$pmtext) # metadata for probeMap
+tt2$count # n of samples
+
+
+# obtain data list of cohort metadata ----------------------------------------
+# cohort_df = unique(XenaData[, c(1, 3)])
+# cohort_df = as.data.frame(cohort_df)
+#
+# cohort_metadata = apply(cohort_df, 1, function(x) {
+#     .p_dataset_list(x[1], x[2])
+# })

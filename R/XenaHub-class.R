@@ -255,9 +255,12 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
                          "XenaCohorts",
                          "XenaDatasets")]
 
+    # .p_dataset_list(hosts(xe), cohorts(xe)) can also obtain
+    # metadata for dataset from cohort view
     meta_data = apply(XenaData, 1, function(x) {
         .p_dataset_metadata(x[1], x[4])
     })
+    names(meta_data) = XenaData[["XenaDatasets"]]
 
     tidy_data = lapply(meta_data, function(tt) {
         SampleCount = tt[["count"]]
@@ -267,28 +270,28 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
 
         j_data = jsonlite::parse_json(tt[["text"]])
         # decode metadata from json format
-        # note json data may have different elements for different datasets
+        # note json data may have different elements for
+        #                different cohort datasets
         # more work need to be done here
         #
         # tt$text contains metadata for dataset
         # tt$pmtext contains metadata for probemap
         LongTitle          = j_data[["longTitle"]]
-        PublicationURL     = j_data[["url"]]
         Citation           = j_data[["citation"]]
         Label              = j_data[["label"]]
-        ArticleTitle       = j_data[["articletitle"]]
         Tags               = .collapse_list(j_data[["tags"]])
         AnatomicalOrigin   = .collapse_list(j_data[["anatomical_origin"]])
-        DataProducer       = j_data[["wrangling_procedure"]]
-        WranglingProcedure = j_data[["wrangling_procedure"]]
         SampleType         = .collapse_list(j_data[["sample_type"]])
-        Wrangler           = j_data[["wrangler"]]
         Version            = j_data[["version"]]
         PrimaryDisease     = j_data[["acute lymphoblastic leukemia"]]
+        Platform           = j_data[["platform"]]
+        Unit               = j_data[["unit"]]
 
         res = c(
             SampleCount = SampleCount,
             DataSubtype = DataSubtype,
+            Platform = Platform,
+            Unit = Unit,
             Label = Label,
             Type = Type,
             AnatomicalOrigin = AnatomicalOrigin,
@@ -297,12 +300,7 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
             Tags = Tags,
             ProbeMap = ProbeMap,
             LongTitle = LongTitle,
-            ArticleTitle = ArticleTitle,
-            PublicationURL = PublicationURL,
             Citation = Citation,
-            DataProducer = DataProducer,
-            WranglingProcedure = WranglingProcedure,
-            Wrangler = Wrangler,
             Version = Version
 
         )
@@ -311,6 +309,7 @@ XenaDataUpdate = function(saveTolocal = TRUE) {
     #tidy_data2 = do.call(rbind, tidy_data)
     tidy_data2 = dplyr::rbind_list(tidy_data)
     XenaData = dplyr::bind_cols(XenaData, tidy_data2)
+    XenaData = dplyr::as_tibble(XenaData)
 
     if (saveTolocal) {
         data_dir = base::system.file("data", package = "UCSCXenaTools")
