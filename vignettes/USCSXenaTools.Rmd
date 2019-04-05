@@ -77,17 +77,17 @@ Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
 * ATAC-seq Hub: <https://atacseq.xenahubs.net>
 * Singel Cell Xena hub: <https://singlecell.xenahubs.net>
 
-If the url of data hub changed or new data hub online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
+If any url of data hubs are changed or a new data hub is online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
 ## Usage
 
 Download UCSC Xena Datasets and load them into R by **UCSCXenaTools** is a workflow with `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare` functions, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
 
-To show the basic usage of **UCSCXenaTools**, we download clinical data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
+To show the basic usage of **UCSCXenaTools**, we will download clinical data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
 
 ### XenaData data.frame
 
-Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which records information of all datasets of UCSC Xena Data Hubs.
+Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object (built in package, someone may call it `tibble`) `XenaData` to generate an instance of `XenaHub` class to record general information of all datasets of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
@@ -98,7 +98,7 @@ data(XenaData)
 head(XenaData)
 ```
 
-Names of all hub names can be accessed by object `.xena_hosts`:
+Names of all hub names/urls can be accessed by object `.xena_hosts`:
 
 ```{r}
 UCSCXenaTools:::.xena_hosts
@@ -106,7 +106,7 @@ UCSCXenaTools:::.xena_hosts
 
 ### Generate a XenaHub object
 
-This can be implemented by `XenaGenerate` function, which generate `XenaHub` object from `XenaData` data frame.
+This can be implemented by `XenaGenerate` function, which generates `XenaHub` object from `XenaData` data frame.
 
 ```{r}
 XenaGenerate()
@@ -120,7 +120,7 @@ XenaGenerate(subset = XenaHostNames=="tcgaHub")
 
 >You can also use `XenaHub()` to generate a `XenaHub` object for API communication, but it is not recommended. 
 
-It's possible to explore `hosts()`, `cohorts()` and `datasets()`.
+It's possible to extract info from `XenaHub` object by `hosts()`, `cohorts()` and `datasets()`.
 
 ```{r}
 xe = XenaGenerate(subset = XenaHostNames=="tcgaHub")
@@ -166,7 +166,7 @@ xe %>%
 
 ### Browse datasets
 
-Something, you may want to check data before you query and download data.
+Sometimes, you may want to check data before you query and download data.
 A new feature `XenaBrowse` is implemented in **UCSCXenaTools**.
 
 Create two XenaHub objects:
@@ -287,11 +287,11 @@ testRNA = UCSCXenaTools::XenaPrepare("~/Download/HiSeqV2.gz", use_chunk = TRUE, 
 testRNA = UCSCXenaTools::XenaPrepare("~/Download/HiSeqV2.gz", use_chunk = TRUE, select_cols = colnames(x)[1:3])
 ```
 
-## TCGA Common Data Easy Download
+## Download TCGA data with readable options
 
 ### getTCGAdata
 
-`getTCGAdata` provide a quite easy download way for TCGA (hg19 version, different from `gdcHub`) datasets, user can specify multiple options to select which data and corresponding file type want to download. Default this function will return a list include `XenaHub` object and selective datasets information. Once you are sure the datasets is exactly what you want, `download` can be set to `TRUE` to download the data.
+`getTCGAdata` provides a more readable way for downloading TCGA (hg19 version, different from `gdcHub`) datasets, user can specify multiple options to select data and corresponding file type to download. Default this function will return a list include `XenaHub` object and selected datasets information. Once you are sure the datasets are exactly what you want, `download` can be set to `TRUE` to download the data.
 
 Check arguments of `getTCGAdata`:
 
@@ -340,12 +340,12 @@ getTCGAdata(c("UVM", "LUAD"), download = TRUE)
 > other data type supported by Xena cannot download use this function. Please refer to `downloadTCGA` function or `XenaGenerate` function.
 
 
-**NOTE**: Sequencing data are all based on  Illumina Hiseq platform, other platform (Illumina GA) data supported by Xena cannot download using this function. This is for building consistent data download flow. Mutation use `broad automated` version (except `PANCAN` use `MC3 Public Version`). If you wan to download other datasets, please refer to `downloadTCGA` function or `XenaGenerate` function.
+**NOTE**: Sequencing data are all based on Illumina Hiseq platform, other platform (Illumina GA) data supported by Xena cannot download using this function. This is for building consistent data download flow. Mutation use `broad automated` version (except `PANCAN` use `MC3 Public Version`). If you wan to download other datasets, please refer to `downloadTCGA` function or `XenaGenerate` function.
 
 
-### download any TCGA data by datatypes and filetypes 
+### Download any TCGA data by datatypes and filetypes 
 
-`downloadTCGA` function can used to download any TCGA data supported by Xena, but in a way different from `getTCGAdata` function.
+`downloadTCGA` function can be used to download any TCGA data supported by Xena, but in a way different from `getTCGAdata` function.
 
 ```{r, eval=FALSE}
 # download RNASeq data (use UVM as an example)
