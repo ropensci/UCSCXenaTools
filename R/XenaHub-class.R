@@ -1,10 +1,12 @@
 #FUN: Set Class & operate XenaHub object directly
 
-##'  @title a S4 class to represent UCSC Xena Data Hubs
-##'  @slot hosts hosts of data hubs
-##'  @slot cohorts cohorts of data hubs
-##'  @slot datasets datasets of data hubs
-##'  @importFrom methods new
+##' Class XenaHub
+##' @description  a S4 class to represent UCSC Xena Data Hubs
+##' @slot hosts hosts of data hubs
+##' @slot cohorts cohorts of data hubs
+##' @slot datasets datasets of data hubs
+##' @importFrom methods new
+##' @export
 .XenaHub = setClass(
     "XenaHub",
     representation = representation(
