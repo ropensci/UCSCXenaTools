@@ -30,7 +30,7 @@ test_that("XenaQuery works", {
     expect_is(xe2_query, "data.frame")
 })
 
-xe2_download = XenaDownload(xe2_query)
+xe2_download = XenaDownload(xe2_query, download_probeMap = TRUE)
 
 dt = XenaPrepare(xe2_download)
 

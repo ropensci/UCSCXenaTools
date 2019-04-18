@@ -4,9 +4,16 @@
 
 * fix API functions cannot be called from outside
 
+## New features
+
+* Add option to `XenaDownload` function for downloading gene id mapping data
+* Add `XenaQueryProbeMap()` for querying probemap of datasets.
+
 ## Minor changes
 
 * export `XenaHub` Class
+* improve `XenaQuery` function
+* update website and documentation
 
 # v1.2.0
 

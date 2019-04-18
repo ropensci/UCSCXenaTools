@@ -88,7 +88,7 @@
                         <h4 class="author">Shixiang Wang<br>
 ShanghaiTech. University</h4>
             
-            <h4 class="date">2019-04-14</h4>
+            <h4 class="date">2019-04-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/vignettes/USCSXenaTools.Rmd"><code>vignettes/USCSXenaTools.Rmd</code></a></small>
       <div class="hidden name"><code>USCSXenaTools.Rmd</code></div>
@@ -273,7 +273,7 @@ ShanghaiTech. University</h4>
 <p>Pipe operator <code>%&gt;%</code> can also be used here.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">XenaData <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(XenaHostNames <span class="op">==</span><span class="st"> "tcgaHub"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"BRCA"</span>, XenaCohorts), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"Path"</span>, XenaDatasets)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(XenaHostNames <span class="op">==</span><span class="st"> "tcgaHub"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"BRCA"</span>, XenaCohorts), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"Path"</span>, XenaDatasets)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">    </span><span class="kw"><a href="../reference/XenaGenerate.html">XenaGenerate</a></span>()</a>
 <a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; class: XenaHub </span></a>
 <a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; hosts():</span></a>
@@ -407,7 +407,7 @@ ShanghaiTech. University</h4>
 <p>Default, data will be downloaded to system temp directory. You can specify the path.</p>
 <p>If the data exists, command will not run to download them, but you can force it by <code>force</code> option.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">xe2_download =<span class="st"> </span><span class="kw"><a href="../reference/XenaDownload.html">XenaDownload</a></span>(xe2_query)</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpzYYOeu.</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpLbFhUR.</span></a>
 <a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">#&gt; The 'trans_slash' option is FALSE, keep same directory structure as Xena.</span></a>
 <a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co">#&gt; Creating directories for datasets...</span></a>
 <a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co">#&gt; Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz</span></a>
