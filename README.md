@@ -156,7 +156,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /tmp/RtmpbMp5UD.
+#> All downloaded files will under directory /tmp/RtmpqH6csg.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -262,22 +262,9 @@ vignette](https://shixiangwang.github.io/UCSCXenaTools/articles/xena-apis.html).
 
 ## Citation
 
-*Wang, Shixiang, et al. “APOBEC3B and APOBEC mutational signature as
-potential predictive markers for immunotherapy response in non-small
-cell lung cancer.” Oncogene (2018).*
-
-Or
-
-    @article{wang2018apobec3b,
-      title={APOBEC3B and APOBEC mutational signature as potential predictive markers for immunotherapy response in non-small cell lung cancer},
-      author={Wang, Shixiang and Jia, Mingming and He, Zaoke and Liu, Xue-Song},
-      journal={Oncogene},
-      volume={37},
-      number={29},
-      pages={3924},
-      year={2018},
-      publisher={Nature Publishing Group}
-    }
+    Wang, Shixiang, et al. "The predictive power of tumor mutational burden 
+        in lung cancer immunotherapy response is influenced by patients' sex." 
+        International journal of cancer (2019).
 
 ## Acknowledgement
 

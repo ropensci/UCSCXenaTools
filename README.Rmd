@@ -177,21 +177,10 @@ If you want to use APIs provided by **UCSCXenaTools** to access Xena Hubs, pleas
 
 ## Citation
 
-*Wang, Shixiang, et al. "APOBEC3B and APOBEC mutational signature as potential predictive markers for immunotherapy response in non-small cell lung cancer." Oncogene (2018).*
-
-Or
-
 ```
-@article{wang2018apobec3b,
-  title={APOBEC3B and APOBEC mutational signature as potential predictive markers for immunotherapy response in non-small cell lung cancer},
-  author={Wang, Shixiang and Jia, Mingming and He, Zaoke and Liu, Xue-Song},
-  journal={Oncogene},
-  volume={37},
-  number={29},
-  pages={3924},
-  year={2018},
-  publisher={Nature Publishing Group}
-}
+Wang, Shixiang, et al. "The predictive power of tumor mutational burden 
+    in lung cancer immunotherapy response is influenced by patients' sex." 
+    International journal of cancer (2019).
 ```
 
 ## Acknowledgement
