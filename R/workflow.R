@@ -548,7 +548,7 @@ XenaPrepare = function(objects,
 }
 
 
-#' View One Dataset or Cohort Using Web browser
+#' View Info of Dataset or Cohort at UCSC Xena Website Using Web browser
 #'
 #' This will open dataset/cohort link of UCSC Xena
 #' in user's default browser.
