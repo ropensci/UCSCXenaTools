@@ -1,3 +1,9 @@
+# v1.2.2
+
+## Minor changes
+
+* update website and documentation
+
 # v1.2.1
 
 ## Bug fixes

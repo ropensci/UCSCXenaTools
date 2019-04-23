@@ -29,7 +29,7 @@ same as \code{XenaDownload()} function result.
 }
 \description{
 TCGA is a very useful database and here we provide this function to
-download TCGA (include TCGA Pancan) datasets in human-friendly way. User who are not
+download TCGA (include TCGA Pancan) datasets in human-friendly way. Users who are not
 familiar with R operation will benefit from this.
 }
 \details{

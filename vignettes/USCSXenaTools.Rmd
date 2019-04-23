@@ -397,7 +397,7 @@ sessionInfo()
 
 ## Bug Report
 
-I have no time to test if all condition are right and all datasets can normally be downloaded. So if you have any question or suggestion, please open an issue on Github at <https://github.com/ShixiangWang/UCSCXenaTools/issues>. 
+I have no time to test if all conditions are right and all datasets can normally be downloaded. So if you have any question or suggestion, please open an issue on Github at <https://github.com/ShixiangWang/UCSCXenaTools/issues>. 
 
 ## Acknowledgement
 

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1.9000</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
                         <h4 class="author">Shixiang Wang<br>
 ShanghaiTech. University</h4>
             
-            <h4 class="date">2019-04-21</h4>
+            <h4 class="date">2019-04-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ShixiangWang/UCSCXenaTools/blob/master/vignettes/xena-apis.Rmd"><code>vignettes/xena-apis.Rmd</code></a></small>
       <div class="hidden name"><code>xena-apis.Rmd</code></div>
@@ -265,6 +265,18 @@ ShanghaiTech. University</h4>
 <td align="left">Return cohorts of hosts</td>
 </tr>
 <tr class="even">
+<td align="left">all_cohorts</td>
+<td align="left">.p_all_cohorts</td>
+<td align="left">Lower</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">all_datasets</td>
+<td align="left">.p_all_datasets</td>
+<td align="left">Lower</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
 <td align="left">all_datasets_n</td>
 <td align="left">.p_all_datasets_n</td>
 <td align="left">Lower</td>
@@ -356,6 +368,18 @@ ShanghaiTech. University</h4>
 <td align="left">All samples in dataset (optional limit)</td>
 </tr>
 <tr class="odd">
+<td align="left">dataset_samples_ndense_matrix</td>
+<td align="left">.p_dataset_samples_ndense_matrix</td>
+<td align="left">Lower</td>
+<td align="left">All samples in dataset (faster, for dense matrix dataset only)</td>
+</tr>
+<tr class="even">
+<td align="left">datasets_null_rows</td>
+<td align="left">.p_datasets_null_rows</td>
+<td align="left">Lower</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
 <td align="left">feature_list</td>
 <td align="left">.p_feature_list</td>
 <td align="left">Lower</td>
@@ -386,76 +410,88 @@ ShanghaiTech. University</h4>
 <td align="left">Find fields matching names (must be lower-case)</td>
 </tr>
 <tr class="even">
+<td align="left">probe_count</td>
+<td align="left">.p_probe_count</td>
+<td align="left">Lower</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
 <td align="left">probemap_list</td>
 <td align="left">.p_probemap_list</td>
 <td align="left">Lower</td>
 <td align="left">Find probemaps</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ref_gene_exons</td>
 <td align="left">.p_ref_gene_exons</td>
 <td align="left">Lower</td>
 <td align="left">Gene model</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">ref_gene_position</td>
 <td align="left">.p_ref_gene_position</td>
 <td align="left">Lower</td>
 <td align="left">Gene position from gene model</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ref_gene_range</td>
 <td align="left">.p_ref_gene_range</td>
 <td align="left">Lower</td>
 <td align="left">Gene models overlapping range</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">segment_data_examples</td>
 <td align="left">.p_segment_data_examples</td>
 <td align="left">Lower</td>
 <td align="left">Initial segmented data rows, with limit</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">segmented_data_range</td>
 <td align="left">.p_segmented_data_range</td>
 <td align="left">Lower</td>
 <td align="left">Segmented (copy number) data overlapping range</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">sparse_data</td>
 <td align="left">.p_sparse_data</td>
 <td align="left">Lower</td>
 <td align="left">Sparse (mutation) data rows for genes</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">sparse_data_examples</td>
 <td align="left">.p_sparse_data_examples</td>
 <td align="left">Lower</td>
 <td align="left">Initial sparse data rows, with limit</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">sparse_data_match_field</td>
 <td align="left">.p_sparse_data_match_field</td>
 <td align="left">Lower</td>
 <td align="left">Genes in sparse (mutation) dataset matching given names</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">sparse_data_match_field_slow</td>
 <td align="left">.p_sparse_data_match_field_slow</td>
 <td align="left">Lower</td>
 <td align="left">Genes in sparse (mutation) dataset matching given names, case-insensitive (names must be lower-case)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">sparse_data_match_partial_field</td>
 <td align="left">.p_sparse_data_match_partial_field</td>
 <td align="left">Lower</td>
 <td align="left">Partial match genes in sparse (mutation) dataset</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">sparse_data_range</td>
 <td align="left">.p_sparse_data_range</td>
 <td align="left">Lower</td>
 <td align="left">Sparse (mutation) data rows overlapping the given range, for the given samples</td>
+</tr>
+<tr class="odd">
+<td align="left">transcript_expression</td>
+<td align="left">.p_transcript_expression</td>
+<td align="left">Lower</td>
+<td align="left">NA</td>
 </tr>
 </tbody>
 </table>
