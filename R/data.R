@@ -10,6 +10,7 @@
 #' @name XenaData
 #' @format A `tibble`.
 #' @source Generated from UCSC Xena Data Hubs.
-#' @examples data(XenaData)
+#' @examples
+#' data(XenaData)
 #' str(XenaData)
 NULL

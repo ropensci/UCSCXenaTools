@@ -1,4 +1,4 @@
-#FUN: higher API functions
+# FUN: higher API functions
 
 ##' Get hosts of XenaHub object
 ##' @param x a [XenaHub] object
@@ -6,24 +6,24 @@
 ##' @return a character vector contains hosts
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); hosts(xe)
-hosts = function(x)
-    unname(slot(x, "hosts"))
+hosts <- function(x)
+  unname(slot(x, "hosts"))
 ##' Get cohorts of XenaHub object
 ##' @param x a [XenaHub] object
 ##' @return a character vector contains cohorts
 ##' @import methods
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); cohorts(xe)
-cohorts = function(x)
-    slot(x, "cohorts")
+cohorts <- function(x)
+  slot(x, "cohorts")
 ##' Get datasets of XenaHub object
 ##' @param x a [XenaHub] object
 ##' @return a character vector contains datasets
 ##' @import methods
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); datasets(xe)
-datasets = function(x)
-    slot(x, "datasets")
+datasets <- function(x)
+  slot(x, "datasets")
 
 ##' Get Samples of a XenaHub object according to 'by' and 'how' action arguments
 ##'
@@ -47,21 +47,19 @@ datasets = function(x)
 ##' lengths(x)        # data sets in ccle cohort on first (only) host
 ##' }
 
-samples = function(x,
-                   i = character(),
-                   by = c("hosts", "cohorts", "datasets"),
-                   how = c("each", "any", "all"))
-{
-    stopifnot(is(x, "XenaHub"), is.character(i))
-    by = match.arg(by)
-    how = match.arg(how)
+samples <- function(x,
+                    i = character(),
+                    by = c("hosts", "cohorts", "datasets"),
+                    how = c("each", "any", "all")) {
+  stopifnot(is(x, "XenaHub"), is.character(i))
+  by <- match.arg(by)
+  how <- match.arg(how)
 
-    fun = switch(
-        match.arg(by),
-        hosts = .samples_by_host,
-        cohorts = .samples_by_cohort,
-        datasets = .samples_by_dataset
-    )
-    fun(x, i, how)
+  fun <- switch(
+    match.arg(by),
+    hosts = .samples_by_host,
+    cohorts = .samples_by_cohort,
+    datasets = .samples_by_dataset
+  )
+  fun(x, i, how)
 }
-
