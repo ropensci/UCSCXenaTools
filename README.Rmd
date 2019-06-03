@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 ![](http://cranlogs.r-pkg.org/badges/UCSCXenaTools) ![](http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools) [![Coverage Status](https://img.shields.io/codecov/c/github/ShixiangWang/UCSCXenaTools/master.svg)](https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master) [![GitHub issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+) [![Closed issues](https://img.shields.io/github/issues-closed/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
 <!-- badges: end -->
 
-**UCSCXenaTools** is an R package for downloading and exploring data from
+**UCSCXenaTools** is an R package downloading and exploring data from
 [**UCSC Xena data hubs**](https://xenabrowser.net/datapages/), which are a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
 
 ## Table of Contents
@@ -67,18 +67,18 @@ Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
 * ATAC-seq Hub: <https://atacseq.xenahubs.net>
 * Singel Cell Xena hub: <https://singlecell.xenahubs.net>
 
-If the url of data hub changed or new data hub online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
+If any url of data hub is changed or a new data hub is online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
 
 ## Usage
 
 Download UCSC Xena datasets and load them into R by **UCSCXenaTools** is a workflow with `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare` functions, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
 
-To show the basic usage of **UCSCXenaTools**, we download clinical data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
+To show the basic usage of **UCSCXenaTools**, we will download clinical data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
 
 ### XenaData data.frame
 
-Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which records information of all datasets of UCSC Xena Data Hubs.
+**UCSCXenaTools** uses a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which records information of all datasets of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
@@ -122,8 +122,8 @@ names(cli)
 
 Create two XenaHub objects:
 
-* `to_browse` - a XenaHub object contains a cohort and a dataset.
-* `to_browse2` - a XenaHub object contains 2 cohorts and 2 datasets.
+* `to_browse` - a XenaHub object containing a cohort and a dataset.
+* `to_browse2` - a XenaHub object containing 2 cohorts and 2 datasets.
 
 ```{r}
 XenaGenerate(subset = XenaHostNames=="tcgaHub") %>%
@@ -140,7 +140,7 @@ to_browse2
 ```
 
 `XenaBrowse()` function can be used to browse dataset/cohort links using your default web browser.
-At default, this function limit one dataset/cohort for preventing user to open too many links at once. 
+At default, this function limits one dataset/cohort for preventing user to open too many links at once. 
 
 ```{r,eval=FALSE}
 # This will open you web browser

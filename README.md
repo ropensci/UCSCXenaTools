@@ -21,11 +21,11 @@ issues](https://img.shields.io/github/issues/ShixiangWang/UCSCXenaTools.svg)](ht
 issues](https://img.shields.io/github/issues-closed/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
 <!-- badges: end -->
 
-**UCSCXenaTools** is an R package for downloading and exploring data
-from [**UCSC Xena data hubs**](https://xenabrowser.net/datapages/),
-which are a collection of UCSC-hosted public databases such as TCGA,
-ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they
-can be combined, linked, filtered, explored and downloaded.
+**UCSCXenaTools** is an R package downloading and exploring data from
+[**UCSC Xena data hubs**](https://xenabrowser.net/datapages/), which are
+a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET,
+GTEx, CCLE, and others. Databases are normalized so they can be
+combined, linked, filtered, explored and downloaded.
 
 ## Table of Contents
 
@@ -72,8 +72,8 @@ Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
   - ATAC-seq Hub: <https://atacseq.xenahubs.net>
   - Singel Cell Xena hub: <https://singlecell.xenahubs.net>
 
-If the url of data hub changed or new data hub online, please remind me
-by emailing to <w_shixiang@163.com> or [opening an issue on
+If any url of data hub is changed or a new data hub is online, please
+remind me by emailing to <w_shixiang@163.com> or [opening an issue on
 GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
 ## Usage
@@ -85,27 +85,28 @@ a workflow with `generate`, `filter`, `query`, `download` and `prepare`
 They are very clear and easy to use and combine with other packages like
 `dplyr`.
 
-To show the basic usage of **UCSCXenaTools**, we download clinical data
-of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
+To show the basic usage of **UCSCXenaTools**, we will download clinical
+data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
 
 ### XenaData data.frame
 
-Begin from version `0.2.0`, **UCSCXenaTools** uses a `data.frame` object
-(built in package) `XenaData` to generate an instance of `XenaHub`
-class, which records information of all datasets of UCSC Xena Data Hubs.
+**UCSCXenaTools** uses a `data.frame` object (built in package)
+`XenaData` to generate an instance of `XenaHub` class, which records
+information of all datasets of UCSC Xena Data Hubs.
 
 You can load `XenaData` after loading `UCSCXenaTools` into R.
 
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 1.2.0
+#> UCSCXenaTools version 1.2.1.9000
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
 #> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
+#> 
 #> If you use it in published research, please cite:
-#> Wang, Shixiang, et al. "APOBEC3B and APOBEC mutational signature
-#>     as potential predictive markers for immunotherapy
-#>     response in non-small cell lung cancer." Oncogene (2018).
+#> Wang, Shixiang, et al. "The predictive power of tumor mutational burden
+#>     in lung cancer immunotherapy response is influenced by patients' sex."
+#>     International journal of cancer (2019).
 #> =========================================================================
 #> 
 data(XenaData)
@@ -156,7 +157,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /tmp/RtmpqH6csg.
+#> All downloaded files will under directory /tmp/RtmpV4bOXZ.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -179,8 +180,8 @@ names(cli)
 
 Create two XenaHub objects:
 
-  - `to_browse` - a XenaHub object contains a cohort and a dataset.
-  - `to_browse2` - a XenaHub object contains 2 cohorts and 2 datasets.
+  - `to_browse` - a XenaHub object containing a cohort and a dataset.
+  - `to_browse2` - a XenaHub object containing 2 cohorts and 2 datasets.
 
 <!-- end list -->
 
@@ -215,7 +216,7 @@ to_browse2
 ```
 
 `XenaBrowse()` function can be used to browse dataset/cohort links using
-your default web browser. At default, this function limit one
+your default web browser. At default, this function limits one
 dataset/cohort for preventing user to open too many links at once.
 
 ``` r
