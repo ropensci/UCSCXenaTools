@@ -169,7 +169,10 @@ XenaHub <- function(hosts = xena_default_hosts(),
     )) {
     .temp <- names(.xena_hosts)
     names(.temp) <- .xena_hosts
-    hostNames <- .temp %>% as.data.frame() %>% t() %>% as.data.frame()
+    hostNames <- .temp %>%
+      as.data.frame() %>%
+      t() %>%
+      as.data.frame()
     rm(.temp)
 
     hosts <- as.character(hostNames[, hostName])
