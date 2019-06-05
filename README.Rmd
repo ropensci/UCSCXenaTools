@@ -165,7 +165,7 @@ XenaBrowse(to_browse2, type = "cohort", multiple = TRUE)
 
 ## Documentation
 
-More features and usages please read [online documentation on CRAN](https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html) or [Github website](https://shixiangwang.github.io/UCSCXenaTools/).
+More features and usages please read [online documentations](https://shixiangwang.github.io/home/en/tools/#ucscxenatools).
 
 ## APIs
 

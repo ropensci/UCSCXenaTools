@@ -23,11 +23,13 @@ to_snake <- function(name) {
 }
 
 .marshall_param <- function(p) {
-  if (!is.atomic(p)) {
-    stop("Input type should be atomic!")
-  }
+  stopifnot(is.atomic(p) | is.list(p))
 
-  if (length(p) == 1) {
+  # If input is a list, use .arrayfmt, this fix single gene/sample query
+  if (is.list(p)) {
+    p <- as.character(p)
+    return(.arrayfmt(p))
+  }else if (length(p) == 1) {
     return(.quote(p))
   } else if (length(p) > 1) {
     return(.arrayfmt(p))

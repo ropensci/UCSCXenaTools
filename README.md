@@ -99,7 +99,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 1.2.1.9000
+#> UCSCXenaTools version 1.2.2
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
 #> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
 #> 
@@ -157,7 +157,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /tmp/RtmpV4bOXZ.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpRkDezc.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -247,9 +247,8 @@ XenaBrowse(to_browse2, type = "cohort", multiple = TRUE)
 
 ## Documentation
 
-More features and usages please read [online documentation on
-CRAN](https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html)
-or [Github website](https://shixiangwang.github.io/UCSCXenaTools/).
+More features and usages please read [online
+documentations](https://shixiangwang.github.io/home/en/tools/#ucscxenatools).
 
 ## APIs
 
