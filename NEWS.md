@@ -1,10 +1,12 @@
-# v1.2.3
+# v1.2.2
+
+## New features
+
+- added 3 `fetch_*()` functions
 
 ## Bug fixes
 
 - fixed #5: API function for querying single gene or sample does not work
-
-# v1.2.2
 
 ## Minor changes
 

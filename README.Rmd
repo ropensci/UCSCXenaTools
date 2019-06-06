@@ -33,7 +33,6 @@ knitr::opts_chunk$set(
 * [Citation](#citation)
 * [Acknowledgement](#acknowledgement)
 * [LICENSE](#license)
-* [Code of conduct](#code-of-conduct)
 
 ## Installation
 
@@ -192,9 +191,3 @@ This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Mar
 GPL-3
 
 Please note, code from XenaR package under Apache 2.0 license.
-
-## Code of conduct
-
-Please note that this project is released with a [Contributor Code of
-Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
-to abide by its terms.

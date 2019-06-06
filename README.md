@@ -37,7 +37,6 @@ combined, linked, filtered, explored and downloaded.
   - [Citation](#citation)
   - [Acknowledgement](#acknowledgement)
   - [LICENSE](#license)
-  - [Code of conduct](#code-of-conduct)
 
 ## Installation
 
@@ -99,7 +98,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 1.2.2
+#> UCSCXenaTools version 1.2.2.9000
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
 #> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
 #> 
@@ -157,7 +156,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpRkDezc.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpauJGeg.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -276,9 +275,3 @@ thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 GPL-3
 
 Please note, code from XenaR package under Apache 2.0 license.
-
-## Code of conduct
-
-Please note that this project is released with a [Contributor Code of
-Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree
-to abide by its terms.

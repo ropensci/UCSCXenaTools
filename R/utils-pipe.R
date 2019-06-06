@@ -9,3 +9,10 @@
 #' @importFrom magrittr %>%
 #' @usage lhs \%>\% rhs
 NULL
+
+
+.attach_this = function() {
+    if (!"UCSCXenaTools" %in% (.packages())) {
+        attachNamespace("UCSCXenaTools")
+    }
+}
