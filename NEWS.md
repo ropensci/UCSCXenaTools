@@ -1,3 +1,9 @@
+# v1.2.3
+
+## Bug fixes
+
+- fixed #8
+
 # v1.2.2
 
 ## New features

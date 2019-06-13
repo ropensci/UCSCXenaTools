@@ -68,21 +68,23 @@ fetch_dense_values = function(host, dataset, identifiers=NULL, samples=NULL, che
         # obtain all identifiers
         all_identifiers = fetch_dataset_identifiers(host, dataset)
 
-        message("Checking identifiers...")
-        if (is.null(identifiers)) {
+        message("-> Checking identifiers...")
+        if (use_probeMap) {
+          message("-> use_probeMap is TRUE, skipping checking identifiers...")
+        } else if (is.null(identifiers)) {
             identifiers = all_identifiers
         } else {
             if (!is.character(identifiers)) stop("Bad type for identifiers.")
             if (!all(identifiers %in% all_identifiers)) {
                 which_in = identifiers %in% all_identifiers
-                identifiers = identifiers[which_in]
                 message("The following identifiers have been removed fro host ", host, " dataset ", dataset)
                 print(identifiers[!which_in])
+                identifiers = identifiers[which_in]
             }
         }
-        message("Done.")
+        message("-> Done.")
 
-        message("Checking samples...")
+        message("-> Checking samples...")
         if (is.null(samples)) {
             samples = all_samples
         } else {
@@ -94,7 +96,7 @@ fetch_dense_values = function(host, dataset, identifiers=NULL, samples=NULL, che
                 print(samples[!which_in])
             }
         }
-        message("Done.")
+        message("-> Done.")
 
     } else {
         if (is.null(samples)) {
@@ -116,16 +118,16 @@ fetch_dense_values = function(host, dataset, identifiers=NULL, samples=NULL, che
     }
 
     if (use_probeMap) {
-        message("Checking if the dataset has probeMap...")
+        message("-> Checking if the dataset has probeMap...")
         if (has_probeMap(host, dataset)) {
-            message("Done. ProbeMap is found.")
+            message("-> Done. ProbeMap is found.")
             res <- .p_dataset_gene_probe_avg(host, dataset, samples, identifiers)
             res <-  t(sapply(res[["scores"]], base::rbind))
             rownames(res) <- identifiers
             colnames(res) <- samples
             return(res)
         }
-        message("Done. No probeMap found, use old way...")
+        message("-> Done. No probeMap found, use old way...")
     }
 
     res <- .p_dataset_fetch(host, dataset, samples, identifiers)
