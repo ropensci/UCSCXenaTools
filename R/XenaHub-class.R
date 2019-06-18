@@ -42,32 +42,6 @@ setMethod("show", "XenaHub", function(object) {
   showsome("datasets", datasets(object))
 })
 
-setMethod("show", "XenaHub", function(object) {
-  showsome <- function(label, x) {
-    len <- length(x)
-    if (len > 6) {
-      x <- c(head(x, 3), "...", tail(x, 2))
-    }
-    cat(label,
-      "() (",
-      len,
-      " total):",
-      "\n  ",
-      paste0(x, collapse = "\n  "),
-      "\n",
-      sep = ""
-    )
-  }
-  cat("class:", class(object), "\n")
-  cat("hosts():",
-    "\n  ", paste0(hosts(object), collapse = "\n  "),
-    "\n",
-    sep = ""
-  )
-  showsome("cohorts", cohorts(object))
-  showsome("datasets", datasets(object))
-})
-
 
 ##' @title UCSC Xena Default Hosts
 ##' @description Return Xena default hosts
@@ -176,6 +150,8 @@ XenaHub <- function(hosts = xena_default_hosts(),
     rm(.temp)
 
     hosts <- as.character(hostNames[, hostName])
+  } else if (!all(hostName %in% .xena_hosts)) {
+    stop("Bad hostName, please check")
   }
 
   if (is.null(names(hosts))) {
@@ -184,13 +160,13 @@ XenaHub <- function(hosts = xena_default_hosts(),
 
   hosts0 <- hosts
   hosts <- Filter(.host_is_alive, hosts)
-  if (length(hosts) == 0L) {
+  if (length(hosts) == 0L) { # nocov start
     stop(
       "\n  no hosts responding:",
       "\n    ",
       paste0(hosts0, collapse = "\n  ")
     )
-  }
+  } # nocov end
 
   all_cohorts <- unlist(.host_cohorts(hosts), use.names = FALSE)
   if (length(cohorts) == 0L) {
@@ -205,11 +181,11 @@ XenaHub <- function(hosts = xena_default_hosts(),
   if (length(datasets) == 0L) {
     datasets <- all_datasets
   } else {
-    if (!all(datasets %in% all_datasets)) {
+    if (!all(datasets %in% all_datasets)) { # nocov start
       bad_dataset <- datasets[!datasets %in% all_datasets]
       message("Following datasets are not in datasets of hosts, ignore them...")
       message(bad_dataset)
-    }
+    } # nocov end
     datasets <- all_datasets[all_datasets %in% datasets]
   }
 
@@ -227,7 +203,7 @@ XenaHub <- function(hosts = xena_default_hosts(),
 ##' @return a `data.frame` contains all datasets information of Xena.
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
-XenaDataUpdate <- function(saveTolocal = TRUE) {
+XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
   hosts <- xena_default_hosts()
   XenaList <- sapply(hosts, function(x) {
     onehost_cohorts <- unlist(.host_cohorts(x), use.names = FALSE)
@@ -344,7 +320,7 @@ XenaDataUpdate <- function(saveTolocal = TRUE) {
     }
   }
   XenaData
-}
+} # nocov end
 
 .collapse_list <- function(x) {
   sapply(x, function(x) x) %>% paste0(collapse = ",")

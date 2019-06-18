@@ -29,7 +29,7 @@ to_snake <- function(name) {
   if (is.list(p)) {
     p <- as.character(p)
     return(.arrayfmt(p))
-  }else if (length(p) == 1) {
+  } else if (length(p) == 1) {
     return(.quote(p))
   } else if (length(p) > 1) {
     return(.arrayfmt(p))

@@ -3,6 +3,11 @@
 ## Bug fixes
 
 - fixed #8
+- fixed some small bugs according to test results
+
+## Minor changes
+
+- added more tests
 
 # v1.2.2
 

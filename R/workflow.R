@@ -59,7 +59,8 @@ XenaFilter <- function(x,
                        filterDatasets = NULL,
                        ignore.case = TRUE, ...) {
   if (is.null(filterCohorts) & is.null(filterDatasets)) {
-    message("No operation for input, do nothing...")
+    warning("No operation for input, do nothing...")
+    return(x)
   }
 
   cohorts_select <- character()
@@ -96,7 +97,7 @@ XenaFilter <- function(x,
       !identical(datasets_select, character())) {
       UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts &
         XenaDatasets %in% datasets_select)
-    } else {
+    } else { # nocov start
       if (!identical(cohorts_select, character()) &
         identical(datasets_select, character())) {
         UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts &
@@ -108,7 +109,7 @@ XenaFilter <- function(x,
             XenaDatasets %in% datasets_select
         )
       }
-    }
+    } # nocov end
   }
 }
 
@@ -250,7 +251,7 @@ XenaDownload <- function(xquery,
     }
   }
 
-  apply(xquery, 1, function(x) {
+  apply(xquery, 1, function(x) { # nocov start
     tryCatch({
       if (!file.exists(x[5]) | force) {
         message("Downloading ", x[4])
@@ -270,7 +271,7 @@ XenaDownload <- function(xquery,
       message("Try downloading file", x[4], "...")
       download.file(x[3], destfile = x[5], ...)
     })
-  })
+  }) # nocov end
 
   if (trans_slash) {
     message(
@@ -338,8 +339,22 @@ XenaPrepare <- function(objects,
     is.logical(use_chunk)
   )
 
+  subset_rows.bk <- subset_rows
+  select_cols.bk <- select_cols
+
   subset_rows <- substitute(subset_rows)
+  if (is.name(subset_rows)) {
+    subset_rows <- substitute(eval(subset_rows.bk))
+  }
+
   select_cols <- substitute(select_cols)
+  if (is.name(select_cols)) {
+    select_cols <- substitute(eval(select_cols.bk))
+  }
+
+  # subset_rows <- substitute(subset_rows)
+  # select_cols <- substitute(select_cols)
+
   #    subset_direction = match.arg(subset_direction)
 
   objects2 <- objects
@@ -349,8 +364,8 @@ XenaPrepare <- function(objects,
       stop("Please check you input!")
     }
 
-    # the input are directory?
-    if (all(dir.exists(objects)) & !all(file.exists(objects))) {
+    # Is the input directory?
+    if (all(dir.exists(objects))) {
       if (length(objects) > 1) {
         stop("We do not accept multiple directories as input.")
       } else {
@@ -508,14 +523,6 @@ XenaPrepare <- function(objects,
             y
           })
 
-          # use for loop
-          # res = list()
-          # i = 1
-          # for (x in objects){
-          #     res[[i]] = read_tsv(x, comment=comment, ...)
-          #     i = i + 1
-          # }
-
           if (is.null(objectsName)) {
             objectsName <- make.names(basename(objects))
             names(res) <- objectsName
@@ -571,7 +578,7 @@ XenaPrepare <- function(objects,
 #'   XenaFilter(filterDatasets = "clinical") %>%
 #'   XenaFilter(filterDatasets = "LUAD") -> to_browse
 #' }
-XenaBrowse <- function(x, type = c("dataset", "cohort"), multiple = FALSE) {
+XenaBrowse <- function(x, type = c("dataset", "cohort"), multiple = FALSE) { # nocov start
   if (!inherits(x, "XenaHub")) {
     stop("Input x must be a XenaHub object.")
   }
@@ -635,6 +642,6 @@ XenaBrowse <- function(x, type = c("dataset", "cohort"), multiple = FALSE) {
   }
 
   invisible(NULL)
-}
+} # nocov end
 
 utils::globalVariables(c("XenaDatasets", "XenaHosts", "ProbeMap"))

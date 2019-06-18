@@ -64,22 +64,22 @@
   .samples_any_query(what)
 }
 
-.cohort_samples_all_query <- function(cohorts) {
+.cohort_samples_all_query <- function(cohorts) { # nocov start
   what <- .arrayfmt(cohorts, .collapse_cohort)
   .samples_all_query(":cohorts", what, length(cohorts))
-}
+} # nocov end
 
 ## datasets
 
-.dataset_samples_any_query <- function(datasets) {
+.dataset_samples_any_query <- function(datasets) { # nocov start
   what <- paste(":dataset.name", .arrayfmt(datasets))
   .samples_any_query(what)
-}
+} # nocov end
 
-.dataset_samples_all_query <- function(datasets) {
+.dataset_samples_all_query <- function(datasets) { # nocov start
   what <- .arrayfmt(datasets)
   .samples_all_query(":dataset.name", what, length(datasets))
-}
+} # nocov end
 
 ## samples
 
@@ -93,7 +93,7 @@
         '
   )
 
-.samples_all_query <- function(where, what, n)
+.samples_all_query <- function(where, what, n) # nocov start
   paste0(
     "\n        (map :value\n        (query {\n        :select [:value] :from [{\n        :select [",
     where,
@@ -109,7 +109,7 @@
         :having [:= :%count.value ',
     n,
     "]\n        }))\n        "
-  )
+  ) # nocov end
 
 
 ##
@@ -158,30 +158,30 @@
 
 # cohort samples ----------------------------------------------------------
 
-.cohort_samples_each <- function(hosts, cohorts) {
+.cohort_samples_each <- function(hosts, cohorts) { # nocov start
   lapply(hosts, function(h) {
     result <- lapply(cohorts, function(c) {
       .xena_post(h, .cohort_samples_any_query(c), simplifyVector = TRUE)
     })
     Filter(Negate(is.null), result)
   })
-}
+} # nocov end
 
 .cohort_samples_any <- function(hosts, cohorts) {
   query <- .cohort_samples_any_query(cohorts)
   lapply(hosts, .xena_post, query, simplifyVector = TRUE)
 }
 
-.cohort_samples_all <- function(hosts, cohorts) {
+.cohort_samples_all <- function(hosts, cohorts) { # nocov start
   query <- .cohort_samples_all_query(cohorts)
   lapply(hosts, .xena_post, query, simplifyVector = TRUE)
-}
+} # nocov end
 
 
 
 # dataset samples ---------------------------------------------------------
 
-.dataset_samples_each <- function(hosts, datasets) {
+.dataset_samples_each <- function(hosts, datasets) { # nocov start
   lapply(hosts, function(h) {
     result <- lapply(datasets, function(d) {
       .xena_post(h,
@@ -191,17 +191,17 @@
     })
     Filter(Negate(is.null), result)
   })
-}
+} # nocov end
 
-.dataset_samples_any <- function(hosts, datasets) {
+.dataset_samples_any <- function(hosts, datasets) { # nocov start
   query <- .dataset_samples_any_query(datasets)
   lapply(hosts, .xena_post, query, simplifyVector = TRUE)
-}
+} # nocov end
 
-.dataset_samples_all <- function(hosts, datasets) {
+.dataset_samples_all <- function(hosts, datasets) { # nocov start
   query <- .dataset_samples_all_query(datasets)
   lapply(hosts, .xena_post, query, simplifyVector = TRUE)
-}
+} # nocov end
 
 
 
@@ -231,7 +231,7 @@
   )
 }
 
-.samples_by_cohort <- function(x, cohorts, how) {
+.samples_by_cohort <- function(x, cohorts, how) { # nocov start
   if (length(cohorts) == 0L) {
     cohorts <- cohorts(x)
   } else {
@@ -247,9 +247,9 @@
     any = .cohort_samples_any
   )
   fun(hosts(x), cohorts)
-}
+} # nocov end
 
-.samples_by_dataset <- function(x, datasets, how) {
+.samples_by_dataset <- function(x, datasets, how) { # nocov start
   if (length(datasets) == 0L) {
     datasets <- datasets(x)
   } else {
@@ -265,7 +265,7 @@
     any = .dataset_samples_any
   )
   fun(hosts(x), datasets)
-}
+} # nocov end
 
 
 # parse data --------------------------------------------------------------

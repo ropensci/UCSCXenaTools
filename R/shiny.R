@@ -7,7 +7,7 @@
 ##' @import shiny
 ##' @import shinydashboard
 ##' @export
-XenaShiny <- function() {
+XenaShiny <- function() { # nocov start
   data <- showTCGA()
   projects <- unique(data$ProjectID)
   datatypes <- unique(data$DataType)
@@ -100,6 +100,4 @@ XenaShiny <- function() {
 
   # run Shiny
   runApp(shinyApp(ui, server))
-}
-
-# XenaShiny()
+} # nocov end

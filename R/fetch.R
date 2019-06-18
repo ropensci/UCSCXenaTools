@@ -32,11 +32,11 @@
 #' @examples
 #' library(UCSCXenaTools)
 #'
-#' host = "https://toil.xenahubs.net"
-#' dataset = "tcga_RSEM_gene_tpm"
-#' samples = c("TCGA-02-0047-01","TCGA-02-0055-01","TCGA-02-2483-01","TCGA-02-2485-01")
-#' probes = c('ENSG00000282740.1', 'ENSG00000000005.5', 'ENSG00000000419.12')
-#' genes =c("TP53", "RB1", "PIK3CA")
+#' host <- "https://toil.xenahubs.net"
+#' dataset <- "tcga_RSEM_gene_tpm"
+#' samples <- c("TCGA-02-0047-01", "TCGA-02-0055-01", "TCGA-02-2483-01", "TCGA-02-2485-01")
+#' probes <- c("ENSG00000282740.1", "ENSG00000000005.5", "ENSG00000000419.12")
+#' genes <- c("TP53", "RB1", "PIK3CA")
 #'
 #' # Fetch samples
 #' fetch_dataset_samples(host, dataset, 2)
@@ -48,118 +48,120 @@
 #' fetch_dense_values(host, dataset, probes, samples, check = FALSE)
 #' # Fetch expression value by gene symbol (if the dataset has probeMap)
 #' fetch_dense_values(host, dataset, genes, samples, check = FALSE, use_probeMap = TRUE)
-#'
 #' @export
-fetch = function(host, dataset){
-    message("This function is used to build consistent documentation.")
-    message("Please use a function starts with fetch_")
+fetch <- function(host, dataset) {
+  message("This function is used to build consistent documentation.")
+  message("Please use a function starts with fetch_")
 }
 
 #' @describeIn fetch fetches values from a dense matrix.
 #' @export
-fetch_dense_values = function(host, dataset, identifiers=NULL, samples=NULL, check=TRUE, use_probeMap=FALSE){
-    stopifnot(length(host)==1, length(dataset)==1,
-              is.character(host), is.character(dataset),
-              is.logical(check), is.logical(use_probeMap))
-    .attach_this()
-    if (check) {
-        # obtain all samples
-        all_samples = fetch_dataset_samples(host, dataset)
-        # obtain all identifiers
-        all_identifiers = fetch_dataset_identifiers(host, dataset)
+fetch_dense_values <- function(host, dataset, identifiers = NULL, samples = NULL, check = TRUE, use_probeMap = FALSE) {
+  stopifnot(
+    length(host) == 1, length(dataset) == 1,
+    is.character(host), is.character(dataset),
+    is.logical(check), is.logical(use_probeMap)
+  )
+  .attach_this()
+  if (check) {
+    # obtain all samples
+    all_samples <- fetch_dataset_samples(host, dataset)
+    # obtain all identifiers
+    all_identifiers <- fetch_dataset_identifiers(host, dataset)
 
-        message("-> Checking identifiers...")
-        if (use_probeMap) {
-          message("-> use_probeMap is TRUE, skipping checking identifiers...")
-        } else if (is.null(identifiers)) {
-            identifiers = all_identifiers
-        } else {
-            if (!is.character(identifiers)) stop("Bad type for identifiers.")
-            if (!all(identifiers %in% all_identifiers)) {
-                which_in = identifiers %in% all_identifiers
-                message("The following identifiers have been removed fro host ", host, " dataset ", dataset)
-                print(identifiers[!which_in])
-                identifiers = identifiers[which_in]
-            }
-        }
-        message("-> Done.")
-
-        message("-> Checking samples...")
-        if (is.null(samples)) {
-            samples = all_samples
-        } else {
-            if (!is.character(samples)) stop("Bad type for samples.")
-            if (!all(samples %in% all_samples)) {
-                which_in = samples %in% all_samples
-                samples = samples[which_in]
-                message("The following samples have been removed fro host ", host, " dataset ", dataset)
-                print(samples[!which_in])
-            }
-        }
-        message("-> Done.")
-
-    } else {
-        if (is.null(samples)) {
-            # obtain all samples
-            samples = fetch_dataset_samples(host, dataset)
-        }
-        if (is.null(identifiers)) {
-            # obtain all identifiers
-            identifiers = fetch_dataset_identifiers(host, dataset)
-        }
-    }
-
-
-    if (length(samples) == 1) {
-        samples <- as.list(samples)
-    }
-    if (length(identifiers) == 1) {
-        identifiers <- as.list(identifiers)
-    }
-
+    message("-> Checking identifiers...")
     if (use_probeMap) {
-        message("-> Checking if the dataset has probeMap...")
-        if (has_probeMap(host, dataset)) {
-            message("-> Done. ProbeMap is found.")
-            res <- .p_dataset_gene_probe_avg(host, dataset, samples, identifiers)
-            res <-  t(sapply(res[["scores"]], base::rbind))
-            rownames(res) <- identifiers
-            colnames(res) <- samples
-            return(res)
-        }
-        message("-> Done. No probeMap found, use old way...")
+      message("-> use_probeMap is TRUE, skipping checking identifiers...")
+    } else if (is.null(identifiers)) {
+      identifiers <- all_identifiers
+    } else {
+      if (!is.character(identifiers)) stop("Bad type for identifiers.")
+      if (!all(identifiers %in% all_identifiers)) {
+        which_in <- identifiers %in% all_identifiers
+        message("The following identifiers have been removed fro host ", host, " dataset ", dataset)
+        print(identifiers[!which_in])
+        identifiers <- identifiers[which_in]
+      }
     }
+    message("-> Done.")
 
-    res <- .p_dataset_fetch(host, dataset, samples, identifiers)
-    rownames(res) <- identifiers
-    colnames(res) <- samples
-    res
+    message("-> Checking samples...")
+    if (is.null(samples)) {
+      samples <- all_samples
+    } else {
+      if (!is.character(samples)) stop("Bad type for samples.")
+      if (!all(samples %in% all_samples)) {
+        which_in <- samples %in% all_samples
+        message("The following samples have been removed fro host ", host, " dataset ", dataset)
+        print(samples[!which_in])
+        samples <- samples[which_in]
+      }
+    }
+    message("-> Done.")
+  } else {
+    if (is.null(samples)) {
+      # obtain all samples
+      samples <- fetch_dataset_samples(host, dataset)
+    }
+    if (is.null(identifiers)) {
+      # obtain all identifiers
+      identifiers <- fetch_dataset_identifiers(host, dataset)
+    }
+  }
+
+
+  if (length(samples) == 1) {
+    samples <- as.list(samples)
+  }
+  if (length(identifiers) == 1) {
+    identifiers <- as.list(identifiers)
+  }
+
+  if (use_probeMap) {
+    message("-> Checking if the dataset has probeMap...")
+    if (has_probeMap(host, dataset)) {
+      message("-> Done. ProbeMap is found.")
+      res <- .p_dataset_gene_probe_avg(host, dataset, samples, identifiers)
+      res <- t(sapply(res[["scores"]], base::rbind))
+      rownames(res) <- identifiers
+      colnames(res) <- samples
+      return(res)
+    }
+    message("-> Done. No probeMap found, use old way...")
+  }
+
+  res <- .p_dataset_fetch(host, dataset, samples, identifiers)
+  rownames(res) <- identifiers
+  colnames(res) <- samples
+  res
 }
 
 #' @describeIn fetch fetches samples from a dataset
 #' @param limit number of samples, if `NULL`, return all samples.
 #' @export
-fetch_dataset_samples = function(host, dataset, limit=NULL) {
-    .attach_this()
-    .p_dataset_samples(host = host, dataset = dataset, limit = limit)
+fetch_dataset_samples <- function(host, dataset, limit = NULL) {
+  .attach_this()
+  .p_dataset_samples(host = host, dataset = dataset, limit = limit)
 }
 
 #' @describeIn fetch fetches identifies from a dataset.
 #' @export
-fetch_dataset_identifiers = function(host, dataset) {
-    .attach_this()
-    .p_dataset_field(host = host, dataset = dataset)
+fetch_dataset_identifiers <- function(host, dataset) {
+  .attach_this()
+  .p_dataset_field(host = host, dataset = dataset)
 }
 
 #' @describeIn fetch checks if a dataset has ProbeMap.
 #' @export
-has_probeMap = function(host, dataset) {
-    .attach_this()
-    df = base::subset(UCSCXenaTools::XenaData, XenaHosts == host & XenaDatasets == dataset)
-    !is.na(df[["ProbeMap"]])
+has_probeMap <- function(host, dataset) {
+  .attach_this()
+  df <- base::subset(UCSCXenaTools::XenaData, XenaHosts == host & XenaDatasets == dataset)
+  !is.na(df[["ProbeMap"]])
 }
 
 utils::globalVariables(
-    c(".p_dataset_fetch", ".p_dataset_field", ".p_dataset_gene_probe_avg",
-      ".p_dataset_samples")
+  c(
+    ".p_dataset_fetch", ".p_dataset_field", ".p_dataset_gene_probe_avg",
+    ".p_dataset_samples"
+  )
 )

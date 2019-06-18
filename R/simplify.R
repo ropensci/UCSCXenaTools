@@ -199,8 +199,8 @@ getTCGAdata <- function(project = NULL,
 
   if (!all(project %in% projects)) {
     message("Only following Project valid:")
-    print(project)
-    stop("Not Vaild Input!")
+    print(project[project %in% projects])
+    stop("Invaild Input!")
   }
 
   tcga_all <- .decodeDataType(Target = "tcgaHub")
@@ -443,11 +443,11 @@ downloadTCGA <- function(project = NULL,
       FileType %in% file_type
     )
 
-  if (nrow(res) == 0) {
+  if (nrow(res) == 0) { # nocov start
     message("Find nothing about your input, please check it.")
     message("availTCGA and showTCGA function may help you.")
     return(invisible(NULL))
-  }
+  } # nocov end
 
   res %>%
     XenaGenerate() %>%
@@ -523,10 +523,10 @@ showTCGA <- function(project = "all") {
     # res = res[ProjectID %in% project, .(ProjectID, DataType, FileType)]
   }
 
-  if (nrow(res) == 0) {
-    message("Something in your input, NULL will be returned, please check.")
+  if (nrow(res) == 0) { # nocov start
+    message("Something is wrong in your input, NULL will be returned, please check.")
     return(NULL)
-  }
+  } # nocov end
   return(res)
 }
 

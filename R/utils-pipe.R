@@ -11,8 +11,8 @@
 NULL
 
 
-.attach_this = function() {
-    if (!"UCSCXenaTools" %in% (.packages())) {
-        attachNamespace("UCSCXenaTools")
-    }
+.attach_this <- function() { # nocov start
+  if (!"UCSCXenaTools" %in% (.packages())) {
+    attachNamespace("UCSCXenaTools")
+  } # nocov end
 }
