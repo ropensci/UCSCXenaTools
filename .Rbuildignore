@@ -14,3 +14,4 @@
 ^cran-comments\.md$
 inst/*.R
 inst/*.png
+paper/
