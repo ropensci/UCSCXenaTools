@@ -1,27 +1,28 @@
-host = "https://toil.xenahubs.net"
-dataset = "tcga_RSEM_gene_tpm"
-samples = c("TCGA-02-0047-01","TCGA-02-0055-01","TCGA-02-2483-01","TCGA-02-2485-01")
-probes = c('ENSG00000282740.1', 'ENSG00000000005.5', 'ENSG00000000419.12')
-genes =c("TP53", "RB1", "PIK3CA")
+library(hexSticker)
+library(UCSCXenaTools)
+library(dplyr)
+library(ggpubr)
 
-# How about clinical data?
-luad_host = "https://tcga.xenahubs.net"
-luad_dataset = "TCGA.LUAD.sampleMap/LUAD_clinicalMatrix"
+df =  XenaData %>%
+    dplyr::group_by(XenaHostNames) %>%
+    dplyr::summarise(count = n())
 
-# Test fetch_*
+# reference https://rpkgs.datanovia.com/ggpubr/
+ggdotchart(df, x = "XenaHostNames", y = "count",
+           color = "XenaHostNames",
+           palette = "jco",
+           sorting = "descending",                       # Sort value in descending order
+           add = "segments",                             # Add segments from y = 0 to dots
+           rotate = TRUE,                                # Rotate vertically
+           dot.size = 2,                                 # Large dot size
+           label = round(df$count),                        # Add mpg values as dot labels
+           font.label = list(color = "white", size = 2,
+                             vjust = 0.5),               # Adjust label parameters
+           ggtheme = theme_void()) +                       # ggplot2 theme
+    theme_transparent() + theme(legend.position = "none") -> p
 
-fetch_dense_values(host, dataset, probes, samples, check = TRUE)
-fetch_dense_values(host, dataset, probes, samples, check = FALSE)  # much faster
-
-# obtain all datasets
-system.time(fetch_dense_values(host, dataset, check = TRUE))
-system.time(fetch_dense_values(host, dataset, check = FALSE))  # faster
-
-fetch_dense_values(host, dataset, probes, samples, check = FALSE)
-fetch_dense_values(host, dataset, genes, samples, check = FALSE, use_probeMap = TRUE)
-
-fetch_dense_values(host, "tcga_RSEM_Hugo_norm_count", genes, samples, check = FALSE)
-
-# works for clinical?
-# only works for numeric variables
-fetch_dense_values(luad_host, luad_dataset, check = FALSE) -> tt
+sticker(p, package="UCSCXenaTools", p_size=4.5, s_x=0.9, s_y=1, s_width=1.7, s_height=1.3,
+        p_x = 1.1, p_y = 0.9,
+        url = "https://cran.r-project.org/package=UCSCXenaTools", u_color = "white", u_size = 1,
+        h_fill="black", h_color="grey",
+        filename="man/figures/logo.png")

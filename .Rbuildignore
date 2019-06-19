@@ -13,3 +13,4 @@
 ^README-.*\.png$
 ^cran-comments\.md$
 inst/*.R
+inst/*.png
