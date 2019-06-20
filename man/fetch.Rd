@@ -75,11 +75,11 @@ used to map a gene location to a set of probes.
 \examples{
 library(UCSCXenaTools)
 
-host = "https://toil.xenahubs.net"
-dataset = "tcga_RSEM_gene_tpm"
-samples = c("TCGA-02-0047-01","TCGA-02-0055-01","TCGA-02-2483-01","TCGA-02-2485-01")
-probes = c('ENSG00000282740.1', 'ENSG00000000005.5', 'ENSG00000000419.12')
-genes =c("TP53", "RB1", "PIK3CA")
+host <- "https://toil.xenahubs.net"
+dataset <- "tcga_RSEM_gene_tpm"
+samples <- c("TCGA-02-0047-01", "TCGA-02-0055-01", "TCGA-02-2483-01", "TCGA-02-2485-01")
+probes <- c("ENSG00000282740.1", "ENSG00000000005.5", "ENSG00000000419.12")
+genes <- c("TP53", "RB1", "PIK3CA")
 
 # Fetch samples
 fetch_dataset_samples(host, dataset, 2)
@@ -91,5 +91,4 @@ fetch_dataset_identifiers(host, dataset)
 fetch_dense_values(host, dataset, probes, samples, check = FALSE)
 # Fetch expression value by gene symbol (if the dataset has probeMap)
 fetch_dense_values(host, dataset, genes, samples, check = FALSE, use_probeMap = TRUE)
-
 }
