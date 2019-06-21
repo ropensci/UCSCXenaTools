@@ -100,7 +100,6 @@ names(.xena_hosts) <- xena_default_hosts()
 ##' @export
 ##' @importFrom httr stop_for_status POST content
 ##' @importFrom utils head tail
-##' @import methods
 ##' @examples
 ##' \donttest{
 ##' #1 query all hosts, cohorts and datasets

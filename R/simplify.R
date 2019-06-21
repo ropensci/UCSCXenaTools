@@ -91,7 +91,6 @@
 ##' germline copy number variation. Default is `TRUE`.
 ##' @return if `download=TRUE`, return `data.frame` from `XenaDownload`,
 ##' otherwise return a list including `XenaHub` object and datasets information
-##' @import dplyr
 ##' @export
 ##' @examples
 ##' ###### get data, but not download
@@ -394,7 +393,6 @@ getTCGAdata <- function(project = NULL,
 ##' See all available file types by `availTCGA("FileType")`.
 ##' @inheritParams XenaDownload
 ##' @return same as `XenaDownload()` function result.
-##' @import dplyr
 ##' @export
 ##' @examples
 ##' \donttest{
@@ -500,7 +498,6 @@ availTCGA <- function(which = c("all", "ProjectID", "DataType", "FileType")) {
 ##' @return a `data.frame` including project data structure information.
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
-##' @import dplyr
 ##' @examples
 ##' \donttest{
 ##' showTCGA("all")
@@ -552,7 +549,7 @@ showTCGA <- function(project = "all") {
     # decode DataType
     ob %>%
       mutate(
-        DataType = case_when(
+        DataType = dplyr::case_when(
           grepl("Gistic2_CopyNumber_Gistic2", XenaDatasets) ~ "Gene Level Copy Number",
           grepl(
             "PANCAN_Genome_Wide_SNP_6_whitelisted.gene.xena",
@@ -650,7 +647,7 @@ showTCGA <- function(project = "all") {
     # decode file type
     ob %>%
       mutate(
-        FileType = case_when(
+        FileType = dplyr::case_when(
           DataType == "Gene Level Copy Number" &
             grepl("Gistic2_all_data_by_genes", XenaDatasets) ~ "Gistic2",
           DataType == "Gene Level Copy Number" &

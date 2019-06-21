@@ -108,7 +108,6 @@ Development
 * [APIs](#apis)
 * [Citation](#citation)
 * [Acknowledgement](#acknowledgement)
-* [LICENSE](#license)
 
 ## Installation
 
@@ -258,6 +257,6 @@ Wang, Shixiang, et al. "The predictive power of tumor mutational burden
     International journal of cancer (2019).
 ```
 
-## Acknowledgement
+## Acknowledgments
 
 This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Martin Morgan](https://github.com/mtmorgan) for his work.

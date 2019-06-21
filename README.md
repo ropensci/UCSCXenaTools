@@ -165,7 +165,6 @@ combined, linked, filtered, explored and downloaded.
   - [APIs](#apis)
   - [Citation](#citation)
   - [Acknowledgement](#acknowledgement)
-  - [LICENSE](#license)
 
 ## Installation
 
@@ -285,7 +284,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpM3ssHm.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpLiBqVs.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -394,7 +393,7 @@ vignette](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api/).
         in lung cancer immunotherapy response is influenced by patients' sex." 
         International journal of cancer (2019).
 
-## Acknowledgement
+## Acknowledgments
 
 This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
 thanks [Martin Morgan](https://github.com/mtmorgan) for his work.

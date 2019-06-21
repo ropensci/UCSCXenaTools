@@ -2,7 +2,7 @@
 
 ##' Get hosts of XenaHub object
 ##' @param x a [XenaHub] object
-##' @import methods
+##' @importFrom methods slot
 ##' @return a character vector contains hosts
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); hosts(xe)
@@ -11,7 +11,7 @@ hosts <- function(x)
 ##' Get cohorts of XenaHub object
 ##' @param x a [XenaHub] object
 ##' @return a character vector contains cohorts
-##' @import methods
+##' @importFrom methods slot
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); cohorts(xe)
 cohorts <- function(x)
@@ -19,7 +19,7 @@ cohorts <- function(x)
 ##' Get datasets of XenaHub object
 ##' @param x a [XenaHub] object
 ##' @return a character vector contains datasets
-##' @import methods
+##' @importFrom methods slot
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); datasets(xe)
 datasets <- function(x)
@@ -37,7 +37,6 @@ datasets <- function(x)
 ##' @param by a character specify `by` action
 ##' @param how a character specify `how` action
 ##' @return a list include samples
-##' @import methods
 ##' @export
 ##' @examples
 ##' \donttest{
@@ -51,7 +50,7 @@ samples <- function(x,
                     i = character(),
                     by = c("hosts", "cohorts", "datasets"),
                     how = c("each", "any", "all")) {
-  stopifnot(is(x, "XenaHub"), is.character(i))
+  stopifnot(methods::is(x, "XenaHub"), is.character(i))
   by <- match.arg(by)
   how <- match.arg(how)
 
