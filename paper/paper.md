@@ -1,21 +1,23 @@
 ---
-title: 'UCSCXenaTools: an R package for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq'
+title: 'UCSCXenaTools: an R package for accessing genomics data from UCSC Xena platform'
 tags:
   - R
   - cancer genomics
   - data access
 authors:
   - name: Shixiang Wang
-    orcid: 0000-0003-0872-7098
-    affiliation: "1, 2" # (Multiple affiliations must be quoted)
+    orcid: 0000-0001-9855-7357
+    affiliation: "1, 2, 3" # (Multiple affiliations must be quoted)
   - name: Xuesong Liu
-    orcid: 0000-0000-0000-0000
-    affiliation: 2
+    orcid: 0000-0002-7736-0077
+    affiliation: 1
 affiliations:
- - name: Lyman Spitzer, Jr. Fellow, Princeton University
+ - name: School of Life Science and Technology, ShanghaiTech University
    index: 1
- - name: Institution 2
+ - name: Shanghai Institute of Biochemistry and Cell Biology, Chinese Academy of Sciences
    index: 2
+ - name: University of Chinese Academy of Sciences
+   index: 3
 date: 21 June 2019
 bibliography: paper.bib
 ---
