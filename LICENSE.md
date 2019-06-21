@@ -552,7 +552,7 @@ to the start of each source file to most effectively state the exclusion of warr
 and each file should have at least the “copyright” line and a pointer to
 where the full notice is found.
 
-    <one line to give the program's name and a brief idea of what it does.>
+    UCSCXenaTools is an R package downloading and exploring data from UCSC Xena data hubs, which are a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
     Copyright (C) 2019 Shixiang Wang
 
     This program is free software: you can redistribute it and/or modify
