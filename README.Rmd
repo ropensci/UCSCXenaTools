@@ -97,7 +97,7 @@ Development
 # UCSCXenaTools <img src='man/figures/logo.png' align="right" height="200" alt="logo"/>
 
 **UCSCXenaTools** is an R package for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. 
-Public omics data for UCSC Xena are supported through [**multiple turn-key Xena Hubs**](https://xenabrowser.net/datapages/), which are a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
+Public omics data from UCSC Xena are supported through [**multiple turn-key Xena Hubs**](https://xenabrowser.net/datapages/), which are a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
 
 ## Table of Contents
 

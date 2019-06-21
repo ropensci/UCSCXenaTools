@@ -152,10 +152,10 @@ Thanks\!](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks
 
 **UCSCXenaTools** is an R package for accessing genomics data from UCSC
 Xena platform, from cancer multi-omics to single-cell RNA-seq. Public
-omics data for UCSC Xena are supported through [**multiple turn-key Xena
-Hubs**](https://xenabrowser.net/datapages/), which are a collection of
-UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and
-others. Databases are normalized so they can be combined, linked,
+omics data from UCSC Xena are supported through [**multiple turn-key
+Xena Hubs**](https://xenabrowser.net/datapages/), which are a collection
+of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE,
+and others. Databases are normalized so they can be combined, linked,
 filtered, explored and downloaded.
 
 ## Table of Contents
@@ -286,7 +286,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpAAOXMJ.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpXgPMOw.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
