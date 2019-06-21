@@ -1,16 +1,14 @@
 ---
-title: 'Gala: A Python package for galactic dynamics'
+title: 'UCSCXenaTools: an R package for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq'
 tags:
-  - Python
-  - astronomy
-  - dynamics
-  - galactic dynamics
-  - milky way
+  - R
+  - cancer genomics
+  - data access
 authors:
-  - name: Adrian M. Price-Whelan
+  - name: Shixiang Wang
     orcid: 0000-0003-0872-7098
     affiliation: "1, 2" # (Multiple affiliations must be quoted)
-  - name: Author 2
+  - name: Xuesong Liu
     orcid: 0000-0000-0000-0000
     affiliation: 2
 affiliations:
@@ -18,52 +16,13 @@ affiliations:
    index: 1
  - name: Institution 2
    index: 2
-date: 13 August 2017
+date: 21 June 2019
 bibliography: paper.bib
 ---
 
 # Summary
 
-The forces on stars, galaxies, and dark matter under external gravitational
-fields lead to the dynamical evolution of structures in the universe. The orbits
-of these bodies are therefore key to understanding the formation, history, and
-future state of galaxies. The field of "galactic dynamics," which aims to model
-the gravitating components of galaxies to study their structure and evolution,
-is now well-established, commonly taught, and frequently used in astronomy.
-Aside from toy problems and demonstrations, the majority of problems require
-efficient numerical tools, many of which require the same base code (e.g., for
-performing numerical orbit integration).
-
-``Gala`` is an Astropy-affiliated Python package for galactic dynamics. Python
-enables wrapping low-level languages (e.g., C) for speed without losing
-flexibility or ease-of-use in the user-interface. The API for ``Gala`` was
-designed to provide a class-based and user-friendly interface to fast (C or
-Cython-optimized) implementations of common operations such as gravitational
-potential and force evaluation, orbit integration, dynamical transformations,
-and chaos indicators for nonlinear dynamics. ``Gala`` also relies heavily on and
-interfaces well with the implementations of physical units and astronomical
-coordinate systems in the ``Astropy`` package [@astropy] (``astropy.units`` and
-``astropy.coordinates``).
-
-``Gala`` was designed to be used by both astronomical researchers and by
-students in courses on gravitational dynamics or astronomy. It has already been
-used in a number of scientific publications [@Pearson:2017] and has also been
-used in graduate courses on Galactic dynamics to, e.g., provide interactive
-visualizations of textbook material [@Binney:2008]. The combination of speed,
-design, and support for Astropy functionality in ``Gala`` will enable exciting
-scientific explorations of forthcoming data releases from the *Gaia* mission
-[@gaia] by students and experts alike.
-
-# Mathematics
-
-Single dollars ($) are required for inline mathematics e.g. $f(x) = e^{\pi/x}$
-
-Double dollars make self-standing equations:
-
-$$\Theta(x) = \left\{\begin{array}{l}
-0\textrm{ if } x < 0\cr
-1\textrm{ else}
-\end{array}\right.$$
+UCSC Xena is a visual exploration resource for both public and private omics data, supported through the web-based Xena Browser and multiple turn-key Xena Hubs. This unique archecture allows researchers to view their own data securely, using private Xena Hubs, simultaneously visualizing large public cancer genomics datasets, including TCGA and the GDC. Data integration occurs only within the Xena Browser, keeping private data private. Xena supports virtually any functional genomics data, including SNVs, INDELs, large structural variants, CNV, expression, DNA methylation, ATAC-seq signals, and phenotypic annotations. Browser features include the Visual Spreadsheet, survival analyses, powerful filtering and subgrouping, statistical analyses, genomic signatures, and bookmarks. Xena differentiates itself from other genomics tools, including its predecessor, the UCSC Cancer Genomics Browser, by its ability to easily and securely view public and private data, its high performance, its broad data type support, and many unique features.
 
 
 # Citations
