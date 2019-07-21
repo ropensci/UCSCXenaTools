@@ -4,6 +4,7 @@
 #'
 #' @inheritParams XenaGenerate
 #' @inheritParams base::grep
+#' @importFrom rlang .data
 #'
 #' @return a `data.frame`
 #' @export
