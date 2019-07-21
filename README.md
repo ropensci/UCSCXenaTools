@@ -228,7 +228,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 1.2.2
+#> UCSCXenaTools version 1.2.3
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
 #> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
 #> 
@@ -280,13 +280,56 @@ df_todo
 #>   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
 ```
 
+Sometimes we only know some keywords, `XenaScan()` can be used to scan
+all rows to detect if the keywords exist in `XenaData`.
+
+``` r
+x1 = XenaScan(pattern = 'Blood')
+x2 = XenaScan(pattern = 'LUNG', ignore.case = FALSE)
+
+x1 %>%
+    XenaGenerate()
+#> class: XenaHub 
+#> hosts():
+#>   https://ucscpublic.xenahubs.net
+#>   https://tcga.xenahubs.net
+#> cohorts() (6 total):
+#>   Acute lymphoblastic leukemia (Mullighan 2008)
+#>   Connectivity Map
+#>   Pediatric tumor (Khan)
+#>   TARGET Acute Lymphoblastic Leukemia
+#>   TCGA Acute Myeloid Leukemia (LAML)
+#>   TCGA Pan-Cancer (PANCAN)
+#> datasets() (34 total):
+#>   mullighan2008_public/mullighan2008_500K_genomicMatrix
+#>   mullighan2008_public/mullighan2008_SNP6_genomicMatrix
+#>   cmap/rankMatrix_reverse
+#>   ...
+#>   TCGA.PANCAN.sampleMap/SNP6_genomicSegment
+#>   TCGA.PANCAN.sampleMap/HiSeqV2_exon
+x2 %>%
+    XenaGenerate()
+#> class: XenaHub 
+#> hosts():
+#>   https://tcga.xenahubs.net
+#> cohorts() (1 total):
+#>   TCGA Lung Cancer (LUNG)
+#> datasets() (13 total):
+#>   TCGA.LUNG.sampleMap/HumanMethylation27
+#>   TCGA.LUNG.sampleMap/HumanMethylation450
+#>   TCGA.LUNG.sampleMap/Gistic2_CopyNumber_Gistic2_all_data_by_genes
+#>   ...
+#>   TCGA.LUNG.sampleMap/HiSeqV2_exon
+#>   TCGA.LUNG.sampleMap/AgilentG4502A_07_3
+```
+
 Query and download.
 
 ``` r
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpXgPMOw.
+#> All downloaded files will under directory /Volumes/Data/Rtmp/Rtmpqg3CZN.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
