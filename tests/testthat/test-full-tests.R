@@ -1,6 +1,7 @@
 # This extends tests in test-basic-workflow.R
 # Skip these tests on CRAN
-# skip_on_cran()
+skip_on_cran()
+
 xe <- XenaGenerate(subset = grepl("BRCA", XenaCohorts))
 xe2 <- XenaHub(hostName = "tcgaHub")
 xe3 <- XenaHub(

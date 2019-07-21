@@ -1,7 +1,11 @@
+# Skip these tests on CRAN
+skip_on_cran()
+
 context("test-basic-workflow")
 
 data("XenaData", package = "UCSCXenaTools")
 head(XenaData)
+
 
 test_that("Load XenaData works", {
   expect_is(XenaData, "data.frame")
@@ -11,6 +15,17 @@ xe <- XenaGenerate(subset = XenaHostNames == "tcgaHub")
 
 test_that("XenaGenerate works", {
   expect_is(xe, "XenaHub")
+})
+
+test_that("Xena Scan works", {
+  XenaScan()
+  x1 = XenaScan(pattern = 'Blood')
+  x2 = XenaScan(pattern = 'LUNG', ignore.case = FALSE)
+
+  x1 %>%
+    XenaGenerate()
+  x2 %>%
+    XenaGenerate()
 })
 
 xe2 <- XenaFilter(xe, filterDatasets = "clinical")

@@ -1,3 +1,9 @@
+# v1.2.4
+
+## New features
+
+* added feature `XenaScan`, see #10
+
 # v1.2.3
 
 ## Bug fixes
