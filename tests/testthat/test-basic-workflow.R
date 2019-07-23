@@ -20,8 +20,8 @@ test_that("XenaGenerate works", {
 test_that("Xena Scan works", {
   XenaScan()
   XenaScan(pattern = "zzzzzzzzzzz")
-  x1 = XenaScan(pattern = 'Blood')
-  x2 = XenaScan(pattern = 'LUNG', ignore.case = FALSE)
+  x1 <- XenaScan(pattern = "Blood")
+  x2 <- XenaScan(pattern = "LUNG", ignore.case = FALSE)
 
   x1 %>%
     XenaGenerate()

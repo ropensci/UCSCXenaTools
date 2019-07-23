@@ -30,11 +30,11 @@ a \code{data.frame}
 }
 \examples{
 
-x1 = XenaScan(pattern = 'Blood')
-x2 = XenaScan(pattern = 'LUNG', ignore.case = FALSE)
+x1 <- XenaScan(pattern = "Blood")
+x2 <- XenaScan(pattern = "LUNG", ignore.case = FALSE)
 
 x1 \%>\%
-    XenaGenerate()
+  XenaGenerate()
 x2 \%>\%
-    XenaGenerate()
+  XenaGenerate()
 }

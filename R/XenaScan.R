@@ -11,27 +11,29 @@
 #'
 #' @examples
 #'
-#' x1 = XenaScan(pattern = 'Blood')
-#' x2 = XenaScan(pattern = 'LUNG', ignore.case = FALSE)
+#' x1 <- XenaScan(pattern = "Blood")
+#' x2 <- XenaScan(pattern = "LUNG", ignore.case = FALSE)
 #'
 #' x1 %>%
-#'     XenaGenerate()
+#'   XenaGenerate()
 #' x2 %>%
-#'     XenaGenerate()
-XenaScan = function(XenaData = UCSCXenaTools::XenaData, pattern=NULL, ignore.case = TRUE) {
-    if (!is.null(pattern)) {
-        index = XenaData %>% dplyr::rowwise() %>%
-            dplyr::do(data.frame(i = any(grepl(pattern,
-                                               .data,
-                                               ignore.case = ignore.case)))) %>%
-            dplyr::pull(.data$i)
-        if (any(index)) {
-            data = XenaData %>% dplyr::filter(index)
-            return(data)
-        } else {
-            return(XenaData[FALSE, ])
-        }
+#'   XenaGenerate()
+XenaScan <- function(XenaData = UCSCXenaTools::XenaData, pattern = NULL, ignore.case = TRUE) {
+  if (!is.null(pattern)) {
+    index <- XenaData %>%
+      dplyr::rowwise() %>%
+      dplyr::do(data.frame(i = any(grepl(pattern,
+        .data,
+        ignore.case = ignore.case
+      )))) %>%
+      dplyr::pull(.data$i)
+    if (any(index)) {
+      data <- XenaData %>% dplyr::filter(index)
+      return(data)
     } else {
-        return(XenaData)
+      return(XenaData[FALSE, ])
     }
+  } else {
+    return(XenaData)
+  }
 }
