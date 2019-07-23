@@ -35,15 +35,6 @@ Public omics data from UCSC Xena are supported through [**multiple turn-key Xena
 * Target Audience: cancer and clinical researchers, bioinformaticians
 * Applications: genomic and clinical analyses
 
-## Table of Contents
-
-* [Installation](#installation)
-* [Data Hub List](#data-hub-list)
-* [Usage](#usage)
-* [More usages](#more-usages)
-* [Citation](#citation)
-* [Acknowledgement](#acknowledgement)
-
 ## Installation
 
 Install stable release from CRAN with:
