@@ -2,7 +2,9 @@
 
 ## Changes
 
-* Update README, vignette and code according to review comments from Christine Stawitz, detail at <https://github.com/ropensci/software-review/issues/315>
+* updated README, vignette and code according to review comments from Christine Stawitz, detail at <https://github.com/ropensci/software-review/issues/315>
+* moved some packages to suggests
+* splitted `workflow.R` into multiple files
 
 # v1.2.4
 
