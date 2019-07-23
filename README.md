@@ -158,15 +158,19 @@ of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE,
 and others. Databases are normalized so they can be combined, linked,
 filtered, explored and downloaded.
 
+**Who is the target audience and what are scientific applications of
+this package?**
+
+  - Target Audience: cancer and clinical researchers, bioinformaticians
+  - Applications: genomic and clinical analyses
+
 ## Table of Contents
 
   - [Installation](#installation)
   - [Data Hub List](#data-hub-list)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
-  - [APIs](#apis)
+  - [Basic usage](#basic-usage)
   - [Citation](#citation)
-  - [Acknowledgement](#acknowledgement)
+  - [Acknowledgment](#acknowledgment)
 
 ## Installation
 
@@ -205,7 +209,7 @@ If any url of data hub is changed or a new data hub is online, please
 remind me by emailing to <w_shixiang@163.com> or [opening an issue on
 GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
 
-## Usage
+## Basic usage
 
 Download UCSC Xena datasets and load them into R by **UCSCXenaTools** is
 a workflow with `generate`, `filter`, `query`, `download` and `prepare`
@@ -215,7 +219,9 @@ They are very clear and easy to use and combine with other packages like
 `dplyr`.
 
 To show the basic usage of **UCSCXenaTools**, we will download clinical
-data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
+data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub. Users can
+learn more about **UCSCXenaTools** by running
+`browseVignettes("UCSCXenaTools")` to read vignette.
 
 ### XenaData data.frame
 
@@ -228,7 +234,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 1.2.3
+#> UCSCXenaTools version 1.2.4
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
 #> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
 #> 
@@ -280,56 +286,13 @@ df_todo
 #>   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
 ```
 
-Sometimes we only know some keywords, `XenaScan()` can be used to scan
-all rows to detect if the keywords exist in `XenaData`.
-
-``` r
-x1 = XenaScan(pattern = 'Blood')
-x2 = XenaScan(pattern = 'LUNG', ignore.case = FALSE)
-
-x1 %>%
-    XenaGenerate()
-#> class: XenaHub 
-#> hosts():
-#>   https://ucscpublic.xenahubs.net
-#>   https://tcga.xenahubs.net
-#> cohorts() (6 total):
-#>   Acute lymphoblastic leukemia (Mullighan 2008)
-#>   Connectivity Map
-#>   Pediatric tumor (Khan)
-#>   TARGET Acute Lymphoblastic Leukemia
-#>   TCGA Acute Myeloid Leukemia (LAML)
-#>   TCGA Pan-Cancer (PANCAN)
-#> datasets() (34 total):
-#>   mullighan2008_public/mullighan2008_500K_genomicMatrix
-#>   mullighan2008_public/mullighan2008_SNP6_genomicMatrix
-#>   cmap/rankMatrix_reverse
-#>   ...
-#>   TCGA.PANCAN.sampleMap/SNP6_genomicSegment
-#>   TCGA.PANCAN.sampleMap/HiSeqV2_exon
-x2 %>%
-    XenaGenerate()
-#> class: XenaHub 
-#> hosts():
-#>   https://tcga.xenahubs.net
-#> cohorts() (1 total):
-#>   TCGA Lung Cancer (LUNG)
-#> datasets() (13 total):
-#>   TCGA.LUNG.sampleMap/HumanMethylation27
-#>   TCGA.LUNG.sampleMap/HumanMethylation450
-#>   TCGA.LUNG.sampleMap/Gistic2_CopyNumber_Gistic2_all_data_by_genes
-#>   ...
-#>   TCGA.LUNG.sampleMap/HiSeqV2_exon
-#>   TCGA.LUNG.sampleMap/AgilentG4502A_07_3
-```
-
 Query and download.
 
 ``` r
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /Volumes/Data/Rtmp/Rtmpqg3CZN.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmp7KF6xt.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -348,90 +311,6 @@ names(cli)
 #> [3] "LUSC_clinicalMatrix.gz"
 ```
 
-### Browse datasets
-
-Create two XenaHub objects:
-
-  - `to_browse` - a XenaHub object containing a cohort and a dataset.
-  - `to_browse2` - a XenaHub object containing 2 cohorts and 2 datasets.
-
-<!-- end list -->
-
-``` r
-XenaGenerate(subset = XenaHostNames=="tcgaHub") %>%
-    XenaFilter(filterDatasets = "clinical") %>%
-    XenaFilter(filterDatasets = "LUAD") -> to_browse
-
-to_browse
-#> class: XenaHub 
-#> hosts():
-#>   https://tcga.xenahubs.net
-#> cohorts() (1 total):
-#>   TCGA Lung Adenocarcinoma (LUAD)
-#> datasets() (1 total):
-#>   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
-
-XenaGenerate(subset = XenaHostNames=="tcgaHub") %>%
-    XenaFilter(filterDatasets = "clinical") %>%
-    XenaFilter(filterDatasets = "LUAD|LUSC") -> to_browse2
-
-to_browse2
-#> class: XenaHub 
-#> hosts():
-#>   https://tcga.xenahubs.net
-#> cohorts() (2 total):
-#>   TCGA Lung Adenocarcinoma (LUAD)
-#>   TCGA Lung Squamous Cell Carcinoma (LUSC)
-#> datasets() (2 total):
-#>   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
-#>   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
-```
-
-`XenaBrowse()` function can be used to browse dataset/cohort links using
-your default web browser. At default, this function limits one
-dataset/cohort for preventing user to open too many links at once.
-
-``` r
-# This will open you web browser
-XenaBrowse(to_browse)
-
-XenaBrowse(to_browse, type = "cohort")
-```
-
-``` r
-# This will throw error
-XenaBrowse(to_browse2)
-#> Error in XenaBrowse(to_browse2): This function limite 1 dataset to browse.
-#>  Set multiple to TRUE if you want to browse multiple links.
-
-XenaBrowse(to_browse2, type = "cohort")
-#> Error in XenaBrowse(to_browse2, type = "cohort"): This function limite 1 cohort to browse. 
-#>  Set multiple to TRUE if you want to browse multiple links.
-```
-
-When you make sure you want to open multiple links, you can set
-`multiple` option to `TRUE`.
-
-``` r
-XenaBrowse(to_browse2, multiple = TRUE)
-XenaBrowse(to_browse2, type = "cohort", multiple = TRUE)
-```
-
-## Documentation
-
-More features and usages please read [online
-documentations](https://shixiangwang.github.io/home/en/tools/#ucscxenatools).
-
-## APIs
-
-API functions can be used to query specified data (e.g. expression of a
-few genes for a few samples) or information instead of downloading the
-entire dataset.
-
-If you want to use APIs provided by **UCSCXenaTools** to access Xena
-Hubs, please read [this
-vignette](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api/).
-
 ## Citation
 
 Cite me by the following
@@ -447,7 +326,7 @@ Cite UCSC Xena by the following
     Goldman, Mary, et al. "The UCSC Xena Platform for cancer genomics data 
         visualization and interpretation." BioRxiv (2019): 326470.
 
-## Acknowledgments
+## Acknowledgment
 
 This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
 thanks [Martin Morgan](https://github.com/mtmorgan) for his work.

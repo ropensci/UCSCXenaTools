@@ -1,6 +1,6 @@
 Package: UCSCXenaTools
 Title: Download and Explore Datasets from UCSC Xena Data Hubs
-Version: 1.2.4
+Version: 1.2.4.9000
 Authors@R: c(person("Shixiang", "Wang", email = "w_shixiang@163.com", role = c("aut", "cre"), 
             comment = c(ORCID = "0000-0001-9855-7357")),
             person("Martin", "Morgan", role="aut"))
@@ -19,19 +19,19 @@ Imports:
     dplyr,
     magrittr,
     jsonlite,
-    rlang,
-    shinydashboard,
-    shiny,
-    DT
-License: GPL-3
-Encoding: UTF-8
-LazyData: true
+    rlang
 Suggests: 
+    DT,
     knitr,
     rmarkdown,
     prettydoc,
+    shiny,
+    shinydashboard,
     testthat (>= 2.1.0),
     covr
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)

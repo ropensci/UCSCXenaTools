@@ -4,31 +4,41 @@
 # library(DT)
 
 ##' @title Xena Shiny App
-##' @importFrom shinydashboard dashboardPage dashboardBody dashboardHeader dashboardSidebar sidebarMenu menuItem tabItem tabItems
-##' @importFrom shiny fluidRow column selectInput updateSelectInput runApp shinyApp icon
 ##' @export
 XenaShiny <- function() { # nocov start
+  if (!requireNamespace("shiny", quietly = TRUE)) {
+    stop("Package 'shiny' is required!")
+  }
+
+  if (!requireNamespace("shinydashboard", quietly = TRUE)) {
+    stop("Package 'shinydashboard' is required!")
+  }
+
+  if (!requireNamespace("DT", quietly = TRUE)) {
+    stop("Package 'DT' is required!")
+  }
+
   data <- showTCGA()
   projects <- unique(data$ProjectID)
   datatypes <- unique(data$DataType)
   filetypes <- unique(data$FileType)
 
-  ui <- dashboardPage(
-    dashboardHeader(title = "UCSCXenaTools"),
-    dashboardSidebar(sidebarMenu(
-      menuItem(
+  ui <- shinydashboard::dashboardPage(
+    shinydashboard::dashboardHeader(title = "UCSCXenaTools"),
+    shinydashboard::dashboardSidebar(shinydashboard::sidebarMenu(
+      shinydashboard::menuItem(
         "TCGA DataTable",
         tabName = "tcga_datatable",
-        icon = icon("list")
+        icon = shiny::icon("list")
       )
     )),
-    dashboardBody(tabItems(
-      tabItem(
+    shinydashboard::dashboardBody(shinydashboard::tabItems(
+      shinydashboard::tabItem(
         tabName = "tcga_datatable",
-        fluidRow(
-          column(
+        shiny::fluidRow(
+          shiny::column(
             2,
-            selectInput(
+            shiny::selectInput(
               "projectid",
               "ProjectID:",
               c("All", projects),
@@ -36,9 +46,9 @@ XenaShiny <- function() { # nocov start
               multiple = TRUE
             )
           ),
-          column(
+          shiny::column(
             3,
-            selectInput(
+            shiny::selectInput(
               "datatype",
               "DataType:",
               c("All", datatypes),
@@ -46,9 +56,9 @@ XenaShiny <- function() { # nocov start
               multiple = TRUE
             )
           ),
-          column(
+          shiny::column(
             4,
-            selectInput(
+            shiny::selectInput(
               "filetype",
               "FileType:",
               c("All", filetypes),
@@ -58,20 +68,20 @@ XenaShiny <- function() { # nocov start
           )
         ),
         # Create the table.
-        fluidRow(DT::dataTableOutput("tcga_table"))
+        shiny::fluidRow(DT::dataTableOutput("tcga_table"))
       )
     ))
   )
 
 
   server <- function(input, output, session) {
-    updateSelectInput(session,
+    shiny::updateSelectInput(session,
       "datatype",
       "DataType:",
       c("All", unique(data$DataType)),
       selected = "All"
     )
-    updateSelectInput(session,
+    shiny::updateSelectInput(session,
       "filetype",
       "FileType:",
       c("All", unique(data$FileType)),
@@ -94,5 +104,5 @@ XenaShiny <- function() { # nocov start
   }
 
   # run Shiny
-  runApp(shinyApp(ui, server))
+  shiny::runApp(shiny::shinyApp(ui, server))
 } # nocov end

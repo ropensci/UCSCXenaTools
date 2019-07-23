@@ -1,5 +1,5 @@
 ---
-title: "UCSCXenaTools Vignettes"
+title: "UCSCXenaTools: an R package for Accessing Genomics Data from UCSC Xena platform, from Cancer Multi-omics to Single-cell RNA-seq"
 author: "Shixiang Wang \\
 
         ShanghaiTech. University"
@@ -13,7 +13,7 @@ output:
   pdf_document:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{Entry of UCSCXenaTools Vignettes}
+  %\VignetteIndexEntry{Basic usage}
   %\VignetteEngine{knitr::rmarkdown}
   %\usepackage[utf8]{inputenc}
 ---
@@ -25,7 +25,197 @@ knitr::opts_chunk$set(
 )
 ```
 
-The vignettes have been moved to my website, so I can maintain them more easily. [GitHub Issue](https://github.com/ShixiangWang/UCSCXenaTools/issues) is a place for discussing any problem.
 
-- [Introduction and basic usage of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro/)
-- [APIs of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api/)
+**UCSCXenaTools** is an R package for accessing genomics data from UCSC Xena platform, 
+from cancer multi-omics to single-cell RNA-seq. 
+Public omics data from UCSC Xena are supported through [**multiple turn-key Xena Hubs**](https://xenabrowser.net/datapages/), which are a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others. Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
+
+**Who is the target audience and what are scientific applications of this package?**
+
+* Target Audience: cancer and clinical researchers, bioinformaticians
+* Applications: genomic and clinical analyses
+
+## Table of Contents
+
+* [Installation](#installation)
+* [Data Hub List](#data-hub-list)
+* [Usage](#usage)
+* [More usages](#more-usages)
+* [Citation](#citation)
+* [Acknowledgement](#acknowledgement)
+
+## Installation
+
+Install stable release from CRAN with:
+
+```{r, eval=FALSE}
+install.packages("UCSCXenaTools")
+```
+
+You can also install devel version of **UCSCXenaTools** from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("remotes")
+remotes::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
+```
+
+The minimum versions to run the vignette is `1.2.4`. 
+[GitHub Issue](https://github.com/ShixiangWang/UCSCXenaTools/issues) is a place for discussing any problem.
+
+## Data Hub List
+
+All datasets are available at <https://xenabrowser.net/datapages/>.
+
+Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
+
+* UCSC Public Hub: <https://ucscpublic.xenahubs.net>
+* TCGA Hub: <https://tcga.xenahubs.net>
+* GDC Xena Hub: <https://gdc.xenahubs.net>
+* ICGC Xena Hub: <https://icgc.xenahubs.net>
+* Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
+* GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
+* Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
+* PCAWG Hub: <https://pcawg.xenahubs.net>
+* ATAC-seq Hub: <https://atacseq.xenahubs.net>
+* Singel Cell Xena hub: <https://singlecell.xenahubs.net>
+
+If any url of data hub is changed or a new data hub is online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
+
+
+## Usage
+
+Download UCSC Xena datasets and load them into R by **UCSCXenaTools** is a workflow with `generate`, `filter`, `query`, `download` and `prepare` 5 steps, which are implemented as `XenaGenerate`, `XenaFilter`, `XenaQuery`, `XenaDownload` and `XenaPrepare` functions, respectively. They are very clear and easy to use and combine with other packages like `dplyr`.
+
+To show the basic usage of **UCSCXenaTools**, we will download clinical data of LUNG, LUAD, LUSC from TCGA (hg19 version) data hub.
+
+### XenaData data.frame
+
+**UCSCXenaTools** uses a `data.frame` object (built in package) `XenaData` to generate an instance of `XenaHub` class, which records information of all datasets of UCSC Xena Data Hubs.
+
+You can load `XenaData` after loading `UCSCXenaTools` into R.
+
+```{r}
+library(UCSCXenaTools)
+data(XenaData)
+
+head(XenaData)
+```
+
+### Workflow
+
+Select datasets.
+
+```{r}
+# The options in XenaFilter function support Regular Expression
+XenaGenerate(subset = XenaHostNames=="tcgaHub") %>% 
+  XenaFilter(filterDatasets = "clinical") %>% 
+  XenaFilter(filterDatasets = "LUAD|LUSC|LUNG") -> df_todo
+
+df_todo
+```
+
+Sometimes we only know some keywords, `XenaScan()` can be used to scan all rows to detect if 
+the keywords exist in `XenaData`.
+
+
+```{r}
+x1 = XenaScan(pattern = 'Blood')
+x2 = XenaScan(pattern = 'LUNG', ignore.case = FALSE)
+
+x1 %>%
+    XenaGenerate()
+x2 %>%
+    XenaGenerate()
+```
+
+
+Query and download.
+
+```{r}
+XenaQuery(df_todo) %>%
+  XenaDownload() -> xe_download
+```
+
+Prepare data into R for analysis.
+
+```{r}
+cli = XenaPrepare(xe_download)
+class(cli)
+names(cli)
+```
+
+
+### Browse datasets
+
+Create two XenaHub objects:
+
+* `to_browse` - a XenaHub object containing a cohort and a dataset.
+* `to_browse2` - a XenaHub object containing 2 cohorts and 2 datasets.
+
+```{r}
+XenaGenerate(subset = XenaHostNames=="tcgaHub") %>%
+    XenaFilter(filterDatasets = "clinical") %>%
+    XenaFilter(filterDatasets = "LUAD") -> to_browse
+
+to_browse
+
+XenaGenerate(subset = XenaHostNames=="tcgaHub") %>%
+    XenaFilter(filterDatasets = "clinical") %>%
+    XenaFilter(filterDatasets = "LUAD|LUSC") -> to_browse2
+
+to_browse2
+```
+
+`XenaBrowse()` function can be used to browse dataset/cohort links using your default web browser.
+At default, this function limits one dataset/cohort for preventing user to open too many links at once. 
+
+```{r,eval=FALSE}
+# This will open you web browser
+XenaBrowse(to_browse)
+
+XenaBrowse(to_browse, type = "cohort")
+```
+
+```{r, error=TRUE}
+# This will throw error
+XenaBrowse(to_browse2)
+
+XenaBrowse(to_browse2, type = "cohort")
+```
+
+When you make sure you want to open multiple links, you can set `multiple` option to `TRUE`.
+
+```{r, eval=FALSE}
+XenaBrowse(to_browse2, multiple = TRUE)
+XenaBrowse(to_browse2, type = "cohort", multiple = TRUE)
+```
+
+## More usages
+
+The core functionality has been described above. 
+I write more usages about this package in my website but not here
+because sometimes package check will fail due to internet problem.
+
+- [Introduction and basic usage of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro/) - [PDF](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro.pdf)
+- [APIs of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api/) - [PDF](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api.pdf)
+
+## Citation
+
+Cite me by the following paper.
+
+```
+Wang, Shixiang, et al. "The predictive power of tumor mutational burden 
+    in lung cancer immunotherapy response is influenced by patients' sex." 
+    International journal of cancer (2019).
+```
+
+Cite UCSC Xena by the following paper. 
+
+```
+Goldman, Mary, et al. "The UCSC Xena Platform for cancer genomics data 
+    visualization and interpretation." BioRxiv (2019): 326470.
+```
+
+## Acknowledgments
+
+This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
