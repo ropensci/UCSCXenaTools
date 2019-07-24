@@ -59,7 +59,7 @@ user focus on studying an object like gene or protein. The key features are summ
 
 10 data hubs supported by UCSCXenaTools
 
-[Overview of UCSCXenaTools](overview.png)
+![Overview of UCSCXenaTools](overview.png)
 
 # Acknowledgements
 
