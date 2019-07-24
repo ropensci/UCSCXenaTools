@@ -1,0 +1,36 @@
+```{r}
+library(UCSCXenaTools)
+```
+
+
+```{r}
+df =  XenaData %>%
+    dplyr::group_by(XenaHostNames) %>%
+    dplyr::summarise(count = dplyr::n())
+df
+```
+
+```{r}
+urls = dplyr::tibble(
+    name = as.character(.xena_hosts),
+    url = names(.xena_hosts)
+)
+urls
+```
+
+```{r}
+data = dplyr::left_join(
+    df, urls, by = c("XenaHostNames"="name")
+) %>% dplyr::arrange(dplyr::desc(count))
+
+
+colnames(data) = c("Data hub", "Dataset count", "URL")
+data
+```
+
+
+```{r}
+knitr::kable(data, format = "markdown")
+```
+
+

@@ -212,7 +212,7 @@ XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
   })
 
   # check XenaList, the structure of Truehouse differ from others, is a matrix
-  for (i in 1:length(XenaList)) {
+  for (i in seq_along(XenaList)) {
     if (!is.list(XenaList[[i]])) {
       x <- XenaList[[i]]
       Tolist <- lapply(seq_len(ncol(x)), function(i)
@@ -223,12 +223,12 @@ XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
   }
 
   resDF <- data.frame(stringsAsFactors = FALSE)
-  for (i in 1:length(XenaList)) {
+  for (i in seq_along(XenaList)) {
     hostNames <- names(XenaList)[i]
     cohortNames <- names(XenaList[[i]])
     res <- data.frame(stringsAsFactors = FALSE)
 
-    for (j in 1:length(cohortNames)) {
+    for (j in seq_along(cohortNames)) {
       oneCohort <- XenaList[[i]][j]
       # The unassigned cohorts have NULL data, remove it
       if (names(oneCohort) != "(unassigned)") {
@@ -305,7 +305,7 @@ XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
   })
 
   # tidy_data2 = do.call(rbind, tidy_data)
-  tidy_data2 <- dplyr::rbind_list(tidy_data)
+  tidy_data2 <- dplyr::bind_rows(tidy_data)
   XenaData <- dplyr::bind_cols(XenaData, tidy_data2)
   XenaData <- dplyr::as_tibble(XenaData)
 

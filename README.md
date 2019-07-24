@@ -170,6 +170,7 @@ this package?**
   - [Data Hub List](#data-hub-list)
   - [Basic usage](#basic-usage)
   - [Citation](#citation)
+  - [How to contribute](#how-to-contribute)
   - [Acknowledgment](#acknowledgment)
 
 ## Installation
@@ -185,7 +186,14 @@ with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE)
+remotes::install_github("ShixiangWang/UCSCXenaTools")
+```
+
+If you want to build vignette in local, please add two
+options:
+
+``` r
+remotes::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE, dependencies = TRUE)
 ```
 
 ## Data Hub List
@@ -234,7 +242,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================
-#> UCSCXenaTools version 1.2.4
+#> UCSCXenaTools version 1.2.4.9000
 #> Github page: https://github.com/ShixiangWang/UCSCXenaTools
 #> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
 #> 
@@ -292,7 +300,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmp7KF6xt.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpQ6NFAO.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -325,6 +333,16 @@ Cite UCSC Xena by the following
 
     Goldman, Mary, et al. "The UCSC Xena Platform for cancer genomics data 
         visualization and interpretation." BioRxiv (2019): 326470.
+
+## How to contribute
+
+For anyone who wants to contribute, please follow the guideline:
+
+  - Clone project from GitHub
+  - Open `UCSCXenaTools.Rproj` with RStudio
+  - Modify source code
+  - Run `devtools::check()`, and fix all errors, warnings and notes
+  - Create a pull request
 
 ## Acknowledgment
 
