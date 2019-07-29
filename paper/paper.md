@@ -1,25 +1,26 @@
 ---
-title: 'UCSCXenaTools: an R package for Accessing Genomics Data from UCSC Xena platform, from Cancer Multi-omics to Single-cell RNA-seq'
-tags:
-  - R
-  - cancer genomics
-  - data access
+title: 'The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform,
+  from cancer multi-omics to single-cell RNA-seq'
 authors:
-  - name: Shixiang Wang
-    orcid: 0000-0001-9855-7357
-    affiliation: "1, 2, 3" # (Multiple affiliations must be quoted)
-  - name: Xuesong Liu
-    orcid: 0000-0002-7736-0077
-    affiliation: 1
-affiliations:
- - name: School of Life Science and Technology, ShanghaiTech University
-   index: 1
- - name: Shanghai Institute of Biochemistry and Cell Biology, Chinese Academy of Sciences
-   index: 2
- - name: University of Chinese Academy of Sciences
-   index: 3
-date: 24 July 2019
+- affiliation: '1, 2, 3'
+  name: Shixiang Wang
+  orcid: 0000-0001-9855-7357
+- affiliation: 1
+  name: Xuesong Liu
+  orcid: 0000-0002-7736-0077
+date: "24 July 2019"
 bibliography: paper.bib
+tags:
+- R
+- cancer genomics
+- data access
+affiliations:
+- index: 1
+  name: School of Life Science and Technology, ShanghaiTech University
+- index: 2
+  name: Shanghai Institute of Biochemistry and Cell Biology, Chinese Academy of Sciences
+- index: 3
+  name: University of Chinese Academy of Sciences
 ---
 
 # Summary
@@ -38,10 +39,12 @@ Here, we introduce an R package UCSCXenaTools for enabling data retrieval, analy
 reproducible research for omics data from UCSC Xena platform.
 
 Currently, UCSCXenaTools supports downloading over 1600 datasets from 10 data hubs of UCSC Xena platform
-as shown in Table 1. Downloading UCSC Xena datasets and loading them into R by UCSCXenaTools is a workflow with generate, filter, query, download and prepare 5 steps, which are implemented as functions XenaGenerate, XenaFilter, XenaQuery, XenaDownload and XenaPrepare, respectively. They are very clear and easy to use and combine with other packages like dplyr [@wickham2015dplyr].
+as shown in the following table. Typically, downloading UCSC Xena datasets and loading them into R by UCSCXenaTools 
+is a workflow with generate, filter, query, download and prepare 5 steps, which are implemented as functions.
+They are very clear and easy to use and combine with other packages like dplyr [@wickham2015dplyr].
 Besides, UCSCXenaTools can also query and download subset of a target dataset, 
 this is particularly useful when
-user focus on studying an object like gene or protein. The key features are summarized in Figure 1.
+user focus on studying one object like gene or protein. The key features are summarized in Figure 1.
 
 
 |Data hub       | Dataset count|URL                                |
@@ -57,12 +60,11 @@ user focus on studying an object like gene or protein. The key features are summ
 |treehouseHub   |            15|https://xena.treehouse.gi.ucsc.edu |
 |atacseqHub     |             9|https://atacseq.xenahubs.net       |
 
-10 data hubs supported by UCSCXenaTools
-
 ![Overview of UCSCXenaTools](overview.png)
 
 # Acknowledgements
 
 We thank Christine Stawitz and Carl Ganz for their constructive comments.
+This package is based on R package [XenaR](https://github.com/mtmorgan/XenaR), thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 
 # References

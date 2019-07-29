@@ -231,3 +231,5 @@ For anyone who wants to contribute, please follow the guideline:
 ## Acknowledgment
 
 This package is based on [XenaR](https://github.com/mtmorgan/XenaR), thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
+
+[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

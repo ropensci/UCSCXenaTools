@@ -16,3 +16,4 @@ inst/*.R
 inst/*.png
 paper/
 ^LICENSE\.md$
+^codemeta\.json$
