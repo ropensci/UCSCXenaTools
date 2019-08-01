@@ -1,11 +1,14 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "UCSCXenaTools",
   "description": "Download and explore datasets from UCSC Xena data hubs, which are\n    a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others.\n    Databases are normalized so they can be combined, linked, filtered, explored and downloaded.",
   "name": "UCSCXenaTools: Download and Explore Datasets from UCSC Xena Data Hubs",
-  "codeRepository": "https://github.com/ShixiangWang/UCSCXenaTools",
-  "issueTracker": "https://github.com/ShixiangWang/UCSCXenaTools/issues",
+  "codeRepository": "https://github.com/ropensci/UCSCXenaTools",
+  "issueTracker": "https://github.com/ropensci/UCSCXenaTools/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "1.2.5",
   "programmingLanguage": {
@@ -243,16 +246,32 @@
       "sameAs": "https://CRAN.R-project.org/package=rlang"
     }
   ],
-  "releaseNotes": "https://github.com/ShixiangWang/UCSCXenaTools/blob/master/NEWS.md",
-  "readme": "https://github.com/ShixiangWang/UCSCXenaTools/blob/master/README.md",
-  "fileSize": "433.454KB",
-  "contIntegration": ["https://travis-ci.org/ShixiangWang/UCSCXenaTools", "https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools", "https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master"],
+  "releaseNotes": "https://github.com/ropensci/UCSCXenaTools/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/UCSCXenaTools/blob/master/README.md",
+  "fileSize": "433.324KB",
+  "contIntegration": [
+    "https://travis-ci.org/ShixiangWang/UCSCXenaTools",
+    "https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools",
+    "https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master"
+  ],
   "developmentStatus": "https://www.repostatus.org/#active",
   "review": {
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/315",
     "provider": "http://ropensci.org"
   },
-  "keywords": ["ucsc-xena", "downloader", "api-client", "tcga", "ccle", "icgc", "ucsc", "toil", "treehouse", "r", "bioinformatics"],
+  "keywords": [
+    "ucsc-xena",
+    "downloader",
+    "api-client",
+    "tcga",
+    "ccle",
+    "icgc",
+    "ucsc",
+    "toil",
+    "treehouse",
+    "r",
+    "bioinformatics"
+  ],
   "relatedLink": "https://CRAN.R-project.org/package=UCSCXenaTools"
 }
