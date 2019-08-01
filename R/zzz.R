@@ -3,8 +3,8 @@
 
   msg <- paste0("=========================================================================
 ", pkgname, " version ", version, "
-Github page: https://github.com/ShixiangWang/UCSCXenaTools
-Documentation: https://shixiangwang.github.io/UCSCXenaTools/
+Project URL: https://github.com/ropensci/UCSCXenaTools
+Usages: https://shixiangwang.github.io/home/en/tools/#ucscxenatools
 
 If you use it in published research, please cite:
 Wang, Shixiang, et al. \"The predictive power of tumor mutational burden
