@@ -47,17 +47,17 @@ You can also install devel version of **UCSCXenaTools** from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("remotes")
-remotes::install_github("ShixiangWang/UCSCXenaTools")
+remotes::install_github("ropensci/UCSCXenaTools")
 ```
 
 If you want to build vignette in local, please add two options:
 
 ```{r, eval=FALSE}
-remotes::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE, dependencies = TRUE)
+remotes::install_github("ropensci/UCSCXenaTools", build_vignettes = TRUE, dependencies = TRUE)
 ```
 
 The minimum versions to run the vignette is `1.2.4`. 
-[GitHub Issue](https://github.com/ShixiangWang/UCSCXenaTools/issues) is a place for discussing any problem.
+[GitHub Issue](https://github.com/ropensci/UCSCXenaTools/issues) is a place for discussing any problem.
 
 ## Data Hub List
 
@@ -76,7 +76,7 @@ Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
 * ATAC-seq Hub: <https://atacseq.xenahubs.net>
 * Singel Cell Xena hub: <https://singlecell.xenahubs.net>
 
-If any url of data hub is changed or a new data hub is online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
+If any url of data hub is changed or a new data hub is online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ropensci/UCSCXenaTools/issues).
 
 
 ## Usage

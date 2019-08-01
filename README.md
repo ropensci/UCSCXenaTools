@@ -49,7 +49,7 @@ Development
 
 <td align="left">
 
-<a href="https://travis-ci.org/ShixiangWang/UCSCXenaTools"><img src="https://travis-ci.org/ShixiangWang/UCSCXenaTools.svg?branch=master" alt="Travis"></a>
+<a href="https://travis-ci.org/ropensci/UCSCXenaTools"><img src="https://travis-ci.org/ropensci/UCSCXenaTools.svg?branch=master" alt="Travis"></a>
 
 </td>
 
@@ -71,7 +71,7 @@ Development
 
 <td align="left">
 
-<a href="https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools"><img src="https://ci.appveyor.com/api/projects/status/github/ShixiangWang/UCSCXenaTools?branch=master&svg=true" alt="AppVeyor"></a>
+<a href="https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools"><img src="https://ci.appveyor.com/api/projects/status/github/ropensci/UCSCXenaTools?branch=master&svg=true" alt="AppVeyor"></a>
 
 </td>
 
@@ -114,7 +114,7 @@ Development
 <td align="left">
 
 [![Closed
-issues](https://img.shields.io/github/issues-closed/ShixiangWang/UCSCXenaTools.svg)](https://github.com/ShixiangWang/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
+issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)](https://github.com/ropensci/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
 
 </td>
 
@@ -186,14 +186,14 @@ with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("ShixiangWang/UCSCXenaTools")
+remotes::install_github("ropensci/UCSCXenaTools")
 ```
 
 If you want to build vignette in local, please add two
 options:
 
 ``` r
-remotes::install_github("ShixiangWang/UCSCXenaTools", build_vignettes = TRUE, dependencies = TRUE)
+remotes::install_github("ropensci/UCSCXenaTools", build_vignettes = TRUE, dependencies = TRUE)
 ```
 
 ## Data Hub List
@@ -215,7 +215,7 @@ Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
 
 If any url of data hub is changed or a new data hub is online, please
 remind me by emailing to <w_shixiang@163.com> or [opening an issue on
-GitHub](https://github.com/ShixiangWang/UCSCXenaTools/issues).
+GitHub](https://github.com/ropensci/UCSCXenaTools/issues).
 
 ## Basic usage
 
@@ -300,7 +300,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpe8qouy.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpZd3EwE.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
