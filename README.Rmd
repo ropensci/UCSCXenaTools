@@ -71,7 +71,7 @@ Development
 <a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools" alt="downloads"></a>
 </td>
 <td align="left">
-
+<a href="https://zenodo.org/badge/latestdoi/178662770"><img src="https://zenodo.org/badge/178662770.svg" alt="DOI"></a>
 </td>
 <td align="left">
 [![Closed issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)](https://github.com/ropensci/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)

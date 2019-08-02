@@ -109,6 +109,8 @@ Development
 
 <td align="left">
 
+<a href="https://zenodo.org/badge/latestdoi/178662770"><img src="https://zenodo.org/badge/178662770.svg" alt="DOI"></a>
+
 </td>
 
 <td align="left">
@@ -243,8 +245,8 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 library(UCSCXenaTools)
 #> =========================================================================
 #> UCSCXenaTools version 1.2.5
-#> Github page: https://github.com/ShixiangWang/UCSCXenaTools
-#> Documentation: https://shixiangwang.github.io/UCSCXenaTools/
+#> Project URL: https://github.com/ropensci/UCSCXenaTools
+#> Usages: https://shixiangwang.github.io/home/en/tools/#ucscxenatools
 #> 
 #> If you use it in published research, please cite:
 #> Wang, Shixiang, et al. "The predictive power of tumor mutational burden
@@ -300,7 +302,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpZd3EwE.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmp8CSlqo.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
