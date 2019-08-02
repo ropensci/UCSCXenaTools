@@ -248,7 +248,7 @@
   ],
   "releaseNotes": "https://github.com/ropensci/UCSCXenaTools/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/UCSCXenaTools/blob/master/README.md",
-  "fileSize": "433.324KB",
+  "fileSize": "433.375KB",
   "contIntegration": [
     "https://travis-ci.org/ShixiangWang/UCSCXenaTools",
     "https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools",
