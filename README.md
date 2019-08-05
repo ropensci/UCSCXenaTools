@@ -133,8 +133,7 @@ Thanks\!](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks
 
 <td align="left">
 
-<a href="https://doi.org/10.21105/joss.01627">
-<img src="https://joss.theoj.org/papers/10.21105/joss.01627/status.svg" alt="DOI badge" >
+<a href="https://doi.org/10.21105/joss.01627"><img src="https://joss.theoj.org/papers/10.21105/joss.01627/status.svg" alt="JOSS" >
 </a>
 
 </td>
@@ -306,7 +305,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /Volumes/Data/Rtmp/RtmpGhHoOv.
+#> All downloaded files will under directory /Volumes/Data/Rtmp/RtmpbcP7Mv.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
