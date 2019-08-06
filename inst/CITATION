@@ -1,0 +1,17 @@
+citHeader("To cite UCSCXenaTools in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = "The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq",
+  author   = personList(as.person("Shixiang Wang"),
+                       as.person("Xuesong Liu")
+                       ),
+  journal  = "Journal of Open Source Software",
+  year     = 2019,
+  url      = "https://doi.org/10.21105/joss.01627",
+  textVersion = paste(
+    "Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform,",
+    "from cancer multi-omics to single-cell RNA-seq. Journal of Open Source Software, 4(40), 1627,",
+    "https://doi.org/10.21105/joss.01627"
+  )
+)
