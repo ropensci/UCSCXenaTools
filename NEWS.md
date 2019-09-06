@@ -1,3 +1,11 @@
+# v1.2.6
+
+## Changes
+
+* updated citation
+* added a link to recent rOpenSci post
+* updated `zzz.R`
+
 # v1.2.5
 
 ## Changes

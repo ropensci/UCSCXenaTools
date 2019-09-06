@@ -305,7 +305,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /Volumes/Data/Rtmp/RtmpbcP7Mv.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpcjbwj3.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
@@ -329,9 +329,28 @@ names(cli)
 Cite me by the following
     paper.
 
-    Wang, Shixiang, et al. "The predictive power of tumor mutational burden 
-        in lung cancer immunotherapy response is influenced by patients' sex." 
-        International journal of cancer (2019).
+    Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data
+      from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. 
+      Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
+    
+    # For BibTex
+      
+    @article{Wang2019UCSCXenaTools,
+        journal = {Journal of Open Source Software},
+        doi = {10.21105/joss.01627},
+        issn = {2475-9066},
+        number = {40},
+        publisher = {The Open Journal},
+        title = {The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq},
+        url = {http://dx.doi.org/10.21105/joss.01627},
+        volume = {4},
+        author = {Wang, Shixiang and Liu, Xuesong},
+        pages = {1627},
+        date = {2019-08-05},
+        year = {2019},
+        month = {8},
+        day = {5},
+    }
 
 Cite UCSC Xena by the following
     paper.

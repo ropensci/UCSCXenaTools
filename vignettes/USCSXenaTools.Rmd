@@ -196,14 +196,36 @@ because sometimes package check will fail due to internet problem.
 - [Introduction and basic usage of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro/) - [PDF](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro.pdf)
 - [APIs of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api/) - [PDF](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api.pdf)
 
+A use case for survival analysis has been published on rOpenSci, please read
+[UCSCXenaTools: Retrieve Gene Expression and Clinical Information from UCSC Xena for Survival Analysis](https://ropensci.org/technotes/2019/09/06/ucscxenatools-surv/).
+
 ## Citation
 
 Cite me by the following paper.
 
 ```
-Wang, Shixiang, et al. "The predictive power of tumor mutational burden 
-    in lung cancer immunotherapy response is influenced by patients' sex." 
-    International journal of cancer (2019).
+Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data
+  from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. 
+  Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
+
+# For BibTex
+  
+@article{Wang2019UCSCXenaTools,
+	journal = {Journal of Open Source Software},
+	doi = {10.21105/joss.01627},
+	issn = {2475-9066},
+	number = {40},
+	publisher = {The Open Journal},
+	title = {The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq},
+	url = {http://dx.doi.org/10.21105/joss.01627},
+	volume = {4},
+	author = {Wang, Shixiang and Liu, Xuesong},
+	pages = {1627},
+	date = {2019-08-05},
+	year = {2019},
+	month = {8},
+	day = {5},
+}
 ```
 
 Cite UCSC Xena by the following paper. 
