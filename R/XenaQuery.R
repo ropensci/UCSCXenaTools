@@ -16,7 +16,9 @@ XenaQuery <- function(x) {
   query <- UCSCXenaTools::XenaData %>%
     dplyr::filter(XenaDatasets %in% datasetsName) %>%
     dplyr::rename(hosts = XenaHosts, datasets = XenaDatasets) %>%
-    dplyr::mutate(url = file.path(hosts, "download", datasets)) %>%
+    dplyr::mutate(url = ifelse(.data$XenaHostNames == "gdcHub",
+                               file.path(hosts, "download", basename(datasets)),
+                               file.path(hosts, "download", datasets))) %>%
     dplyr::mutate(url = ifelse(!sapply(url, httr::http_error),
       url, paste0(url, ".gz")
     )) %>%

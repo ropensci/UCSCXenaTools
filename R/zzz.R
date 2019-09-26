@@ -11,7 +11,7 @@ Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomi
   from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq.
   Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
 =========================================================================================
-                              -- Enjoy it--")
+                              --Enjoy it--")
   # Init API functions
   .init_api()
   base::packageStartupMessage(msg)
