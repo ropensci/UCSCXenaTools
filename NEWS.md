@@ -1,3 +1,18 @@
+# v1.2.7
+
+## Changes
+
+* `XenaDataUpdate` is written, it is quicker and more efficient
+* Vignette updated for "resume from breakpoint"
+* About 100 new datasets added
+* Single cell hub url updated
+
+## Bug fixes
+
+* #12 fixed
+* #13 fixed
+* #3 fixed
+
 # v1.2.6
 
 ## Changes

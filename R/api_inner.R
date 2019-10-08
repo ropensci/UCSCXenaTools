@@ -132,6 +132,7 @@
 .host_cohorts <- function(hosts) {
   query <- .host_cohorts_query()
   lapply(hosts, function(h) {
+    message("Searching ", h)
     sort(unlist(.xena_post(h, query), use.names = FALSE))
   })
 }

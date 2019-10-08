@@ -60,7 +60,7 @@ xena_default_hosts <- function() {
     "https://xena.treehouse.gi.ucsc.edu",
     "https://pcawg.xenahubs.net",
     "https://atacseq.xenahubs.net",
-    "https://singlecell.xenahubs.net"
+    "https://singlecellnew.xenahubs.net"
   )
 }
 
@@ -203,71 +203,42 @@ XenaHub <- function(hosts = xena_default_hosts(),
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
 XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
-  hosts <- xena_default_hosts()
-  XenaList <- sapply(hosts, function(x) {
-    onehost_cohorts <- unlist(.host_cohorts(x), use.names = FALSE)
-    sapply(onehost_cohorts, function(y) {
-      onecohort_datasets <- unlist(.cohort_datasets(x, y))
-    })
-  })
+  # .p_all_cohorts(list(unique(XenaData$XenaHosts)[10]), exclude = list(NULL))
+  # .p_dataset_list(list(XenaData$XenaHosts[1]), list(XenaData$XenaCohorts[1]))
+  message("=> Obtaining info from UCSC Xena hubs...")
+  XenaInfo <- lapply(names(.xena_hosts), function(h) {
+    message("==> Searching cohorts for host ", h, "...")
+    chs <- .p_all_cohorts(list(h), exclude = list(NULL))
+    chs <- setdiff(chs, "(unassigned)")
+    message("===> #", length(chs), " cohorts found.")
+    message("===> Querying datasets info...")
+    zz <- lapply(chs, function(x, h) {
+      .p_dataset_list(list(h), list(x))
+    }, h = h) %>%
+      stats::setNames(chs) %>%
+      dplyr::bind_rows(.id = "XenaCohorts")
+    message("===> #", nrow(zz), " datasets found.")
+    message("==> Done for host ", h, "...")
+    zz
+  }) %>%
+    stats::setNames(names(.xena_hosts)) %>%
+    dplyr::bind_rows(.id = "XenaHosts")
 
-  # check XenaList, the structure of Truehouse differ from others, is a matrix
-  for (i in seq_along(XenaList)) {
-    if (!is.list(XenaList[[i]])) {
-      x <- XenaList[[i]]
-      Tolist <- lapply(seq_len(ncol(x)), function(i)
-        x[, i])
-      names(Tolist) <- colnames(x)
-      XenaList[[i]] <- Tolist
-    }
-  }
+  message("=> Done for obtaining.")
+  message("=> Parsing datasets metadata...")
 
-  resDF <- data.frame(stringsAsFactors = FALSE)
-  for (i in seq_along(XenaList)) {
-    hostNames <- names(XenaList)[i]
-    cohortNames <- names(XenaList[[i]])
-    res <- data.frame(stringsAsFactors = FALSE)
+  XenaInfo <- XenaInfo %>%
+    dplyr::rename(
+      XenaDatasets = .data$name,
+      SampleCount = .data$count,
+      DataSubtype = .data$datasubtype,
+      Type = .data$type,
+      LongTitle = .data$longtitle,
+      ProbeMap = .data$probemap
+    ) %>%
+    dplyr::mutate(XenaHostNames = .xena_hosts[.data$XenaHosts])
 
-    for (j in seq_along(cohortNames)) {
-      oneCohort <- XenaList[[i]][j]
-      # The unassigned cohorts have NULL data, remove it
-      if (names(oneCohort) != "(unassigned)") {
-        resCohort <- data.frame(
-          XenaCohorts = names(oneCohort),
-          XenaDatasets = as.character(oneCohort[[1]]),
-          stringsAsFactors = FALSE
-        )
-        res <- rbind(res, resCohort)
-      }
-    }
-    res$XenaHosts <- hostNames
-    resDF <- rbind(resDF, res)
-  }
-
-  XenaHostNames <- .xena_hosts
-
-  resDF$XenaHostNames <- XenaHostNames[resDF$XenaHosts]
-  XenaData <- resDF[, c(
-    "XenaHosts",
-    "XenaHostNames",
-    "XenaCohorts",
-    "XenaDatasets"
-  )]
-
-  # .p_dataset_list(hosts(xe), cohorts(xe)) can also obtain
-  # metadata for dataset from cohort view
-  meta_data <- apply(XenaData, 1, function(x) {
-    .p_dataset_metadata(x[1], x[4])
-  })
-  names(meta_data) <- XenaData[["XenaDatasets"]]
-
-  tidy_data <- lapply(meta_data, function(tt) {
-    SampleCount <- tt[["count"]]
-    DataSubtype <- tt[["datasubtype"]]
-    Type <- tt[["type"]]
-    ProbeMap <- tt[["probemap"]]
-
-    j_data <- jsonlite::parse_json(tt[["text"]])
+  j_data <- lapply(XenaInfo$text, function(x) {
     # decode metadata from json format
     # note json data may have different elements for
     #                different cohort datasets
@@ -275,41 +246,40 @@ XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
     #
     # tt$text contains metadata for dataset
     # tt$pmtext contains metadata for probemap
-    LongTitle <- j_data[["longTitle"]]
-    Citation <- j_data[["citation"]]
-    Label <- j_data[["label"]]
-    Tags <- .collapse_list(j_data[["tags"]])
-    AnatomicalOrigin <- .collapse_list(j_data[["anatomical_origin"]])
-    SampleType <- .collapse_list(j_data[["sample_type"]])
-    Version <- j_data[["version"]]
-    PrimaryDisease <- j_data[["acute lymphoblastic leukemia"]]
-    Platform <- j_data[["platform"]]
-    Unit <- j_data[["unit"]]
-
-    res <- c(
-      SampleCount = SampleCount,
-      DataSubtype = DataSubtype,
-      Platform = Platform,
-      Unit = Unit,
-      Label = Label,
-      Type = Type,
-      AnatomicalOrigin = AnatomicalOrigin,
-      PrimaryDisease = PrimaryDisease,
-      SampleType = SampleType,
-      Tags = Tags,
-      ProbeMap = ProbeMap,
-      LongTitle = LongTitle,
-      Citation = Citation,
-      Version = Version
+    json_df <- jsonlite::parse_json(x)
+    dplyr::tibble(
+      Citation = json_df[["citation"]] %||% NA,
+      Label = json_df[["label"]] %||% NA,
+      Tags = .collapse_list(json_df[["tags"]]) %||% NA,
+      AnatomicalOrigin = .collapse_list(json_df[["anatomical_origin"]]) %||% NA,
+      SampleType = .collapse_list(json_df[["sample_type"]]) %||% NA,
+      Version = json_df[["version"]] %||% NA,
+      PrimaryDisease = json_df[["primary_disease"]] %||% NA,
+      Platform = json_df[["platform"]] %||% NA,
+      Unit = json_df[["unit"]] %||% NA
     )
   })
 
-  # tidy_data2 = do.call(rbind, tidy_data)
-  tidy_data2 <- dplyr::bind_rows(tidy_data)
-  XenaData <- dplyr::bind_cols(XenaData, tidy_data2)
+  message("=> Done for parsing. Tidying...")
+
+  tidy_data <- dplyr::bind_rows(j_data)
+  XenaData <- dplyr::bind_cols(XenaInfo, tidy_data)
   XenaData <- dplyr::as_tibble(XenaData)
 
+  XenaData <- XenaData %>%
+    dplyr::select(
+      c(
+        "XenaHosts", "XenaHostNames", "XenaCohorts", "XenaDatasets", "SampleCount",
+        "DataSubtype", "Label", "Type", "AnatomicalOrigin", "SampleType",
+        "Tags", "ProbeMap", "LongTitle", "Citation", "Version",
+        "Unit", "Platform"
+      )
+    )
+
+  message("=> Tidying done.")
+
   if (saveTolocal) {
+    message("=> Saving...")
     data_dir <- base::system.file("data", package = "UCSCXenaTools")
     if (dir.exists(data_dir)) {
       save(XenaData, file = file.path(data_dir, "XenaData.rda"))
@@ -318,6 +288,7 @@ XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
       message("Please check it.")
     }
   }
+  message("=> Done.")
   XenaData
 } # nocov end
 
@@ -325,5 +296,15 @@ XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
   sapply(x, function(x) x) %>% paste0(collapse = ",")
 }
 
+`%||%` <- function(x, y) {
+  # ifelse(is.null(x), y, x)
+  if (is.null(x)) {
+    y
+  } else {
+    x
+  }
+}
 
-utils::globalVariables(c(".p_dataset_metadata"))
+utils::globalVariables(c(".p_dataset_metadata",
+                         ".p_all_cohorts",
+                         ".p_dataset_list"))

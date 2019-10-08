@@ -203,8 +203,8 @@ A use case for survival analysis has been published on rOpenSci, please read
 
 ### How to resume file from breakpoint
 
-Thanks to UCSC Xena team, new feature 'resume from breakpoint' is added and 
-can be done by **XenaDownload()** with method and extra flags specified.
+Thanks to the UCSC Xena team, the new feature 'resume from breakpoint' is added and 
+can be done by **XenaDownload()** with the `method` and `extra` flags specified.
 
 Of note, the corresponding `wget` or `curl` command must be installed by your OS
 and can be found by R.

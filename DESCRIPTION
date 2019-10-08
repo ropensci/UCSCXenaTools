@@ -13,7 +13,7 @@ BugReports: https://github.com/ropensci/UCSCXenaTools/issues
 Description: Download and explore datasets from UCSC Xena data hubs, which are
     a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others.
     Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
-Depends: R (>= 3.0)
+Depends: R (>= 3.5)
 Imports: 
     httr,
     readr,
