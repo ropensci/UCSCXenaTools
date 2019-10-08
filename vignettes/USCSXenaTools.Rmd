@@ -199,6 +199,29 @@ because sometimes package check will fail due to internet problem.
 A use case for survival analysis has been published on rOpenSci, please read
 [UCSCXenaTools: Retrieve Gene Expression and Clinical Information from UCSC Xena for Survival Analysis](https://ropensci.org/technotes/2019/09/06/ucscxenatools-surv/).
 
+## QA
+
+### How to resume file from breakpoint
+
+Thanks to UCSC Xena team, new feature 'resume from breakpoint' is added and 
+can be done by **XenaDownload()** with method and extra flags specified.
+
+Of note, the corresponding `wget` or `curl` command must be installed by your OS
+and can be found by R.
+
+```r
+library(UCSCXenaTools)
+xe = XenaGenerate(subset = XenaDatasets == "TcgaTargetGtex_expected_count")
+xe
+xq = XenaQuery(xe)
+# You cannot resume from breakpoint in default mode
+XenaDownload(xq, destdir = "~/test/", force = TRUE)
+# You can do it with 'curl' command
+XenaDownload(xq, destdir = "~/test/", method = "curl", extra = "-C -", force = TRUE)
+# You can do it with 'wget' command
+XenaDownload(xq, destdir = "~/test/", method = "wget", extra = "-c", force = TRUE)
+```
+
 ## Citation
 
 Cite me by the following paper.
