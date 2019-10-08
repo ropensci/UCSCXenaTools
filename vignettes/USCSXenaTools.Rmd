@@ -209,6 +209,8 @@ can be done by **XenaDownload()** with method and extra flags specified.
 Of note, the corresponding `wget` or `curl` command must be installed by your OS
 and can be found by R.
 
+The folliwng code gives a test example, the data can be viewed on [web page](https://xenabrowser.net/datapages/?dataset=TcgaTargetGtex_expected_count&host=https%3A%2F%2Ftoil.xenahubs.net&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443).
+
 ```r
 library(UCSCXenaTools)
 xe = XenaGenerate(subset = XenaDatasets == "TcgaTargetGtex_expected_count")
