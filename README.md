@@ -59,7 +59,7 @@ Development
 
 <td align="left">
 
-<a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.0.0-blue.svg" alt="minimal R version"></a>
+<a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg" alt="minimal R version"></a>
 
 </td>
 
@@ -126,8 +126,7 @@ issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)]
 
 <td align="left">
 
-[![Say
-Thanks\!](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/ShixiangWang)
+<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="http://cranlogs.r-pkg.org/badges/UCSCXenaTools" alt="month-downloads"></a>
 
 </td>
 
@@ -305,7 +304,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpRohafB.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpehJIAP.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz

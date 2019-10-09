@@ -44,7 +44,7 @@ Development
 
 <tr class="even">
 <td align="left">
-<a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.0.0-blue.svg" alt="minimal R version"></a>
+<a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg" alt="minimal R version"></a>
 </td>
 <td align="left">
 <a href="https://cran.r-project.org/web/checks/check_results_UCSCXenaTools.html"><img src="https://cranchecks.info/badges/summary/UCSCXenaTools" alt="cran-checks"></a>
@@ -80,7 +80,7 @@ Development
 </tr>
 <tr class="odd">
 <td align="left">
-[![Say Thanks!](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/ShixiangWang)
+<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="http://cranlogs.r-pkg.org/badges/UCSCXenaTools" alt="month-downloads"></a>
 </td>
 <td align="left">
 <a href="https://doi.org/10.21105/joss.01627"><img src="https://joss.theoj.org/papers/10.21105/joss.01627/status.svg" alt="JOSS" >
