@@ -74,7 +74,7 @@ Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
 * Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
 * PCAWG Hub: <https://pcawg.xenahubs.net>
 * ATAC-seq Hub: <https://atacseq.xenahubs.net>
-* Singel Cell Xena hub: <https://singlecell.xenahubs.net>
+* Singel Cell Xena hub: <https://singlecellnew.xenahubs.net >
 
 If any url of data hub is changed or a new data hub is online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ropensci/UCSCXenaTools/issues).
 
