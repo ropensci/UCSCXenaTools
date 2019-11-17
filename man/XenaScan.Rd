@@ -4,17 +4,20 @@
 \alias{XenaScan}
 \title{Scan all rows according to user input by a regular expression}
 \usage{
-XenaScan(XenaData = UCSCXenaTools::XenaData, pattern = NULL,
-  ignore.case = TRUE)
+XenaScan(
+  XenaData = UCSCXenaTools::XenaData,
+  pattern = NULL,
+  ignore.case = TRUE
+)
 }
 \arguments{
 \item{XenaData}{a \code{data.frame}. Default is \code{data(XenaData)}.
 The input of this option can only be \code{data(XenaData)} or its subset.}
 
-\item{pattern}{character string containing a \link{regular expression}
+\item{pattern}{character string containing a \link[base]{regular expression}
     (or character string for \code{fixed = TRUE}) to be matched
     in the given character vector.  Coerced by
-    \code{\link{as.character}} to a character string if possible.  If a
+    \code{\link[base]{as.character}} to a character string if possible.  If a
     character vector of length 2 or more is supplied, the first element
     is used with a warning.  Missing values are allowed except for
     \code{regexpr} and \code{gregexpr}.}

@@ -6,24 +6,27 @@
 ##' @return a character vector contains hosts
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); hosts(xe)
-hosts <- function(x)
+hosts <- function(x) {
   unname(slot(x, "hosts"))
+}
 ##' Get cohorts of XenaHub object
 ##' @param x a [XenaHub] object
 ##' @return a character vector contains cohorts
 ##' @importFrom methods slot
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); cohorts(xe)
-cohorts <- function(x)
+cohorts <- function(x) {
   slot(x, "cohorts")
+}
 ##' Get datasets of XenaHub object
 ##' @param x a [XenaHub] object
 ##' @return a character vector contains datasets
 ##' @importFrom methods slot
 ##' @export
 ##' @examples xe = XenaGenerate(subset = XenaHostNames == "tcgaHub"); datasets(xe)
-datasets <- function(x)
+datasets <- function(x) {
   slot(x, "datasets")
+}
 
 ##' Get Samples of a XenaHub object according to 'by' and 'how' action arguments
 ##'

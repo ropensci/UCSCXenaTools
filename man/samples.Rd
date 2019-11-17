@@ -4,8 +4,12 @@
 \alias{samples}
 \title{Get Samples of a XenaHub object according to 'by' and 'how' action arguments}
 \usage{
-samples(x, i = character(), by = c("hosts", "cohorts", "datasets"),
-  how = c("each", "any", "all"))
+samples(
+  x,
+  i = character(),
+  by = c("hosts", "cohorts", "datasets"),
+  how = c("each", "any", "all")
+)
 }
 \arguments{
 \item{x}{a \link{XenaHub} object}

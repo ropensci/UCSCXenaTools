@@ -305,6 +305,8 @@ XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
   }
 }
 
-utils::globalVariables(c(".p_dataset_metadata",
-                         ".p_all_cohorts",
-                         ".p_dataset_list"))
+utils::globalVariables(c(
+  ".p_dataset_metadata",
+  ".p_all_cohorts",
+  ".p_dataset_list"
+))

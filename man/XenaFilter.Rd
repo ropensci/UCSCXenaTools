@@ -4,8 +4,13 @@
 \alias{XenaFilter}
 \title{Filter a XenaHub Object}
 \usage{
-XenaFilter(x, filterCohorts = NULL, filterDatasets = NULL,
-  ignore.case = TRUE, ...)
+XenaFilter(
+  x,
+  filterCohorts = NULL,
+  filterDatasets = NULL,
+  ignore.case = TRUE,
+  ...
+)
 }
 \arguments{
 \item{x}{a \link{XenaHub} object}

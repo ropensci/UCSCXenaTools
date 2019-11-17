@@ -57,7 +57,7 @@ XenaDownload <- function(xquery,
   xquery$destfiles <- file.path(destdir, xquery$fileNames)
 
   if (!dir.exists(destdir)) {
-    dir.create(destdir, recursive = TRUE)
+    dir.create(destdir, recursive = TRUE, showWarnings = FALSE)
   }
 
   message("All downloaded files will under directory ", destdir, ".")
@@ -66,30 +66,33 @@ XenaDownload <- function(xquery,
     message("The 'trans_slash' option is FALSE, keep same directory structure as Xena.")
     message("Creating directories for datasets...")
     for (i in dir_names) {
-      dir.create(i, recursive = TRUE)
+      dir.create(i, recursive = TRUE, showWarnings = FALSE)
     }
   }
 
   apply(xquery, 1, function(x) { # nocov start
-    tryCatch({
-      if (!file.exists(x[5]) | force) {
-        message("Downloading ", x[4])
+    tryCatch(
+      {
+        if (!file.exists(x[5]) | force) {
+          message("Downloading ", x[4])
+          download.file(x[3], destfile = x[5], ...)
+        } else {
+          message(x[5], ", the file has been download!")
+        }
+      },
+      error = function(e) {
+        message(
+          "Can not find file",
+          x[4],
+          ", this file maybe not compressed."
+        )
+        x[3] <- gsub(pattern = "\\.gz$", "", x[3])
+        x[4] <- gsub(pattern = "\\.gz$", "", x[4])
+        x[5] <- gsub(pattern = "\\.gz$", "", x[5])
+        message("Try downloading file", x[4], "...")
         download.file(x[3], destfile = x[5], ...)
-      } else {
-        message(x[5], ", the file has been download!")
       }
-    }, error = function(e) {
-      message(
-        "Can not find file",
-        x[4],
-        ", this file maybe not compressed."
-      )
-      x[3] <- gsub(pattern = "\\.gz$", "", x[3])
-      x[4] <- gsub(pattern = "\\.gz$", "", x[4])
-      x[5] <- gsub(pattern = "\\.gz$", "", x[5])
-      message("Try downloading file", x[4], "...")
-      download.file(x[3], destfile = x[5], ...)
-    })
+    )
   }) # nocov end
 
   if (trans_slash) {

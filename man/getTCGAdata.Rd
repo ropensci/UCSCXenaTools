@@ -4,15 +4,29 @@
 \alias{getTCGAdata}
 \title{Get TCGA Common Data Sets by Project ID and Property}
 \usage{
-getTCGAdata(project = NULL, clinical = TRUE, download = FALSE,
-  forceDownload = FALSE, destdir = tempdir(), mRNASeq = FALSE,
-  mRNAArray = FALSE, mRNASeqType = "normalized", miRNASeq = FALSE,
-  exonRNASeq = FALSE, RPPAArray = FALSE,
-  ReplicateBaseNormalization = FALSE, Methylation = FALSE,
-  MethylationType = c("27K", "450K"), GeneMutation = FALSE,
-  SomaticMutation = FALSE, GisticCopyNumber = FALSE,
-  Gistic2Threshold = TRUE, CopyNumberSegment = FALSE,
-  RemoveGermlineCNV = TRUE, ...)
+getTCGAdata(
+  project = NULL,
+  clinical = TRUE,
+  download = FALSE,
+  forceDownload = FALSE,
+  destdir = tempdir(),
+  mRNASeq = FALSE,
+  mRNAArray = FALSE,
+  mRNASeqType = "normalized",
+  miRNASeq = FALSE,
+  exonRNASeq = FALSE,
+  RPPAArray = FALSE,
+  ReplicateBaseNormalization = FALSE,
+  Methylation = FALSE,
+  MethylationType = c("27K", "450K"),
+  GeneMutation = FALSE,
+  SomaticMutation = FALSE,
+  GisticCopyNumber = FALSE,
+  Gistic2Threshold = TRUE,
+  CopyNumberSegment = FALSE,
+  RemoveGermlineCNV = TRUE,
+  ...
+)
 }
 \arguments{
 \item{project}{default is \code{NULL}. Should be one or more of TCGA project id (character vector) provided by Xena.

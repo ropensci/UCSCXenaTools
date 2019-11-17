@@ -10,8 +10,14 @@
 \usage{
 fetch(host, dataset)
 
-fetch_dense_values(host, dataset, identifiers = NULL, samples = NULL,
-  check = TRUE, use_probeMap = FALSE)
+fetch_dense_values(
+  host,
+  dataset,
+  identifiers = NULL,
+  samples = NULL,
+  check = TRUE,
+  use_probeMap = FALSE
+)
 
 fetch_dataset_samples(host, dataset, limit = NULL)
 

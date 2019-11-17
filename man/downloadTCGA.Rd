@@ -4,8 +4,14 @@
 \alias{downloadTCGA}
 \title{Easily Download TCGA Data by Several Options}
 \usage{
-downloadTCGA(project = NULL, data_type = NULL, file_type = NULL,
-  destdir = tempdir(), force = FALSE, ...)
+downloadTCGA(
+  project = NULL,
+  data_type = NULL,
+  file_type = NULL,
+  destdir = tempdir(),
+  force = FALSE,
+  ...
+)
 }
 \arguments{
 \item{project}{default is \code{NULL}. Should be one or more of TCGA project id (character vector) provided by Xena.

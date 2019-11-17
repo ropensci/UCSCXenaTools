@@ -4,10 +4,18 @@
 \alias{XenaPrepare}
 \title{Prepare (Load) Downloaded Datasets to R}
 \usage{
-XenaPrepare(objects, objectsName = NULL, use_chunk = FALSE,
-  chunk_size = 100, subset_rows = TRUE, select_cols = TRUE,
-  callback = NULL, comment = "#", na = c("", "NA", "[Discrepancy]"),
-  ...)
+XenaPrepare(
+  objects,
+  objectsName = NULL,
+  use_chunk = FALSE,
+  chunk_size = 100,
+  subset_rows = TRUE,
+  select_cols = TRUE,
+  callback = NULL,
+  comment = "#",
+  na = c("", "NA", "[Discrepancy]"),
+  ...
+)
 }
 \arguments{
 \item{objects}{a object of character vector or data.frame. If \code{objects} is data.frame,

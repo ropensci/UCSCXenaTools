@@ -14,8 +14,9 @@
 
 .null_cohort <- "(unassigned)"
 
-.quote <- function(s)
+.quote <- function(s) {
   paste0('"', s, '"')
+}
 
 .quote_cohort <- function(cohort) {
   ifelse(cohort == .null_cohort, "nil", .quote(cohort))
@@ -25,8 +26,9 @@
   paste0(.quote(l), collapse = collapse)
 }
 
-.collapse_cohort <- function(cohorts, collapse = " ")
+.collapse_cohort <- function(cohorts, collapse = " ") {
   paste0(.quote_cohort(cohorts), collapse = collapse)
+}
 
 .arrayfmt <- function(l, collapse = .collapse) {
   paste0("[", collapse(l), "]")
@@ -83,7 +85,7 @@
 
 ## samples
 
-.samples_any_query <- function(what)
+.samples_any_query <- function(what) {
   paste0(
     "\n        (map :value\n        (query {\n        :select [:%distinct.value]\n        :from [:dataset]\n        :join [:field [:= :dataset.id :dataset_id]\n        :code [:= :field_id :field.id]]\n        :where [:and\n        [:in ",
     what,
@@ -92,8 +94,9 @@
         }))
         '
   )
+}
 
-.samples_all_query <- function(where, what, n) # nocov start
+.samples_all_query <- function(where, what, n) { # nocov start
   paste0(
     "\n        (map :value\n        (query {\n        :select [:value] :from [{\n        :select [",
     where,
@@ -109,7 +112,8 @@
         :having [:= :%count.value ',
     n,
     "]\n        }))\n        "
-  ) # nocov end
+  )
+} # nocov end
 
 
 ##
@@ -120,13 +124,16 @@
 # host --------------------------------------------------------------------
 
 .host_is_alive <- function(host) {
-  tryCatch({
-    result <- .xena_post(host, "(+ 1 2)")
-    stop_for_status(result)
-    TRUE
-  }, error = function(...) {
-    FALSE
-  })
+  tryCatch(
+    {
+      result <- .xena_post(host, "(+ 1 2)")
+      stop_for_status(result)
+      TRUE
+    },
+    error = function(...) {
+      FALSE
+    }
+  )
 }
 
 .host_cohorts <- function(hosts) {
@@ -227,8 +234,9 @@
     how,
     each = x,
     any = unique(unlist(x, use.names = FALSE)),
-    all = Reduce(function(x, y)
-      x[x %in% y], x)
+    all = Reduce(function(x, y) {
+      x[x %in% y]
+    }, x)
   )
 }
 

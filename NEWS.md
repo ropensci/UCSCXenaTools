@@ -3,6 +3,7 @@
 ## Bug fixes
 
 * #14 fixed
+* #15 fixed
 
 # v1.2.7
 
