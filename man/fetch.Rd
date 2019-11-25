@@ -90,14 +90,14 @@ samples <- c("TCGA-02-0047-01", "TCGA-02-0055-01", "TCGA-02-2483-01", "TCGA-02-2
 probes <- c("ENSG00000282740.1", "ENSG00000000005.5", "ENSG00000000419.12")
 genes <- c("TP53", "RB1", "PIK3CA")
 
+\donttest{
 # Fetch samples
 fetch_dataset_samples(host, dataset, 2)
 # Fetch identifiers
-\donttest{
 fetch_dataset_identifiers(host, dataset)
-}
 # Fetch expression value by probes
 fetch_dense_values(host, dataset, probes, samples, check = FALSE)
 # Fetch expression value by gene symbol (if the dataset has probeMap)
 fetch_dense_values(host, dataset, genes, samples, check = FALSE, use_probeMap = TRUE)
+}
 }

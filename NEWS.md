@@ -1,3 +1,10 @@
+# v1.2.9
+
+## Bug fixes
+
+* Removed `fetch()` check
+* Addressed #16, #17, #18
+
 # v1.2.8
 
 ## Bug fixes
