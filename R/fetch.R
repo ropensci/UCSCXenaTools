@@ -78,9 +78,12 @@ fetch_dense_values <- function(host, dataset, identifiers = NULL, samples = NULL
       if (!is.character(identifiers)) stop("Bad type for identifiers.")
       if (!all(identifiers %in% all_identifiers)) {
         which_in <- identifiers %in% all_identifiers
-        message("The following identifiers have been removed fro host ", host, " dataset ", dataset)
+        message("The following identifiers have been removed from host ", host, " dataset ", dataset)
         print(identifiers[!which_in])
         identifiers <- identifiers[which_in]
+        if (length(identifiers) == 0) {
+          stop("Bad identifiers, no one left, check input?")
+        }
       }
     }
     message("-> Done.")
@@ -92,9 +95,12 @@ fetch_dense_values <- function(host, dataset, identifiers = NULL, samples = NULL
       if (!is.character(samples)) stop("Bad type for samples.")
       if (!all(samples %in% all_samples)) {
         which_in <- samples %in% all_samples
-        message("The following samples have been removed fro host ", host, " dataset ", dataset)
+        message("The following samples have been removed from host ", host, " dataset ", dataset)
         print(samples[!which_in])
         samples <- samples[which_in]
+        if (length(samples) == 0) {
+          stop("Bad samples, no one left, check input?")
+        }
       }
     }
     message("-> Done.")
