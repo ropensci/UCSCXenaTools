@@ -70,24 +70,92 @@ fetch()
 # Fetch samples
 fetch_dataset_samples(host, dataset, 2)
 # Fetch identifiers
+tryCatch({
+  fetch_dataset_identifiers(host, dataset)
+}, error = function(e) {
+  if (grepl("500", e$message)) {
+    message("Bad network, skipping check")
+  } else {
+    stop(e$message)
+  }
+})
 
-fetch_dataset_identifiers(host, dataset)
 
 # Fetch expression value by probes
-fetch_dense_values(host, dataset, probes, samples, check = FALSE)
-fetch_dense_values(host, dataset, probes, samples[1], check = TRUE)
-fetch_dense_values(host, dataset, probes[1], samples[1], check = TRUE)
-expect_error(fetch_dense_values(host, dataset, 33, samples[1], check = TRUE))
-expect_error(fetch_dense_values(host, dataset, probes[1], 33, check = TRUE))
-fetch_dense_values(host, dataset, c(probes[1], "xxx"), c(samples[1], "xxx"), check = TRUE)
+tryCatch({
+  fetch_dense_values(host, dataset, probes, samples, check = FALSE)
+}, error = function(e) {
+  if (grepl("500", e$message)) {
+    message("Bad network, skipping check")
+  } else {
+    stop(e$message)
+  }
+})
+
+tryCatch({
+  fetch_dense_values(host, dataset, probes, samples[1], check = TRUE)
+}, error = function(e) {
+  if (grepl("500", e$message)) {
+    message("Bad network, skipping check")
+  } else {
+    stop(e$message)
+  }
+})
+
+tryCatch({
+  fetch_dense_values(host, dataset, probes[1], samples[1], check = TRUE)
+}, error = function(e) {
+  if (grepl("500", e$message)) {
+    message("Bad network, skipping check")
+  } else {
+    stop(e$message)
+  }
+})
+
+tryCatch({
+  fetch_dense_values(host, dataset, probes[1], samples[1], check = TRUE)
+}, error = function(e) {
+  if (grepl("500", e$message)) {
+    message("Bad network, skipping check")
+  } else {
+    stop(e$message)
+  }
+})
+
+tryCatch({
+  expect_error(fetch_dense_values(host, dataset, probes[1], 33, check = TRUE))
+}, error = function(e) {
+  if (grepl("500", e$message)) {
+    message("Bad network, skipping check")
+  } else {
+    stop(e$message)
+  }
+})
+
+tryCatch({
+  fetch_dense_values(host, dataset, c(probes[1], "xxx"), c(samples[1], "xxx"), check = TRUE)
+}, error = function(e) {
+  if (grepl("500", e$message)) {
+    message("Bad network, skipping check")
+  } else {
+    stop(e$message)
+  }
+})
 
 # The following two are two time consuming
 # fetch_dense_values(host, dataset, probes[1], check = TRUE)
 # fetch_dense_values(host, dataset, samples = samples[1], check = TRUE)
 
 # Fetch expression value by gene symbol (if the dataset has probeMap)
-fetch_dense_values(host, dataset, genes, samples, check = TRUE, use_probeMap = TRUE)
-
+tryCatch({
+  fetch_dense_values(host, dataset, genes, samples, check = TRUE, use_probeMap = TRUE)
+}, error = function(e) {
+  if (grepl("500", e$message)) {
+    message("Bad network, skipping check")
+  } else {
+    stop(e$message)
+  }
+})
 
 # Workflow ----------------------------------------------------------------
 expect_warning(XenaFilter(xe))

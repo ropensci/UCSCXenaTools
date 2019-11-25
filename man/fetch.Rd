@@ -16,7 +16,8 @@ fetch_dense_values(
   identifiers = NULL,
   samples = NULL,
   check = TRUE,
-  use_probeMap = FALSE
+  use_probeMap = FALSE,
+  time_limit = 30
 )
 
 fetch_dataset_samples(host, dataset, limit = NULL)
@@ -46,6 +47,8 @@ the whole datasets if you query many samples and genes.}
 \item{use_probeMap}{if \code{TRUE}, will check if the dataset has ProbeMap firstly.
 When the dataset you want to query has a identifier-to-gene mapping, identifiers can be
 gene symbols even the identifiers of dataset are probes or others.}
+
+\item{time_limit}{time limit for getting response in seconds.}
 
 \item{limit}{number of samples, if \code{NULL}, return all samples.}
 }
