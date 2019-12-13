@@ -152,6 +152,9 @@ Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
 * ATAC-seq Hub: <https://atacseq.xenahubs.net>
 * Singel Cell Xena hub: <https://singlecellnew.xenahubs.net>
 
+Users can update dataset list from the newest version of UCSC Xena by hand with `XenaDataUpdate()` function, followed
+by restarting R and `library(UCSCXenaTools)`.
+
 If any url of data hub is changed or a new data hub is online, please remind me by emailing to <w_shixiang@163.com> or [opening an issue on GitHub](https://github.com/ropensci/UCSCXenaTools/issues).
 
 

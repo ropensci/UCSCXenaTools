@@ -1,3 +1,8 @@
+# v1.2.10
+
+* Updated newest dataset list of UCSC Xena hubs
+* Added text to describe how to update data list by hand
+
 # v1.2.9
 
 ## Bug fixes
