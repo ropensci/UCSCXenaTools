@@ -149,8 +149,7 @@ issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)]
 
 </table>
 
-<br>
-<!-- badges: end -->
+<br> <!-- badges: end -->
 
 # UCSCXenaTools <img src='man/figures/logo.png' align="right" height="200" alt="logo"/>
 
@@ -193,8 +192,7 @@ with:
 remotes::install_github("ropensci/UCSCXenaTools")
 ```
 
-If you want to build vignette in local, please add two
-options:
+If you want to build vignette in local, please add two options:
 
 ``` r
 remotes::install_github("ropensci/UCSCXenaTools", build_vignettes = TRUE, dependencies = TRUE)
@@ -216,6 +214,10 @@ Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
   - PCAWG Hub: <https://pcawg.xenahubs.net>
   - ATAC-seq Hub: <https://atacseq.xenahubs.net>
   - Singel Cell Xena hub: <https://singlecellnew.xenahubs.net>
+
+Users can update dataset list from the newest version of UCSC Xena by
+hand with `XenaDataUpdate()` function, followed by restarting R and
+`library(UCSCXenaTools)`.
 
 If any url of data hub is changed or a new data hub is online, please
 remind me by emailing to <w_shixiang@163.com> or [opening an issue on
@@ -246,7 +248,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.2.6
+#> UCSCXenaTools version 1.2.9
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -255,23 +257,22 @@ library(UCSCXenaTools)
 #>   from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq.
 #>   Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
 #> =========================================================================================
-#>                               -- Enjoy it--
+#>                               --Enjoy it--
 data(XenaData)
 
 head(XenaData)
 #> # A tibble: 6 x 17
-#>   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype
-#>   <chr>     <chr>         <chr>       <chr>        <chr>       <chr>      
-#> 1 https://… publicHub     Acute lymp… mullighan20… 30          copy number
-#> 2 https://… publicHub     Acute lymp… mullighan20… 159         phenotype  
-#> 3 https://… publicHub     Acute lymp… mullighan20… 129         copy number
-#> 4 https://… publicHub     Breast Can… Caldas2007/… 242         phenotype  
-#> 5 https://… publicHub     Breast Can… Caldas2007/… 220         copy number
-#> 6 https://… publicHub     Breast Can… Caldas2007/… 135         gene expre…
-#> # … with 11 more variables: Label <chr>, Type <chr>,
-#> #   AnatomicalOrigin <chr>, SampleType <chr>, Tags <chr>, ProbeMap <chr>,
-#> #   LongTitle <chr>, Citation <chr>, Version <chr>, Unit <chr>,
-#> #   Platform <chr>
+#>   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype Label
+#>   <chr>     <chr>         <chr>       <chr>              <int> <chr>       <chr>
+#> 1 https://… publicHub     Breast Can… ucsfNeve_pu…          51 gene expre… Neve…
+#> 2 https://… publicHub     Breast Can… ucsfNeve_pu…          57 phenotype   Phen…
+#> 3 https://… publicHub     Glioma (Ko… kotliarov20…         194 copy number Kotl…
+#> 4 https://… publicHub     Glioma (Ko… kotliarov20…         194 phenotype   Phen…
+#> 5 https://… publicHub     Lung Cance… weir2007_pu…         383 copy number CGH  
+#> 6 https://… publicHub     Lung Cance… weir2007_pu…         383 phenotype   Phen…
+#> # … with 10 more variables: Type <chr>, AnatomicalOrigin <chr>,
+#> #   SampleType <chr>, Tags <chr>, ProbeMap <chr>, LongTitle <chr>,
+#> #   Citation <chr>, Version <chr>, Unit <chr>, Platform <chr>
 ```
 
 ### Workflow
@@ -289,12 +290,12 @@ df_todo
 #> hosts():
 #>   https://tcga.xenahubs.net
 #> cohorts() (3 total):
-#>   TCGA Lung Adenocarcinoma (LUAD)
 #>   TCGA Lung Cancer (LUNG)
+#>   TCGA Lung Adenocarcinoma (LUAD)
 #>   TCGA Lung Squamous Cell Carcinoma (LUSC)
 #> datasets() (3 total):
-#>   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
 #>   TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
+#>   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
 #>   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
 ```
 
@@ -304,12 +305,12 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpehJIAP.
+#> All downloaded files will under directory D:/Tool/Rtmp\RtmpsbXVX0.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
-#> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix.gz
-#> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix.gz
-#> Downloading TCGA.LUSC.sampleMap/LUSC_clinicalMatrix.gz
+#> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
+#> Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
+#> Downloading TCGA.LUSC.sampleMap/LUSC_clinicalMatrix
 ```
 
 Prepare data into R for analysis.
@@ -319,14 +320,12 @@ cli = XenaPrepare(xe_download)
 class(cli)
 #> [1] "list"
 names(cli)
-#> [1] "LUAD_clinicalMatrix.gz" "LUNG_clinicalMatrix.gz"
-#> [3] "LUSC_clinicalMatrix.gz"
+#> [1] "LUNG_clinicalMatrix" "LUAD_clinicalMatrix" "LUSC_clinicalMatrix"
 ```
 
 ## Citation
 
-Cite me by the following
-    paper.
+Cite me by the following paper.
 
     Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data
       from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. 
@@ -351,8 +350,7 @@ Cite me by the following
         day = {5},
     }
 
-Cite UCSC Xena by the following
-    paper.
+Cite UCSC Xena by the following paper.
 
     Goldman, Mary, et al. "The UCSC Xena Platform for cancer genomics data 
         visualization and interpretation." BioRxiv (2019): 326470.
@@ -370,7 +368,6 @@ For anyone who wants to contribute, please follow the guideline:
 ## Acknowledgment
 
 This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
-thanks [Martin Morgan](https://github.com/mtmorgan) for his
-work.
+thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
