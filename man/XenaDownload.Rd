@@ -35,7 +35,7 @@ a \code{tibble}
 Avaliable datasets list: \url{https://xenabrowser.net/datapages/}
 }
 \examples{
-\donttest{
+\dontrun{
 xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 hosts(xe)
 xe_query = XenaQuery(xe)

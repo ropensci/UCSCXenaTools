@@ -28,7 +28,7 @@
 ##' @importFrom readr read_tsv_chunked
 ##' @importFrom readr cols
 ##' @examples
-##' \donttest{
+##' \dontrun{
 ##' xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 ##' hosts(xe)
 ##' xe_query = XenaQuery(xe)

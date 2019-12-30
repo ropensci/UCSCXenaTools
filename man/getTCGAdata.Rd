@@ -103,7 +103,7 @@ GeneMutation = TRUE, SomaticMutation = TRUE)
 
 # 2 only choose 'LUAD' and its clinical data
 getTCGAdata(project = "LUAD")
-\donttest{
+\dontrun{
 ###### download datasets
 
 # 3 download clinical datasets of LUAD and LUSC

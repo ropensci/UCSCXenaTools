@@ -103,7 +103,7 @@
 ##'
 ##' # 2 only choose 'LUAD' and its clinical data
 ##' getTCGAdata(project = "LUAD")
-##' \donttest{
+##' \dontrun{
 ##' ###### download datasets
 ##'
 ##' # 3 download clinical datasets of LUAD and LUSC
@@ -395,7 +395,7 @@ getTCGAdata <- function(project = NULL,
 ##' @return same as `XenaDownload()` function result.
 ##' @export
 ##' @examples
-##' \donttest{
+##' \dontrun{
 ##' # download RNASeq data (use UVM as example)
 ##' downloadTCGA(project = "UVM",
 ##'                  data_type = "Gene Expression RNASeq",

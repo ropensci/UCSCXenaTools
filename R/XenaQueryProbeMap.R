@@ -8,9 +8,9 @@
 ##' @importFrom dplyr filter select pull rename mutate
 ##' @export
 ##' @examples
-##' \donttest{
 ##' xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 ##' hosts(xe)
+##' \dontrun{
 ##' xe_query = XenaQueryProbeMap(xe)
 ##' }
 XenaQueryProbeMap <- function(x) {

@@ -16,7 +16,7 @@
 ##' @importFrom utils download.file
 ##' @importFrom dplyr filter
 ##' @examples
-##' \donttest{
+##' \dontrun{
 ##' xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 ##' hosts(xe)
 ##' xe_query = XenaQuery(xe)

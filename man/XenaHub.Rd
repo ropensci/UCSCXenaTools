@@ -35,7 +35,7 @@ will be returned as a \code{XenaHub} object. All datasets can be found
 at \url{https://xenabrowser.net/datapages/}.
 }
 \examples{
-\donttest{
+\dontrun{
 #1 query all hosts, cohorts and datasets
 xe = XenaHub()
 xe

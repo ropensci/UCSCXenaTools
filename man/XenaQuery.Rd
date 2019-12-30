@@ -16,9 +16,9 @@ a \code{data.frame} contains hosts, datasets and url
 Query URL of Datasets before Downloading
 }
 \examples{
-\donttest{
 xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 hosts(xe)
+\dontrun{
 xe_query = XenaQuery(xe)
 }
 }

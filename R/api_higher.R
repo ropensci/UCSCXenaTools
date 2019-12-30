@@ -42,7 +42,7 @@ datasets <- function(x) {
 ##' @return a list include samples
 ##' @export
 ##' @examples
-##' \donttest{
+##' \dontrun{
 ##' xe = XenaHub(cohorts = "Cancer Cell Line Encyclopedia (CCLE)")
 ##' # samples in each dataset, first host
 ##' x = samples(xe, by="datasets", how="each")[[1]]

@@ -19,8 +19,8 @@ in user's default browser.
 }
 \examples{
 \donttest{
-XenaGenerate(subset = XenaHostNames == "tcgaHub") %>%
-  XenaFilter(filterDatasets = "clinical") %>%
+XenaGenerate(subset = XenaHostNames == "tcgaHub") \%>\%
+  XenaFilter(filterDatasets = "clinical") \%>\%
   XenaFilter(filterDatasets = "LUAD") -> to_browse
 }
 }

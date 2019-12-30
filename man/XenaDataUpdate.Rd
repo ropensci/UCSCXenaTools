@@ -16,6 +16,12 @@ a \code{data.frame} contains all datasets information of Xena.
 \description{
 Get or Update Newest Data Information of UCSC Xena Data Hubs
 }
+\examples{
+\dontrun{
+XenaDataUpdate()
+XenaDataUpdate(saveTolocal = TRUE)
+}
+}
 \author{
 Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}
 }

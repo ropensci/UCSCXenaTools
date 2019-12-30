@@ -16,9 +16,9 @@ a \code{data.frame} contains hosts, datasets and url
 If dataset has no ProbeMap, it will be ignored.
 }
 \examples{
-\donttest{
 xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 hosts(xe)
+\dontrun{
 xe_query = XenaQueryProbeMap(xe)
 }
 }

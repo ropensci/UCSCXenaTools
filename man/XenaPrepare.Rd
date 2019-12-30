@@ -56,7 +56,7 @@ a list contains file data, which in way of tibbles
 Prepare (Load) Downloaded Datasets to R
 }
 \examples{
-\donttest{
+\dontrun{
 xe = XenaGenerate(subset = XenaHostNames == "tcgaHub")
 hosts(xe)
 xe_query = XenaQuery(xe)

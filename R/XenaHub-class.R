@@ -101,7 +101,7 @@ names(.xena_hosts) <- xena_default_hosts()
 ##' @importFrom httr stop_for_status POST content
 ##' @importFrom utils head tail
 ##' @examples
-##' \donttest{
+##' \dontrun{
 ##' #1 query all hosts, cohorts and datasets
 ##' xe = XenaHub()
 ##' xe
@@ -202,6 +202,11 @@ XenaHub <- function(hosts = xena_default_hosts(),
 ##' @return a `data.frame` contains all datasets information of Xena.
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
+##' @examples
+##' \dontrun{
+##' XenaDataUpdate()
+##' XenaDataUpdate(saveTolocal = TRUE)
+##' }
 XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
   # .p_all_cohorts(list(unique(XenaData$XenaHosts)[10]), exclude = list(NULL))
   # .p_dataset_list(list(XenaData$XenaHosts[1]), list(XenaData$XenaCohorts[1]))

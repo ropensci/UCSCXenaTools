@@ -43,7 +43,7 @@ All availble information about datasets of TCGA can access vis \code{availTCGA()
 check with \code{showTCGA()}.
 }
 \examples{
-\donttest{
+\dontrun{
 # download RNASeq data (use UVM as example)
 downloadTCGA(project = "UVM",
                  data_type = "Gene Expression RNASeq",

@@ -1,0 +1,56 @@
+destination: docs
+
+authors:
+  Shixiang Wang:
+    href: https://shixiangwang.github.io/
+
+reference:
+  - title: Standard dataset query and download pipeline
+    desc: Select, query, download and load datasets.
+    contents:
+    - XenaData
+    - XenaScan
+    - XenaGenerate
+    - XenaFilter
+    - XenaBrowse
+    - XenaQuery
+    - XenaDownload
+    - XenaPrepare
+  - title: Download a subset of dataset
+    desc: Download a subset of dataset for target analysis.
+    contents:
+    - fetch_dense_values
+    - fetch_dataset_samples
+    - fetch_dataset_identifiers
+    - fetch
+  - title: One-click download function
+    desc: Download datasets by setting options in one function.
+    contents:
+    - downloadTCGA
+    - getTCGAdata
+    - availTCGA
+    - showTCGA
+  - title: Utility
+    desc: Useful functions.
+    contents:
+    - XenaDataUpdate
+    - XenaShiny
+    - hosts
+    - cohorts
+    - datasets
+    - samples
+    - has_probeMap
+    - XenaQueryProbeMap
+  - title: Helpers
+    desc: Helper functions.
+    contents:
+    - xena_default_hosts
+    - to_snake
+  - title: Class
+    desc: Class and related function.
+    contents:
+    - XenaHub-class
+    - XenaHub
+
+
+
