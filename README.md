@@ -202,18 +202,21 @@ remotes::install_github("ropensci/UCSCXenaTools", build_vignettes = TRUE, depend
 
 All datasets are available at <https://xenabrowser.net/datapages/>.
 
-Currently, **UCSCXenaTools** supports 10 data hubs of UCSC Xena.
+Currently, **UCSCXenaTools** supports the following data hubs of UCSC
+Xena.
 
   - UCSC Public Hub: <https://ucscpublic.xenahubs.net>
   - TCGA Hub: <https://tcga.xenahubs.net>
   - GDC Xena Hub: <https://gdc.xenahubs.net>
   - ICGC Xena Hub: <https://icgc.xenahubs.net>
   - Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
-  - GA4GH (TOIL) Hub: <https://toil.xenahubs.net>
+  - UCSC Toil RNAseq Recompute Compendium Hub:
+    <https://toil.xenahubs.net>
   - Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
-  - PCAWG Hub: <https://pcawg.xenahubs.net>
+  - PCAWG Xena Hub: <https://pcawg.xenahubs.net>
   - ATAC-seq Hub: <https://atacseq.xenahubs.net>
-  - Singel Cell Xena hub: <https://singlecellnew.xenahubs.net>
+  - Singel Cell Xena Hub: <https://singlecellnew.xenahubs.net>
+  - Kids First Xena Hub: <https://kidsfirst.xenahubs.net>
 
 Users can update dataset list from the newest version of UCSC Xena by
 hand with `XenaDataUpdate()` function, followed by restarting R and
@@ -248,7 +251,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.2.9
+#> UCSCXenaTools version 1.2.10
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -264,13 +267,13 @@ head(XenaData)
 #> # A tibble: 6 x 17
 #>   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype Label
 #>   <chr>     <chr>         <chr>       <chr>              <int> <chr>       <chr>
-#> 1 https://… publicHub     Breast Can… ucsfNeve_pu…          51 gene expre… Neve…
-#> 2 https://… publicHub     Breast Can… ucsfNeve_pu…          57 phenotype   Phen…
-#> 3 https://… publicHub     Glioma (Ko… kotliarov20…         194 copy number Kotl…
-#> 4 https://… publicHub     Glioma (Ko… kotliarov20…         194 phenotype   Phen…
-#> 5 https://… publicHub     Lung Cance… weir2007_pu…         383 copy number CGH  
-#> 6 https://… publicHub     Lung Cance… weir2007_pu…         383 phenotype   Phen…
-#> # … with 10 more variables: Type <chr>, AnatomicalOrigin <chr>,
+#> 1 https://~ publicHub     Breast Can~ ucsfNeve_pu~          51 gene expre~ Neve~
+#> 2 https://~ publicHub     Breast Can~ ucsfNeve_pu~          57 phenotype   Phen~
+#> 3 https://~ publicHub     Glioma (Ko~ kotliarov20~         194 copy number Kotl~
+#> 4 https://~ publicHub     Glioma (Ko~ kotliarov20~         194 phenotype   Phen~
+#> 5 https://~ publicHub     Lung Cance~ weir2007_pu~         383 copy number CGH  
+#> 6 https://~ publicHub     Lung Cance~ weir2007_pu~         383 phenotype   Phen~
+#> # ... with 10 more variables: Type <chr>, AnatomicalOrigin <chr>,
 #> #   SampleType <chr>, Tags <chr>, ProbeMap <chr>, LongTitle <chr>,
 #> #   Citation <chr>, Version <chr>, Unit <chr>, Platform <chr>
 ```
@@ -305,7 +308,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory D:/Tool/Rtmp\RtmpsbXVX0.
+#> All downloaded files will under directory D:/Tool/Rtmp\RtmpG4nBvL.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix

@@ -60,7 +60,8 @@ xena_default_hosts <- function() {
     "https://xena.treehouse.gi.ucsc.edu",
     "https://pcawg.xenahubs.net",
     "https://atacseq.xenahubs.net",
-    "https://singlecellnew.xenahubs.net"
+    "https://singlecellnew.xenahubs.net",
+    "https://kidsfirst.xenahubs.net"
   )
 }
 
@@ -74,8 +75,10 @@ xena_default_hosts <- function() {
   "treehouseHub",
   "pcawgHub",
   "atacseqHub",
-  "singlecellHub"
+  "singlecellHub",
+  "kidsfirstHub"
 )
+
 names(.xena_hosts) <- xena_default_hosts()
 
 
@@ -126,7 +129,8 @@ XenaHub <- function(hosts = xena_default_hosts(),
                       "treehouseHub",
                       "pcawgHub",
                       "atacseqHub",
-                      "singlecellHub"
+                      "singlecellHub",
+                      "kidsfirstHub"
                     )) {
   stopifnot(
     is.character(hosts),
@@ -199,6 +203,7 @@ XenaHub <- function(hosts = xena_default_hosts(),
 ##' Get or Update Newest Data Information of UCSC Xena Data Hubs
 ##' @param saveTolocal logical. Whether save to local R package data directory for permanent use
 ##' or Not.
+##' @param max_try time limit to try querying the info of data.
 ##' @return a `data.frame` contains all datasets information of Xena.
 ##' @author Shixiang Wang <w_shixiang@163.com>
 ##' @export
@@ -207,13 +212,31 @@ XenaHub <- function(hosts = xena_default_hosts(),
 ##' XenaDataUpdate()
 ##' XenaDataUpdate(saveTolocal = TRUE)
 ##' }
-XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
+XenaDataUpdate <- function(saveTolocal = TRUE, max_try = 3L) { # nocov start
   # .p_all_cohorts(list(unique(XenaData$XenaHosts)[10]), exclude = list(NULL))
   # .p_dataset_list(list(XenaData$XenaHosts[1]), list(XenaData$XenaCohorts[1]))
+  try_query = function(h, max_try = 3L) {
+    Sys.sleep(0.1)
+    tryCatch(
+      {
+        message("==> Trying #", abs(max_try - 4L))
+        .p_all_cohorts(list(h), exclude = list(NULL))
+      },
+      error = function(e) {
+        if (max_try == 1) {
+          stop("Tried 3 times but failed, please check URL or your internet connection!")
+        } else {
+          try_query(h, max_try - 1L)
+        }
+      }
+    )
+  }
+
   message("=> Obtaining info from UCSC Xena hubs...")
   XenaInfo <- lapply(names(.xena_hosts), function(h) {
     message("==> Searching cohorts for host ", h, "...")
-    chs <- .p_all_cohorts(list(h), exclude = list(NULL))
+
+    chs <- try_query(h, max_try = max_try)
     chs <- setdiff(chs, "(unassigned)")
     message("===> #", length(chs), " cohorts found.")
     message("===> Querying datasets info...")

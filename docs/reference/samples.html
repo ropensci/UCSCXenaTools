@@ -79,7 +79,7 @@ Identifying these samples, including samples in arbitrarily chosen data sets." /
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -176,28 +176,12 @@ info will be automatically extracted by code</p></td>
     <p>a list include samples</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
-<span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'><a href='XenaHub.html'>XenaHub</a></span>(<span class='kw'>cohorts</span> <span class='kw'>=</span> <span class='st'>"Cancer Cell Line Encyclopedia (CCLE)"</span>)</div><div class='output co'>#&gt; <span class='message'>Searching https://ucscpublic.xenahubs.net</span></div><div class='output co'>#&gt; <span class='message'>Searching https://tcga.xenahubs.net</span></div><div class='output co'>#&gt; <span class='message'>Searching https://gdc.xenahubs.net</span></div><div class='output co'>#&gt; <span class='message'>Searching https://icgc.xenahubs.net</span></div><div class='output co'>#&gt; <span class='message'>Searching https://toil.xenahubs.net</span></div><div class='output co'>#&gt; <span class='message'>Searching https://pancanatlas.xenahubs.net</span></div><div class='output co'>#&gt; <span class='message'>Searching https://xena.treehouse.gi.ucsc.edu</span></div><div class='output co'>#&gt; <span class='message'>Searching https://pcawg.xenahubs.net</span></div><div class='output co'>#&gt; <span class='message'>Searching https://atacseq.xenahubs.net</span></div><div class='output co'>#&gt; <span class='message'>Searching https://singlecellnew.xenahubs.net</span></div><div class='input'><span class='co'># samples in each dataset, first host</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='no'>xe</span> <span class='kw'>=</span> <span class='fu'><a href='XenaHub.html'>XenaHub</a></span>(<span class='kw'>cohorts</span> <span class='kw'>=</span> <span class='st'>"Cancer Cell Line Encyclopedia (CCLE)"</span>)
+<span class='co'># samples in each dataset, first host</span>
 <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>samples</span>(<span class='no'>xe</span>, <span class='kw'>by</span><span class='kw'>=</span><span class='st'>"datasets"</span>, <span class='kw'>how</span><span class='kw'>=</span><span class='st'>"each"</span>)<span class='kw'>[[</span><span class='fl'>1</span>]]
-<span class='fu'><a href='https://rdrr.io/r/base/lengths.html'>lengths</a></span>(<span class='no'>x</span>)        <span class='co'># data sets in ccle cohort on first (only) host</span></div><div class='output co'>#&gt;          ccle/CCLE_copynumber_2013-12-03.seg.txt 
-#&gt;                                             1043 
-#&gt;           ccle/CCLE_copynumber_byGene_2013-12-03 
-#&gt;                                             1043 
-#&gt;               ccle/CCLE_DepMap_18Q2_maf_20180502 
-#&gt;                                             1549 
-#&gt; ccle/CCLE_DepMap_18Q2_RNAseq_reads_20180502.log2 
-#&gt;                                             1076 
-#&gt;       ccle/CCLE_DepMap_18Q2_RNAseq_RPKM_20180502 
-#&gt;                                             1076 
-#&gt;         ccle/CCLE_NP24.2009_Drug_data_2015.02.24 
-#&gt;                                              504 
-#&gt;                          ccle/CCLE_RPPA_20180123 
-#&gt;                                              899 
-#&gt;        ccle/CCLE_sample_info_file_2012-10-18.txt 
-#&gt;                                             1046 
-#&gt;                    ccle/sample_info_primary_site 
-#&gt;                                             1629 </div><div class='input'># }
-</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/lengths.html'>lengths</a></span>(<span class='no'>x</span>)        <span class='co'># data sets in ccle cohort on first (only) host</span>
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

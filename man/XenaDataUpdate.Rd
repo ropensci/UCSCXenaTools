@@ -4,11 +4,13 @@
 \alias{XenaDataUpdate}
 \title{Get or Update Newest Data Information of UCSC Xena Data Hubs}
 \usage{
-XenaDataUpdate(saveTolocal = TRUE)
+XenaDataUpdate(saveTolocal = TRUE, max_try = 3L)
 }
 \arguments{
 \item{saveTolocal}{logical. Whether save to local R package data directory for permanent use
 or Not.}
+
+\item{max_try}{time limit to try querying the info of data.}
 }
 \value{
 a \code{data.frame} contains all datasets information of Xena.
