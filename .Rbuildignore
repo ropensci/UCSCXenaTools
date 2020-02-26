@@ -18,3 +18,4 @@ paper/
 ^LICENSE\.md$
 ^codemeta\.json$
 ^.github$
+pkgdown$
