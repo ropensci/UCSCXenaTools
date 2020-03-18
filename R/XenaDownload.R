@@ -8,6 +8,7 @@
 ##' @param download_probeMap if `TRUE`, also download ProbeMap data, which used for id mapping.
 ##' @param trans_slash logical, default is `FALSE`. If `TRUE`, transform slash '/' in dataset id
 ##' to '__'. This option is for backwards compatibility.
+##' @param max_try time limit to try downloading the data.
 ##' @param force logical. if `TRUE`, force to download data no matter whether files exist.
 ##'  Default is `FALSE`.
 ##' @param ... other argument to `download.file` function
@@ -28,6 +29,7 @@ XenaDownload <- function(xquery,
                          download_probeMap = FALSE,
                          trans_slash = FALSE,
                          force = FALSE,
+                         max_try = 3L,
                          ...) {
   stopifnot(is.data.frame(xquery), c("url") %in% names(xquery), is.logical(download_probeMap))
 
@@ -75,7 +77,7 @@ XenaDownload <- function(xquery,
       {
         if (!file.exists(x[5]) | force) {
           message("Downloading ", x[4])
-          download.file(x[3], destfile = x[5], ...)
+          download.file2(x[3], destfile = x[5], max_try = max_try, ...)
         } else {
           message(x[5], ", the file has been download!")
         }
@@ -90,7 +92,7 @@ XenaDownload <- function(xquery,
         x[4] <- gsub(pattern = "\\.gz$", "", x[4])
         x[5] <- gsub(pattern = "\\.gz$", "", x[5])
         message("Try downloading file", x[4], "...")
-        download.file(x[3], destfile = x[5], ...)
+        download.file2(x[3], destfile = x[5], max_try = max_try, ...)
       }
     )
   }) # nocov end
@@ -102,4 +104,26 @@ XenaDownload <- function(xquery,
   }
 
   invisible(xquery)
+}
+
+download.file2 <- function(url, destfile,
+                           max_try = 3L,
+                           ...) {
+  Sys.sleep(0.01)
+  tryCatch(
+    {
+      if (abs(max_try - 4L) > 1) {
+        message("==> Trying #", abs(max_try - 4L))
+      }
+      download.file(url, destfile, ...)
+    },
+    error = function(e) {
+      if (max_try == 1) {
+        stop("Tried 3 times but failed, please check your internet connection!")
+      } else {
+        download.file(url, destfile, max_try = max_try - 1L, ...)
+      }
+    }
+  )
+
 }

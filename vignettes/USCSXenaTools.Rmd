@@ -2,7 +2,7 @@
 title: "UCSCXenaTools: an R package for Accessing Genomics Data from UCSC Xena platform, from Cancer Multi-omics to Single-cell RNA-seq"
 author: "Shixiang Wang \\
 
-        ShanghaiTech. University"
+        ShanghaiTech University"
 date: "`r Sys.Date()`"
 
 output:

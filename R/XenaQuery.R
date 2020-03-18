@@ -20,11 +20,28 @@ XenaQuery <- function(x) {
       file.path(hosts, "download", basename(datasets)),
       file.path(hosts, "download", datasets)
     )) %>%
-    dplyr::mutate(url = ifelse(!sapply(url, httr::http_error),
+    dplyr::mutate(url = ifelse(!sapply(url, http_error2),
       url, paste0(url, ".gz")
     )) %>%
     dplyr::select(hosts, datasets, url) %>%
     as.data.frame()
 
   invisible(query)
+}
+
+http_error2 <- function(url, max_try = 3L, ...) {
+  Sys.sleep(0.001)
+  tryCatch(
+    {
+      # message("==> Trying #", abs(max_try - 4L))
+      httr::http_error(url, ...)
+    },
+    error = function(e) {
+      if (max_try == 1) {
+        stop("Tried 3 times but failed, please check your internet connection!")
+      } else {
+        http_error2(url, max_try - 1L)
+      }
+    }
+  )
 }

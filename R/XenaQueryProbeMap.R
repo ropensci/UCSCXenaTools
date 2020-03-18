@@ -28,7 +28,7 @@ XenaQueryProbeMap <- function(x) {
         file.path(hosts, "download", basename(datasets)),
         file.path(hosts, "download", datasets)
       )) %>%
-      dplyr::mutate(url = ifelse(!sapply(url, httr::http_error),
+      dplyr::mutate(url = ifelse(!sapply(url, http_error2),
         url, paste0(url, ".gz")
       )) %>%
       dplyr::select(hosts, datasets, url) %>%

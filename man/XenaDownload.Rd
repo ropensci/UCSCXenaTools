@@ -10,6 +10,7 @@ XenaDownload(
   download_probeMap = FALSE,
   trans_slash = FALSE,
   force = FALSE,
+  max_try = 3L,
   ...
 )
 }
@@ -25,6 +26,8 @@ to '__'. This option is for backwards compatibility.}
 
 \item{force}{logical. if \code{TRUE}, force to download data no matter whether files exist.
 Default is \code{FALSE}.}
+
+\item{max_try}{time limit to try downloading the data.}
 
 \item{...}{other argument to \code{download.file} function}
 }
