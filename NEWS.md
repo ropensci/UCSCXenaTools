@@ -1,3 +1,7 @@
+# UCSCXenaTools 1.3.2
+
+* Fixed bug about an error happened when querying mutation data.
+
 # UCSCXenaTools 1.3.1
 
 * Added `max_try` option in query and download functions, so they can handle internet connection issue better

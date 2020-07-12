@@ -155,12 +155,14 @@ fetch_dense_values <- function(host, dataset, identifiers = NULL, samples = NULL
         ))
       }
 
-      res <- t(sapply(res[["scores"]], base::rbind))
-      rownames(res) <- identifiers
-      colnames(res) <- samples
-      return(res)
+      if (!is.null(unlist(res[["scores"]]))) {
+        res <- t(sapply(res[["scores"]], base::rbind))
+        rownames(res) <- identifiers
+        colnames(res) <- samples
+        return(res)
+      }
     }
-    message("-> Done. No probeMap found, use old way...")
+    message("-> Done. No probeMap found or error happened, use old way...")
   }
 
   t_start = Sys.time()
