@@ -13,7 +13,7 @@ A character vector include current defalut hosts
 Return Xena default hosts
 }
 \seealso{
-\code{\link[UCSCXenaTools:XenaHub]{UCSCXenaTools::XenaHub()}}
+\code{\link[=XenaHub]{XenaHub()}}
 }
 \author{
 Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}

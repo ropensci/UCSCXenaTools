@@ -4,7 +4,9 @@
 \name{XenaData}
 \alias{XenaData}
 \title{Xena Hub Information}
-\format{A \code{tibble}.}
+\format{
+A \code{tibble}.
+}
 \source{
 Generated from UCSC Xena Data Hubs.
 }

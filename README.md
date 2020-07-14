@@ -149,7 +149,8 @@ issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)]
 
 </table>
 
-<br> <!-- badges: end -->
+<br>
+<!-- badges: end -->
 
 # UCSCXenaTools <img src='man/figures/logo.png' align="right" height="200" alt="logo"/>
 
@@ -192,7 +193,8 @@ with:
 remotes::install_github("ropensci/UCSCXenaTools")
 ```
 
-If you want to build vignette in local, please add two options:
+If you want to build vignette in local, please add two
+options:
 
 ``` r
 remotes::install_github("ropensci/UCSCXenaTools", build_vignettes = TRUE, dependencies = TRUE)
@@ -212,7 +214,6 @@ Xena.
   - Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
   - UCSC Toil RNAseq Recompute Compendium Hub:
     <https://toil.xenahubs.net>
-  - Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
   - PCAWG Xena Hub: <https://pcawg.xenahubs.net>
   - ATAC-seq Hub: <https://atacseq.xenahubs.net>
   - Singel Cell Xena Hub: <https://singlecellnew.xenahubs.net>
@@ -251,7 +252,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.2.10
+#> UCSCXenaTools version 1.3.1
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -267,13 +268,13 @@ head(XenaData)
 #> # A tibble: 6 x 17
 #>   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype Label
 #>   <chr>     <chr>         <chr>       <chr>              <int> <chr>       <chr>
-#> 1 https://~ publicHub     Breast Can~ ucsfNeve_pu~          51 gene expre~ Neve~
-#> 2 https://~ publicHub     Breast Can~ ucsfNeve_pu~          57 phenotype   Phen~
-#> 3 https://~ publicHub     Glioma (Ko~ kotliarov20~         194 copy number Kotl~
-#> 4 https://~ publicHub     Glioma (Ko~ kotliarov20~         194 phenotype   Phen~
-#> 5 https://~ publicHub     Lung Cance~ weir2007_pu~         383 copy number CGH  
-#> 6 https://~ publicHub     Lung Cance~ weir2007_pu~         383 phenotype   Phen~
-#> # ... with 10 more variables: Type <chr>, AnatomicalOrigin <chr>,
+#> 1 https://… publicHub     Breast Can… ucsfNeve_pu…          51 gene expre… Neve…
+#> 2 https://… publicHub     Breast Can… ucsfNeve_pu…          57 phenotype   Phen…
+#> 3 https://… publicHub     Glioma (Ko… kotliarov20…         194 copy number Kotl…
+#> 4 https://… publicHub     Glioma (Ko… kotliarov20…         194 phenotype   Phen…
+#> 5 https://… publicHub     Lung Cance… weir2007_pu…         383 copy number CGH  
+#> 6 https://… publicHub     Lung Cance… weir2007_pu…         383 phenotype   Phen…
+#> # … with 10 more variables: Type <chr>, AnatomicalOrigin <chr>,
 #> #   SampleType <chr>, Tags <chr>, ProbeMap <chr>, LongTitle <chr>,
 #> #   Citation <chr>, Version <chr>, Unit <chr>, Platform <chr>
 ```
@@ -308,7 +309,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory D:/Tool/Rtmp\RtmpG4nBvL.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmp6PKwux.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
@@ -328,7 +329,8 @@ names(cli)
 
 ## Citation
 
-Cite me by the following paper.
+Cite me by the following
+    paper.
 
     Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data
       from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. 
@@ -353,7 +355,8 @@ Cite me by the following paper.
         day = {5},
     }
 
-Cite UCSC Xena by the following paper.
+Cite UCSC Xena by the following
+    paper.
 
     Goldman, Mary, et al. "The UCSC Xena Platform for cancer genomics data 
         visualization and interpretation." BioRxiv (2019): 326470.
@@ -371,6 +374,7 @@ For anyone who wants to contribute, please follow the guideline:
 ## Acknowledgment
 
 This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
-thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
+thanks [Martin Morgan](https://github.com/mtmorgan) for his
+work.
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)

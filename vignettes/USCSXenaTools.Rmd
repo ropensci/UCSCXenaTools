@@ -71,7 +71,6 @@ Currently, **UCSCXenaTools** supports the following data hubs of UCSC Xena.
 * ICGC Xena Hub: <https://icgc.xenahubs.net>
 * Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
 * UCSC Toil RNAseq Recompute Compendium Hub: <https://toil.xenahubs.net>
-* Treehouse Hub: <https://xena.treehouse.gi.ucsc.edu>
 * PCAWG Xena Hub: <https://pcawg.xenahubs.net>
 * ATAC-seq Hub: <https://atacseq.xenahubs.net>
 * Singel Cell Xena Hub: <https://singlecellnew.xenahubs.net>

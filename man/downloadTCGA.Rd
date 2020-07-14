@@ -51,12 +51,12 @@ downloadTCGA(project = "UVM",
 }
 }
 \seealso{
-\code{\link[UCSCXenaTools:XenaQuery]{UCSCXenaTools::XenaQuery()}},
-\code{\link[UCSCXenaTools:XenaFilter]{UCSCXenaTools::XenaFilter()}},
-\code{\link[UCSCXenaTools:XenaDownload]{UCSCXenaTools::XenaDownload()}},
-\code{\link[UCSCXenaTools:XenaPrepare]{UCSCXenaTools::XenaPrepare()}},
-\code{\link[UCSCXenaTools:availTCGA]{UCSCXenaTools::availTCGA()}},
-\code{\link[UCSCXenaTools:showTCGA]{UCSCXenaTools::showTCGA()}}
+\code{\link[=XenaQuery]{XenaQuery()}},
+\code{\link[=XenaFilter]{XenaFilter()}},
+\code{\link[=XenaDownload]{XenaDownload()}},
+\code{\link[=XenaPrepare]{XenaPrepare()}},
+\code{\link[=availTCGA]{availTCGA()}},
+\code{\link[=showTCGA]{showTCGA()}}
 }
 \author{
 Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}

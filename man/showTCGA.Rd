@@ -21,7 +21,7 @@ showTCGA("all")
 }
 }
 \seealso{
-\code{\link[UCSCXenaTools:availTCGA]{UCSCXenaTools::availTCGA()}}
+\code{\link[=availTCGA]{availTCGA()}}
 }
 \author{
 Shixiang Wang \href{mailto:w_shixiang@163.com}{w_shixiang@163.com}
