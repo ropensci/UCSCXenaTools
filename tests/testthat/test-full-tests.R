@@ -18,7 +18,7 @@ all_hosts <- c(
   "https://icgc.xenahubs.net",
   "https://toil.xenahubs.net",
   "https://pancanatlas.xenahubs.net",
-  "https://xena.treehouse.gi.ucsc.edu",
+  "https://xena.treehouse.gi.ucsc.edu:443",
   "https://pcawg.xenahubs.net",
   "https://atacseq.xenahubs.net",
   "https://singlecellnew.xenahubs.net",
