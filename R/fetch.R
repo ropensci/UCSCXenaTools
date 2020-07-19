@@ -195,6 +195,25 @@ fetch_dense_values <- function(host, dataset, identifiers = NULL, samples = NULL
   res
 }
 
+#' @describeIn fetch fetches values from a sparse `data.frame`.
+#' @export
+fetch_sparse_values <- function(host, dataset, genes, samples = NULL,
+                               time_limit = 30) {
+  # fetch_sparse_values("https://ucscpublic.xenahubs.net", "ccle/CCLE_DepMap_18Q2_maf_20180502", c("TP53", "KRAS")) -> mm
+  stopifnot(
+    length(host) == 1, length(dataset) == 1,
+    is.character(host), is.character(dataset)
+  )
+  .attach_this()
+
+  if (is.null(samples)) {
+    samples <- fetch_dataset_samples(host, dataset)
+  }
+
+  .p_sparse_data(host, dataset, samples, genes)
+
+}
+
 #' @describeIn fetch fetches samples from a dataset
 #' @param limit number of samples, if `NULL`, return all samples.
 #' @export
