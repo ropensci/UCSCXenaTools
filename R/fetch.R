@@ -196,6 +196,7 @@ fetch_dense_values <- function(host, dataset, identifiers = NULL, samples = NULL
 }
 
 #' @describeIn fetch fetches values from a sparse `data.frame`.
+#' @param genes gene names.
 #' @export
 fetch_sparse_values <- function(host, dataset, genes, samples = NULL,
                                time_limit = 30) {
@@ -256,6 +257,6 @@ has_probeMap <- function(host, dataset) {
 utils::globalVariables(
   c(
     ".p_dataset_fetch", ".p_dataset_field", ".p_dataset_gene_probe_avg",
-    ".p_dataset_samples"
+    ".p_dataset_samples", ".p_sparse_data"
   )
 )

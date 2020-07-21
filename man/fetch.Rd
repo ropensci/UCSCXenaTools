@@ -53,6 +53,8 @@ gene symbols even the identifiers of dataset are probes or others.}
 
 \item{time_limit}{time limit for getting response in seconds.}
 
+\item{genes}{gene names.}
+
 \item{limit}{number of samples, if \code{NULL}, return all samples.}
 }
 \value{
