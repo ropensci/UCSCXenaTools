@@ -29,7 +29,7 @@
 #' When the dataset you want to query has a identifier-to-gene mapping, identifiers can be
 #' gene symbols even the identifiers of dataset are probes or others.
 #' @param time_limit time limit for getting response in seconds.
-#' @return a `matirx` or character vector.
+#' @return a `matirx` or character vector or a `list`.
 #' @examples
 #' library(UCSCXenaTools)
 #'
@@ -210,8 +210,24 @@ fetch_sparse_values <- function(host, dataset, genes, samples = NULL,
     samples <- fetch_dataset_samples(host, dataset)
   }
 
-  .p_sparse_data(host, dataset, samples, genes)
+  t_start = Sys.time()
+  while (as.numeric(Sys.time() - t_start) < time_limit) {
+    res <- tryCatch(
+      {
+        .p_sparse_data(host, dataset, samples, genes)
+      },
+      error = function(e) {
+        message("-> Query faild. Retrying...")
+        list(has_error = TRUE, error_info = e)
+      }
+    )
+    if (is.list(res)) {
+      break()
+    }
+    Sys.sleep(1)
+  }
 
+  res
 }
 
 #' @describeIn fetch fetches samples from a dataset

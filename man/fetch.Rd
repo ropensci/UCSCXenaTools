@@ -56,7 +56,7 @@ gene symbols even the identifiers of dataset are probes or others.}
 \item{limit}{number of samples, if \code{NULL}, return all samples.}
 }
 \value{
-a \code{matirx} or character vector.
+a \code{matirx} or character vector or a \code{list}.
 }
 \description{
 When you want to query just data for several genes/samples from UCSC Xena datasets, a better way
