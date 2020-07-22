@@ -205,6 +205,12 @@ class(cli)
 names(cli)
 ```
 
+## More to read
+
+- [Introduction and basic usage of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro)
+- [UCSCXenaTools: Retrieve Gene Expression and Clinical Information from UCSC Xena for Survival Analysis](https://shixiangwang.github.io/home/en/post/ucscxenatools-201908/)
+- [Obtain RNAseq Values for a Specific Gene in Xena Database](https://shixiangwang.github.io/home/en/post/2020-07-22-ucscxenatools-single-gene/)
+- [UCSC Xena Access APIs in UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api)
 
 ## Citation
 

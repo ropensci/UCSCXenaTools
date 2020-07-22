@@ -309,7 +309,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmp6PKwux.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpoPutBR.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
@@ -326,6 +326,18 @@ class(cli)
 names(cli)
 #> [1] "LUNG_clinicalMatrix" "LUAD_clinicalMatrix" "LUSC_clinicalMatrix"
 ```
+
+## More to read
+
+  - [Introduction and basic usage of
+    UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro)
+  - [UCSCXenaTools: Retrieve Gene Expression and Clinical Information
+    from UCSC Xena for Survival
+    Analysis](https://shixiangwang.github.io/home/en/post/ucscxenatools-201908/)
+  - [Obtain RNAseq Values for a Specific Gene in Xena
+    Database](https://shixiangwang.github.io/home/en/post/2020-07-22-ucscxenatools-single-gene/)
+  - [UCSC Xena Access APIs in
+    UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api)
 
 ## Citation
 

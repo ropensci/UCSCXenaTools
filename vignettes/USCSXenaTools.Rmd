@@ -200,7 +200,7 @@ because sometimes package check will fail due to internet problem.
 - [Introduction and basic usage of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro/) - [PDF](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro.pdf)
 - [APIs of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api/) - [PDF](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api.pdf)
 
-A use case for survival analysis has been published on rOpenSci, please read
+Read [Obtain RNAseq Values for a Specific Gene in Xena Database](https://shixiangwang.github.io/home/en/tools/ucscxenatools-single-gene/) to see how to get values for single gene. A use case for survival analysis based on single gene expression has been published on rOpenSci, please read
 [UCSCXenaTools: Retrieve Gene Expression and Clinical Information from UCSC Xena for Survival Analysis](https://ropensci.org/technotes/2019/09/06/ucscxenatools-surv/).
 
 ## QA
