@@ -2,6 +2,7 @@
 
 * Added `fetch_sparse_values()` function.
 * Updated treehouse URL.
+* Added treehouse datasets.
 
 # UCSCXenaTools 1.3.2
 
