@@ -1,3 +1,7 @@
+# UCSCXenaTools 1.3.4
+
+* Updated UCSC Xena datasets, now 1670 datasets available.
+
 # UCSCXenaTools 1.3.3
 
 * Added `fetch_sparse_values()` function.

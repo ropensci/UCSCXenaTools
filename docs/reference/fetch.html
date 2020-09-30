@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -47,7 +51,6 @@
 is to use these fetch_ functions instead of downloading a whole dataset. Details about functions
 please see the following sections." />
 <meta property="og:image" content="/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -65,7 +68,7 @@ please see the following sections." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +82,7 @@ please see the following sections." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.4</span>
       </span>
     </div>
 
@@ -112,7 +115,7 @@ please see the following sections." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/ropensci/UCSCXenaTools">
+  <a href="https://github.com/ropensci/UCSCXenaTools/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -141,23 +144,25 @@ is to use these <code>fetch_</code> functions instead of downloading a whole dat
 please see the following sections.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fetch</span>(<span class='no'>host</span>, <span class='no'>dataset</span>)
+    <pre class="usage"><span class='fu'>fetch</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span><span class='op'>)</span>
 
-<span class='fu'>fetch_dense_values</span>(
-  <span class='no'>host</span>,
-  <span class='no'>dataset</span>,
-  <span class='kw'>identifiers</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>samples</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>check</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>use_probeMap</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>time_limit</span> <span class='kw'>=</span> <span class='fl'>30</span>
-)
+<span class='fu'>fetch_dense_values</span><span class='op'>(</span>
+  <span class='va'>host</span>,
+  <span class='va'>dataset</span>,
+  identifiers <span class='op'>=</span> <span class='cn'>NULL</span>,
+  samples <span class='op'>=</span> <span class='cn'>NULL</span>,
+  check <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  use_probeMap <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  time_limit <span class='op'>=</span> <span class='fl'>30</span>
+<span class='op'>)</span>
 
-<span class='fu'>fetch_dataset_samples</span>(<span class='no'>host</span>, <span class='no'>dataset</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)
+<span class='fu'>fetch_sparse_values</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span>, <span class='va'>genes</span>, samples <span class='op'>=</span> <span class='cn'>NULL</span>, time_limit <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
 
-<span class='fu'>fetch_dataset_identifiers</span>(<span class='no'>host</span>, <span class='no'>dataset</span>)
+<span class='fu'>fetch_dataset_samples</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span>, limit <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span>
 
-<span class='fu'>has_probeMap</span>(<span class='no'>host</span>, <span class='no'>dataset</span>)</pre>
+<span class='fu'>fetch_dataset_identifiers</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span><span class='op'>)</span>
+
+<span class='fu'>has_probeMap</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -200,6 +205,10 @@ gene symbols even the identifiers of dataset are probes or others.</p></td>
       <td><p>time limit for getting response in seconds.</p></td>
     </tr>
     <tr>
+      <th>genes</th>
+      <td><p>gene names.</p></td>
+    </tr>
+    <tr>
       <th>limit</th>
       <td><p>number of samples, if <code>NULL</code>, return all samples.</p></td>
     </tr>
@@ -207,7 +216,7 @@ gene symbols even the identifiers of dataset are probes or others.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a <code>matirx</code> or character vector.</p>
+    <p>a <code>matirx</code> or character vector or a <code>list</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>There are three primary data types: dense matrix (samples by probes (or say identifiers)),
@@ -222,24 +231,27 @@ used to map a gene location to a set of probes.</p>
     
 <ul>
 <li><p><code>fetch_dense_values</code>: fetches values from a dense matrix.</p></li>
+<li><p><code>fetch_sparse_values</code>: fetches values from a sparse <code>data.frame</code>.</p></li>
 <li><p><code>fetch_dataset_samples</code>: fetches samples from a dataset</p></li>
 <li><p><code>fetch_dataset_identifiers</code>: fetches identifies from a dataset.</p></li>
 <li><p><code>has_probeMap</code>: checks if a dataset has ProbeMap.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>UCSCXenaTools</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://docs.ropensci.org/UCSCXenaTools'>UCSCXenaTools</a></span><span class='op'>)</span>
 
-<span class='no'>host</span> <span class='kw'>&lt;-</span> <span class='st'>"https://toil.xenahubs.net"</span>
-<span class='no'>dataset</span> <span class='kw'>&lt;-</span> <span class='st'>"tcga_RSEM_gene_tpm"</span>
-<span class='no'>samples</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TCGA-02-0047-01"</span>, <span class='st'>"TCGA-02-0055-01"</span>, <span class='st'>"TCGA-02-2483-01"</span>, <span class='st'>"TCGA-02-2485-01"</span>)
-<span class='no'>probes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ENSG00000282740.1"</span>, <span class='st'>"ENSG00000000005.5"</span>, <span class='st'>"ENSG00000000419.12"</span>)
-<span class='no'>genes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"TP53"</span>, <span class='st'>"RB1"</span>, <span class='st'>"PIK3CA"</span>)
+<span class='va'>host</span> <span class='op'>&lt;-</span> <span class='st'>"https://toil.xenahubs.net"</span>
+<span class='va'>dataset</span> <span class='op'>&lt;-</span> <span class='st'>"tcga_RSEM_gene_tpm"</span>
+<span class='va'>samples</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"TCGA-02-0047-01"</span>, <span class='st'>"TCGA-02-0055-01"</span>, <span class='st'>"TCGA-02-2483-01"</span>, <span class='st'>"TCGA-02-2485-01"</span><span class='op'>)</span>
+<span class='va'>probes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ENSG00000282740.1"</span>, <span class='st'>"ENSG00000000005.5"</span>, <span class='st'>"ENSG00000000419.12"</span><span class='op'>)</span>
+<span class='va'>genes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"TP53"</span>, <span class='st'>"RB1"</span>, <span class='st'>"PIK3CA"</span><span class='op'>)</span>
 
 <span class='co'># \donttest{</span>
 <span class='co'># Fetch samples</span>
-<span class='fu'>fetch_dataset_samples</span>(<span class='no'>host</span>, <span class='no'>dataset</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] "TCGA-19-1787-01" "TCGA-S9-A7J2-01"</div><div class='input'><span class='co'># Fetch identifiers</span>
-<span class='fu'>fetch_dataset_identifiers</span>(<span class='no'>host</span>, <span class='no'>dataset</span>)</div><div class='output co'>#&gt;     [1] "ENSG00000000003.14" "ENSG00000000005.5"  "ENSG00000000419.12"
+<span class='fu'>fetch_dataset_samples</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span>, <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "TCGA-19-1787-01" "TCGA-S9-A7J2-01"</div><div class='input'><span class='co'># Fetch identifiers</span>
+<span class='fu'>fetch_dataset_identifiers</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;     [1] "ENSG00000000003.14" "ENSG00000000005.5"  "ENSG00000000419.12"
 #&gt;     [4] "ENSG00000000457.13" "ENSG00000000460.16" "ENSG00000000938.12"
 #&gt;     [7] "ENSG00000000971.15" "ENSG00000001036.13" "ENSG00000001084.10"
 #&gt;    [10] "ENSG00000001167.14" "ENSG00000001460.17" "ENSG00000001461.16"
@@ -20406,7 +20418,8 @@ used to map a gene location to a set of probes.</p>
 #&gt; [60493] "ENSGR0000270726.5"  "ENSGR0000275287.4"  "ENSGR0000276543.4" 
 #&gt; [60496] "ENSGR0000277120.4"  "ENSGR0000280767.2"  "ENSGR0000281849.2" 
 #&gt; [60499] "sampleID"          </div><div class='input'><span class='co'># Fetch expression value by probes</span>
-<span class='fu'>fetch_dense_values</span>(<span class='no'>host</span>, <span class='no'>dataset</span>, <span class='no'>probes</span>, <span class='no'>samples</span>, <span class='kw'>check</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt;                    TCGA-02-0047-01 TCGA-02-0055-01 TCGA-02-2483-01
+<span class='fu'>fetch_dense_values</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span>, <span class='va'>probes</span>, <span class='va'>samples</span>, check <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;                    TCGA-02-0047-01 TCGA-02-0055-01 TCGA-02-2483-01
 #&gt; ENSG00000282740.1           -9.966          -2.826          -9.966
 #&gt; ENSG00000000005.5           -3.171           4.165          -5.574
 #&gt; ENSG00000000419.12           4.675           6.025           5.826
@@ -20414,22 +20427,17 @@ used to map a gene location to a set of probes.</p>
 #&gt; ENSG00000282740.1           -9.966
 #&gt; ENSG00000000005.5           -3.171
 #&gt; ENSG00000000419.12           5.177</div><div class='input'><span class='co'># Fetch expression value by gene symbol (if the dataset has probeMap)</span>
-<span class='fu'>fetch_dense_values</span>(<span class='no'>host</span>, <span class='no'>dataset</span>, <span class='no'>genes</span>, <span class='no'>samples</span>, <span class='kw'>check</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>use_probeMap</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>-&gt; Checking if the dataset has probeMap...</span></div><div class='output co'>#&gt; <span class='message'>-&gt; Done. ProbeMap is found.</span></div><div class='output co'>#&gt;        TCGA-02-0047-01 TCGA-02-0055-01 TCGA-02-2483-01 TCGA-02-2485-01
+<span class='fu'>fetch_dense_values</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span>, <span class='va'>genes</span>, <span class='va'>samples</span>, check <span class='op'>=</span> <span class='cn'>FALSE</span>, use_probeMap <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>-&gt; Checking if the dataset has probeMap...</span></div><div class='output co'>#&gt; <span class='message'>-&gt; Done. ProbeMap is found.</span></div><div class='output co'>#&gt;        TCGA-02-0047-01 TCGA-02-0055-01 TCGA-02-2483-01 TCGA-02-2485-01
 #&gt; TP53             5.799           4.428           6.515           6.309
 #&gt; RB1              5.867           4.700           4.810           4.920
-#&gt; PIK3CA           3.547           3.377           2.789           2.951</div><div class='input'># }
+#&gt; PIK3CA           3.547           3.377           2.789           2.951</div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#functions">Functions</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -20440,7 +20448,7 @@ used to map a gene location to a set of probes.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
