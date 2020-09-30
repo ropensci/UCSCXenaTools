@@ -68,7 +68,7 @@ Development
 
 <tr class="even">
 <td align="left">
-<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools" alt="downloads"></a>
+<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools" alt="downloads"></a>
 </td>
 <td align="left">
 <a href="https://zenodo.org/badge/latestdoi/178662770"><img src="https://zenodo.org/badge/178662770.svg" alt="DOI"></a>
@@ -80,7 +80,7 @@ Development
 </tr>
 <tr class="odd">
 <td align="left">
-<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="http://cranlogs.r-pkg.org/badges/UCSCXenaTools" alt="month-downloads"></a>
+<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://cranlogs.r-pkg.org/badges/UCSCXenaTools" alt="month-downloads"></a>
 </td>
 <td align="left">
 <a href="https://doi.org/10.21105/joss.01627"><img src="https://joss.theoj.org/papers/10.21105/joss.01627/status.svg" alt="JOSS" >
@@ -207,10 +207,10 @@ names(cli)
 
 ## More to read
 
-- [Introduction and basic usage of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro)
+- [Introduction and basic usage of UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro/)
 - [UCSCXenaTools: Retrieve Gene Expression and Clinical Information from UCSC Xena for Survival Analysis](https://shixiangwang.github.io/home/en/post/ucscxenatools-201908/)
 - [Obtain RNAseq Values for a Specific Gene in Xena Database](https://shixiangwang.github.io/home/en/post/2020-07-22-ucscxenatools-single-gene/)
-- [UCSC Xena Access APIs in UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api)
+- [UCSC Xena Access APIs in UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api/)
 
 ## Citation
 
@@ -230,7 +230,7 @@ Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomi
 	number = {40},
 	publisher = {The Open Journal},
 	title = {The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq},
-	url = {http://dx.doi.org/10.21105/joss.01627},
+	url = {https://dx.doi.org/10.21105/joss.01627},
 	volume = {4},
 	author = {Wang, Shixiang and Liu, Xuesong},
 	pages = {1627},

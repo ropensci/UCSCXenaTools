@@ -103,7 +103,7 @@ Development
 
 <td align="left">
 
-<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="http://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools" alt="downloads"></a>
+<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools" alt="downloads"></a>
 
 </td>
 
@@ -126,7 +126,7 @@ issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)]
 
 <td align="left">
 
-<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="http://cranlogs.r-pkg.org/badges/UCSCXenaTools" alt="month-downloads"></a>
+<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://cranlogs.r-pkg.org/badges/UCSCXenaTools" alt="month-downloads"></a>
 
 </td>
 
@@ -252,7 +252,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.3.1
+#> UCSCXenaTools version 1.3.4
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -309,7 +309,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpoPutBR.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpw9KAUl.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
@@ -330,14 +330,14 @@ names(cli)
 ## More to read
 
   - [Introduction and basic usage of
-    UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro)
+    UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-intro/)
   - [UCSCXenaTools: Retrieve Gene Expression and Clinical Information
     from UCSC Xena for Survival
     Analysis](https://shixiangwang.github.io/home/en/post/ucscxenatools-201908/)
   - [Obtain RNAseq Values for a Specific Gene in Xena
     Database](https://shixiangwang.github.io/home/en/post/2020-07-22-ucscxenatools-single-gene/)
   - [UCSC Xena Access APIs in
-    UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api)
+    UCSCXenaTools](https://shixiangwang.github.io/home/en/tools/ucscxenatools-api/)
 
 ## Citation
 
@@ -357,7 +357,7 @@ Cite me by the following
         number = {40},
         publisher = {The Open Journal},
         title = {The UCSCXenaTools R package: a toolkit for accessing genomics data from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq},
-        url = {http://dx.doi.org/10.21105/joss.01627},
+        url = {https://dx.doi.org/10.21105/joss.01627},
         volume = {4},
         author = {Wang, Shixiang and Liu, Xuesong},
         pages = {1627},
