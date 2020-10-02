@@ -59,7 +59,7 @@ Development
 <a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://tinyverse.netlify.com/badge/UCSCXenaTools"></a>
 </td>
 <td align="left">
-<a href="https://github.com/ropensci/onboarding/issues/315"><img src="https://badges.ropensci.org/315_status.svg" alt="rOpenSci"></a>
+<a href="https://github.com/ropensci/software-review/issues/315"><img src="https://badges.ropensci.org/315_status.svg" alt="rOpenSci"></a>
 </td>
 <td align="left">
 <a href="https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master"><img src="https://codecov.io/github/ShixiangWang/UCSCXenaTools/coverage.svg?branch=master" alt="Codecov"></a>

@@ -87,7 +87,7 @@ Development
 
 <td align="left">
 
-<a href="https://github.com/ropensci/onboarding/issues/315"><img src="https://badges.ropensci.org/315_status.svg" alt="rOpenSci"></a>
+<a href="https://github.com/ropensci/software-review/issues/315"><img src="https://badges.ropensci.org/315_status.svg" alt="rOpenSci"></a>
 
 </td>
 
@@ -149,8 +149,7 @@ issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)]
 
 </table>
 
-<br>
-<!-- badges: end -->
+<br> <!-- badges: end -->
 
 # UCSCXenaTools <img src='man/figures/logo.png' align="right" height="200" alt="logo"/>
 
@@ -193,8 +192,7 @@ with:
 remotes::install_github("ropensci/UCSCXenaTools")
 ```
 
-If you want to build vignette in local, please add two
-options:
+If you want to build vignette in local, please add two options:
 
 ``` r
 remotes::install_github("ropensci/UCSCXenaTools", build_vignettes = TRUE, dependencies = TRUE)
@@ -309,7 +307,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmpw9KAUl.
+#> All downloaded files will under directory /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn/T//RtmpbaazSQ.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
@@ -341,8 +339,7 @@ names(cli)
 
 ## Citation
 
-Cite me by the following
-    paper.
+Cite me by the following paper.
 
     Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data
       from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. 
@@ -367,8 +364,7 @@ Cite me by the following
         day = {5},
     }
 
-Cite UCSC Xena by the following
-    paper.
+Cite UCSC Xena by the following paper.
 
     Goldman, Mary, et al. "The UCSC Xena Platform for cancer genomics data 
         visualization and interpretation." BioRxiv (2019): 326470.
@@ -386,7 +382,6 @@ For anyone who wants to contribute, please follow the guideline:
 ## Acknowledgment
 
 This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
-thanks [Martin Morgan](https://github.com/mtmorgan) for his
-work.
+thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 
 [![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
