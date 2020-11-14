@@ -10,7 +10,7 @@ XenaHub(
   datasets = character(),
   hostName = c("publicHub", "tcgaHub", "gdcHub", "icgcHub", "toilHub",
     "pancanAtlasHub", "treehouseHub", "pcawgHub", "atacseqHub", "singlecellHub",
-    "kidsfirstHub")
+    "kidsfirstHub", "tdiHub")
 )
 }
 \arguments{

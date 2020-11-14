@@ -1,3 +1,7 @@
+# UCSCXenaTools 1.3.5
+
+- Added TDI data Hub containing 9 new datasets.
+
 # UCSCXenaTools 1.3.4
 
 * Updated UCSC Xena datasets, now 1670 datasets available.

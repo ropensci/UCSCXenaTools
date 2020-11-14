@@ -151,6 +151,7 @@ Currently, **UCSCXenaTools** supports the following data hubs of UCSC Xena.
 * ATAC-seq Hub: <https://atacseq.xenahubs.net>
 * Singel Cell Xena Hub: <https://singlecellnew.xenahubs.net>
 * Kids First Xena Hub: <https://kidsfirst.xenahubs.net>
+* Tumor Deconvolution and Immunogenicity Xena Hub: <https://tdi.xenahubs.net>
 
 Users can update dataset list from the newest version of UCSC Xena by hand with `XenaDataUpdate()` function, followed
 by restarting R and `library(UCSCXenaTools)`.
