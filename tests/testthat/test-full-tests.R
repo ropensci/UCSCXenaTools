@@ -22,7 +22,8 @@ all_hosts <- c(
   "https://pcawg.xenahubs.net",
   "https://atacseq.xenahubs.net",
   "https://singlecellnew.xenahubs.net",
-  "https://kidsfirst.xenahubs.net"
+  "https://kidsfirst.xenahubs.net",
+  "https://tdi.xenahubs.net"
 )
 
 
