@@ -25,7 +25,7 @@ download_dataset <- function(x, destdir) {
             method = "curl", extra = "-C -") # 断点续传
 }
 
-access_datasets <- XenaData[c(2,4,8),] # XenaDataUpdate(saveTolocal = FALSE)
+access_datasets <- XenaData # XenaDataUpdate(saveTolocal = FALSE)
 hubs <- unique(access_datasets$XenaHostNames)
 dataset_list <- lapply(hubs, function(h) {
     x <- subset(access_datasets, XenaHostNames == h)
