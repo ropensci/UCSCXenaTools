@@ -92,7 +92,15 @@ XenaDownload <- function(xquery,
         x[4] <- gsub(pattern = "\\.gz$", "", x[4])
         x[5] <- gsub(pattern = "\\.gz$", "", x[5])
         message("Try downloading file", x[4], "...")
-        download.file2(x[3], destfile = x[5], max_try = max_try, ...)
+        tryCatch(
+          {
+            download.file2(x[3], destfile = x[5], max_try = max_try, ...)
+          },
+          error = function(e) {
+            message("Your network is bad (try again) or the data source is invalid (report to the developer).")
+            invisible(NULL)
+          }
+        )
       }
     )
   }) # nocov end
@@ -121,7 +129,7 @@ download.file2 <- function(url, destfile,
       if (max_try == 1) {
         stop("Tried 3 times but failed, please check your internet connection!")
       } else {
-        download.file(url, destfile, max_try = max_try - 1L, ...)
+        download.file2(url, destfile, max_try = max_try - 1L, ...)
       }
     }
   )

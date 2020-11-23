@@ -1,3 +1,8 @@
+# UCSCXenaTools 1.3.6
+
+- Fixed a bug about try times for data download. 
+- Make sure a message instead of an error will be returned if download process failed.
+
 # UCSCXenaTools 1.3.5
 
 - Added TDI data Hub containing 9 new datasets.
