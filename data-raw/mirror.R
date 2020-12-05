@@ -16,8 +16,12 @@ if (length(args) != 2) {
     quit("no", status = 1)
 }
 
+
+sink(file = file.path(destdir, "mirror.log"))
 destdir <- path.expand(args[1])
-threads <- args[2]
+threads <- as.integer(args[2])
+message("destdir: ", destdir)
+message("threads: ", threads)
 
 if (!dir.exists(destdir)) dir.create(destdir, recursive = TRUE)
 future::plan(multisession, workers = threads)
@@ -36,7 +40,6 @@ download_dataset <- function(x, destdir) {
 access_datasets <- XenaData[1:10] # XenaDataUpdate(saveTolocal = FALSE)
 hubs <- unique(access_datasets$XenaHostNames)
 
-sink(file = file.path(destdir, "mirror.log"))
 dataset_list <- furrr::future_map(hubs, function(h) {
     sink(file = file.path(destdir, "mirror.log"), append = TRUE)
     x <- subset(access_datasets, XenaHostNames == h)
