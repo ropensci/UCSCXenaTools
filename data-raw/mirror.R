@@ -37,7 +37,7 @@ download_dataset <- function(x, destdir) {
             method = "curl", extra = "-C -") # 断点续传
 }
 
-access_datasets <- XenaData[1:10] # XenaDataUpdate(saveTolocal = FALSE)
+access_datasets <- XenaData # XenaDataUpdate(saveTolocal = FALSE)
 hubs <- unique(access_datasets$XenaHostNames)
 
 dataset_list <- furrr::future_map(hubs, function(h) {
