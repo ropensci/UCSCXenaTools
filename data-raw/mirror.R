@@ -34,6 +34,7 @@ download_dataset <- function(x, destdir) {
             destdir = destdir,
             download_probeMap = TRUE,
             trans_slash = FALSE,
+            force = TRUE,
             method = "curl", extra = "-C -") # 断点续传
 }
 
