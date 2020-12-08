@@ -58,4 +58,4 @@ sink()
 
 write.csv(mapping_df,
           file = file.path(destdir, "mapping_dataframe.csv"),
-          row.names = FALSE)
+          row.names = FALSE, quote = FALSE)
