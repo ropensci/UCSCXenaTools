@@ -5,70 +5,72 @@
 <thead>
 <tr class="header">
 <th align="left">
-<p>Usage</p>
+Usage
 </th>
 <th align="left">
-<p>Release</p>
+Release
 </th>
 <th align="left">
-<p>Development</p>
+Development
 </th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">
-<p><a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a></p>
+<a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://img.shields.io/badge/licence-GPL--3-blue.svg" alt="Licence"></a>
 </td>
 <td align="left">
-<p><a href="https://cran.r-project.org/package=UCSCXenaTools"><img src="https://www.r-pkg.org/badges/version/UCSCXenaTools" alt="CRAN"></a></p>
+<a href="https://cran.r-project.org/package=UCSCXenaTools"><img src="https://www.r-pkg.org/badges/version/UCSCXenaTools" alt="CRAN"></a>
 </td>
 <td align="left">
-<p><a href="https://travis-ci.org/ropensci/UCSCXenaTools"><img src="https://travis-ci.org/ropensci/UCSCXenaTools.svg?branch=master" alt="Travis"></a></p>
-</td>
-</tr>
-<tr class="even">
-<td align="left">
-<p><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg" alt="minimal R version"></a></p>
-</td>
-<td align="left">
-<p><a href="https://cran.r-project.org/web/checks/check_results_UCSCXenaTools.html"><img src="https://cranchecks.info/badges/summary/UCSCXenaTools" alt="cran-checks"></a></p>
-</td>
-<td align="left">
-<p><a href="https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools"><img src="https://ci.appveyor.com/api/projects/status/github/ropensci/UCSCXenaTools?branch=master&svg=true" alt="AppVeyor"></a></p>
-</td>
-</tr>
-<tr class="odd">
-<td align="left">
-<p><a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://tinyverse.netlify.com/badge/UCSCXenaTools"></a></p>
-</td>
-<td align="left">
-<p><a href="https://github.com/ropensci/software-review/issues/315"><img src="https://badges.ropensci.org/315_status.svg" alt="rOpenSci"></a></p>
-</td>
-<td align="left">
-<p><a href="https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master"><img src="https://codecov.io/github/ShixiangWang/UCSCXenaTools/coverage.svg?branch=master" alt="Codecov"></a></p>
+<a href="https://travis-ci.org/ropensci/UCSCXenaTools"><img src="https://travis-ci.org/ropensci/UCSCXenaTools.svg?branch=master" alt="Travis"></a>
 </td>
 </tr>
 <tr class="even">
 <td align="left">
-<p><a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools" alt="downloads"></a></p>
+<a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg" alt="minimal R version"></a>
 </td>
 <td align="left">
-<p><a href="https://zenodo.org/badge/latestdoi/178662770"><img src="https://zenodo.org/badge/178662770.svg" alt="DOI"></a></p>
+<a href="https://cran.r-project.org/web/checks/check_results_UCSCXenaTools.html"><img src="https://cranchecks.info/badges/summary/UCSCXenaTools" alt="cran-checks"></a>
 </td>
 <td align="left">
-<p><a href="https://github.com/ropensci/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg" alt="Closed issues" /></a></p>
+<a href="https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools"><img src="https://ci.appveyor.com/api/projects/status/github/ropensci/UCSCXenaTools?branch=master&svg=true" alt="AppVeyor"></a>
 </td>
 </tr>
 <tr class="odd">
 <td align="left">
-<p><a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://cranlogs.r-pkg.org/badges/UCSCXenaTools" alt="month-downloads"></a></p>
+<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://tinyverse.netlify.com/badge/UCSCXenaTools"></a>
 </td>
 <td align="left">
-<p><a href="https://doi.org/10.21105/joss.01627"><img src="https://joss.theoj.org/papers/10.21105/joss.01627/status.svg" alt="JOSS" > </a></p>
+<a href="https://github.com/ropensci/software-review/issues/315"><img src="https://badges.ropensci.org/315_status.svg" alt="rOpenSci"></a>
 </td>
 <td align="left">
-<p><a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." /></a></p>
+<a href="https://codecov.io/github/ShixiangWang/UCSCXenaTools?branch=master"><img src="https://codecov.io/github/ShixiangWang/UCSCXenaTools/coverage.svg?branch=master" alt="Codecov"></a>
+</td>
+</tr>
+<tr class="even">
+<td align="left">
+<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://cranlogs.r-pkg.org/badges/grand-total/UCSCXenaTools" alt="downloads"></a>
+</td>
+<td align="left">
+<a href="https://zenodo.org/badge/latestdoi/178662770"><img src="https://zenodo.org/badge/178662770.svg" alt="DOI"></a>
+</td>
+<td align="left">
+[![Closed
+issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)](https://github.com/ropensci/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
+</td>
+</tr>
+<tr class="odd">
+<td align="left">
+<a href="https://CRAN.R-project.org/package=UCSCXenaTools"><img src="https://cranlogs.r-pkg.org/badges/UCSCXenaTools" alt="month-downloads"></a>
+</td>
+<td align="left">
+<a href="https://doi.org/10.21105/joss.01627"><img src="https://joss.theoj.org/papers/10.21105/joss.01627/status.svg" alt="JOSS" >
+</a>
+</td>
+<td align="left">
+<a href="https://www.repostatus.org/#active"><img src="https://www.repostatus.org/badges/latest/active.svg" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed." /></a>
 </td>
 </tr>
 </tbody>
@@ -130,19 +132,20 @@ All datasets are available at <https://xenabrowser.net/datapages/>.
 Currently, **UCSCXenaTools** supports the following data hubs of UCSC
 Xena.
 
--   UCSC Public Hub: <https://ucscpublic.xenahubs.net>
--   TCGA Hub: <https://tcga.xenahubs.net>
--   GDC Xena Hub: <https://gdc.xenahubs.net>
--   ICGC Xena Hub: <https://icgc.xenahubs.net>
--   Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net>
+-   UCSC Public Hub: <https://ucscpublic.xenahubs.net/>
+-   TCGA Hub: <https://tcga.xenahubs.net/>
+-   GDC Xena Hub: <https://gdc.xenahubs.net/>
+-   ICGC Xena Hub: <https://icgc.xenahubs.net/>
+-   Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net/>
 -   UCSC Toil RNAseq Recompute Compendium Hub:
-    <https://toil.xenahubs.net>
--   PCAWG Xena Hub: <https://pcawg.xenahubs.net>
--   ATAC-seq Hub: <https://atacseq.xenahubs.net>
--   Singel Cell Xena Hub: <https://singlecellnew.xenahubs.net>
--   Kids First Xena Hub: <https://kidsfirst.xenahubs.net>
+    <https://toil.xenahubs.net/>
+-   PCAWG Xena Hub: <https://pcawg.xenahubs.net/>
+-   ATAC-seq Hub: <https://atacseq.xenahubs.net/>
+-   Singel Cell Xena Hub: <https://singlecellnew.xenahubs.net/>
+-   Kids First Xena Hub: <https://kidsfirst.xenahubs.net/>
 -   Tumor Deconvolution and Immunogenicity Xena Hub:
-    <https://tdi.xenahubs.net>
+    <https://tdi.xenahubs.net/>
+-   Treehouse Xena Hub: <https://xena.treehouse.gi.ucsc.edu:443/>
 
 Users can update dataset list from the newest version of UCSC Xena by
 hand with `XenaDataUpdate()` function, followed by restarting R and
@@ -177,7 +180,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.3.4
+#> UCSCXenaTools version 1.3.6
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -233,8 +236,20 @@ Query and download.
 ``` r
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
+```
+
+**For researchers in China, now [Hiplot team](https://hiplot.com.cn/)
+has deployed several Xena [mirror sites](https://xena.hiplot.com.cn/) at
+Shanghai. You can set an option `options(use_hiplot = TRUE)` before
+querying data step to speed up both data querying and downloading.**
+
+``` r
+options(use_hiplot = TRUE)
+
+XenaQuery(df_todo) %>%
+  XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn/T//RtmpjwXWVC.
+#> All downloaded files will under directory /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn/T//Rtmpb97sk9.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
@@ -271,7 +286,7 @@ Cite me by the following paper.
     Wang et al., (2019). The UCSCXenaTools R package: a toolkit for accessing genomics data
       from UCSC Xena platform, from cancer multi-omics to single-cell RNA-seq. 
       Journal of Open Source Software, 4(40), 1627, https://doi.org/10.21105/joss.01627
-    
+
     # For BibTex
       
     @article{Wang2019UCSCXenaTools,

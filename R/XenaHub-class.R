@@ -83,6 +83,29 @@ xena_default_hosts <- function() {
 
 names(.xena_hosts) <- xena_default_hosts()
 
+# Add Hiplot mirror url
+# Still use UCSC Xena URL if it is not available
+.xena_hosts_hiplot <- .xena_hosts
+names(.xena_hosts_hiplot) <- c(
+  "https://xena-ucscpublic.hiplot.com.cn",
+  "https://xena-tcga.hiplot.com.cn",
+  "https://xena-gdc.hiplot.com.cn",
+  "https://xena-icgc.hiplot.com.cn",
+  "https://xena-toil.hiplot.com.cn",
+  "https://xena-pancanatlas.hiplot.com.cn",
+  "https://xena.treehouse.gi.ucsc.edu:443", #!
+  "https://xena-pcawg.hiplot.com.cn",
+  "https://xena-atacseq.hiplot.com.cn",
+  "https://singlecellnew.xenahubs.net", #!
+  "https://kidsfirst.xenahubs.net", #!
+  "https://tdi.xenahubs.net" #!
+)
+# Map hiplot to ucsc
+.xena_mirror_map <- names(.xena_hosts)
+names(.xena_mirror_map) <- names(.xena_hosts_hiplot)
+# Map ucsc to hiplot
+.xena_mirror_map_rv <- names(.xena_hosts_hiplot)
+names(.xena_mirror_map_rv) <- names(.xena_hosts)
 
 ##' Generate a XenaHub Object
 ##'

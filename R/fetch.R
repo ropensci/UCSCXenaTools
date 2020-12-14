@@ -250,6 +250,9 @@ fetch_dataset_identifiers <- function(host, dataset) {
 #' @export
 has_probeMap <- function(host, dataset) {
   .attach_this()
+  if (! host %in% .xena_mirror_map) {
+    host <- .xena_mirror_map[host]
+  }
   df <- base::subset(UCSCXenaTools::XenaData, XenaHosts == host & XenaDatasets == dataset)
   !is.na(df[["ProbeMap"]])
 }

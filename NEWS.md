@@ -1,3 +1,7 @@
+# UCSCXenaTools 1.4.0
+
+- Supported downloading data from Hiplot mirror site <https://xena.hiplot.com.cn/>.
+
 # UCSCXenaTools 1.3.6
 
 - Fixed a bug about try times for data download. 
