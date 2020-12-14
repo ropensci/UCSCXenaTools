@@ -74,7 +74,7 @@ Development
 <a href="https://zenodo.org/badge/latestdoi/178662770"><img src="https://zenodo.org/badge/178662770.svg" alt="DOI"></a>
 </td>
 <td align="left">
-[![Closed issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)](https://github.com/ropensci/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
+<a href="https://github.com/ropensci/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg" alt="Closed issues"></a>
 </td>
 
 </tr>

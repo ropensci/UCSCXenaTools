@@ -57,8 +57,7 @@ Development
 <a href="https://zenodo.org/badge/latestdoi/178662770"><img src="https://zenodo.org/badge/178662770.svg" alt="DOI"></a>
 </td>
 <td align="left">
-[![Closed
-issues](https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg)](https://github.com/ropensci/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed)
+<a href="https://github.com/ropensci/UCSCXenaTools/issues?q=is%3Aissue+is%3Aclosed"><img src="https://img.shields.io/github/issues-closed/ropensci/UCSCXenaTools.svg" alt="Closed issues"></a>
 </td>
 </tr>
 <tr class="odd">
@@ -248,8 +247,9 @@ options(use_hiplot = TRUE)
 
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
+#> Use hiplot server (China) for mirrored data hubs (set 'options(use_hiplot = FALSE)' to disable it)
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn/T//Rtmpb97sk9.
+#> All downloaded files will under directory /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn/T//RtmptTpVZO.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
