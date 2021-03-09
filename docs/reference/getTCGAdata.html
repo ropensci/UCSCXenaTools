@@ -82,7 +82,7 @@ package." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -90,7 +90,7 @@ package." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,7 +116,7 @@ package." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropensci/UCSCXenaTools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -278,64 +278,17 @@ datasets of TCGA can access vis <code><a href='availTCGA.html'>availTCGA()</a></
     <p>Shixiang Wang <a href='mailto:w_shixiang@163.com'>w_shixiang@163.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>###### get data, but not download</span>
+    <pre class="examples"><span class='co'>###### get data, but not download</span>
 
 <span class='co'># 1 choose project and data types you wanna download</span>
 <span class='fu'>getTCGAdata</span><span class='op'>(</span>project <span class='op'>=</span> <span class='st'>"LUAD"</span>, mRNASeq <span class='op'>=</span> <span class='cn'>TRUE</span>, mRNAArray <span class='op'>=</span> <span class='cn'>TRUE</span>,
 mRNASeqType <span class='op'>=</span> <span class='st'>"normalized"</span>, miRNASeq <span class='op'>=</span> <span class='cn'>TRUE</span>, exonRNASeq <span class='op'>=</span> <span class='cn'>TRUE</span>,
 RPPAArray <span class='op'>=</span> <span class='cn'>TRUE</span>, Methylation <span class='op'>=</span> <span class='cn'>TRUE</span>, MethylationType <span class='op'>=</span> <span class='st'>"450K"</span>,
 GeneMutation <span class='op'>=</span> <span class='cn'>TRUE</span>, SomaticMutation <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $Xena
-#&gt; class: XenaHub 
-#&gt; hosts():
-#&gt;   https://tcga.xenahubs.net
-#&gt; cohorts() (1 total):
-#&gt;   TCGA Lung Adenocarcinoma (LUAD)
-#&gt; datasets() (7 total):
-#&gt;   TCGA.LUAD.sampleMap/HumanMethylation450
-#&gt;   TCGA.LUAD.sampleMap/HiSeqV2
-#&gt;   TCGA.LUAD.sampleMap/miRNA_HiSeq_gene
-#&gt;   ...
-#&gt;   TCGA.LUAD.sampleMap/AgilentG4502A_07_3
-#&gt;   TCGA.LUAD.sampleMap/HiSeqV2_exon
-#&gt; 
-#&gt; $DataInfo
-#&gt; <span style='color: #555555;'># A tibble: 7 x 20</span><span>
-#&gt;   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype Label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> https://… tcgaHub       TCGA Lung … TCGA.LUAD.s…         492 DNA methyl… Meth…
-#&gt; </span><span style='color: #555555;'>2</span><span> https://… tcgaHub       TCGA Lung … TCGA.LUAD.s…         576 gene expre… Illu…
-#&gt; </span><span style='color: #555555;'>3</span><span> https://… tcgaHub       TCGA Lung … TCGA.LUAD.s…         495 miRNA matu… Illu…
-#&gt; </span><span style='color: #555555;'>4</span><span> https://… tcgaHub       TCGA Lung … TCGA.LUAD.s…         706 phenotype   Phen…
-#&gt; </span><span style='color: #555555;'>5</span><span> https://… tcgaHub       TCGA Lung … TCGA.LUAD.s…          </span><span style='color: #BB0000;'>NA</span><span> protein ex… RPPA 
-#&gt; </span><span style='color: #555555;'>6</span><span> https://… tcgaHub       TCGA Lung … TCGA.LUAD.s…          33 gene expre… Agil…
-#&gt; </span><span style='color: #555555;'>7</span><span> https://… tcgaHub       TCGA Lung … TCGA.LUAD.s…         576 exon expre… Illu…
-#&gt; </span><span style='color: #555555;'># … with 13 more variables: Type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, AnatomicalOrigin </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   SampleType </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Tags </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, ProbeMap </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, LongTitle </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   Citation </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Version </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Unit </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Platform </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, ProjectID </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   DataType </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, FileType </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </div><div class='input'>
+
 <span class='co'># 2 only choose 'LUAD' and its clinical data</span>
 <span class='fu'>getTCGAdata</span><span class='op'>(</span>project <span class='op'>=</span> <span class='st'>"LUAD"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $Xena
-#&gt; class: XenaHub 
-#&gt; hosts():
-#&gt;   https://tcga.xenahubs.net
-#&gt; cohorts() (1 total):
-#&gt;   TCGA Lung Adenocarcinoma (LUAD)
-#&gt; datasets() (1 total):
-#&gt;   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix
-#&gt; 
-#&gt; $DataInfo
-#&gt; </span><span style='color: #555555;'># A tibble: 1 x 20</span><span>
-#&gt;   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype Label
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>       </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span> https://… tcgaHub       TCGA Lung … TCGA.LUAD.s…         706 phenotype   Phen…
-#&gt; </span><span style='color: #555555;'># … with 13 more variables: Type </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, AnatomicalOrigin </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   SampleType </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Tags </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, ProbeMap </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, LongTitle </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   Citation </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Version </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Unit </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, Platform </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, ProjectID </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   DataType </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, FileType </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>###### download datasets</span>
 
 <span class='co'># 3 download clinical datasets of LUAD and LUSC</span>
@@ -344,7 +297,7 @@ GeneMutation <span class='op'>=</span> <span class='cn'>TRUE</span>, SomaticMuta
 <span class='co'># 4 download clinical, RPPA and gene mutation datasets of LUAD and LUSC</span>
 <span class='co'># getTCGAdata(project = c("LUAD", "LUSC"), clinical = TRUE, RPPAArray = TRUE, GeneMutation = TRUE)</span>
 <span class='op'>}</span>
-</div></span></pre>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

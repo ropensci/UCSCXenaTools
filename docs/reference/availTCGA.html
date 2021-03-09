@@ -80,7 +80,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -114,7 +114,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropensci/UCSCXenaTools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -156,81 +156,10 @@
     <p>Shixiang Wang <a href='mailto:w_shixiang@163.com'>w_shixiang@163.com</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># \donttest{</span>
+    <pre class="examples"><span class='co'># \donttest{</span>
 <span class='fu'>availTCGA</span><span class='op'>(</span><span class='st'>"all"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Note not all projects have listed data types and file types, you can use showTCGA function to check if exist</span></div><div class='output co'>#&gt; $ProjectID
-#&gt;  [1] "OV"       "KIRC"     "LGG"      "KIRP"     "PANCAN"   "CHOL"    
-#&gt;  [7] "COADREAD" "ACC"      "CESC"     "READ"     "SARC"     "DLBC"    
-#&gt; [13] "PRAD"     "LUNG"     "LIHC"     "KICH"     "HNSC"     "PCPG"    
-#&gt; [19] "ESCA"     "THCA"     "LUAD"     "LAML"     "BLCA"     "SKCM"    
-#&gt; [25] "LUSC"     "TGCT"     "PAAD"     "GBM"      "STAD"     "MESO"    
-#&gt; [31] "UVM"      "GBMLGG"   "THYM"     "UCEC"     "BRCA"     "UCS"     
-#&gt; [37] "COAD"     "FPPP"    
-#&gt; 
-#&gt; $DataType
-#&gt;  [1] "DNA Methylation"                       
-#&gt;  [2] "Gene Level Copy Number"                
-#&gt;  [3] "Phenotype"                             
-#&gt;  [4] "Protein Expression RPPA"               
-#&gt;  [5] "Gene Expression Array"                 
-#&gt;  [6] "Gene Expression RNASeq"                
-#&gt;  [7] "Copy Number Segments"                  
-#&gt;  [8] "miRNA Mature Strand Expression RNASeq" 
-#&gt;  [9] "Exon Expression RNASeq"                
-#&gt; [10] "Transcription Factor Regulatory Impact"
-#&gt; [11] "PARADIGM Pathway Activity"             
-#&gt; [12] NA                                      
-#&gt; [13] "Gene Somatic Non-silent Mutation"      
-#&gt; [14] "Somatic Mutation"                      
-#&gt; [15] "Signatures"                            
-#&gt; [16] "iCluster"                              
-#&gt; 
-#&gt; $FileType
-#&gt;  [1] "Methylation27K"                            
-#&gt;  [2] "Methylation450K"                           
-#&gt;  [3] "Gistic2"                                   
-#&gt;  [4] "Clinical Information"                      
-#&gt;  [5] "RPPA normalized by RBN"                    
-#&gt;  [6] "Affymetrix U133A Microarray"               
-#&gt;  [7] "IlluminaHiSeq RNASeqV2 in percentile rank" 
-#&gt;  [8] "IlluminaHiSeq RNASeqV2 pancan normalized"  
-#&gt;  [9] "IlluminaHiSeq RNASeqV2"                    
-#&gt; [10] "IlluminaHiSeq RNASeq"                      
-#&gt; [11] "After remove germline cnv"                 
-#&gt; [12] "Agilent 244K Microarray"                   
-#&gt; [13] "Gistic2 thresholded"                       
-#&gt; [14] "RPPA"                                      
-#&gt; [15] "Before remove germline cnv"                
-#&gt; [16] "Gene Expression Subtype"                   
-#&gt; [17] "RABIT Use Agilent 244K Microarray"         
-#&gt; [18] "RABIT Use Affymetrix U133A Microarray"     
-#&gt; [19] "Platform-corrected PANCAN12 dataset"       
-#&gt; [20] NA                                          
-#&gt; [21] "IlluminaGA RNASeq"                         
-#&gt; [22] "RABIT Use IlluminaHiSeq RNASeqV2"          
-#&gt; [23] "RABIT Use IlluminaHiSeq RNASeq"            
-#&gt; [24] "MethylMix"                                 
-#&gt; [25] "IlluminaGA RNASeqV2"                       
-#&gt; [26] "broad automated"                           
-#&gt; [27] "wustl automated"                           
-#&gt; [28] "RABIT Use IlluminaGA RNASeqV2"             
-#&gt; [29] "RABIT Use IlluminaGA RNASeq"               
-#&gt; [30] "Batch effects normalized"                  
-#&gt; [31] "MC3 Public Version"                        
-#&gt; [32] "TCGA Sample Type and Primary Disease"      
-#&gt; [33] "RPPA pancan normalized"                    
-#&gt; [34] "Tumor copy number"                         
-#&gt; [35] "Genome-wide DNA Damage Footprint HRD Score"
-#&gt; [36] "TCGA Molecular Subtype"                    
-#&gt; [37] "iCluster cluster assignments"              
-#&gt; [38] "iCluster latent variables"                 
-#&gt; [39] "RNA based StemnessScore"                   
-#&gt; [40] "DNA methylation based StemnessScore"       
-#&gt; [41] "Pancan Gene Programs"                      
-#&gt; [42] "Immune Model Based Subtype"                
-#&gt; [43] "Immune Signature Scores"                   
-#&gt; </div><div class='input'><span class='co'># }</span>
-</div></pre>
+<span class='co'># }</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -142,8 +142,6 @@ Xena.
 -   ATAC-seq Hub: <https://atacseq.xenahubs.net/>
 -   Singel Cell Xena Hub: <https://singlecellnew.xenahubs.net/>
 -   Kids First Xena Hub: <https://kidsfirst.xenahubs.net/>
--   Tumor Deconvolution and Immunogenicity Xena Hub:
-    <https://tdi.xenahubs.net/>
 -   Treehouse Xena Hub: <https://xena.treehouse.gi.ucsc.edu:443/>
 
 Users can update dataset list from the newest version of UCSC Xena by
@@ -179,7 +177,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.3.6
+#> UCSCXenaTools version 1.4.0
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -249,7 +247,7 @@ XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> Use hiplot server (China) for mirrored data hubs (set 'options(use_hiplot = FALSE)' to disable it)
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn/T//RtmptTpVZO.
+#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpbjgG9I.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix

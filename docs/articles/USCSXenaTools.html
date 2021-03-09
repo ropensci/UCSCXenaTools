@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
       </span>
     </div>
 
@@ -46,7 +46,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -72,7 +72,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ropensci/UCSCXenaTools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -86,14 +86,14 @@
 
       
 
-      </header><script src="USCSXenaTools_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="USCSXenaTools_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>UCSCXenaTools: an R package for Accessing Genomics Data from UCSC Xena platform, from Cancer Multi-omics to Single-cell RNA-seq</h1>
                         <h4 class="author">Shixiang Wang<br>
 ShanghaiTech University</h4>
             
-            <h4 class="date">2020-09-30</h4>
+            <h4 class="date">2021-03-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropensci/UCSCXenaTools/blob/master/vignettes/USCSXenaTools.Rmd"><code>vignettes/USCSXenaTools.Rmd</code></a></small>
       <div class="hidden name"><code>USCSXenaTools.Rmd</code></div>
@@ -112,15 +112,15 @@ ShanghaiTech University</h4>
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Install stable release from CRAN with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"UCSCXenaTools"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"UCSCXenaTools"</span><span class="op">)</span></code></pre></div>
 <p>You can also install devel version of <strong>UCSCXenaTools</strong> from github with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ropensci/UCSCXenaTools"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ropensci/UCSCXenaTools"</span><span class="op">)</span></code></pre></div>
 <p>If you want to build vignette in local, please add two options:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ropensci/UCSCXenaTools"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"ropensci/UCSCXenaTools"</span>, build_vignettes <span class="op">=</span> <span class="cn">TRUE</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>The minimum versions to run the vignette is <code>1.2.4</code>. <a href="https://github.com/ropensci/UCSCXenaTools/issues">GitHub Issue</a> is a place for discussing any problem.</p>
 </div>
 <div id="data-hub-list" class="section level2">
@@ -129,28 +129,30 @@ ShanghaiTech University</h4>
 <p>All datasets are available at <a href="https://xenabrowser.net/datapages/" class="uri">https://xenabrowser.net/datapages/</a>.</p>
 <p>Currently, <strong>UCSCXenaTools</strong> supports the following data hubs of UCSC Xena.</p>
 <ul>
-<li>UCSC Public Hub: <a href="https://ucscpublic.xenahubs.net" class="uri">https://ucscpublic.xenahubs.net</a>
+<li>UCSC Public Hub: <a href="https://ucscpublic.xenahubs.net/" class="uri">https://ucscpublic.xenahubs.net/</a>
 </li>
-<li>TCGA Hub: <a href="https://tcga.xenahubs.net" class="uri">https://tcga.xenahubs.net</a>
+<li>TCGA Hub: <a href="https://tcga.xenahubs.net/" class="uri">https://tcga.xenahubs.net/</a>
 </li>
-<li>GDC Xena Hub: <a href="https://gdc.xenahubs.net" class="uri">https://gdc.xenahubs.net</a>
+<li>GDC Xena Hub: <a href="https://gdc.xenahubs.net/" class="uri">https://gdc.xenahubs.net/</a>
 </li>
-<li>ICGC Xena Hub: <a href="https://icgc.xenahubs.net" class="uri">https://icgc.xenahubs.net</a>
+<li>ICGC Xena Hub: <a href="https://icgc.xenahubs.net/" class="uri">https://icgc.xenahubs.net/</a>
 </li>
-<li>Pan-Cancer Atlas Hub: <a href="https://pancanatlas.xenahubs.net" class="uri">https://pancanatlas.xenahubs.net</a>
+<li>Pan-Cancer Atlas Hub: <a href="https://pancanatlas.xenahubs.net/" class="uri">https://pancanatlas.xenahubs.net/</a>
 </li>
-<li>UCSC Toil RNAseq Recompute Compendium Hub: <a href="https://toil.xenahubs.net" class="uri">https://toil.xenahubs.net</a>
+<li>UCSC Toil RNAseq Recompute Compendium Hub: <a href="https://toil.xenahubs.net/" class="uri">https://toil.xenahubs.net/</a>
 </li>
-<li>PCAWG Xena Hub: <a href="https://pcawg.xenahubs.net" class="uri">https://pcawg.xenahubs.net</a>
+<li>PCAWG Xena Hub: <a href="https://pcawg.xenahubs.net/" class="uri">https://pcawg.xenahubs.net/</a>
 </li>
-<li>ATAC-seq Hub: <a href="https://atacseq.xenahubs.net" class="uri">https://atacseq.xenahubs.net</a>
+<li>ATAC-seq Hub: <a href="https://atacseq.xenahubs.net/" class="uri">https://atacseq.xenahubs.net/</a>
 </li>
-<li>Singel Cell Xena Hub: <a href="https://singlecellnew.xenahubs.net" class="uri">https://singlecellnew.xenahubs.net</a>
+<li>Singel Cell Xena Hub: <a href="https://singlecellnew.xenahubs.net/" class="uri">https://singlecellnew.xenahubs.net/</a>
 </li>
-<li>Kids First Xena Hub: <a href="https://kidsfirst.xenahubs.net" class="uri">https://kidsfirst.xenahubs.net</a>
+<li>Kids First Xena Hub: <a href="https://kidsfirst.xenahubs.net/" class="uri">https://kidsfirst.xenahubs.net/</a>
+</li>
+<li>Treehouse Xena Hub: <a href="https://xena.treehouse.gi.ucsc.edu:443/" class="uri">https://xena.treehouse.gi.ucsc.edu:443/</a>
 </li>
 </ul>
-<p>Users can update dataset list from the newest version of UCSC Xena by hand with <code><a href="../reference/XenaDataUpdate.html">XenaDataUpdate()</a></code> function, followed by restarting R and <code><a href="https://docs.ropensci.org/UCSCXenaTools">library(UCSCXenaTools)</a></code>.</p>
+<p>Users can update dataset list from the newest version of UCSC Xena by hand with <code><a href="../reference/XenaDataUpdate.html">XenaDataUpdate()</a></code> function, followed by restarting R and <code><a href="https://docs.ropensci.org/UCSCXenaTools/">library(UCSCXenaTools)</a></code>.</p>
 <p>If any url of data hub is changed or a new data hub is online, please remind me by emailing to <a href="mailto:w_shixiang@163.com" class="email">w_shixiang@163.com</a> or <a href="https://github.com/ropensci/UCSCXenaTools/issues">opening an issue on GitHub</a>.</p>
 </div>
 <div id="usage" class="section level2">
@@ -163,10 +165,10 @@ ShanghaiTech University</h4>
 <a href="#xenadata-data-frame" class="anchor"></a>XenaData data.frame</h3>
 <p><strong>UCSCXenaTools</strong> uses a <code>data.frame</code> object (built in package) <code>XenaData</code> to generate an instance of <code>XenaHub</code> class, which records information of all datasets of UCSC Xena Data Hubs.</p>
 <p>You can load <code>XenaData</code> after loading <code>UCSCXenaTools</code> into R.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/UCSCXenaTools">UCSCXenaTools</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/UCSCXenaTools/">UCSCXenaTools</a></span><span class="op">)</span>
 <span class="co">#&gt; =========================================================================================</span>
-<span class="co">#&gt; UCSCXenaTools version 1.3.4</span>
+<span class="co">#&gt; UCSCXenaTools version 1.4.1</span>
 <span class="co">#&gt; Project URL: https://github.com/ropensci/UCSCXenaTools</span>
 <span class="co">#&gt; Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html</span>
 <span class="co">#&gt; </span>
@@ -190,14 +192,14 @@ ShanghaiTech University</h4>
 <span class="co">#&gt; 6 https://… publicHub     Lung Cance… weir2007_pu…         383 phenotype   Phen…</span>
 <span class="co">#&gt; # … with 10 more variables: Type &lt;chr&gt;, AnatomicalOrigin &lt;chr&gt;,</span>
 <span class="co">#&gt; #   SampleType &lt;chr&gt;, Tags &lt;chr&gt;, ProbeMap &lt;chr&gt;, LongTitle &lt;chr&gt;,</span>
-<span class="co">#&gt; #   Citation &lt;chr&gt;, Version &lt;chr&gt;, Unit &lt;chr&gt;, Platform &lt;chr&gt;</span></pre></div>
+<span class="co">#&gt; #   Citation &lt;chr&gt;, Version &lt;chr&gt;, Unit &lt;chr&gt;, Platform &lt;chr&gt;</span></code></pre></div>
 </div>
 <div id="workflow" class="section level3">
 <h3 class="hasAnchor">
 <a href="#workflow" class="anchor"></a>Workflow</h3>
 <p>Select datasets.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="co"># The options in XenaFilter function support Regular Expression</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># The options in XenaFilter function support Regular Expression</span>
 <span class="fu"><a href="../reference/XenaGenerate.html">XenaGenerate</a></span><span class="op">(</span>subset <span class="op">=</span> <span class="va">XenaHostNames</span><span class="op">==</span><span class="st">"tcgaHub"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/XenaFilter.html">XenaFilter</a></span><span class="op">(</span>filterDatasets <span class="op">=</span> <span class="st">"clinical"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="../reference/XenaFilter.html">XenaFilter</a></span><span class="op">(</span>filterDatasets <span class="op">=</span> <span class="st">"LUAD|LUSC|LUNG"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">df_todo</span>
@@ -213,10 +215,10 @@ ShanghaiTech University</h4>
 <span class="co">#&gt; datasets() (3 total):</span>
 <span class="co">#&gt;   TCGA.LUNG.sampleMap/LUNG_clinicalMatrix</span>
 <span class="co">#&gt;   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix</span>
-<span class="co">#&gt;   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix</span></pre></div>
+<span class="co">#&gt;   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix</span></code></pre></div>
 <p>Sometimes we only know some keywords, <code><a href="../reference/XenaScan.html">XenaScan()</a></code> can be used to scan all rows to detect if the keywords exist in <code>XenaData</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">x1</span> <span class="op">=</span> <span class="fu"><a href="../reference/XenaScan.html">XenaScan</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Blood'</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x1</span> <span class="op">=</span> <span class="fu"><a href="../reference/XenaScan.html">XenaScan</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'Blood'</span><span class="op">)</span>
 <span class="va">x2</span> <span class="op">=</span> <span class="fu"><a href="../reference/XenaScan.html">XenaScan</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">'LUNG'</span>, ignore.case <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="va">x1</span> <span class="op">%&gt;%</span>
@@ -252,25 +254,32 @@ ShanghaiTech University</h4>
 <span class="co">#&gt;   TCGA.LUNG.sampleMap/Gistic2_CopyNumber_Gistic2_all_data_by_genes</span>
 <span class="co">#&gt;   ...</span>
 <span class="co">#&gt;   mc3/LUNG_mc3.txt</span>
-<span class="co">#&gt;   mc3_gene_level/LUNG_mc3_gene_level.txt</span></pre></div>
+<span class="co">#&gt;   mc3_gene_level/LUNG_mc3_gene_level.txt</span></code></pre></div>
 <p>Query and download.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/XenaQuery.html">XenaQuery</a></span><span class="op">(</span><span class="va">df_todo</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/XenaDownload.html">XenaDownload</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">xe_download</span></code></pre></div>
+<p><strong>For researchers in China, now <a href="https://hiplot.com.cn/">Hiplot team</a> has deployed several Xena <a href="https://xena.hiplot.com.cn/">mirror sites</a> at Shanghai. You can set an option <code><a href="https://rdrr.io/r/base/options.html">options(use_hiplot = TRUE)</a></code> before querying data step to speed up both data querying and downloading.</strong></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>use_hiplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
 <span class="fu"><a href="../reference/XenaQuery.html">XenaQuery</a></span><span class="op">(</span><span class="va">df_todo</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/XenaDownload.html">XenaDownload</a></span><span class="op">(</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">xe_download</span>
+<span class="co">#&gt; Use hiplot server (China) for mirrored data hubs (set 'options(use_hiplot = FALSE)' to disable it)</span>
 <span class="co">#&gt; This will check url status, please be patient.</span>
-<span class="co">#&gt; All downloaded files will under directory /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn/T//RtmpuCQal2.</span>
+<span class="co">#&gt; All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//RtmpPVgcxO.</span>
 <span class="co">#&gt; The 'trans_slash' option is FALSE, keep same directory structure as Xena.</span>
 <span class="co">#&gt; Creating directories for datasets...</span>
 <span class="co">#&gt; Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix</span>
 <span class="co">#&gt; Downloading TCGA.LUAD.sampleMap/LUAD_clinicalMatrix</span>
-<span class="co">#&gt; Downloading TCGA.LUSC.sampleMap/LUSC_clinicalMatrix</span></pre></div>
+<span class="co">#&gt; Downloading TCGA.LUSC.sampleMap/LUSC_clinicalMatrix</span></code></pre></div>
 <p>Prepare data into R for analysis.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="va">cli</span> <span class="op">=</span> <span class="fu"><a href="../reference/XenaPrepare.html">XenaPrepare</a></span><span class="op">(</span><span class="va">xe_download</span><span class="op">)</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">cli</span> <span class="op">=</span> <span class="fu"><a href="../reference/XenaPrepare.html">XenaPrepare</a></span><span class="op">(</span><span class="va">xe_download</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="va">cli</span><span class="op">)</span>
 <span class="co">#&gt; [1] "list"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">cli</span><span class="op">)</span>
-<span class="co">#&gt; [1] "LUNG_clinicalMatrix" "LUAD_clinicalMatrix" "LUSC_clinicalMatrix"</span></pre></div>
+<span class="co">#&gt; [1] "LUNG_clinicalMatrix" "LUAD_clinicalMatrix" "LUSC_clinicalMatrix"</span></code></pre></div>
 </div>
 <div id="browse-datasets" class="section level3">
 <h3 class="hasAnchor">
@@ -282,8 +291,8 @@ ShanghaiTech University</h4>
 <li>
 <code>to_browse2</code> - a XenaHub object containing 2 cohorts and 2 datasets.</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="../reference/XenaGenerate.html">XenaGenerate</a></span><span class="op">(</span>subset <span class="op">=</span> <span class="va">XenaHostNames</span><span class="op">==</span><span class="st">"tcgaHub"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/XenaGenerate.html">XenaGenerate</a></span><span class="op">(</span>subset <span class="op">=</span> <span class="va">XenaHostNames</span><span class="op">==</span><span class="st">"tcgaHub"</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="../reference/XenaFilter.html">XenaFilter</a></span><span class="op">(</span>filterDatasets <span class="op">=</span> <span class="st">"clinical"</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="../reference/XenaFilter.html">XenaFilter</a></span><span class="op">(</span>filterDatasets <span class="op">=</span> <span class="st">"LUAD"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">to_browse</span>
 
@@ -309,26 +318,26 @@ ShanghaiTech University</h4>
 <span class="co">#&gt;   TCGA Lung Squamous Cell Carcinoma (LUSC)</span>
 <span class="co">#&gt; datasets() (2 total):</span>
 <span class="co">#&gt;   TCGA.LUAD.sampleMap/LUAD_clinicalMatrix</span>
-<span class="co">#&gt;   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix</span></pre></div>
+<span class="co">#&gt;   TCGA.LUSC.sampleMap/LUSC_clinicalMatrix</span></code></pre></div>
 <p><code><a href="../reference/XenaBrowse.html">XenaBrowse()</a></code> function can be used to browse dataset/cohort links using your default web browser. At default, this function limits one dataset/cohort for preventing user to open too many links at once.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="co"># This will open you web browser</span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># This will open you web browser</span>
 <span class="fu"><a href="../reference/XenaBrowse.html">XenaBrowse</a></span><span class="op">(</span><span class="va">to_browse</span><span class="op">)</span>
 
-<span class="fu"><a href="../reference/XenaBrowse.html">XenaBrowse</a></span><span class="op">(</span><span class="va">to_browse</span>, type <span class="op">=</span> <span class="st">"cohort"</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="co"># This will throw error</span>
+<span class="fu"><a href="../reference/XenaBrowse.html">XenaBrowse</a></span><span class="op">(</span><span class="va">to_browse</span>, type <span class="op">=</span> <span class="st">"cohort"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># This will throw error</span>
 <span class="fu"><a href="../reference/XenaBrowse.html">XenaBrowse</a></span><span class="op">(</span><span class="va">to_browse2</span><span class="op">)</span>
 <span class="co">#&gt; Error in XenaBrowse(to_browse2): This function limite 1 dataset to browse.</span>
 <span class="co">#&gt;  Set multiple to TRUE if you want to browse multiple links.</span>
 
 <span class="fu"><a href="../reference/XenaBrowse.html">XenaBrowse</a></span><span class="op">(</span><span class="va">to_browse2</span>, type <span class="op">=</span> <span class="st">"cohort"</span><span class="op">)</span>
 <span class="co">#&gt; Error in XenaBrowse(to_browse2, type = "cohort"): This function limite 1 cohort to browse. </span>
-<span class="co">#&gt;  Set multiple to TRUE if you want to browse multiple links.</span></pre></div>
+<span class="co">#&gt;  Set multiple to TRUE if you want to browse multiple links.</span></code></pre></div>
 <p>When you make sure you want to open multiple links, you can set <code>multiple</code> option to <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="../reference/XenaBrowse.html">XenaBrowse</a></span><span class="op">(</span><span class="va">to_browse2</span>, multiple <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="../reference/XenaBrowse.html">XenaBrowse</a></span><span class="op">(</span><span class="va">to_browse2</span>, type <span class="op">=</span> <span class="st">"cohort"</span>, multiple <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/XenaBrowse.html">XenaBrowse</a></span><span class="op">(</span><span class="va">to_browse2</span>, multiple <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu"><a href="../reference/XenaBrowse.html">XenaBrowse</a></span><span class="op">(</span><span class="va">to_browse2</span>, type <span class="op">=</span> <span class="st">"cohort"</span>, multiple <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="more-usages" class="section level2">
@@ -354,8 +363,8 @@ ShanghaiTech University</h4>
 <p>Thanks to the UCSC Xena team, the new feature ‘resume from breakpoint’ is added and can be done by <strong>XenaDownload()</strong> with the <code>method</code> and <code>extra</code> flags specified.</p>
 <p>Of note, the corresponding <code>wget</code> or <code>curl</code> command must be installed by your OS and can be found by R.</p>
 <p>The folliwng code gives a test example, the data can be viewed on <a href="https://xenabrowser.net/datapages/?dataset=TcgaTargetGtex_expected_count&amp;host=https%3A%2F%2Ftoil.xenahubs.net&amp;removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443">web page</a>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/UCSCXenaTools">UCSCXenaTools</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/UCSCXenaTools/">UCSCXenaTools</a></span><span class="op">)</span>
 <span class="va">xe</span> <span class="op">=</span> <span class="fu"><a href="../reference/XenaGenerate.html">XenaGenerate</a></span><span class="op">(</span>subset <span class="op">=</span> <span class="va">XenaDatasets</span> <span class="op">==</span> <span class="st">"TcgaTargetGtex_expected_count"</span><span class="op">)</span>
 <span class="va">xe</span>
 <span class="va">xq</span> <span class="op">=</span> <span class="fu"><a href="../reference/XenaQuery.html">XenaQuery</a></span><span class="op">(</span><span class="va">xe</span><span class="op">)</span>
@@ -364,7 +373,7 @@ ShanghaiTech University</h4>
 <span class="co"># You can do it with 'curl' command</span>
 <span class="fu"><a href="../reference/XenaDownload.html">XenaDownload</a></span><span class="op">(</span><span class="va">xq</span>, destdir <span class="op">=</span> <span class="st">"~/test/"</span>, method <span class="op">=</span> <span class="st">"curl"</span>, extra <span class="op">=</span> <span class="st">"-C -"</span>, force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co"># You can do it with 'wget' command</span>
-<span class="fu"><a href="../reference/XenaDownload.html">XenaDownload</a></span><span class="op">(</span><span class="va">xq</span>, destdir <span class="op">=</span> <span class="st">"~/test/"</span>, method <span class="op">=</span> <span class="st">"wget"</span>, extra <span class="op">=</span> <span class="st">"-c"</span>, force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<span class="fu"><a href="../reference/XenaDownload.html">XenaDownload</a></span><span class="op">(</span><span class="va">xq</span>, destdir <span class="op">=</span> <span class="st">"~/test/"</span>, method <span class="op">=</span> <span class="st">"wget"</span>, extra <span class="op">=</span> <span class="st">"-c"</span>, force <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="citation" class="section level2">
