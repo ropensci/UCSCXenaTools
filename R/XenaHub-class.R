@@ -155,8 +155,8 @@ XenaHub <- function(hosts = xena_default_hosts(),
                       "pcawgHub",
                       "atacseqHub",
                       "singlecellHub",
-                      "kidsfirstHub",
-                      "tdiHub"
+                      "kidsfirstHub"
+                      #"tdiHub"
                     )) {
   stopifnot(
     is.character(hosts),
