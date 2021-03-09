@@ -1,3 +1,7 @@
+# UCSCXenaTools 1.4.1
+
+- Removed unpublished Xena hub TDI.
+
 # UCSCXenaTools 1.4.0
 
 - Supported downloading data from Hiplot mirror site <https://xena.hiplot.com.cn/>.

@@ -61,8 +61,8 @@ xena_default_hosts <- function() {
     "https://pcawg.xenahubs.net",
     "https://atacseq.xenahubs.net",
     "https://singlecellnew.xenahubs.net",
-    "https://kidsfirst.xenahubs.net",
-    "https://tdi.xenahubs.net"
+    "https://kidsfirst.xenahubs.net"
+    #"https://tdi.xenahubs.net"
   )
 }
 
@@ -77,8 +77,8 @@ xena_default_hosts <- function() {
   "pcawgHub",
   "atacseqHub",
   "singlecellHub",
-  "kidsfirstHub",
-  "tdiHub"
+  "kidsfirstHub"
+  #"tdiHub"
 )
 
 names(.xena_hosts) <- xena_default_hosts()
@@ -97,8 +97,8 @@ names(.xena_hosts_hiplot) <- c(
   "https://xena-pcawg.hiplot.com.cn",
   "https://xena-atacseq.hiplot.com.cn",
   "https://singlecellnew.xenahubs.net", #!
-  "https://kidsfirst.xenahubs.net", #!
-  "https://tdi.xenahubs.net" #!
+  "https://kidsfirst.xenahubs.net" #!
+  #"https://tdi.xenahubs.net" #!
 )
 # Map hiplot to ucsc
 .xena_mirror_map <- names(.xena_hosts)
