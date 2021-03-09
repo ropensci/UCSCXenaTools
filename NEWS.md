@@ -1,4 +1,4 @@
-# UCSCXenaTools 1.4.1
+# UCSCXenaTools 1.4.1 (1.4.2)
 
 - Removed unpublished Xena hub TDI.
 
