@@ -240,6 +240,8 @@ XenaHub <- function(hosts = xena_default_hosts(),
 XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
   # .p_all_cohorts(list(unique(XenaData$XenaHosts)[10]), exclude = list(NULL))
   # .p_dataset_list(list(XenaData$XenaHosts[1]), list(XenaData$XenaCohorts[1]))
+  message("Disable hiplot firstly.")
+  options(use_hiplot = FALSE)
   try_query = function(h, max_try = 3L) {
     Sys.sleep(0.1)
     tryCatch(
