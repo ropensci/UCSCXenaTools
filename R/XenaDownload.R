@@ -72,7 +72,9 @@ XenaDownload <- function(xquery,
     }
   }
 
-  apply(xquery, 1, function(x) { # nocov start
+  # Make sure the order is right
+  xquery <- dplyr::select(xquery, c("hosts", "datasets", "url", "fileNames", "destfiles"), dplyr::everything())
+  download_dataset <- function(x) { # nocov start
     tryCatch(
       {
         if (!file.exists(x[5]) | force) {
@@ -103,7 +105,9 @@ XenaDownload <- function(xquery,
         )
       }
     )
-  }) # nocov end
+  }
+
+  apply(xquery, 1, download_dataset) # nocov end
 
   if (trans_slash) {
     message(

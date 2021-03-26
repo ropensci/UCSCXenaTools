@@ -1,3 +1,8 @@
+# UCSCXenaTools 1.4.4
+
+- Fixed the download bug because UCSCXenaShiny mutate the result of `XenaQuery()`
+and thus change the column order. This bug will not affect XenaTools itself.
+
 # UCSCXenaTools 1.4.3
 
 - Implemented using hiplot for `fetch()` functions.
