@@ -38,7 +38,7 @@ XenaDownload <- function(xquery,
       dplyr::filter(XenaDatasets %in% xquery$datasets) %>%
       XenaGenerate() %>%
       XenaQueryProbeMap()
-    xquery <- rbind(xquery, xquery_probe)
+    xquery <- dplyr::bind_rows(xquery, xquery_probe)
   }
 
   if (trans_slash) {
