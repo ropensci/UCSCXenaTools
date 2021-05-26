@@ -25,8 +25,8 @@ XenaQueryProbeMap <- function(x) {
     query <- query %>%
       dplyr::rename(hosts = XenaHosts, datasets = ProbeMap) %>%
       dplyr::mutate(url = ifelse(.data$XenaHostNames == "gdcHub",
-        file.path(hosts, "download", basename(datasets)),
-        file.path(hosts, "download", datasets)
+        file.path(hosts, "download", url_encode(basename(datasets))),
+        file.path(hosts, "download", url_encode(datasets))
       )) %>%
       dplyr::mutate(url = ifelse(!sapply(url, http_error2),
         url, paste0(url, ".gz")

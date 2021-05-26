@@ -26,8 +26,8 @@ XenaQuery <- function(x) {
     dplyr::filter(XenaDatasets %in% datasetsName) %>%
     dplyr::rename(hosts = XenaHosts, datasets = XenaDatasets) %>%
     dplyr::mutate(url = ifelse(.data$XenaHostNames == "gdcHub",
-      file.path(hosts, "download", basename(datasets)),
-      file.path(hosts, "download", datasets)
+      file.path(hosts, "download", url_encode(basename(datasets))),
+      file.path(hosts, "download", url_encode(datasets))
     )) %>%
     dplyr::mutate(url = ifelse(!sapply(url, http_error2),
       url, paste0(url, ".gz")
@@ -36,6 +36,13 @@ XenaQuery <- function(x) {
     as.data.frame()
 
   invisible(query)
+}
+
+url_encode <- function(x, reserved = TRUE) {
+  sapply(x, function(y, reserved) {
+    # 保留 /
+    as.character(gsub("%2F", "/", utils::URLencode(y, reserved = reserved)))
+  }, reserved = reserved)
 }
 
 http_error2 <- function(url, max_try = 3L, ...) {
