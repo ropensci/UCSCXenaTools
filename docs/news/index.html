@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.5</span>
       </span>
     </div>
 
@@ -134,9 +134,34 @@
       <small>Source: <a href='https://github.com/ropensci/UCSCXenaTools/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="ucscxenatools-141" class="section level1">
+    <div id="ucscxenatools-145" class="section level1">
+<h1 class="page-header" data-toc-text="1.4.5">
+<a href="#ucscxenatools-145" class="anchor"></a>UCSCXenaTools 1.4.5<small> Unreleased </small>
+</h1>
+<ul>
+<li>Fixed the download bug for pan-cancer data hub due to unvalid URL. <code>url_encode()</code> is added internally to transform reserved characters (<code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code> is kept).</li>
+<li>Fixed the download bug because UCSCXenaShiny mutate the result of <code><a href="../reference/XenaQuery.html">XenaQuery()</a></code> and thus change the column number. This bug will not affect XenaTools itself.</li>
+</ul>
+</div>
+    <div id="ucscxenatools-144" class="section level1">
+<h1 class="page-header" data-toc-text="1.4.4">
+<a href="#ucscxenatools-144" class="anchor"></a>UCSCXenaTools 1.4.4<small> 2021-04-06 </small>
+</h1>
+<ul>
+<li>Fixed the download bug because UCSCXenaShiny mutate the result of <code><a href="../reference/XenaQuery.html">XenaQuery()</a></code> and thus change the column order. This bug will not affect XenaTools itself.</li>
+</ul>
+</div>
+    <div id="ucscxenatools-143" class="section level1">
+<h1 class="page-header" data-toc-text="1.4.3">
+<a href="#ucscxenatools-143" class="anchor"></a>UCSCXenaTools 1.4.3<small> 2021-03-22 </small>
+</h1>
+<ul>
+<li>Implemented using hiplot for <code><a href="../reference/fetch.html">fetch()</a></code> functions.</li>
+</ul>
+</div>
+    <div id="ucscxenatools-141-142" class="section level1">
 <h1 class="page-header" data-toc-text="1.4.1">
-<a href="#ucscxenatools-141" class="anchor"></a>UCSCXenaTools 1.4.1<small> Unreleased </small>
+<a href="#ucscxenatools-141-142" class="anchor"></a>UCSCXenaTools 1.4.1 (1.4.2)<small> Unreleased </small>
 </h1>
 <ul>
 <li>Removed unpublished Xena hub TDI.</li>
