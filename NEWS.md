@@ -1,3 +1,7 @@
+# UCSCXenaTools 1.4.6
+
+- Fixed check warnings to follow CRAN policy (#36).
+
 # UCSCXenaTools 1.4.5
 
 - Fixed the download bug for pan-cancer data hub due to unvalid URL. `url_encode()`

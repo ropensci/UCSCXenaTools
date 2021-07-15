@@ -54,7 +54,8 @@ http_error2 <- function(url, max_try = 3L, ...) {
     },
     error = function(e) {
       if (max_try == 1) {
-        stop("Tried 3 times but failed, please check your internet connection!")
+        message("Tried 3 times but failed, please check your internet connection!")
+        invisible(NULL)
       } else {
         http_error2(url, max_try - 1L)
       }

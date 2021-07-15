@@ -131,7 +131,8 @@ download.file2 <- function(url, destfile,
     },
     error = function(e) {
       if (max_try == 1) {
-        stop("Tried 3 times but failed, please check your internet connection!")
+        message("Tried 3 times but failed, please check your internet connection!")
+        invisible(NULL)
       } else {
         download.file2(url, destfile, max_try = max_try - 1L, ...)
       }
