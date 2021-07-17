@@ -177,7 +177,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.4.2
+#> UCSCXenaTools version 1.4.6
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -235,19 +235,19 @@ XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 ```
 
-**For researchers in China, now [Hiplot team](https://hiplot.com.cn/)
-has deployed several Xena [mirror sites](https://xena.hiplot.com.cn/) at
-Shanghai. You can set an option `options(use_hiplot = TRUE)` before
-querying data step to speed up both data querying and downloading.**
+**For researchers in China, now Hiplot team has deployed several Xena
+mirror sites (`https://xena.hiplot.com.cn/`) at Shanghai. You can set an
+option `options(use_hiplot = TRUE)` before querying data step to speed
+up both data querying and downloading.**
 
 ``` r
 options(use_hiplot = TRUE)
 
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
-#> Use hiplot server (China) for mirrored data hubs (set 'options(use_hiplot = FALSE)' to disable it)
+#> The hiplot server may down, we will not use it for now.
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/mx/rfkl27z90c96wbmn3_kjk8c80000gn/T//Rtmp4UYCMN.
+#> All downloaded files will under directory /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn/T//RtmpoHs0nL.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix

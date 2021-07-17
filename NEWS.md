@@ -25,7 +25,7 @@ and thus change the column order. This bug will not affect XenaTools itself.
 
 # UCSCXenaTools 1.4.0
 
-- Supported downloading data from Hiplot mirror site <https://xena.hiplot.com.cn/>.
+- Supported downloading data from Hiplot mirror site (`https://xena.hiplot.com.cn/`).
 
 # UCSCXenaTools 1.3.6
 

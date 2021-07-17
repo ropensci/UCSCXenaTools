@@ -136,7 +136,7 @@ XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 ```
 
-**For researchers in China, now [Hiplot team](https://hiplot.com.cn/) has deployed several Xena [mirror sites](https://xena.hiplot.com.cn/) at Shanghai. You can set an option `options(use_hiplot = TRUE)` before querying data step to speed up both data querying and downloading.**
+**For researchers in China, now Hiplot team has deployed several Xena mirror sites (`https://xena.hiplot.com.cn/`) at Shanghai. You can set an option `options(use_hiplot = TRUE)` before querying data step to speed up both data querying and downloading.**
 
 ```{r}
 options(use_hiplot = TRUE)
