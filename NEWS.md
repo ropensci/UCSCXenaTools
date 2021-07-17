@@ -1,5 +1,6 @@
 # UCSCXenaTools 1.4.6
 
+- Added code to check hiplot server status.
 - Fixed check warnings to follow CRAN policy (#36).
 
 # UCSCXenaTools 1.4.5

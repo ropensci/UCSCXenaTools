@@ -58,6 +58,19 @@ fetch <- function(host, dataset) {
 check_hiplot <- function(host) {
   use_hiplot <- getOption("use_hiplot", default = FALSE)
   if (use_hiplot) {
+      # Check website status
+      use_hiplot <- tryCatch(
+          {
+              httr::http_error(host)
+              TRUE
+          },
+          error = function(e) {
+              message("The hiplot server may down, we will not use it for now.")
+              FALSE
+          }
+      )
+  }
+  if (use_hiplot) {
     if (!grepl("hiplot", host)) {
       message("Use hiplot server (China) for mirrored data hubs (set 'options(use_hiplot = FALSE)' to disable it)")
       host2 <- as.character(.xena_mirror_map_rv[host])
