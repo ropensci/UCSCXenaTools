@@ -1,6 +1,6 @@
 # UCSCXenaTools 1.4.7
 
-- Added support for gene symbol checking in `fetch()`.
+- Added support for gene symbol checking and data cache in `fetch()`.
 
 # UCSCXenaTools 1.4.6
 

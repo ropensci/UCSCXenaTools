@@ -1,40 +1,60 @@
 Package: UCSCXenaTools
 Title: Download and Explore Datasets from UCSC Xena Data Hubs
 Version: 1.4.7
-Authors@R: c(person("Shixiang", "Wang", email = "w_shixiang@163.com", role = c("aut", "cre"), 
-            comment = c(ORCID = "0000-0001-9855-7357")),
-            person("Xue-Song", "Liu", role = "aut", comment = c(ORCID = "0000-0002-7736-0077")),
-            person("Martin", "Morgan", role="ctb"),
-            person("Christine", "Stawitz", role="rev", comment = "Christine reviewed the package for ropensci, see <https://github.com/ropensci/software-review/issues/315>"),
-            person("Carl", "Ganz", role="rev", comment = "Carl reviewed the package for ropensci, see <https://github.com/ropensci/software-review/issues/315>"))
+Authors@R: 
+    c(person(given = "Shixiang",
+             family = "Wang",
+             role = c("aut", "cre"),
+             email = "w_shixiang@163.com",
+             comment = c(ORCID = "0000-0001-9855-7357")),
+      person(given = "Xue-Song",
+             family = "Liu",
+             role = "aut",
+             comment = c(ORCID = "0000-0002-7736-0077")),
+      person(given = "Martin",
+             family = "Morgan",
+             role = "ctb"),
+      person(given = "Christine",
+             family = "Stawitz",
+             role = "rev",
+             comment = "Christine reviewed the package for ropensci, see <https://github.com/ropensci/software-review/issues/315>"),
+      person(given = "Carl",
+             family = "Ganz",
+             role = "rev",
+             comment = "Carl reviewed the package for ropensci, see <https://github.com/ropensci/software-review/issues/315>"))
 Maintainer: Shixiang Wang <w_shixiang@163.com>
-URL: https://docs.ropensci.org/UCSCXenaTools/, https://github.com/ropensci/UCSCXenaTools
+Description: Download and explore datasets from UCSC Xena data hubs, which
+    are a collection of UCSC-hosted public databases such as TCGA, ICGC,
+    TARGET, GTEx, CCLE, and others.  Databases are normalized so they can
+    be combined, linked, filtered, explored and downloaded.
+License: GPL-3
+URL: https://docs.ropensci.org/UCSCXenaTools/,
+    https://github.com/ropensci/UCSCXenaTools
 BugReports: https://github.com/ropensci/UCSCXenaTools/issues
-Description: Download and explore datasets from UCSC Xena data hubs, which are
-    a collection of UCSC-hosted public databases such as TCGA, ICGC, TARGET, GTEx, CCLE, and others.
-    Databases are normalized so they can be combined, linked, filtered, explored and downloaded.
-Depends: R (>= 3.5)
+Depends: 
+    R (>= 3.5)
 Imports: 
-    httr,
-    readr,
-    methods,
-    utils,
+    digest,
     dplyr,
-    magrittr,
+    httr,
     jsonlite,
-    rlang
+    magrittr,
+    methods,
+    readr,
+    rlang,
+    utils
 Suggests: 
+    covr,
     DT,
     knitr,
-    rmarkdown,
     prettydoc,
+    rmarkdown,
     shiny,
     shinydashboard,
-    testthat (>= 2.1.0),
-    covr
-License: GPL-3
+    testthat (>= 2.1.0)
+VignetteBuilder: 
+    knitr
 Encoding: UTF-8
 LazyData: true
-VignetteBuilder: knitr
-RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
