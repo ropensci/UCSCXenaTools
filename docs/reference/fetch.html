@@ -82,7 +82,7 @@ please see the following sections." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.7</span>
       </span>
     </div>
 
@@ -162,7 +162,7 @@ please see the following sections.</p>
 
 <span class='fu'>fetch_dataset_identifiers</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span><span class='op'>)</span>
 
-<span class='fu'>has_probeMap</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span><span class='op'>)</span></pre>
+<span class='fu'>has_probeMap</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span>, return_url <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -212,6 +212,11 @@ gene symbols even the identifiers of dataset are probes or others.</p></td>
       <th>limit</th>
       <td><p>number of samples, if <code>NULL</code>, return all samples.</p></td>
     </tr>
+    <tr>
+      <th>return_url</th>
+      <td><p>if <code>TRUE</code>, returns the info of probeMap
+instead of a logical value when the result exists.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -254,6 +259,7 @@ used to map a gene location to a set of probes.</p>
 <span class='co'># Fetch expression value by probes</span>
 <span class='fu'>fetch_dense_values</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span>, <span class='va'>probes</span>, <span class='va'>samples</span>, check <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='co'># Fetch expression value by gene symbol (if the dataset has probeMap)</span>
+<span class='fu'>has_probeMap</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span><span class='op'>)</span>
 <span class='fu'>fetch_dense_values</span><span class='op'>(</span><span class='va'>host</span>, <span class='va'>dataset</span>, <span class='va'>genes</span>, <span class='va'>samples</span>, check <span class='op'>=</span> <span class='cn'>FALSE</span>, use_probeMap <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='co'># }</span>
 </pre>

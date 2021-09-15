@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">UCSCXenaTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.4.7</span>
       </span>
     </div>
 
@@ -134,9 +134,32 @@
       <small>Source: <a href='https://github.com/ropensci/UCSCXenaTools/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="ucscxenatools-147" class="section level1">
+<h1 class="page-header" data-toc-text="1.4.7">
+<a href="#ucscxenatools-147" class="anchor"></a>UCSCXenaTools 1.4.7<small> Unreleased </small>
+</h1>
+<ul>
+<li>3 datasets were added into <code>XenaData</code>.</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>] <span class="st">"TCGA_survival_data_2.txt"</span>                                  </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>] <span class="st">"clinical_CellLinePolyA_21.06_2021-06-15.tsv"</span>               </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>] <span class="st">"CellLinePolyA_21.06_hugo_log2tpm_58581genes_2021-06-15.tsv"</span></span></code></pre></div>
+<ul>
+<li>Added support for gene symbol checking and data cache in <code><a href="../reference/fetch.html">fetch()</a></code>.</li>
+</ul>
+</div>
+    <div id="ucscxenatools-146" class="section level1">
+<h1 class="page-header" data-toc-text="1.4.6">
+<a href="#ucscxenatools-146" class="anchor"></a>UCSCXenaTools 1.4.6<small> 2021-07-17 </small>
+</h1>
+<ul>
+<li>Added code to check hiplot server status.</li>
+<li>Fixed check warnings to follow CRAN policy (<a href='https://github.com/ropensci/UCSCXenaTools/issues/36'>#36</a>).</li>
+</ul>
+</div>
     <div id="ucscxenatools-145" class="section level1">
 <h1 class="page-header" data-toc-text="1.4.5">
-<a href="#ucscxenatools-145" class="anchor"></a>UCSCXenaTools 1.4.5<small> Unreleased </small>
+<a href="#ucscxenatools-145" class="anchor"></a>UCSCXenaTools 1.4.5<small> 2021-05-27 </small>
 </h1>
 <ul>
 <li>Fixed the download bug for pan-cancer data hub due to unvalid URL. <code>url_encode()</code> is added internally to transform reserved characters (<code><a href="https://rdrr.io/r/base/Arithmetic.html">/</a></code> is kept).</li>
@@ -172,7 +195,7 @@
 <a href="#ucscxenatools-140" class="anchor"></a>UCSCXenaTools 1.4.0<small> 2021-01-19 </small>
 </h1>
 <ul>
-<li>Supported downloading data from Hiplot mirror site <a href="https://xena.hiplot.com.cn/" class="uri">https://xena.hiplot.com.cn/</a>.</li>
+<li>Supported downloading data from Hiplot mirror site (<code>https://xena.hiplot.com.cn/</code>).</li>
 </ul>
 </div>
     <div id="ucscxenatools-136" class="section level1">

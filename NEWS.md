@@ -1,5 +1,13 @@
 # UCSCXenaTools 1.4.7
 
+- 3 datasets were added into `XenaData`.
+
+```r
+[1] "TCGA_survival_data_2.txt"                                  
+[2] "clinical_CellLinePolyA_21.06_2021-06-15.tsv"               
+[3] "CellLinePolyA_21.06_hugo_log2tpm_58581genes_2021-06-15.tsv"
+```
+
 - Added support for gene symbol checking and data cache in `fetch()`.
 
 # UCSCXenaTools 1.4.6
