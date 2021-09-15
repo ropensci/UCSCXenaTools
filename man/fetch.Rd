@@ -27,7 +27,7 @@ fetch_dataset_samples(host, dataset, limit = NULL)
 
 fetch_dataset_identifiers(host, dataset)
 
-has_probeMap(host, dataset)
+has_probeMap(host, dataset, return_url = FALSE)
 }
 \arguments{
 \item{host}{a UCSC Xena host, like "https://toil.xenahubs.net".
@@ -56,6 +56,9 @@ gene symbols even the identifiers of dataset are probes or others.}
 \item{genes}{gene names.}
 
 \item{limit}{number of samples, if \code{NULL}, return all samples.}
+
+\item{return_url}{if \code{TRUE}, returns the info of probeMap
+instead of a logical value when the result exists.}
 }
 \value{
 a \code{matirx} or character vector or a \code{list}.
@@ -105,6 +108,7 @@ fetch_dataset_identifiers(host, dataset)
 # Fetch expression value by probes
 fetch_dense_values(host, dataset, probes, samples, check = FALSE)
 # Fetch expression value by gene symbol (if the dataset has probeMap)
+has_probeMap(host, dataset)
 fetch_dense_values(host, dataset, genes, samples, check = FALSE, use_probeMap = TRUE)
 }
 }

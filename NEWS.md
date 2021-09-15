@@ -1,3 +1,7 @@
+# UCSCXenaTools 1.4.7
+
+- Added support for gene symbol checking in `fetch()`.
+
 # UCSCXenaTools 1.4.6
 
 - Added code to check hiplot server status.
