@@ -32,7 +32,7 @@ Development
 <a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg" alt="minimal R version"></a>
 </td>
 <td align="left">
-<a href="https://cran.r-project.org/web/checks/check_results_UCSCXenaTools.html"><img src="https://cranchecks.info/badges/summary/UCSCXenaTools" alt="cran-checks"></a>
+<a href="https://gitter.im/ShixiangWang/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"><img src="https://badges.gitter.im/ShixiangWang/community.svg" alt="cran-checks"></a>
 </td>
 <td align="left">
 <a href="https://ci.appveyor.com/project/ShixiangWang/UCSCXenaTools"><img src="https://ci.appveyor.com/api/projects/status/github/ropensci/UCSCXenaTools?branch=master&svg=true" alt="AppVeyor"></a>
@@ -75,7 +75,9 @@ Development
 </tbody>
 </table>
 
-<br> <!-- badges: end -->
+<br>
+
+<!-- badges: end -->
 
 # UCSCXenaTools <img src='man/figures/logo.png' align="right" height="200" alt="logo"/>
 
@@ -177,7 +179,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.4.6
+#> UCSCXenaTools version 1.4.7
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -190,7 +192,7 @@ library(UCSCXenaTools)
 data(XenaData)
 
 head(XenaData)
-#> # A tibble: 6 x 17
+#> # A tibble: 6 × 17
 #>   XenaHosts XenaHostNames XenaCohorts XenaDatasets SampleCount DataSubtype Label
 #>   <chr>     <chr>         <chr>       <chr>              <int> <chr>       <chr>
 #> 1 https://… publicHub     Breast Can… ucsfNeve_pu…          51 gene expre… Neve…
@@ -247,7 +249,7 @@ XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> The hiplot server may down, we will not use it for now.
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/bj/nw1w4g1j37ddpgb6zmh3sfh80000gn/T//RtmpoHs0nL.
+#> All downloaded files will under directory C:\Users\ADMINI~1\AppData\Local\Temp\RtmpIfw2E2.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
@@ -324,4 +326,4 @@ For anyone who wants to contribute, please follow the guideline:
 This package is based on [XenaR](https://github.com/mtmorgan/XenaR),
 thanks [Martin Morgan](https://github.com/mtmorgan) for his work.
 
-[![ropensci\_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
+[![ropensci_footer](https://ropensci.org/public_images/ropensci_footer.png)](https://ropensci.org)
