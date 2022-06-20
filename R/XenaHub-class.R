@@ -57,7 +57,7 @@ xena_default_hosts <- function() {
     "https://icgc.xenahubs.net",
     "https://toil.xenahubs.net",
     "https://pancanatlas.xenahubs.net",
-    "https://toil.xenahubs.net",
+    "https://xena.treehouse.gi.ucsc.edu:443",
     "https://pcawg.xenahubs.net",
     "https://atacseq.xenahubs.net",
     "https://singlecellnew.xenahubs.net",
@@ -260,26 +260,28 @@ XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
     )
   }
 
-  message("=> Obtaining info from UCSC Xena hubs...")
-  XenaInfo <- lapply(names(.xena_hosts), function(h) {
-    message("==> Searching cohorts for host ", h, "...")
+  query_host = function(h) {
+      message("==> Searching cohorts for host ", h, "...")
 
-    chs <- try_query(h, max_try = 3L)
-    if (is.null(chs)) {
-      return(NULL)
-    }
-    chs <- setdiff(chs, "(unassigned)")
-    message("===> #", length(chs), " cohorts found.")
-    message("===> Querying datasets info...")
-    zz <- lapply(chs, function(x, h) {
-      .p_dataset_list(list(h), list(x))
-    }, h = h) %>%
-      stats::setNames(chs) %>%
-      dplyr::bind_rows(.id = "XenaCohorts")
-    message("===> #", nrow(zz), " datasets found.")
-    message("==> Done for host ", h, "...")
-    zz
-  }) %>%
+      chs <- try_query(h, max_try = 3L)
+      if (is.null(chs)) {
+          return(NULL)
+      }
+      chs <- setdiff(chs, "(unassigned)")
+      message("===> #", length(chs), " cohorts found.")
+      message("===> Querying datasets info...")
+      zz <- lapply(chs, function(x, h) {
+          .p_dataset_list(list(h), list(x))
+      }, h = h) %>%
+          stats::setNames(chs) %>%
+          dplyr::bind_rows(.id = "XenaCohorts")
+      message("===> #", nrow(zz), " datasets found.")
+      message("==> Done for host ", h, "...")
+      zz
+  }
+
+  message("=> Obtaining info from UCSC Xena hubs...")
+  XenaInfo <- lapply(names(.xena_hosts), query_host) %>%
     stats::setNames(names(.xena_hosts)) %>%
     dplyr::bind_rows(.id = "XenaHosts")
 
