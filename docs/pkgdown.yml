@@ -1,7 +1,7 @@
-pandoc: 2.11.4
-pkgdown: 1.6.1
+pandoc: 2.17.1.1
+pkgdown: 2.0.4
 pkgdown_sha: ~
 articles:
   USCSXenaTools: USCSXenaTools.html
-last_built: 2021-09-15T10:59Z
+last_built: 2022-06-20T06:42Z
 

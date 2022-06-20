@@ -20,3 +20,4 @@ paper/
 ^.github$
 pkgdown$
 ^data-raw$
+^CRAN-SUBMISSION$
