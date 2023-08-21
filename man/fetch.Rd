@@ -80,17 +80,17 @@ used to map a gene location to a set of probes.
 }
 \section{Functions}{
 \itemize{
-\item \code{fetch_dense_values}: fetches values from a dense matrix.
+\item \code{fetch_dense_values()}: fetches values from a dense matrix.
 
-\item \code{fetch_sparse_values}: fetches values from a sparse \code{data.frame}.
+\item \code{fetch_sparse_values()}: fetches values from a sparse \code{data.frame}.
 
-\item \code{fetch_dataset_samples}: fetches samples from a dataset
+\item \code{fetch_dataset_samples()}: fetches samples from a dataset
 
-\item \code{fetch_dataset_identifiers}: fetches identifies from a dataset.
+\item \code{fetch_dataset_identifiers()}: fetches identifies from a dataset.
 
-\item \code{has_probeMap}: checks if a dataset has ProbeMap.
+\item \code{has_probeMap()}: checks if a dataset has ProbeMap.
+
 }}
-
 \examples{
 library(UCSCXenaTools)
 
