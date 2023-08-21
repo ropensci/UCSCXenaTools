@@ -1,3 +1,7 @@
+# UCSCXenaTools 1.5.0
+
+- Added two new queries from xenaPython
+
 # UCSCXenaTools 1.4.8
 
 - Updated to latest Xena dataset list.
