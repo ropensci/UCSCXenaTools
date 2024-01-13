@@ -1,6 +1,11 @@
 # UCSCXenaTools 1.5.0
 
-- Added two new queries from xenaPython
+- Removed useless action or check config files.
+- Removed the `XenaShiny()` function to reduce the dependencies.
+- Updated XenaData. Only minor datasets change found from previous data release.
+- Hiplot mirror is down, so we removed its usage in documentation (not delete internal code).
+- Added two new queries from xenaPython.
+
 
 # UCSCXenaTools 1.4.8
 

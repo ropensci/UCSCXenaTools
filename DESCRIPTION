@@ -45,12 +45,9 @@ Imports:
     utils
 Suggests: 
     covr,
-    DT,
     knitr,
     prettydoc,
     rmarkdown,
-    shiny,
-    shinydashboard,
     testthat (>= 2.1.0)
 VignetteBuilder: 
     knitr
