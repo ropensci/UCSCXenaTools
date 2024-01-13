@@ -34,7 +34,6 @@ reference:
     desc: Useful functions.
     contents:
     - XenaDataUpdate
-    - XenaShiny
     - hosts
     - cohorts
     - datasets
