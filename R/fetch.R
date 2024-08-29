@@ -276,6 +276,7 @@ fetch_sparse_values <- function(host, dataset, genes, samples = NULL,
 fetch_dataset_samples <- function(host, dataset, limit = NULL) {
   .attach_this()
   host <- check_hiplot(host)
+  if (is.null(limit)) limit = -1
   .p_dataset_samples(host = host, dataset = dataset, limit = limit)
 }
 
