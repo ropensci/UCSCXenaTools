@@ -1,5 +1,6 @@
 # UCSCXenaTools 1.5.0
 
+- Bugs fixed.
 - Removed useless action or check config files.
 - Removed the `XenaShiny()` function to reduce the dependencies.
 - Updated XenaData. Only minor datasets change found from previous data release.
