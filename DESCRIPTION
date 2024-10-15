@@ -1,6 +1,6 @@
 Package: UCSCXenaTools
 Title: Download and Explore Datasets from UCSC Xena Data Hubs
-Version: 1.5.0
+Version: 1.6.0
 Authors@R: 
     c(person(given = "Shixiang",
              family = "Wang",

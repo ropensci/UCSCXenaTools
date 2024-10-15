@@ -1,3 +1,8 @@
+# UCSCXenaTools 1.6.0
+
+- Single cell hub was found disabled.
+- GDC hub was completely updated.
+
 # UCSCXenaTools 1.5.0
 
 - Bugs fixed.

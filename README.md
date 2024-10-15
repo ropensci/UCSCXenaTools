@@ -77,6 +77,7 @@ Xena.
 - PCAWG Xena Hub: <https://pcawg.xenahubs.net/>
 - ATAC-seq Hub: <https://atacseq.xenahubs.net/>
 - Singel Cell Xena Hub: <https://singlecellnew.xenahubs.net/>
+  (**Disabled by UCSCXena**)
 - Kids First Xena Hub: <https://kidsfirst.xenahubs.net/>
 - Treehouse Xena Hub: <https://xena.treehouse.gi.ucsc.edu:443/>
 
@@ -113,7 +114,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.4.8
+#> UCSCXenaTools version 1.5.0
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -170,7 +171,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /var/folders/gm/lw6z28md2594gcnws_38_9f40000gn/T//RtmpfewSeZ.
+#> All downloaded files will under directory /var/folders/37/gt0rbmqn61b513tbr8pyz_y40000gn/T//RtmpbXwIKj.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
