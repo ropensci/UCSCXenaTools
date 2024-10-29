@@ -115,7 +115,7 @@ You can load `XenaData` after loading `UCSCXenaTools` into R.
 ``` r
 library(UCSCXenaTools)
 #> =========================================================================================
-#> UCSCXenaTools version 1.4.8
+#> UCSCXenaTools version 1.6.0
 #> Project URL: https://github.com/ropensci/UCSCXenaTools
 #> Usages: https://cran.r-project.org/web/packages/UCSCXenaTools/vignettes/USCSXenaTools.html
 #> 
@@ -172,7 +172,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /tmp/RtmpB0pxLW.
+#> All downloaded files will under directory /tmp/RtmpyHpIIe.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
