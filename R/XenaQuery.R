@@ -39,7 +39,7 @@ XenaQuery <- function(x) {
   query <- data_list %>%
     dplyr::filter(XenaDatasets %in% datasetsName) %>%
     dplyr::rename(hosts = XenaHosts, datasets = XenaDatasets) %>%
-    dplyr::mutate(url = ifelse(.data$XenaHostNames == "gdcHub",
+    dplyr::mutate(url = ifelse(.data$XenaHostNames %in% c("gdcHub", "gdcHubV18"),
       file.path(hosts, "download", url_encode(basename(datasets))),
       file.path(hosts, "download", url_encode(datasets))
     )) %>%

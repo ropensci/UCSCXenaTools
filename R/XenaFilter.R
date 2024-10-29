@@ -26,57 +26,57 @@ XenaFilter <- function(x,
                        filterCohorts = NULL,
                        filterDatasets = NULL,
                        ignore.case = TRUE, ...) {
-  if (is.null(filterCohorts) & is.null(filterDatasets)) {
-    warning("No operation for input, do nothing...")
-    return(x)
-  }
+    if (is.null(filterCohorts) & is.null(filterDatasets)) {
+        warning("No operation for input, do nothing...")
+        return(x)
+    }
 
-  cohorts_select <- character()
-  datasets_select <- character()
+    cohorts_select <- character()
+    datasets_select <- character()
 
-  # suppress binding notes
-  XenaHosts <- XenaCohorts <- XenaDatasets <- NULL
+    # suppress binding notes
+    XenaHosts <- XenaCohorts <- XenaDatasets <- NULL
 
-  if (!is.null(filterCohorts)) {
-    cohorts_select <- grep(
-      pattern = filterCohorts,
-      x@cohorts,
-      ignore.case = ignore.case,
-      value = TRUE,
-      ...
-    )
-  }
-
-  if (!is.null(filterDatasets)) {
-    datasets_select <- grep(
-      pattern = filterDatasets,
-      x@datasets,
-      ignore.case = ignore.case,
-      value = TRUE,
-      ...
-    )
-  }
-
-  if (identical(cohorts_select, character()) &
-    identical(datasets_select, character())) {
-    warning("No valid cohorts or datasets find! Please check your input.")
-  } else {
-    if (identical(cohorts_select, character()) &
-      !identical(datasets_select, character())) {
-      UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts &
-        XenaDatasets %in% datasets_select)
-    } else { # nocov start
-      if (!identical(cohorts_select, character()) &
-        identical(datasets_select, character())) {
-        UCSCXenaTools::XenaGenerate(subset = XenaHosts %in% x@hosts &
-          XenaCohorts %in% cohorts_select)
-      } else {
-        UCSCXenaTools::XenaGenerate(
-          subset = XenaHosts %in% x@hosts &
-            XenaCohorts %in% cohorts_select &
-            XenaDatasets %in% datasets_select
+    if (!is.null(filterCohorts)) {
+        cohorts_select <- grep(
+            pattern = filterCohorts,
+            x@cohorts,
+            ignore.case = ignore.case,
+            value = TRUE,
+            ...
         )
-      }
-    } # nocov end
-  }
+    }
+
+    if (!is.null(filterDatasets)) {
+        datasets_select <- grep(
+            pattern = filterDatasets,
+            x@datasets,
+            ignore.case = ignore.case,
+            value = TRUE,
+            ...
+        )
+    }
+
+    if (identical(cohorts_select, character()) &
+        identical(datasets_select, character())) {
+        warning("No valid cohorts or datasets find! Please check your input.")
+    } else {
+        if (identical(cohorts_select, character()) &
+            !identical(datasets_select, character())) {
+            UCSCXenaTools::XenaGenerate(
+                subset = XenaHosts %in% x@hosts &
+                    XenaDatasets %in% datasets_select)
+        } else if (!identical(cohorts_select, character()) &
+                   identical(datasets_select, character())) {
+            UCSCXenaTools::XenaGenerate(
+                subset = XenaHosts %in% x@hosts &
+                    XenaCohorts %in% cohorts_select)
+        } else {
+            UCSCXenaTools::XenaGenerate(
+                subset = XenaHosts %in% x@hosts &
+                    XenaCohorts %in% cohorts_select &
+                    XenaDatasets %in% datasets_select
+            )
+        }
+    }
 }

@@ -3,6 +3,9 @@
 # post --------------------------------------------------------------------
 
 .xena_post <- function(host, query, ...) {
+  # allow insecure options like curl -k
+  # https://stackoverflow.com/questions/65531599/how-to-pass-the-k-or-insecure-argument-to-curl-in-the-r-package-httr
+  httr::set_config(httr::config(ssl_verifypeer = 0L, ssl_verifyhost = 0L))
   host <- paste0(host, "/data/")
   res <- POST(host, body = query)
   stop_for_status(res)
