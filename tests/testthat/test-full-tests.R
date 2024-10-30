@@ -12,18 +12,19 @@ xe3 <- XenaHub(
 
 
 all_hosts <- c(
-  "https://ucscpublic.xenahubs.net",
-  "https://tcga.xenahubs.net",
-  "https://gdc.xenahubs.net",
-  "https://icgc.xenahubs.net",
-  "https://toil.xenahubs.net",
-  "https://pancanatlas.xenahubs.net",
-  "https://xena.treehouse.gi.ucsc.edu:443",
-  "https://pcawg.xenahubs.net",
-  "https://atacseq.xenahubs.net",
-  "https://singlecellnew.xenahubs.net",
-  "https://kidsfirst.xenahubs.net"
-  #"https://tdi.xenahubs.net"
+    "https://ucscpublic.xenahubs.net",
+    "https://tcga.xenahubs.net",
+    "https://gdc.xenahubs.net",
+    "https://gdcV18.xenahubs.net",
+    "https://icgc.xenahubs.net",
+    "https://toil.xenahubs.net",
+    "https://pancanatlas.xenahubs.net",
+    "https://xena.treehouse.gi.ucsc.edu:443",
+    "https://pcawg.xenahubs.net",
+    "https://atacseq.xenahubs.net",
+    "https://singlecellnew.xenahubs.net",
+    "https://kidsfirst.xenahubs.net",
+    "https://tdi.xenahubs.net"
 )
 
 

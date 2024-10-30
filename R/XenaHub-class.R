@@ -346,7 +346,7 @@ XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
     message("=> Saving...")
     data_dir <- base::system.file("data", package = "UCSCXenaTools")
     if (dir.exists(data_dir)) {
-      save(XenaData, file = file.path(data_dir, "XenaData.rda"))
+      save(XenaData, file = file.path(data_dir, "XenaData.rda"), compress = "xz")
     } else {
       message("There is no data directory ", data_dir)
       message("Please check it.")
