@@ -40,10 +40,11 @@ this package?**
 
 ## Installation
 
-Install stable release from CRAN with:
+Install stable release from r-universe/CRAN with:
 
 ``` r
-install.packages("UCSCXenaTools")
+install.packages('UCSCXenaTools', repos = c('https://ropensci.r-universe.dev', 'https://cloud.r-project.org'))
+#install.packages("UCSCXenaTools")
 ```
 
 You can also install devel version of **UCSCXenaTools** from github
@@ -172,7 +173,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /tmp/RtmpyHpIIe.
+#> All downloaded files will under directory /tmp/RtmpYsoGw3.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix

@@ -44,10 +44,11 @@ Public omics data from UCSC Xena are supported through [**multiple turn-key Xena
 
 ## Installation
 
-Install stable release from CRAN with:
+Install stable release from r-universe/CRAN with:
 
 ```{r, eval=FALSE}
-install.packages("UCSCXenaTools")
+install.packages('UCSCXenaTools', repos = c('https://ropensci.r-universe.dev', 'https://cloud.r-project.org'))
+#install.packages("UCSCXenaTools")
 ```
 
 You can also install devel version of **UCSCXenaTools** from github with:
