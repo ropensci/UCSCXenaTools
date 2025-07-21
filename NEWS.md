@@ -1,6 +1,6 @@
 # UCSCXenaTools 1.6.0
 
-- Totally 2486 datasets are included in the current list.
+- Totally 2511 datasets are included in the current list.
 - Single cell hub was found disabled.
 - GDC hub was completely updated. The old GDC hub has been renamed to gdcHubV18.
 
