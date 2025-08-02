@@ -221,7 +221,7 @@ xq = XenaQuery(xe)
 # You cannot resume from breakpoint in default mode
 XenaDownload(xq, destdir = "~/test/", force = TRUE)
 # You can do it with 'curl' command
-XenaDownload(xq, destdir = "~/test/", method = "curl", extra = "-C -", force = TRUE)
+XenaDownload(xq, destdir = "~/test/", method = "curl", extra = "-C - -L", force = TRUE)
 # You can do it with 'wget' command
 XenaDownload(xq, destdir = "~/test/", method = "wget", extra = "-c", force = TRUE)
 ```
