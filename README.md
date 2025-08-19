@@ -78,10 +78,8 @@ Xena.
   <https://toil.xenahubs.net/>
 - PCAWG Xena Hub: <https://pcawg.xenahubs.net/>
 - ATAC-seq Hub: <https://atacseq.xenahubs.net/>
-- Singel Cell Xena Hub: <https://singlecellnew.xenahubs.net/>
-  (**Disabled by UCSCXena**)
-- Kids First Xena Hub: <https://kidsfirst.xenahubs.net/>
 - Treehouse Xena Hub: <https://xena.treehouse.gi.ucsc.edu:443/>
+- …
 
 Users can update dataset list from the newest version of UCSC Xena by
 hand with `XenaDataUpdate()` function, followed by restarting R and
@@ -173,7 +171,7 @@ Query and download.
 XenaQuery(df_todo) %>%
   XenaDownload() -> xe_download
 #> This will check url status, please be patient.
-#> All downloaded files will under directory /tmp/RtmpYsoGw3.
+#> All downloaded files will under directory /var/folders/h0/s_35svc15n1glmp65lbbkx9w0000gn/T//RtmpmgBjSb.
 #> The 'trans_slash' option is FALSE, keep same directory structure as Xena.
 #> Creating directories for datasets...
 #> Downloading TCGA.LUNG.sampleMap/LUNG_clinicalMatrix
