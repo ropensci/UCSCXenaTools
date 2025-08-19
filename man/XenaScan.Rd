@@ -22,7 +22,7 @@ The input of this option can only be \code{data(XenaData)} or its subset.}
     is used with a warning.  Missing values are allowed except for
     \code{regexpr}, \code{gregexpr} and \code{regexec}.}
 
-\item{ignore.case}{logical. if \code{FALSE}, the pattern matching is \emph{case
+\item{ignore.case}{if \code{FALSE}, the pattern matching is \emph{case
       sensitive} and if \code{TRUE}, case is ignored during matching.}
 }
 \value{
