@@ -61,7 +61,7 @@ xena_default_hosts <- function() {
     "https://xena.treehouse.gi.ucsc.edu:443",
     "https://pcawg.xenahubs.net",
     "https://atacseq.xenahubs.net",
-    "https://singlecellnew.xenahubs.net",
+    "https://previewsinglecell.xenahubs.net",
     "https://kidsfirst.xenahubs.net",
     "https://tdi.xenahubs.net"
   )
