@@ -1,3 +1,8 @@
+# UCSCXenaTools 1.6.1
+
+- Added new single cell hub url.
+- Added docs for dynamics.
+
 # UCSCXenaTools 1.6.0
 
 - Totally 2511 datasets are included in the current list.
