@@ -98,7 +98,7 @@ names(.xena_hosts_hiplot) <- c(
   "https://xena.treehouse.gi.ucsc.edu:443", #!
   "https://xena-pcawg.hiplot.com.cn",
   "https://xena-atacseq.hiplot.com.cn",
-  "https://singlecellnew.xenahubs.net", #!
+  "https://previewsinglecell.xenahubs.net", #!
   "https://kidsfirst.xenahubs.net" #!
   #"https://tdi.xenahubs.net" #!
 )
