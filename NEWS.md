@@ -1,3 +1,7 @@
+# UCSCXenaTools 1.6.2
+
+- Filtered probe names to exclude `ENSGR%` pattern (Thanks to Brian Craft and Mary Goldman).
+
 # UCSCXenaTools 1.6.1
 
 - Added new single cell hub url.
