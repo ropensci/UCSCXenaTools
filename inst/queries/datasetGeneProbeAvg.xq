@@ -7,7 +7,10 @@
 		  avg (fn [scores] (mean scores 0))
 		  scores-for-gene (fn [gene]
 			  (let [probes (get-probes gene)
-					probe-names (probes "name")
+					probe-names (map :name (query {
+					:select [:name] :from [{:table [[[:name :varchar (probes "name")]] :T]}]
+                    :where [:not [:like :name "ENSGR%"]]
+                    }))
 					scores (fetch [{:table dataset
 									:samples samples
 									:columns probe-names}])]
