@@ -45,6 +45,7 @@ reference:
     contents:
     - xena_default_hosts
     - to_snake
+    - UCSCXenaTools-dynamic
   - title: Class
     desc: Class and related function.
     contents:
