@@ -70,8 +70,7 @@ Xena.
 
 - UCSC Public Hub: <https://ucscpublic.xenahubs.net/>
 - TCGA Hub: <https://tcga.xenahubs.net/>
-- GDC Xena Hub (new): <https://gdc.xenahubs.net/>
-- GDC v18.0 Xena Hub (old): <https://gdcV18.xenahubs.net/>
+- GDC Xena Hub: <https://gdc.xenahubs.net/>
 - ICGC Xena Hub: <https://icgc.xenahubs.net/>
 - Pan-Cancer Atlas Hub: <https://pancanatlas.xenahubs.net/>
 - UCSC Toil RNAseq Recompute Compendium Hub:
