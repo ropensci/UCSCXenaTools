@@ -1,3 +1,5 @@
+# UCSCXenaTools 1.7.0
+
 # UCSCXenaTools 1.6.2
 
 - Filtered probe names to exclude `ENSGR%` pattern (Thanks to Brian Craft and Mary Goldman).
