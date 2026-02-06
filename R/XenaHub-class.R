@@ -54,7 +54,6 @@ xena_default_hosts <- function() {
     "https://ucscpublic.xenahubs.net",
     "https://tcga.xenahubs.net",
     "https://gdc.xenahubs.net",
-    "https://gdcV18.xenahubs.net",
     "https://icgc.xenahubs.net",
     "https://toil.xenahubs.net",
     "https://pancanatlas.xenahubs.net",
@@ -71,7 +70,6 @@ xena_default_hosts <- function() {
   "publicHub",
   "tcgaHub",
   "gdcHub",
-  "gdcHubV18",
   "icgcHub",
   "toilHub",
   "pancanAtlasHub",
@@ -84,30 +82,6 @@ xena_default_hosts <- function() {
 )
 
 names(.xena_hosts) <- xena_default_hosts()
-
-# Add Hiplot mirror url
-# Still use UCSC Xena URL if it is not available
-.xena_hosts_hiplot <- .xena_hosts
-names(.xena_hosts_hiplot) <- c(
-  "https://xena-ucscpublic.hiplot.com.cn",
-  "https://xena-tcga.hiplot.com.cn",
-  "https://xena-gdc.hiplot.com.cn",
-  "https://xena-icgc.hiplot.com.cn",
-  "https://xena-toil.hiplot.com.cn",
-  "https://xena-pancanatlas.hiplot.com.cn",
-  "https://xena.treehouse.gi.ucsc.edu:443", #!
-  "https://xena-pcawg.hiplot.com.cn",
-  "https://xena-atacseq.hiplot.com.cn",
-  "https://previewsinglecell.xenahubs.net", #!
-  "https://kidsfirst.xenahubs.net" #!
-  #"https://tdi.xenahubs.net" #!
-)
-# Map hiplot to ucsc
-.xena_mirror_map <- names(.xena_hosts)
-names(.xena_mirror_map) <- names(.xena_hosts_hiplot)
-# Map ucsc to hiplot
-.xena_mirror_map_rv <- names(.xena_hosts_hiplot)
-names(.xena_mirror_map_rv) <- names(.xena_hosts)
 
 ##' Generate a XenaHub Object
 ##'
@@ -150,7 +124,6 @@ XenaHub <- function(hosts = xena_default_hosts(),
                       "publicHub",
                       "tcgaHub",
                       "gdcHub",
-                      "gdcHubV18",
                       "icgcHub",
                       "toilHub",
                       "pancanAtlasHub",
@@ -243,8 +216,6 @@ XenaHub <- function(hosts = xena_default_hosts(),
 XenaDataUpdate <- function(saveTolocal = TRUE) { # nocov start
   # .p_all_cohorts(list(unique(XenaData$XenaHosts)[10]), exclude = list(NULL))
   # .p_dataset_list(list(XenaData$XenaHosts[1]), list(XenaData$XenaCohorts[1]))
-  message("Disable hiplot firstly.")
-  options(use_hiplot = FALSE)
   try_query = function(h, max_try = 3L) {
     Sys.sleep(0.1)
     tryCatch(

@@ -1,5 +1,9 @@
 # UCSCXenaTools 1.7.0
 
+- Totally 2314 datasets are included in the current list.
+- Removed gdcHubV18 as it is expired and not available.
+- Removed hiplot support as the server is down.
+
 # UCSCXenaTools 1.6.2
 
 - Filtered probe names to exclude `ENSGR%` pattern (Thanks to Brian Craft and Mary Goldman).

@@ -15,7 +15,6 @@ all_hosts <- c(
     "https://ucscpublic.xenahubs.net",
     "https://tcga.xenahubs.net",
     "https://gdc.xenahubs.net",
-    "https://gdcV18.xenahubs.net",
     "https://icgc.xenahubs.net",
     "https://toil.xenahubs.net",
     "https://pancanatlas.xenahubs.net",

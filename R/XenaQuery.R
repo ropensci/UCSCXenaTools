@@ -11,27 +11,7 @@
 ##' xe_query = XenaQuery(xe)
 ##' }
 XenaQuery <- function(x) {
-  use_hiplot <- getOption("use_hiplot", default = FALSE)
-
   data_list <- UCSCXenaTools::XenaData
-
-  if (use_hiplot) {
-      # Check website status
-      use_hiplot <- tryCatch(
-          {
-              httr::http_error("https://xena-ucscpublic.hiplot.com.cn")
-              TRUE
-          },
-          error = function(e) {
-              message("The hiplot server may down, we will not use it for now.")
-              FALSE
-          }
-      )
-  }
-  if (use_hiplot) {
-    message("Use hiplot server (China) for mirrored data hubs (set 'options(use_hiplot = FALSE)' to disable it)")
-    data_list$XenaHosts <- .xena_mirror_map_rv[data_list$XenaHosts]
-  }
 
   message("This will check url status, please be patient.")
   datasetsName <- datasets(x)
@@ -39,7 +19,7 @@ XenaQuery <- function(x) {
   query <- data_list %>%
     dplyr::filter(XenaDatasets %in% datasetsName) %>%
     dplyr::rename(hosts = XenaHosts, datasets = XenaDatasets) %>%
-    dplyr::mutate(url = ifelse(.data$XenaHostNames %in% c("gdcHub", "gdcHubV18"),
+    dplyr::mutate(url = ifelse(.data$XenaHostNames == "gdcHub",
       file.path(hosts, "download", url_encode(basename(datasets))),
       file.path(hosts, "download", url_encode(datasets))
     )) %>%

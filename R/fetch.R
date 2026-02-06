@@ -56,33 +56,6 @@ fetch <- function(host, dataset) {
   message("Please use a function starts with fetch_")
 }
 
-check_hiplot <- function(host) {
-  use_hiplot <- getOption("use_hiplot", default = FALSE)
-  if (use_hiplot) {
-      # Check website status
-      use_hiplot <- tryCatch(
-          {
-              httr::http_error(host)
-              TRUE
-          },
-          error = function(e) {
-              message("The hiplot server may down, we will not use it for now.")
-              FALSE
-          }
-      )
-  }
-  if (use_hiplot) {
-    if (!grepl("hiplot", host)) {
-      message("Use hiplot server (China) for mirrored data hubs (set 'options(use_hiplot = FALSE)' to disable it)")
-      host2 <- as.character(.xena_mirror_map_rv[host])
-      if (!is.na(host2)) {
-        host <- host2
-      }
-    }
-  }
-  return(host)
-}
-
 #' @describeIn fetch fetches values from a dense matrix.
 #' @export
 fetch_dense_values <- function(host, dataset, identifiers = NULL, samples = NULL,
@@ -93,8 +66,6 @@ fetch_dense_values <- function(host, dataset, identifiers = NULL, samples = NULL
     is.logical(check), is.logical(use_probeMap)
   )
   .attach_this()
-
-  host <- check_hiplot(host)
   if (check) {
     # obtain all samples
     all_samples <- fetch_dataset_samples(host, dataset)
@@ -244,8 +215,6 @@ fetch_sparse_values <- function(host, dataset, genes, samples = NULL,
     is.character(host), is.character(dataset)
   )
   .attach_this()
-
-  host <- check_hiplot(host)
   if (is.null(samples)) {
     samples <- fetch_dataset_samples(host, dataset)
   }
@@ -275,7 +244,6 @@ fetch_sparse_values <- function(host, dataset, genes, samples = NULL,
 #' @export
 fetch_dataset_samples <- function(host, dataset, limit = NULL) {
   .attach_this()
-  host <- check_hiplot(host)
   if (is.null(limit)) limit = -1
   .p_dataset_samples(host = host, dataset = dataset, limit = limit)
 }
@@ -284,7 +252,6 @@ fetch_dataset_samples <- function(host, dataset, limit = NULL) {
 #' @export
 fetch_dataset_identifiers <- function(host, dataset) {
   .attach_this()
-  host <- check_hiplot(host)
   .p_dataset_field(host = host, dataset = dataset)
 }
 
@@ -294,9 +261,6 @@ fetch_dataset_identifiers <- function(host, dataset) {
 #' @export
 has_probeMap <- function(host, dataset, return_url = FALSE) {
   .attach_this()
-  if (! host %in% .xena_mirror_map) {
-    host <- .xena_mirror_map[host]
-  }
   df <- base::subset(UCSCXenaTools::XenaData, XenaHosts == host & XenaDatasets == dataset)
   rv <- !is.na(df[["ProbeMap"]])
   if (rv && return_url) {
